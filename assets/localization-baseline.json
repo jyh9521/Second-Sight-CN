@@ -1,0 +1,154 @@
+{
+  "schema": 1,
+  "baseline": "localization engineering baseline",
+  "revision": "2.1",
+  "adoption_date": "2026-11-17",
+  "source_location": "owner-supplied directory (local provenance in build evidence)",
+  "files": [
+    {
+      "path": "docs/LOCALIZATION_STANDARD.md",
+      "bytes": 6695,
+      "sha256": "e9364c20605fc72191265e9d23e2bc13762a2847277ebc65b86dba30b5cf44e7",
+      "use": "adopted_unchanged",
+      "adopted_sha256": "e9364c20605fc72191265e9d23e2bc13762a2847277ebc65b86dba30b5cf44e7"
+    },
+    {
+      "path": "docs/ACCEPTANCE.md",
+      "bytes": 7776,
+      "sha256": "68d1e7da63be7074b34ad4b4d7dd8f5c5aa9ea43f0c55be4e5beaca9da0b524b",
+      "use": "adopted_unchanged",
+      "adopted_sha256": "68d1e7da63be7074b34ad4b4d7dd8f5c5aa9ea43f0c55be4e5beaca9da0b524b"
+    },
+    {
+      "path": "docs/README_STANDARD.md",
+      "bytes": 7188,
+      "sha256": "13f08811aa5148dc8c419af9c8932eeadbf005d1b71e108b9a32a7793f8aa63d",
+      "use": "adopted_unchanged",
+      "adopted_sha256": "13f08811aa5148dc8c419af9c8932eeadbf005d1b71e108b9a32a7793f8aa63d"
+    },
+    {
+      "path": "docs/DATA_CONTRACT.md",
+      "bytes": 6396,
+      "sha256": "f24ed1579c346330e0a6e16bfc41273bfd15801e94322de0df2b1a515d48c339",
+      "use": "adopted_with_documented_adaptation",
+      "adopted_sha256": "1c10a5e66c179fb5e6dbb09182b3c702fe463ee7f9d4a8dd84cdeff42924bc46"
+    },
+    {
+      "path": "docs/ASSET_LOCALIZATION.md",
+      "bytes": 4811,
+      "sha256": "bb37be474398f8ac6f41370d745ced4167902d7700c867bcfc1dcd864b080138",
+      "use": "adopted_unchanged",
+      "adopted_sha256": "bb37be474398f8ac6f41370d745ced4167902d7700c867bcfc1dcd864b080138"
+    },
+    {
+      "path": "docs/INSTALLATION_STANDARD.md",
+      "bytes": 4080,
+      "sha256": "90299ea6f0d89ce792b6c224ef8c2a1ffcab699c0d3da293f05a0a6cf20b02e5",
+      "use": "adopted_unchanged",
+      "adopted_sha256": "90299ea6f0d89ce792b6c224ef8c2a1ffcab699c0d3da293f05a0a6cf20b02e5"
+    },
+    {
+      "path": "locales/zh-CN/STYLE.md",
+      "bytes": 4637,
+      "sha256": "aaaf61479b726b38e2fbb8f03b1f44b236e34c1804f101bf75951b2c1eb12ca6",
+      "use": "adopted_with_documented_adaptation",
+      "adopted_sha256": "15d5cd75562c5c65646ae68baafc254fc929c7ae0faee35d1ca8d15ebf7377d1"
+    },
+    {
+      "path": "tools/check_docs.py",
+      "bytes": 5771,
+      "sha256": "ffc3f68b0812818f4490df7f8743c6922351c3c9e74316ba4f3c045106ffdccd",
+      "use": "adopted_with_documented_adaptation",
+      "adopted_sha256": "e3dbfad19359157abe553c833a990563f0a75d2fafcc93956a33ad0c1501db3d"
+    },
+    {
+      "path": "tools/locale_policies/__init__.py",
+      "bytes": 316,
+      "sha256": "3590b4276f015720bd08e5b16e92b1cdca4606ba84a7ca5ee4955c8ba388db40",
+      "use": "adopted_with_documented_adaptation",
+      "adopted_sha256": "de28f3a7a71e88599d56ab49132e673cb397cf490c3c4863bfa024ed90ba75d6"
+    },
+    {
+      "path": "tools/locale_policies/zh_sentence_endings.py",
+      "bytes": 3806,
+      "sha256": "65517e04bd8b58da46d3f155a19b9ef64f7c57074cfe7142ae0683f2cf9f99e6",
+      "use": "adopted_unchanged",
+      "adopted_sha256": "65517e04bd8b58da46d3f155a19b9ef64f7c57074cfe7142ae0683f2cf9f99e6"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 2241,
+      "sha256": "df23644a0e05a03cf75637fd18bf10c0f40cabf04e20b2ca0e6fcaa99e0378ac",
+      "use": "reference_only"
+    },
+    {
+      "path": "TRANSLATING.md",
+      "bytes": 3561,
+      "sha256": "238a1499b008465a38508ef204a05c451741c3b3288e981e04a79b81eea254fa",
+      "use": "reference_only"
+    },
+    {
+      "path": "BUILDING.md",
+      "bytes": 4152,
+      "sha256": "1275df2ec0f6ffeb6cea61daa80fe029936e506215817a2c4b5c49d54761d394",
+      "use": "reference_only"
+    },
+    {
+      "path": "TECHNICAL.md",
+      "bytes": 3392,
+      "sha256": "115ff100e97c0a9280cd0beb369050c1c82624e11c2ef63e7d6fdd7a30c8b1b6",
+      "use": "reference_only"
+    },
+    {
+      "path": "LICENSING.md",
+      "bytes": 2689,
+      "sha256": "3baa7ac2a9d51fb0c0db7b6b09c63eeb1c860adfd9cc853948a2c8411e272aef",
+      "use": "reference_only"
+    },
+    {
+      "path": "docs/FILE_FORMATS.md",
+      "bytes": 3413,
+      "sha256": "44ee525a41821f6a523a983c90bf44026336265ac4983b7d5c822ace08ec705c",
+      "use": "reference_only"
+    },
+    {
+      "path": "docs/PITFALLS.md",
+      "bytes": 2417,
+      "sha256": "3b995fa73cc2d1705b4b535c6c2fbf8c8db06a6a8a58ea4164cb54edd06773ae",
+      "use": "reference_only"
+    },
+    {
+      "path": "docs/KNOWN_ISSUES.md",
+      "bytes": 3107,
+      "sha256": "abc45e1b86946e3680c48757f958e16d7c835463e9d4ab6a764de88a31a6435b",
+      "use": "reference_only"
+    },
+    {
+      "path": "docs/MIGRATION.md",
+      "bytes": 2974,
+      "sha256": "1009093f2399edb417896a3b0b2c361289bad7f1e99f7567497c52f2040bfadd",
+      "use": "reference_only"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1064,
+      "sha256": "f44745457b47f4688c184a4c6a12e0051b5d57b3b6a6be1402985a4071f0fb09",
+      "use": "reference_only"
+    },
+    {
+      "path": "tests/test_review_regressions.py",
+      "bytes": 6440,
+      "sha256": "f856df732ceaee1d9c8946f9c350112a8cfa05c12ec69f5dd07e75688bbe0b74",
+      "use": "reference_only"
+    }
+  ],
+  "project_adaptations": [
+    "AGENTS.md is project routing, not the template",
+    "docs/DATA_CONTRACT.md links the existing project adapter instead of unadopted examples",
+    "tools/check_docs.py excludes local third-party input trees",
+    "tools/locale_policies/__init__.py adds fail-closed analyzer dispatch",
+    "locales/zh-CN/STYLE.md adds project-specific references"
+  ],
+  "unchanged_project_formats": "docs/PROJECT_CONTRACT.md",
+  "adopted_hash_convention": "SHA-256 of adopted LF working files; source sha256 retains original input bytes"
+}

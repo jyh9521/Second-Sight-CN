@@ -1,54 +1,49 @@
 # 《Second Sight》简体中文汉化
 
-> **最新用户反馈（2026-11-17）：006等待加载后可以进入游戏，原“卡住”判断已撤回；当前问题是跨字库页错字。007修复了绘制批次切页，并补齐英／美源文精确匹配，详见[007修复记录](docs/GLYPH_FIX_007.md)。**
+Windows PC 固定 GOG 版本的可复用汉化工程：结构化译文、资源提取与验证工具，以及独立本地化 ASI。原版游戏和第三方模组由使用者自行提供。
 
-> **交付约定：先完成全量汉化、文字校对与离线检查，再一次性交由用户测试。中间版本只作开发检查点；自动化不启动、操作或附加游戏进程。**
+**当前是本地实验候选，不是正式发行。** 007 已完成历史离线切页修复验证，尚无该候选的游戏内验收；新基准审计又发现 27 条记录的标点/语境待处理项，当前源码的语言包构建门禁会拒绝这些问题。没有公开完整游戏测试包下载。
 
-PC 版《Second Sight》的简体中文汉化项目。保留原版 FusionFix，以独立本地化模块、结构化语言数据和可复现工具实现中文支持，也为其他语言保留工程基础。
+## 覆盖与边界
 
-**固定 PC 版本的全量首轮译文与离线整合已完成，完整007测试包已构建并校验。** 包括5,957条主文本、PDA全部68页的447段、两条防御性EXE提示和一张载入提示位图。资源目录覆盖不等于游戏通关验收，旧资源与版权图的边界明确保留。
+| 类别 | 有目标文本 | 可追溯逐条审校 | 007 逐条运行验证 |
+|---|---:|---:|---:|
+| BS 主文本 | 5,957 / 5,957 | 0 条已登记；其余未知 | 0 条已登记；其余未测 |
+| PDA 显示段 | 447 / 447 | 0 条已登记；其余未知 | 0 条已登记；其余未测 |
+| EXE 条件提示 | 2 / 2 | 0 条已登记；其余未知 | 0 条已登记；其余未测 |
+| 图像文字 | 1 / 1 张（2 行） | 0 张已登记；其余未知 | 0 张已登记；其余未测 |
 
-## 当前进度
+“有目标文本”只表示首轮目标字段齐全，不代表译文正确、审校完成或所有屏幕英文归零。BS 另有 569 槽按理由保留；14 条活跃消费者未明的旧文本仍在 5,957 分母内。已有人工修改和 004/006 用户反馈保留为历史，未据此编造当前源/目标及 007 候选绑定的逐条验收台账。详见[资源清单与状态口径](docs/PROJECT_CONTRACT.md)、[验收快照](docs/ADOPTION_VALIDATION.md)。
 
-| 内容 | 状态 |
-|---|---|
-| 主文本（BS） | 5,957 条译文；6,526 个槽位全部分类，569 个空槽、机器值或其他有理由的条目原样保留 |
-| PDA | 68 页、447 个非空显示段进入译文目录；任务指令与剧情正文分别遵循标点规则 |
-| 字体 | 思源黑体 Source Han Sans SC Regular 2.005；当前 1,958 字形，6 张 512×512 图集、6,142 个可用字位 |
-| 图像文字 | `ui-textures.json` 独立生成载入提示；当前语言包设计为 6 张字体图集 + 1 张 UI 位图，不修改原 PAK 或高清材质输入 |
-| EXE 提示 | 两条提示加入 SLP3 防御性覆盖；消费者与容量已证，实际触发可达性仍待闭合 |
-| 离线检查 | 自动化测试、真实/合成语言包宿主、原生指令错字回放与隔离副本回滚通过；未运行游戏 |
-| 旧资源边界 | 14条旧文本无已证活跃消费链，完整译文保留、受审计调用者延迟绑定；两条EXE提示防御性覆盖；不把有界静态搜索写成全局不可达 |
-| 最终包约定 | FusionFix + ReMade 高清材质 + 汉化，`WindowMode=2` 无边框；只保留最近两个完成校验的受管包 |
+当前字库为思源黑体 Source Han Sans SC Regular 2.005，已识别静态目录使用 1,958 个字形。动态输入、长文本排版、字幕时间轴和设备重置仍有待验证项。
 
-固定输入为 GOG PC EXE `0,10,0,0` 和用户提供的 FusionFix `13.11.2026.1802-7bce79f`；身份见[技术说明](TECHNICAL.md)。其他游戏版本未验证。
+## 兼容与本地候选
 
-004 已有用户进入菜单、看到部分中文菜单和短 PDA 的反馈。004/005 现在仅是历史检查点；006有用户成功加载反馈，但跨页中文显示错误；007沿用全量译文并修复切页，保留006作为上一版；没有宣称完整通关或模组共存验收通过。详见[全量文本记录](docs/FULL_LOCALIZATION.md)和[已知问题](docs/KNOWN_ISSUES.md)。
+已建立离线契约的组合为固定 GOG EXE、用户提供的 FusionFix `13.11.2026.1802-7bce79f`、Ultimate ASI Loader 与 ReMade 高清材质；无边框输出配置为 `WindowMode=2`。其他商店版本、地区版本和模组版本未验证。精确输入身份见[项目适配](docs/PROJECT_CONTRACT.md)。
 
-## 从源码验证
+本地保留 006、007；只读复核发现已有配置文件与初始包清单不同，保留现状，详见[快照](docs/ADOPTION_VALIDATION.md#保留包只读复核)。本轮规范迁移不改写这两个候选、不生成 008。007 的字库切页修复是离线证据，不是画面验收通过；完整说明见[007记录](docs/GLYPH_FIX_007.md)。由用户运行游戏，自动化不启动、操作或附加游戏进程；文字与离线门禁闭合前，不要求测试新候选。
 
-需要 Python 和用户自行提供的原版游戏文件。以下命令只运行合成测试或检查翻译数据，不启动游戏：
+## 从源码检查
+
+以下命令从仓库根目录执行。离线测试使用 Python 3.14 及 [requirements.txt](requirements.txt) 中的依赖；这些检查不需要启动游戏。实际命令结果见[验收快照](docs/ADOPTION_VALIDATION.md)。
 
 ```powershell
-python -X utf8 tools/translation_checks.py --locale-dir locales/zh-CN
+python -X utf8 -m unittest discover -s tests -q
+python -X utf8 tools/check_docs.py
 python -X utf8 tools/audit_coverage.py --locale-dir locales/zh-CN
-python -X utf8 -m unittest discover -s tests -v
+python -X utf8 tools/audit_locale_policy.py --locale-dir locales/zh-CN
 ```
 
-语言包、x86 ASI、自有离线宿主和完整包的构建命令见[构建说明](BUILDING.md)。运行时提供经校验的译文指针和资源，不改写原 PAK；完整游戏副本与本地双语提取稿不上传 GitHub。
+最后一条当前应返回退出码 **2**：45 处明确句号问题、6 处上下文待审，合计 27 条记录。工程单元测试通过不抵消这项数据失败；CI 分开显示工程检查与严格目录验收。语言包及 x86 ASI 的真实构建前提、历史命令和恢复办法见[BUILDING](BUILDING.md)与[本地候选使用说明](docs/INTEGRATED_TESTING.md)。
 
-本轮完整包与结果见[007修复记录](docs/GLYPH_FIX_007.md)，操作见[手动验收步骤](docs/INTEGRATED_TESTING.md)。包内保留无边框、FusionFix 和完整 ReMade 输入；新包通过校验后才执行最近两版保留规则，不把未完成目录当成可交付版本。
+## 参与翻译与工程维护
 
-## 项目文档
+- 翻译前读[工作流程](TRANSLATING.md)、[中文 STYLE](locales/zh-CN/STYLE.md)和[名词表](locales/zh-CN/glossary.json)；保留稳定 ID、源文指纹、上下文与控制码。
+- 工程从 [AGENTS](AGENTS.md) 按任务路由阅读；新基准采用及条款冲突见[迁移记录](docs/BASELINE_ADOPTION.md)。示例规范不是游戏已实现功能。
+- 反馈应附候选版本、场景、分辨率、复现步骤与截图。未测组合保持未验证。
 
-- [全量进度与交付门槛](docs/FULL_LOCALIZATION.md) · [构建与验证](BUILDING.md) · [已知问题](docs/KNOWN_ISSUES.md)
-- [翻译约定](TRANSLATING.md) · [技术路线](TECHNICAL.md) · [文件格式](docs/FILE_FORMATS.md)
-- [全量字体与文本容量](docs/research/FULL_TEXT_CAPACITY.md) · [踩坑记录](docs/PITFALLS.md)
-- 历史：[初始评估](docs/ASSESSMENT_2026-11-17.md) · [005 菜单/PDA 检查点](docs/MENU_PDA_005.md) · [004 字体与编辑基线](docs/FONT_AND_EDITORIAL.md)
-- [ReMade 高清材质评估](docs/REMASTERED_COMPATIBILITY_2026-11-17.md) · [三合一包结构](docs/INTEGRATED_TESTING.md)
+## 文档与许可
 
-## 来源与许可
+[技术说明](TECHNICAL.md) · [文件格式](docs/FILE_FORMATS.md) · [已知问题](docs/KNOWN_ISSUES.md) · [踩坑记录](docs/PITFALLS.md) · [验收标准](docs/ACCEPTANCE.md)
 
-项目自有代码采用 [MIT](LICENSE)，原创译文采用 [CC BY-SA 4.0](LICENSE-translations.md)。当前思源黑体与早期 Noto Sans CJK SC 均按 SIL OFL 1.1 保留字体许可；第三方内容遵循各自许可，见[许可与分发边界](LICENSING.md)。仓库不包含原版游戏、完整原始资源或整套 FusionFix/ReMade 二进制。
-
-字体来源、[名词表](locales/zh-CN/glossary.json)和标点铁律见[翻译约定](TRANSLATING.md)。
+自有代码及工程文档采用 [MIT](LICENSE)，原创译文采用 [CC BY-SA 4.0](LICENSE-translations.md)。字体及第三方组件保持各自许可和来源通知，详见[许可说明](LICENSING.md)。仓库不分发完整原版游戏、原始资源、FusionFix/ReMade 整套文件或转储；兼容性不等于第三方再分发授权。

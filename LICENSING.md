@@ -60,3 +60,7 @@ ReMade 模组由用户自行提供。PoC 002 按用户要求，将本机已有�
 ## 新构建的思源黑体
 
 用户选择思源黑体后，中文源码配置改用 [Source Han Sans SC Regular 2.005](https://github.com/adobe-fonts/source-han-sans/tree/6c709ca72d3d7c46ab42ebecc1a26e7d69595a37)，许可为该提交的 [SIL OFL 1.1](https://github.com/adobe-fonts/source-han-sans/blob/6c709ca72d3d7c46ab42ebecc1a26e7d69595a37/LICENSE.txt)。版权通知为 Copyright 2014-2025 Adobe，保留字体名 Source。字体/许可固定 hash 见 `locales/zh-CN/font.json`；构建输出原许可和从该配置生成的通知，不沿用旧 Noto 商标说明。未修改上游字体二进制，只生成所需字形的纹理子集；完整原英文字库不提交。004 保留旧字体用于对照，新构建状态见[编辑基线](docs/FONT_AND_EDITORIAL.md)。
+
+## 采用的工程基准
+
+本次采用用户提供的汉化工程基准 Revision 2.1 文档与参考 Python 检查器，来源文件与 hash 见 [localization-baseline.json](assets/localization-baseline.json)。源许可为 MIT、Copyright (c) 2026 jyh9521，与仓库现有 MIT 署名一致；保留原许可证。项目适配修改及未采用模板见[采用记录](docs/BASELINE_ADOPTION.md)。这不改变游戏、字体、模组或译文各自的许可。

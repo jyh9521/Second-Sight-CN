@@ -7,30 +7,17 @@
     "narrative"
   ],
   "punctuation": {
-    "id": "omit-simple-terminal-full-stop",
+    "id": "sentence-ending-policy",
+    "locale": "zh-CN",
     "except_kinds": [
       "narrative"
     ],
-    "full_stops": [
-      "。",
-      ".",
-      "．"
-    ],
-    "commas": [
-      "，",
-      "、",
-      ","
-    ],
-    "sentence_endings": [
-      "。",
-      "！",
-      "？",
-      "!",
-      "?",
-      ".",
-      "．"
-    ],
-    "closing_marks": "”’」』）】》\"'",
-    "description": "非剧情文本只有一句话，且中间没有逗号或顿号时，末尾不加句号；剧情文本除外。问号、感叹号、省略号不因本规则删除。"
+    "authority": "STYLE.md"
+  },
+  "authority": "STYLE.md",
+  "role_mapping": {
+    "ui": "other",
+    "objective": "other",
+    "narrative": "story_or_dialogue"
   }
 }

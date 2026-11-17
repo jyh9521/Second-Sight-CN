@@ -3,28 +3,18 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import re
 from assess_resources import require
 from locale_catalog import load_catalog
 from text_transport import check_contract
+from audit_locale_policy import audit_text
 
 ROOT=Path(__file__).resolve().parents[1]
 
 
 def needs_full_stop_removal(text: str, kind: str, rule: dict) -> bool:
-    if kind in rule['except_kinds']:
-        return False
-    core=text.rstrip().rstrip(rule['closing_marks']).rstrip()
-    if not core or core[-1] not in rule['full_stops']:
-        return False
-    if any(mark in core for mark in rule['commas']):
-        return False
-    # An ellipsis is not a terminal full stop. Decimal/version dots do not
-    # introduce another sentence; ambiguous other punctuation is kept for review.
-    if core.endswith('...'):
-        return False
-    body=re.sub(r'(?<=\d)\.(?=\d)','',core[:-1])
-    return not any(mark in body for mark in rule['sentence_endings'])
+    """Compatibility helper; the full check also reports ambiguous findings."""
+    role = 'story_or_dialogue' if kind in rule['except_kinds'] else 'other'
+    return any(f['kind']=='violation' for f in audit_text(rule['locale'],text,role))
 
 
 def check_data(data: dict, policy: dict, glossary: dict) -> list[str]:
@@ -49,8 +39,8 @@ def check_data(data: dict, policy: dict, glossary: dict) -> list[str]:
                     errors.append(f'{where}: {error}')
             if kind not in policy['text_kinds']:
                 errors.append(f'{where}: missing/invalid text_kind');continue
-            if needs_full_stop_removal(row['target'],kind,policy['punctuation']):
-                errors.append(f'{where}: single non-narrative sentence without comma must omit terminal full stop')
+            for finding in audit_text(policy['locale'],row['target'],policy['role_mapping'][kind]):
+                errors.append(f"{where}: sentence-policy {finding['kind']} at {finding['index']+1}: {finding['reason']}")
             for key in row.get('terms',[]):
                 term=terms.get(key)
                 if term is None or term['status']!='active':
@@ -68,9 +58,9 @@ def check_locale(directory: Path, data: dict | None = None) -> list[str]:
     errors=check_data(data if data is not None else load_catalog(directory),policy,read('glossary.json'))
     from ui_textures import load
     for row in load(directory):
-        for line in row['layout']['lines']:
-            if needs_full_stop_removal(line['text'],'ui',policy['punctuation']):
-                errors.append(row['contract']['name']+': single UI line must omit terminal full stop')
+        visible='\n'.join(line['text'] for line in row['layout']['lines'])
+        for finding in audit_text(policy['locale'],visible,policy['role_mapping']['ui']):
+            errors.append(f"{row['contract']['name']}: sentence-policy {finding['kind']} at {finding['index']+1}: {finding['reason']}")
     return errors
 
 

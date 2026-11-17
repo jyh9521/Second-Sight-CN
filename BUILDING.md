@@ -1,5 +1,19 @@
 # 构建与离线验证
 
+> 新基准现状：当前逐句目录门禁有 51 项未解决发现（27 条记录），`build_locale.py` 会在资源写出前拒绝构建。这是数据失败，不是缺少游戏文件。先读[采用记录](docs/BASELINE_ADOPTION.md)和[验收快照](docs/ADOPTION_VALIDATION.md)。本轮未重跑以下历史完整包构建命令；006/007 保持冻结，当前没有 008。
+
+## 新规范只读审计入口
+
+从仓库根目录运行（已执行结果见验收快照）：
+
+```powershell
+python -X utf8 tools/check_docs.py
+python -X utf8 tools/audit_locale_policy.py --locale-dir locales/zh-CN --out build/baseline-adoption-20261117/style-audit.json
+```
+
+逐句审计当前返回 2。新输入清单工具 `tools/inventory_inputs.py --help` 只生成原始输入清单，不表示完整 G0 门禁已实现；实际本地命令在 VERIFICATION 中。公开安装器/升级卸载事务未实现，适用要求见[安装标准](docs/INSTALLATION_STANDARD.md)。
+
+
 > **交付约定（2026-11-17 更新）：先完成全量汉化、文字校对与离线检查，再一次性交由用户测试。中间版本只作开发检查点，不再要求用户逐版验收；自动化不启动游戏。**
 
 当前全量首轮006已构建：5,957条BS、PDA68页共447段、2条EXE提示及1张载入位图。144项测试、完整真实/合成包宿主、复现构建、资源副本回滚和5414文件校验均通过。14条旧文本与防御性EXE提示的有界静态核查结果见研究文档，不提升为未知路径已实测。以下自动化只处理文件或运行自有宿主，不启动游戏；不以 005 实测作为继续工作的前提。
@@ -33,7 +47,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1
 
 | 输出 | 用途 |
 |---|---|
-| `build/locale-zh-CN/locale.bin` | SLP2 语言包：BS/PDA/两条 EXE 提示的原文校验记录和标记编码译文、6 张 512×512 字体 DDS + 1 张 256×64 载入提示 DDS |
+| `build/locale-zh-CN/locale.bin` | SLP3 语言包（007，兼容读取 SLP2）：BS/PDA/两条 EXE 提示的原文校验记录和标记编码译文、6 张 512×512 字体 DDS + 1 张 256×64 载入提示 DDS |
 | `build/locale-zh-CN/manifest.json` | 输入 hash、字形映射、字体来源与资源 hash |
 | `build/locale-zh-CN/atlas-preview.png`、`ui-preview-0.png` | 第一页字形及独立生成载入提示预览，不是游戏截图 |
 | `build/locale-zh-CN/OFL.txt` | 字体原许可证，随使用图集的测试包保留 |

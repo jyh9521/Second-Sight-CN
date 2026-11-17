@@ -1,5 +1,7 @@
 # 翻译约定
 
+> 当前采用[新基准](docs/BASELINE_ADOPTION.md)。新逐句门禁发现 27 条记录、45 处明确句号问题及 6 处待审项；本轮不自动改译文，目录验收为 fail，见[快照](docs/ADOPTION_VALIDATION.md)。
+
 > **交付约定（2026-11-17 更新）：先完成全量汉化、文字校对与离线检查，再一次性交由用户测试。中间版本只作开发检查点，不再要求用户逐版验收；自动化不启动游戏。**
 
 当前目录已汇总 5,957 条 BS 和 PDA 68 页共 447 段，正在做全量文字与工程收口，不再停在 005 的菜单/PDA 范围。`poc.json` 是历史命名的构建入口，合并菜单、story-a/b/c/d 与 PDA 分目录；通用加载器拒绝重复 ID。`coverage.json` 对全部 6,526 个 BS 槽给出译文或原样保留理由；`exe-texts.json` 单列两条有消费契约的 EXE 提示，`ui-textures.json` 单独维护图像文字，避免把位图残留误计为文本表漏译。
@@ -13,7 +15,7 @@
 
 ## 一条文本需要保留什么
 
-至少能追溯：资源成员、条目 ID、原文 hash、语境、译文和审核状态。当前目录入口的顶层字段包括 `schema`、`locale`、`status`、`bs`、`pda`；每条记录保留 `id`、`source` 或 `source_sha256`/`source_tokens`、`target`、`context`、`text_kind`、`terms`；后两项标注剧情/界面/任务类别及适用术语引用。输入资源 hash 固定在构建器并写入 manifest，原文逐条核对。
+规范要求追溯资源成员、条目 ID、原文 hash、语境、译文和审核状态；当前源/目标绑定的逐条审校状态仍未补齐，不用旧自由文本 status 充当审校证据。当前目录入口的顶层字段包括 `schema`、`locale`、`status`、`bs`、`pda`；每条记录保留 `id`、`source` 或 `source_sha256`/`source_tokens`、`target`、`context`、`text_kind`、`terms`；后两项标注剧情/界面/任务类别及适用术语引用。输入资源 hash 固定在构建器并写入 manifest，原文逐条核对。
 
 BS 使用整数 ID；PDA 使用解析器定义的 `pNNN.rNNN.sNNN`（页/行/段），不是字符串扫描序号。构建器把 PDA ID 转成重定位后待替换的指针字段偏移。
 
@@ -37,7 +39,7 @@ BS 使用整数 ID；PDA 使用解析器定义的 `pNNN.rNNN.sNNN`（页/行/段
 
 - 使用自然、简洁的简体中文；菜单文字以清楚可辨为先，不为了字面对应制造生硬短语。
 - 人名、地名、组织、能力和武器名称以 [名词表](locales/zh-CN/glossary.json) 为准；未核实语境的译法标记 `proposed`，当前使用的译法标记 `active`。新增文本先查表，新增确定译法先入表。
-- **铁律：非剧情文本只有一句话，且中间没有逗号或顿号时，末尾不加句号；剧情文本除外。** `text_kind=narrative` 表示剧情例外，PDA 的剧情简介也可属于该类；任务短指令属于 `objective`，菜单/提示属于 `ui`。问号、感叹号、省略号不因此删除，多句或含逗号/顿号的文本按正常语义处理。
+- 中文句末标点及混合内容、换行、引号、含糊点号的唯一规范为 [STYLE](locales/zh-CN/STYLE.md)；角色映射和源指纹适配见[项目契约](docs/PROJECT_CONTRACT.md)。旧“整条仅单句”解释已撤销。
 - 当前中文基线字体选用思源黑体 Source Han Sans SC Regular 2.005；字体来源、固定提交、hash 和许可配置位于 `locales/zh-CN/font.json`，不嵌入通用工具。
 - 剧情字幕保留角色语气和信息，不凭碎片字符串补写未确认剧情。
 - PDA 的标题与正文采用统一用词；长段落保留原有信息层次，避免为塞进布局删掉关键内容。
