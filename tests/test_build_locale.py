@@ -72,13 +72,17 @@ class EncodingTests(unittest.TestCase):
     def test_hd_atlas_dds_preserves_bottom_right_cell(self):
         from PIL import Image
         import io
-        alpha=Image.new("L",(1024,1024),0)
-        alpha.putpixel((1022,1022),255)
-        dds=dxt3(alpha)
-        self.assertEqual(len(dds),1048704)
-        restored=Image.open(io.BytesIO(dds)).convert("RGBA")
-        self.assertEqual(restored.getpixel((1022,1022))[3],255)
-        self.assertEqual(restored.getpixel((1023,1023))[3],0)
+        for side in (1024,2048):
+            with self.subTest(side=side):
+                alpha=Image.new("L",(side,side),0)
+                alpha.putpixel((side-3,side-3),255)
+                alpha.putpixel((side-3,side-4),128)
+                dds=dxt3(alpha)
+                self.assertEqual(len(dds),128+side*side)
+                restored=Image.open(io.BytesIO(dds)).convert("RGBA")
+                self.assertEqual(restored.getpixel((side-3,side-3))[3],255)
+                self.assertEqual(restored.getpixel((side-3,side-4))[3],136)
+                self.assertEqual(restored.getpixel((side-1,side-1))[3],0)
 
 
 if __name__=="__main__": unittest.main()

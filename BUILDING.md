@@ -2,7 +2,7 @@
 
 > 共享构建要求见[构建规范](docs/BUILD_STANDARD.md)、[安装与恢复](docs/INSTALLATION_STANDARD.md)和[验收标准](docs/ACCEPTANCE.md)。本页保留本作实际输入、命令与历史结果；规范迁移未重建游戏产物。
 
-> 当前检查点：严格目录 51 项发现已由[编辑修复](docs/EDITORIAL_REPAIR.md)处理；当前 [011 完整候选](docs/MENU_TWEAKS_011.md) 减少菜单描边叠影，新增可选修改器，保留 010 HUD 缩放及 009 字库与字幕改动。本地保留 010/011，被清理的旧包资料先另存。早期采用记录与下方历史命令不倒写成最新验收。
+> 当前检查点：[012 完整候选](docs/DISPLAY_012.md)提升字体、地图／PDA 渲染分辨率，调整过场角标与下沿 HUD；本地保留 011/012。旧阶段的字库和人数统计仅作历史记录。
 
 ## 新规范只读审计入口
 
@@ -49,7 +49,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1
 
 | 输出 | 用途 |
 |---|---|
-| `build/locale-zh-CN/locale.bin` | SLP3 语言包（007 起采用，兼容读取 SLP2）：BS/PDA/两条 EXE 提示的原文校验记录和标记编码译文、6 张 1024×1024 字体 DDS（009） + 1 张 256×64 载入提示 DDS |
+| `build/locale-zh-CN/locale.bin` | SLP3 语言包（007 起采用，兼容读取 SLP2）：BS/PDA/两条 EXE 提示的原文校验记录和标记编码译文、6 张 2048×2048 字体 DDS（012） + 1 张 256×64 载入提示 DDS |
 | `build/locale-zh-CN/manifest.json` | 输入 hash、字形映射、字体来源与资源 hash |
 | `build/locale-zh-CN/atlas-preview.png`、`ui-preview-0.png` | 第一页字形及独立生成载入提示预览，不是游戏截图 |
 | `build/locale-zh-CN/OFL.txt` | 字体原许可证，随使用图集的测试包保留 |
@@ -84,7 +84,7 @@ python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix -
 python -X utf8 tools/stage_poc.py --verify --out $Package
 ```
 
-011 已完成，后续重建必须选择更高编号；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
+012 已完成，后续重建必须选择更高编号；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
 
 HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。Compatibility、FusionFix、本地化三份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK、FusionFix 二进制及输入配置不变；输出配置仅将 `[MAIN] WindowMode` 从 `0` 改为 `2`，固定输出 hash 与 override 记录写入清单。004 起默认无边框，其余设置不变。
 

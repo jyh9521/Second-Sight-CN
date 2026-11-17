@@ -13,10 +13,8 @@ from unicorn.x86_const import UC_X86_REG_EAX, UC_X86_REG_ECX, UC_X86_REG_ESP
 
 from inspect_renderer import EXPECTED_SHA256, PATCH_SITES
 
-UV_SITES = tuple((a, bytes.fromhex(before), bytes.fromhex(after))
-                 for (name,(a,before)),after in zip(
-                      ((n,s) for n,s in PATCH_SITES.items() if n.startswith('hd_atlas_')),
-                      ('c1e005','8d501f','c1e105','81c2f0010000'), strict=True))
+UV_SITES = tuple((a, bytes.fromhex(before)) for name,(a,before) in PATCH_SITES.items()
+                 if name.startswith('hd_atlas_'))
 
 
 def check_uv(exe, cell):
@@ -29,9 +27,12 @@ def check_uv(exe, cell):
     u.mem_write(base,pe.get_memory_mapped_image())
     scratch=0x24000000
     u.mem_map(scratch,0x2000)
-    for address,before,after in UV_SITES:
+    shift=cell.bit_length()-1
+    encoded=(bytes([0xc1,0xe0,shift]),bytes([0x8d,0x50,cell-1]),
+             bytes([0xc1,0xe1,shift]),b'\x81\xc2'+struct.pack('<I',(cell-1)*16))
+    for (address,before),after in zip(UV_SITES,encoded,strict=True):
         if bytes(u.mem_read(address,len(before)))!=before: raise ValueError('UV original bytes')
-        if cell==32: u.mem_write(address,after)
+        if cell>16: u.mem_write(address,after)
     # The real x86 coordinate builder runs up to the indirect draw call.
     # Caller-supplied geometry is deliberately unchanged between modes.
     for col,row in ((0,0),(1,7),(31,31)):
@@ -43,10 +44,10 @@ def check_uv(exe, cell):
         u.emu_start(0x612603,0x61264C,count=40)
         sp=u.reg_read(UC_X86_REG_ESP)
         left,top,right,bottom=struct.unpack('<4I',u.mem_read(sp+16,16))
-        pad_right,pad_bottom=(496,496) if cell==32 else (248,256)
+        pad_right,pad_bottom=((cell-1)*16,)*2 if cell>16 else (248,256)
         wanted=(col*cell*16,row*cell*16,col*cell*16+pad_right,row*cell*16+pad_bottom)
         if (left,top,right,bottom)!=wanted: raise ValueError('wrong native UV arithmetic')
-        if cell==32 and max(right,bottom)+8>=32*cell*16: raise ValueError('UV escaped page')
+        if cell>16 and max(right,bottom)+8>=32*cell*16: raise ValueError('UV escaped page')
     return 3
 
 
@@ -55,7 +56,7 @@ def check_font(locale, manifest, phrase, preview=None):
     metadata=json.loads(manifest.read_text(encoding='utf-8'))
     if hashlib.sha256(raw).hexdigest()!=metadata['pack_sha256']: raise ValueError('pack hash')
     cell=metadata['atlas_layout']['cell']
-    if cell not in (16,32): raise ValueError('cell')
+    if cell not in (16,32,64): raise ValueError('cell')
     atlases=[]
     for page,row in enumerate(metadata['resources'][:6]):
         name=f'textures/localization/page{page}.dds'
@@ -79,9 +80,10 @@ def check_font(locale, manifest, phrase, preview=None):
     if not all(boxes.values()): raise ValueError('empty glyph')
     center=lambda c: (boxes[c][1]+boxes[c][3])/(2*cell)
     lowered=all(center(c)>center('外')+0.15 for c in '。，、')
+    gutter=2 if cell==64 else 1
     gutters=all(
         a.crop((x,y,x+cell,y+cell)).getbbox() is None or
-        (lambda b:b[0]>=1 and b[1]>=1 and b[2]<=cell-1 and b[3]<=cell-1)(
+        (lambda b:b[0]>=gutter and b[1]>=gutter and b[2]<=cell-gutter and b[3]<=cell-gutter)(
             a.crop((x,y,x+cell,y+cell)).getbbox())
         for a in atlases for x in range(0,32*cell,cell) for y in range(0,32*cell,cell))
     if preview:
@@ -89,7 +91,7 @@ def check_font(locale, manifest, phrase, preview=None):
         for i,c in enumerate(phrase): canvas.paste(240,(i*64,0,(i+1)*64,64),tile(c).resize((64,64),Image.Resampling.BILINEAR))
         canvas.save(preview)
     return dict(cell=cell,lowered=lowered,gutters=gutters,boxes=boxes,
-                passed=cell==32 and lowered and gutters)
+                passed=cell in (32,64) and lowered and gutters)
 
 
 if __name__=='__main__':

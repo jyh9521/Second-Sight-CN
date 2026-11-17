@@ -19,9 +19,10 @@ jobs:
       - run: python -X utf8 tools/make_host_fixture.py build/synthetic/locale-slp2.bin --format SLP2
       - run: python -X utf8 tools/make_host_fixture.py build/synthetic/locale-slp3.bin --format SLP3
       - run: python -X utf8 tools/make_host_fixture.py build/synthetic/locale-slp3-hd.bin --format SLP3 --atlas-size 1024
+      - run: python -X utf8 tools/make_host_fixture.py build/synthetic/locale-slp3-64.bin --format SLP3 --atlas-size 2048
       - shell: pwsh
         run: |
-          foreach ($format in @('slp2', 'slp3', 'slp3-hd')) {
+          foreach ($format in @('slp2', 'slp3', 'slp3-hd', 'slp3-64')) {
             & .\build\runtime\localization_host.exe "$PWD\build\runtime\SecondSight.Localization.asi" "$PWD\build\synthetic\locale-$format.bin"
             if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           }

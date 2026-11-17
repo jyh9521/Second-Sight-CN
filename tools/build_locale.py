@@ -62,22 +62,30 @@ def decode(data: bytes, glyphs: dict[str, int]) -> str:
 def dxt3(alpha) -> bytes:
     """BC2/DXT3: constant white RGB endpoints, explicit 4-bit coverage."""
     width, height = alpha.size
-    require(width == height and width in (512,1024), "unsupported font atlas dimensions")
+    require(width == height and width in (512,1024,2048), "unsupported font atlas dimensions")
     header = [124, 0x81007, height, width, width*height, 0, 1] + [0]*11
     header += [32, 4, struct.unpack("<I", b"DXT3")[0], 0, 0, 0, 0, 0]
     header += [0x1000, 0, 0, 0, 0]
     out = bytearray(b"DDS " + struct.pack("<31I", *header))
+    # Quantize once; four-row chunks also avoid running the bit packer on
+    # fully empty pages, which are retained for the native six-page layout.
+    plane=alpha.tobytes().translate(bytes((a*15+127)//255 for a in range(256)))
+    clear=struct.pack("<QHHI",0,0xffff,0xffff,0)
     for y in range(0, height, 4):
+        stripe=plane[y*width:(y+4)*width]
+        if not stripe.strip(b"\0"):
+            out.extend(clear*(width//4))
+            continue
         for x in range(0, width, 4):
-            bits = sum(((alpha.getpixel((x+dx, y+dy))*15+127)//255) << (4*(dy*4+dx))
+            bits = sum(stripe[dy*width+x+dx] << (4*(dy*4+dx))
                        for dy in range(4) for dx in range(4))
             out.extend(struct.pack("<QHHI", bits, 0xffff, 0xffff, 0))
     return bytes(out)
 
 
-ATLAS_CELL = 32
-ATLAS_BASELINE = 24.5
-ATLAS_EM = 27
+ATLAS_CELL = 64
+ATLAS_BASELINE = 49
+ATLAS_EM = 54
 
 
 def raster_glyph(char, font):
@@ -94,10 +102,11 @@ def raster_glyph(char, font):
                              font=font,fill=255,anchor="ls")
     tile=tile.resize((ATLAS_CELL,ATLAS_CELL),Image.Resampling.LANCZOS)
     # Reserve a fully transparent gutter, including filtering undershoot.
-    tile.paste(0,(0,0,ATLAS_CELL,1))
-    tile.paste(0,(0,ATLAS_CELL-1,ATLAS_CELL,ATLAS_CELL))
-    tile.paste(0,(0,0,1,ATLAS_CELL))
-    tile.paste(0,(ATLAS_CELL-1,0,ATLAS_CELL,ATLAS_CELL))
+    gutter=ATLAS_CELL//32
+    tile.paste(0,(0,0,ATLAS_CELL,gutter))
+    tile.paste(0,(0,ATLAS_CELL-gutter,ATLAS_CELL,ATLAS_CELL))
+    tile.paste(0,(0,0,gutter,ATLAS_CELL))
+    tile.paste(0,(ATLAS_CELL-gutter,0,ATLAS_CELL,ATLAS_CELL))
     require(tile.getbbox() is not None, f"empty glyph raster: {char}")
     return tile
 

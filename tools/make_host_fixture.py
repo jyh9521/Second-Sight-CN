@@ -27,7 +27,7 @@ if __name__=="__main__":
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('path',type=Path)
     parser.add_argument('--format',choices=('SLP2','SLP3'),default='SLP2')
-    parser.add_argument('--atlas-size',choices=(512,1024),default=512,type=int)
+    parser.add_argument('--atlas-size',choices=(512,1024,2048),default=512,type=int)
     args=parser.parse_args()
     args.path.parent.mkdir(parents=True,exist_ok=True)
     args.path.write_bytes(fixture(args.format,args.atlas_size))

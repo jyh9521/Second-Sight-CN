@@ -26,7 +26,7 @@ static constexpr char expectedExe[] = "4092a8d1fb042dffe9fb95e2185f32cb803902991
 static constexpr unsigned char marker = 0x1f;
 struct Text { uint32_t index; std::string source, target; std::vector<std::string> aliases; };
 struct Resource { std::string name; std::vector<unsigned char> bytes; };
-struct Pack { std::vector<Text> bs, pda, exe; std::vector<Resource> resources; bool hdAtlas{}; };
+struct Pack { std::vector<Text> bs, pda, exe; std::vector<Resource> resources; uint32_t atlasSide=512; };
 struct LiteralContract { uint32_t id; uintptr_t instruction, source; const char* expected; };
 static const LiteralContract literalContracts[]={
     {1,0x4b6dd0,0x7daaa8,"Quick scroll"},
@@ -36,7 +36,7 @@ static Pack pack;
 static gameplay_captions::State GameplayCaptionState;
 
 namespace {
-subtitle_layout::Scope hintWrapStyle{}, hintDrawStyle{}, weaponLabelStyle{};
+subtitle_layout::Scope hintWrapStyle{}, hintDrawStyle{}, weaponLabelStyle{}, chapterStyle{};
 float hudTextScale() {
     const int height=*reinterpret_cast<const int*>(0x872504);
     // Scale the small HUD labels less aggressively than full subtitles.
@@ -71,6 +71,33 @@ extern "C" __declspec(noinline) int __cdecl HudWeaponEnd(int font) {
 extern "C" __declspec(noinline) char* __cdecl HudWeaponWrap(const char* text,float width) {
     // Preserve the original number of glyphs per line in the centred variant.
     return reinterpret_cast<char*(__cdecl*)(const char*,float)>(0x611c70)(text,width*hudTextScale());
+}
+extern "C" __declspec(noinline) int __cdecl ChapterCardStart(int font) {
+    // Only the location/time card uses this scope. Its native bottom anchor
+    // measures the same enlarged multiline string before drawing.
+    return subtitle_layout::beginScaled(chapterStyle,font,hudTextScale());
+}
+extern "C" __declspec(noinline) int __cdecl ChapterCardEnd(int font) {
+    return endHudText(chapterStyle,font);
+}
+extern "C" __declspec(noinline) void __cdecl HudSelectionDraw(
+    float x,float y,const char* text,uint32_t color,uint32_t alpha) {
+    const int viewportBottom=*reinterpret_cast<const int*>(0x872504);
+    const int clipTop=*reinterpret_cast<const int*>(0x8da574);
+    const int clipBottom=*reinterpret_cast<const int*>(0x8da57c);
+    if(weaponLabelStyle.active && text && *text && viewportBottom>=480 && viewportBottom<=16384) {
+        auto& leading=*reinterpret_cast<float*>(0x8baca0);
+        const float previous=leading;
+        leading=1.3f; // 0x613130's native outline/text line step
+        int measuredW=0,measuredH=0;
+        reinterpret_cast<void(__cdecl*)(int*,int*,const char*)>(0x611a90)(&measuredW,&measuredH,text);
+        leading=previous;
+        const int top=clipTop>=0 && clipTop<viewportBottom ? clipTop : 0;
+        const int bottom=clipBottom>top && clipBottom<=viewportBottom ? clipBottom : viewportBottom;
+        if(measuredH>0 && measuredH<=bottom-top-8)
+            y=(std::min)(y,static_cast<float>(bottom-measuredH-4));
+    }
+    reinterpret_cast<void(__cdecl*)(float,float,const char*,uint32_t,uint32_t)>(0x613260)(x,y,text,color,alpha);
 }
 
 static void log(const char* message) {
@@ -192,8 +219,10 @@ static Pack parse(const std::vector<unsigned char>& bytes) {
     for (uint32_t i=0;i<resources;++i) {
         auto name=blob(), data=blob();
         const bool fontPage=i<6;
-        if (i==0) result.hdAtlas=data.size()==128+1024*1024;
-        const uint32_t width=fontPage?(result.hdAtlas?1024:512):256, height=fontPage?width:64;
+        if(i==0)
+            for(uint32_t side:{512u,1024u,2048u})
+                if(data.size()==128+side*side) result.atlasSide=side;
+        const uint32_t width=fontPage?result.atlasSide:256, height=fontPage?width:64;
         const std::string expectedName=fontPage?"textures/localization/page"+std::to_string(i)+".dds":"textures/misc/nse_tv/loading.dds";
         if (name!=expectedName || data.size()!=128+width*height ||
             memcmp(data.data(),"DDS ",4) || memcmp(data.data()+84,"DXT3",4))
@@ -574,6 +603,96 @@ static void* trampoline(uintptr_t address,const std::vector<unsigned char>& firs
 }
 static const char* atlasPaths[]={"textures/localization/page0.raw","textures/localization/page1.raw","textures/localization/page2.raw",
     "textures/localization/page3.raw","textures/localization/page4.raw","textures/localization/page5.raw"};
+
+// The PC monitor/terminal compositor draws in a 256-unit space. Give only
+// its private pool double the raster resolution, retaining logical layout
+// and bounds. This does not upscale arbitrary 3D textures or the backbuffer.
+static constexpr uintptr_t terminalPool=0x970a3c;
+static constexpr int terminalLogical=256,terminalRaster=512;
+static uintptr_t mapBatchStart;
+static int mapBatchIndex=-1;
+static int mapTarget() {
+    int id=*reinterpret_cast<const int*>(0x8da560);
+    const int count=*reinterpret_cast<const int*>(0x970a70);
+    if(id<0 || count<1 || count>4 || *reinterpret_cast<const int*>(0x8da558)!=terminalRaster ||
+       *reinterpret_cast<const int*>(0x8da55c)!=terminalRaster) return -1;
+    const auto* pool=reinterpret_cast<const int*>(terminalPool);
+    for(int i=0;i<count;++i) if(pool[i]==id) return id;
+    return -1;
+}
+extern "C" __declspec(noinline) void __cdecl MapAllocate(int width,int height,int* slot) {
+    const uintptr_t a=reinterpret_cast<uintptr_t>(slot);
+    // At very low display modes stick with the native pool size.
+    if(width==terminalLogical && height==terminalLogical && a>=terminalPool && a<terminalPool+16 &&
+       (a-terminalPool)%4==0 && *reinterpret_cast<const int*>(0x872504)>=720 &&
+       *reinterpret_cast<const int*>(0x872500)>=terminalRaster &&
+       *reinterpret_cast<const int*>(0x970a70)<=4)
+        width=height=terminalRaster;
+    reinterpret_cast<void(__cdecl*)(int,int,int*)>(0x4134e0)(width,height,slot);
+}
+using ScissorFn=void(__cdecl*)(int,int,int,int);
+static ScissorFn originalScissor;
+extern "C" __declspec(noinline) void __cdecl MapScissor(int left,int top,int right,int bottom) {
+    // Native API uses inclusive right/bottom. SetRenderTarget itself gives
+    // physical extents (512), which must not receive the logical transform.
+    if(mapTarget()>=0 && left>=0 && top>=0 && right>=left && bottom>=top &&
+       right<=terminalLogical && bottom<=terminalLogical) {
+        left*=2;top*=2;right=right*2+1;bottom=bottom*2+1;
+    }
+    originalScissor(left,top,right,bottom);
+}
+extern "C" __declspec(noinline) void __cdecl MapRememberBatch(uintptr_t start) {
+    mapBatchIndex=mapTarget();
+    mapBatchStart=start;
+}
+extern "C" __declspec(noinline) void __cdecl MapScaleBatch() {
+    const auto start=mapBatchStart;
+    const int remembered=mapBatchIndex;
+    mapBatchStart=0; mapBatchIndex=-1;
+    if(!start || remembered<0 || remembered!=mapTarget()) return;
+    const unsigned format=*reinterpret_cast<const unsigned*>(0x8dafa0);
+    const unsigned index=*reinterpret_cast<const unsigned*>(0x8dafb4);
+    const unsigned n=*reinterpret_cast<const unsigned*>(0x8daf14);
+    const unsigned capacity=*reinterpret_cast<const unsigned*>(0x8dafb0);
+    const uintptr_t end=*reinterpret_cast<const uintptr_t*>(0x8daf00);
+    // Transform XYZRHW only. XYZ draw calls already inherit the larger
+    // viewport. Verify the written range matches the recorded buffer stride.
+    if((format&0x0e)!=4 || index>=12 || !n || n>capacity || n>65536 || end<start) return;
+    const auto stride=*reinterpret_cast<const unsigned*>(0x8dc924+24*index);
+    if(stride<16 || stride>64 || stride%4 || end-start!=static_cast<uintptr_t>(n)*stride) return;
+    for(unsigned i=0;i<n;++i) {
+        auto* xy=reinterpret_cast<float*>(start+i*stride);
+        xy[0]*=2.0f; xy[1]*=2.0f;
+    }
+}
+extern "C" __declspec(naked) void MapRememberHook() {
+    __asm {
+        mov dword ptr ds:[08daf00h],eax
+        pushfd
+        pushad
+        push eax
+        call MapRememberBatch
+        add esp,4
+        popad
+        popfd
+        push 040de73h
+        ret
+    }
+}
+extern "C" __declspec(naked) void MapScaleHook() {
+    __asm {
+        pushfd
+        pushad
+        call MapScaleBatch
+        popad
+        popfd
+        mov eax,[eax]
+        mov ecx,[eax]
+        push eax
+        push 040e220h
+        ret
+    }
+}
 static void install() {
     std::vector<Patch> patches;
     for(const auto& item:pack.exe) for(const auto& c:literalContracts) if(item.index==c.id) {
@@ -601,6 +720,12 @@ static void install() {
     call(0x57b9d2,{0xe8,0xb9,0x4b,0x09,0x00},HudWeaponStart);
     call(0x57ba6e,{0xe8,0xfd,0x61,0x09,0x00},HudWeaponWrap);
     call(0x57baf5,{0xe8,0x96,0x4a,0x09,0x00},HudWeaponEnd);
+    call(0x57baeb,{0xe8,0x70,0x77,0x09,0x00},HudSelectionDraw);
+    call(0x5443be,{0xe8,0xcd,0xc1,0x0c,0x00},ChapterCardStart);
+    call(0x5444de,{0xe8,0xad,0xc0,0x0c,0x00},ChapterCardEnd);
+    call(0x5ce45b,{0xe8,0x80,0x50,0xe4,0xff},MapAllocate);
+    patches.push_back({0x40de6e,{0xa3,0x00,0xaf,0x8d,0x00},branch(0x40de6e,MapRememberHook,5,0xe9)});
+    patches.push_back({0x40e21b,{0x8b,0x00,0x8b,0x08,0x50},branch(0x40e21b,MapScaleHook,5,0xe9)});
     patches.push_back({0x5431e8,{0xd9,0x05,0xb4,0x74,0x96,0x00},
                        branch(0x5431e8,subtitle_layout::endCutsceneHook,6,0xe9)});
     call(0x610efd,{0xe8,0xce,0xcf,0xdf,0xff},BeginTextBatchHook);
@@ -626,16 +751,19 @@ static void install() {
     patches.push_back({0x6125dc,{0xc1,0xe6,8},{0xc1,0xe6,10}});
     patches.push_back({0x6125e4,{0x83,0xe2,0x0f},{0x83,0xe2,0x1f}});
     patches.push_back({0x6125fc,{0xc1,0xf8,4},{0xc1,0xf8,5}});
-    if(pack.hdAtlas) {
-        // UV only: row/column to pixels, then pixels to 1/16 units. Both
-        // right/bottom stop at pixel 31 plus the native half-texel bias.
-        patches.push_back({0x612603,{0xc1,0xe0,4},{0xc1,0xe0,5}});
-        patches.push_back({0x612606,{0x8d,0x50,0x10},{0x8d,0x50,0x1f}});
-        patches.push_back({0x612615,{0xc1,0xe1,4},{0xc1,0xe1,5}});
-        patches.push_back({0x612621,{0x81,0xc2,0xf8,0,0,0},{0x81,0xc2,0xf0,1,0,0}});
+    if(pack.atlasSide>512) {
+        // UV only, not glyph geometry. Stop one texel before the next cell
+        // and let the native half-texel adjustment sample the midpoint.
+        const bool large=pack.atlasSide==2048;
+        const unsigned char shift=large?6:5, edge=large?0x3f:0x1f, uvHigh=large?3:1;
+        patches.push_back({0x612603,{0xc1,0xe0,4},{0xc1,0xe0,shift}});
+        patches.push_back({0x612606,{0x8d,0x50,0x10},{0x8d,0x50,edge}});
+        patches.push_back({0x612615,{0xc1,0xe1,4},{0xc1,0xe1,shift}});
+        patches.push_back({0x612621,{0x81,0xc2,0xf8,0,0,0},{0x81,0xc2,0xf0,uvHigh,0,0}});
     }
     struct Hook { uintptr_t address; std::vector<unsigned char> before; const void* target; void** original; };
     std::vector<Hook> hooks={
+        {0x40d3a0,{0x8b,0x4c,0x24,0x0c,0x8b,0x44,0x24,0x10},MapScissor,reinterpret_cast<void**>(&originalScissor)},
         {0x456610,{0x85,0xc0,0x57,0x8b,0xfa},GameplayCaptionEventHook,&GameplayCaptionOriginal},
         {0x611c70,{0x81,0xec,0x04,0x02,0,0},wrapHook,reinterpret_cast<void**>(&originalWrap)},
         {0x610260,{0x53,0x8b,0x5c,0x24,0x08},expandHook,reinterpret_cast<void**>(&originalExpand)},
@@ -667,7 +795,8 @@ static void install() {
         ++done;
     }
     log("TEXT batch texture-transition flush installed; normal pass only");
-    log(pack.hdAtlas?"FONT 1024 atlas UV enabled":"FONT legacy 512 atlas UV retained");
+    log(pack.atlasSide==2048?"FONT 2048 atlas UV enabled":
+        pack.atlasSide==1024?"FONT 1024 atlas UV enabled":"FONT legacy 512 atlas UV retained");
     log("SUBTITLE cutscene layout scales with render height; private style restored after captions");
     log("CAPTIONS speech lifecycle observer and independent gameplay renderer installed; source-bound locale text; runtime acceptance pending");
     log("HOOKS installed; FusionFix TextAtPointer/TextAtValue sites untouched; runtime acceptance pending");
