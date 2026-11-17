@@ -31,8 +31,13 @@ def prepare(source: Path, out: Path) -> None:
                 modified_sha256=digest(after),differences=differences)
     (out/"DIFF_FILE.json").write_text(json.dumps(record,indent=2)+"\n",encoding="utf-8",newline="\n")
     (out/"ROLLBACK_TEST.cfg").write_bytes(after)
-    relative=Path(os.path.relpath(ROOT/"tools/verify_window_mode.py",out)).as_posix()
-    script='#!/usr/bin/env bash\nset -euo pipefail\ncd -- "$(dirname -- "$0")"\nexec python -X utf8 '+shlex.quote(relative)+' rollback --out .\n'
+    tool=ROOT/"tools/verify_window_mode.py"
+    try:
+        reference=Path(os.path.relpath(tool,out)).as_posix()
+    except ValueError:
+        # Windows has no relative path between volumes (e.g. CI D: repo/C: temp).
+        reference=tool.as_posix()
+    script='#!/usr/bin/env bash\nset -euo pipefail\ncd -- "$(dirname -- "$0")"\nexec python -X utf8 '+shlex.quote(reference)+' rollback --out .\n'
     (out/"ROLLBACK.sh").write_text(script,encoding="utf-8",newline="\n")
     (out/"ROLLBACK.sh").chmod(0o755)
     require(source.read_bytes()==before,"input config changed")

@@ -2,6 +2,7 @@
 import contextlib
 import hashlib
 import io
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -47,6 +48,16 @@ class WindowModeVerificationTests(unittest.TestCase):
         with self.assertRaises(ValueError):verify.prepare(self.source,out)
         with self.assertRaises(ValueError):verify.probe(self.source)
         self.assertFalse(out.exists())
+
+    @unittest.skipUnless(os.name=="nt","Windows cross-volume paths")
+    def test_other_drive_uses_absolute_tool_reference(self):
+        drive="Y:/" if self.root.drive.upper()=="Z:" else "Z:/"
+        other=Path(drive)/"synthetic repository"
+        out=self.root/"cross-volume"
+        with patch.object(verify,"ROOT",other):verify.prepare(self.source,out)
+        script=(out/"ROLLBACK.sh").read_text()
+        self.assertIn((other/"tools/verify_window_mode.py").as_posix(),script)
+        self.assertEqual(self.source.read_bytes(),self.original)
 
     def test_tampered_rollback_target_rejected_without_overwrite(self):
         out=self.root/"evidence";verify.prepare(self.source,out)

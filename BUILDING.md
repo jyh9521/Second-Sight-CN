@@ -156,7 +156,7 @@ python -X utf8 tools/startup_compat.py preflight --exe "$Game/secondsight.EXE"
 
 ## PoC 004 无边框策略与配置回滚
 
-004 只将输出 FusionFix 配置的 `MAIN.WindowMode` 改为 `2`，不改源码模块或第三方二进制。`tools/fusionfix_config.py` 保留其他字节；清单的 `fusionfix_config` 记录输入/输出 hash 与 override。93 项合成测试通过。
+004 只将输出 FusionFix 配置的 `MAIN.WindowMode` 改为 `2`，不改源码模块或第三方二进制。`tools/fusionfix_config.py` 保留其他字节；清单的 `fusionfix_config` 记录输入/输出 hash 与 override。94 项合成测试通过。
 
 ```powershell
 python -X utf8 tools/verify_window_mode.py prepare --source FusionFix/scripts/SecondSight.FusionFix.cfg --out build/window-004
