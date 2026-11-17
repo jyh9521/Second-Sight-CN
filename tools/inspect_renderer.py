@@ -25,6 +25,11 @@ PATCH_SITES = {
     "resource_read_entry": (0x49E4E0, "a1d00f9100"),
     "glyph_count_entry": (0x6119D0, "51a1a0889e00"),
     "glyph_substring_entry": (0x611A30, "51a1a0889e00"),
+    "localized_key_expansion": (0x610260, "538b5c2408"),
+    "pda_token_word_call": (0x58074D, "e80effffff"),
+    "pda_token_skip_call": (0x580832, "e8d9fdffff"),
+    "pda_link_expand_call": (0x580C2A, "e811faffff"),
+    "pda_plain_expand_call": (0x580C4C, "e8eff9ffff"),
 }
 
 # Ranges start on independently observed instruction boundaries. Jump tables

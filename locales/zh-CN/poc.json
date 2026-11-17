@@ -1,198 +1,8 @@
 {
   "schema": 1,
   "locale": "zh-CN",
-  "status": "proof-of-concept; 004 menu and short PDA visibly confirmed; revised font/punctuation offline-only; subtitles pending",
+  "status": "menu and PDA expansion; 005 offline validation / user runtime acceptance pending; 11 subtitle samples unchanged",
   "bs": [
-    {
-      "id": 850,
-      "source": "New Game",
-      "target": "新游戏",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "new_game"
-      ]
-    },
-    {
-      "id": 872,
-      "source": "Subtitles",
-      "target": "字幕",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "subtitles"
-      ]
-    },
-    {
-      "id": 875,
-      "source": "Main Menu",
-      "target": "主菜单",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "main_menu"
-      ]
-    },
-    {
-      "id": 876,
-      "source": "Play",
-      "target": "开始",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
-    {
-      "id": 883,
-      "source": "Statistics",
-      "target": "统计",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "statistics"
-      ]
-    },
-    {
-      "id": 899,
-      "source": "Options",
-      "target": "选项",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "options"
-      ]
-    },
-    {
-      "id": 840,
-      "source": "Load Profile",
-      "target": "载入档案",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "profile"
-      ]
-    },
-    {
-      "id": 855,
-      "source": "Profile Manager",
-      "target": "档案管理",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "profile"
-      ]
-    },
-    {
-      "id": 856,
-      "source": "Select Profile",
-      "target": "选择档案",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "profile"
-      ]
-    },
-    {
-      "id": 857,
-      "source": "Reading",
-      "target": "读取中",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
-    {
-      "id": 858,
-      "source": "Ready",
-      "target": "就绪",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
-    {
-      "id": 859,
-      "source": "Save Profile",
-      "target": "保存档案",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "profile"
-      ]
-    },
-    {
-      "id": 836,
-      "source": "Enter Name",
-      "target": "输入名称",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
-    {
-      "id": 826,
-      "source": "Warning",
-      "target": "警告",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
-    {
-      "id": 827,
-      "source": "Confirm",
-      "target": "确认",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
-    {
-      "id": 830,
-      "source": "Delete Profile",
-      "target": "删除档案",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "profile"
-      ]
-    },
-    {
-      "id": 835,
-      "source": "Enable Autosave",
-      "target": "启用自动保存",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": [
-        "autosave"
-      ]
-    },
-    {
-      "id": 870,
-      "source": "Mono",
-      "target": "单声道",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
-    {
-      "id": 871,
-      "source": "Stereo",
-      "target": "立体声",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
-    {
-      "id": 873,
-      "source": "Vibration",
-      "target": "振动",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
-    {
-      "id": 868,
-      "source": "Waiting",
-      "target": "请稍候",
-      "context": "menu",
-      "text_kind": "ui",
-      "terms": []
-    },
     {
       "id": 1331,
       "source": "Where am I?",
@@ -282,44 +92,17 @@
       "terms": []
     }
   ],
-  "pda": [
-    {
-      "id": "p055.r000.s000",
-      "source": "Objectives",
-      "target": "任务目标",
-      "context": "Isolation objective page",
-      "text_kind": "ui",
-      "terms": [
-        "objectives"
-      ]
-    },
-    {
-      "id": "p055.r001.s000",
-      "source": "Isolation",
-      "target": "隔离",
-      "context": "Isolation objective page",
-      "text_kind": "ui",
-      "terms": [
-        "isolation"
-      ]
-    },
-    {
-      "id": "p055.r002.s000",
-      "source": "Escape.",
-      "target": "逃离",
-      "context": "Isolation objective page",
-      "text_kind": "objective",
-      "terms": []
-    },
-    {
-      "id": "p055.r003.s000",
-      "source": "Get out of the isolation cell.",
-      "target": "离开隔离室",
-      "context": "Isolation objective page",
-      "text_kind": "objective",
-      "terms": [
-        "isolation_cell"
-      ]
-    }
-  ]
+  "pda": [],
+  "catalogs": {
+    "bs": [
+      "menu-expansion.json"
+    ],
+    "pda": [
+      "pda-expansion.json"
+    ]
+  },
+  "coverage": {
+    "pda": "all_nonempty_display_segments",
+    "bs": "selected_player_ui_and_retained_subtitle_samples"
+  }
 }

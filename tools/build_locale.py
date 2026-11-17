@@ -11,6 +11,8 @@ from assess_resources import Pak, StringTable, require
 from pda_resources import PdaResource, Replacement, GlyphMarker
 from translation_checks import check_locale
 from font_dependencies import read_config, dependency, notice
+from locale_catalog import load_catalog, bind_sources, catalog_files
+from text_transport import parts, check_contract, expanded_budget
 
 ROOT = Path(__file__).resolve().parents[1]
 EXE_SHA = "4092a8d1fb042dffe9fb95e2185f32cb80390299145e8d453a5e909a06d35fda"
@@ -26,8 +28,8 @@ def digest(data: bytes) -> str:
 def encode(text: str, glyphs: dict[str, int]) -> bytes:
     """All visible characters use tokens: adjacent ASCII digits cannot be swallowed."""
     out = bytearray()
-    for char in text:
-        if char in " \t\n":
+    for protected, char in parts(text):
+        if protected or char == " ":
             out.extend(char.encode("ascii"))
         else:
             require(ord(char) >= 32 and char != "\x7f", "unsupported control code in PoC")
@@ -41,7 +43,11 @@ def decode(data: bytes, glyphs: dict[str, int]) -> str:
     reverse = {value: char for char, value in glyphs.items()}
     result, i = [], 0
     while i < len(data):
-        if data[i] in (9, 10, 32):
+        if data[i] == 11 and i+1<len(data) and chr(data[i+1]) in '123456789ABCDEFGHIJK':
+            result.append(data[i:i+2].decode('ascii')); i += 2
+        elif data[i:i+1] == b'%' and i+1<len(data) and 49 <= data[i+1] <= 57:
+            result.append(data[i:i+2].decode('ascii')); i += 2
+        elif data[i] in (9, 10, 32):
             result.append(chr(data[i])); i += 1
         else:
             require(data[i] == MARKER and len(data[i+1:i+5]) == 4 and data[i+1:i+5].isdigit(), "invalid glyph token")
@@ -94,7 +100,7 @@ def build(game: Path, locale: str, out: Path) -> dict:
     require(re.fullmatch(r"[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*",locale) is not None,"invalid locale identifier")
     require(not out.resolve().is_relative_to(game.resolve()),"output must be outside original game")
     require(digest((game/"secondsight.exe").read_bytes()) == EXE_SHA, "unsupported executable")
-    data = json.loads((ROOT/"locales"/locale/"poc.json").read_text(encoding="utf-8"))
+    data = load_catalog(ROOT/"locales"/locale)
     require(data["locale"] == locale and data["schema"] == 1, "locale schema mismatch")
     editorial_errors=check_locale(ROOT/"locales"/locale,data)
     require(not editorial_errors,"editorial checks failed: "+"; ".join(editorial_errors))
@@ -114,24 +120,31 @@ def build(game: Path, locale: str, out: Path) -> dict:
             pda_sources.append(member)
     require(bool(pda_sources), "PDA source not found")
     pda = PdaResource(pda_sources[0])
+    data = bind_sources(data, table.strings, {k:s.text for k,s in pda.segments.items() if s.text})
+    editorial_errors=check_locale(ROOT/"locales"/locale,data)
+    require(not editorial_errors,"bound editorial checks failed: "+"; ".join(editorial_errors))
     require(all(s.text is None or bytes([MARKER]) not in s.text for s in pda.segments.values()),"glyph marker collides with original PDA")
     targets = data["bs"] + data["pda"]
+    if data.get('coverage',{}).get('pda')=='all_nonempty_display_segments':
+        require({r['id'] for r in data['pda']}=={k for k,s in pda.segments.items() if s.text}, 'PDA coverage incomplete')
     require(len({r["id"] for r in data["bs"]}) == len(data["bs"]), "duplicate BS ID")
     require(len({r["id"] for r in data["pda"]}) == len(data["pda"]), "duplicate PDA ID")
-    characters = sorted(set("".join(r["target"] for r in targets)) - set(" \t\n"))
+    characters = sorted({char for row in targets for protected,char in parts(row['target']) if not protected and char!=' '})
     slots = [i for i in range(1536) if i not in (178,184)]
     require(0 < len(characters) <= len(slots), "atlas capacity exceeded")
     glyphs = dict(zip(characters,slots))
     bs_records, pda_records, pda_replacements = [], [], {}
     for row in targets:
         require(bool(row["target"]), "empty PoC target")
-        # PoC deliberately excludes formatting/control codes until their display paths are tested.
-        require(not any(ord(c)<32 for c in row["source"]+row["target"]), "PoC control codes require separate review")
-        require("%" not in row["source"]+row["target"], "PoC placeholder requires separate review")
+        check_contract(row)
         encoded = encode(row["target"], glyphs)
-        require(len(encoded) <= 450, "PoC text exceeds conservative native wrap workspace budget")
+        require(expanded_budget(encoded) <= (255 if isinstance(row['id'],int) else 1800), f"{row['id']}: expanded consumer budget exceeded")
+        if isinstance(row['id'],int) and 6371<=row['id']<=6504:
+            require(len(encoded)<=27, f"{row['id']}: native dual-key 64-byte formatter budget exceeded")
+        if isinstance(row['id'],int) and row['id'] in (6518,6519):
+            require(len(encoded)<=27, 'movement/mouse name exceeds control expansion budget')
         require(decode(encoded, glyphs) == row["target"], "encoding roundtrip failed")
-        expected = row["source"].encode("ascii")
+        expected = row["source"].encode("cp1252")
         if isinstance(row["id"], int):
             require(len(encoded)<=255,"BS exceeds native UI byte-copy limit")
             require(0 < row["id"] < len(table.strings) and table.strings[row["id"]] == expected, f"BS source mismatch: {row['id']}")
@@ -158,7 +171,11 @@ def build(game: Path, locale: str, out: Path) -> dict:
                     executable_sha256=EXE_SHA, bs_source_sha256=BS_SHA, pda_source_sha256=PDA_SHA,
                     font_commit=font_config['commit'],font_sha256=font_config['font']['sha256'],
                     font_family=font_config['family'],font_style=font_config['style'],font_version=font_config['version'],
-                    editorial_inputs={name:digest((ROOT/"locales"/locale/name).read_bytes()) for name in ('poc.json','style.json','glossary.json','font.json')},glyphs=glyphs,
+                    editorial_inputs={name:digest((ROOT/"locales"/locale/name).read_bytes()) for name in catalog_files(ROOT/"locales"/locale)},glyphs=glyphs,
+                    targets={group:{str(r['id']):r['target'] for r in data[group]} for group in ('bs','pda')},
+                    coverage=dict(pda_selected=len(data['pda']),pda_available=sum(bool(s.text) for s in pda.segments.values()),
+                                  pda_pages=len({s.page for s in pda.segments.values() if s.text}),
+                                  bs_selected=len(data['bs']),bs_available=len(table.strings)),
                     bs_ids=[r["id"] for r in data["bs"]], pda_ids=list(pda_replacements),
                     pack_sha256=digest(packed), pda_mirrors_checked=len(pda_sources),
                     resources=[dict(name=n,size=len(p),sha256=digest(p)) for n,p in resources])

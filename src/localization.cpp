@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include "text_transport.h"
 
 static HMODULE module;
 static LONG initialized;
@@ -62,6 +63,8 @@ static bool encoded(const std::string& value) {
     for (size_t i=0; i<value.size();) {
         auto ch = static_cast<unsigned char>(value[i]);
         if (ch==9 || ch==10 || ch==32) { ++i; continue; }
+        if (ch==11 && i+1<value.size() && transport::opcode(value[i+1])) { i+=2; continue; }
+        if (ch=='%' && i+1<value.size() && value[i+1]>='1' && value[i+1]<='9') { i+=2; continue; }
         if (ch != marker || i+5>value.size()) return false;
         int n=0;
         for (size_t j=i+1;j<i+5;++j) {
@@ -94,8 +97,12 @@ static Pack parse(const std::vector<unsigned char>& bytes) {
             if ((isBs && (t.index==0||t.index>=6526)) ||
                 (!isBs && (t.index<32||t.index%4||t.index>79618)) ||
                 t.source.empty() || t.source.size()>4096 ||
-                t.source.find('\0')!=std::string::npos || !encoded(t.target) || t.target.size()>(isBs?255u:450u))
+                t.source.find('\0')!=std::string::npos || !encoded(t.target) || t.target.size()>(isBs?255u:1800u))
                 throw std::runtime_error("invalid text record");
+            if(transport::budget(t.target)>(isBs?255u:1800u) ||
+                (isBs && t.index>=6371 && t.index<=6504 && t.target.size()>27) ||
+                (isBs && (t.index==6518 || t.index==6519) && t.target.size()>27))
+                throw std::runtime_error("native consumer budget exceeded");
             for (const auto& prior: items) if (prior.index==t.index) throw std::runtime_error("duplicate text ID");
             items.push_back(std::move(t));
         }
@@ -138,6 +145,54 @@ static SizeFn originalSize;
 static ReadFn originalRead;
 static CountFn originalCount;
 static SubstrFn originalSubstring;
+using ExpandFn=const char*(__cdecl*)(const char*);
+static ExpandFn originalExpand;
+static std::array<std::string,8> expandedBuffers;
+static size_t expandedSlot;
+static std::array<std::string,8> pdaBuffers;
+static size_t pdaSlot;
+static const char* __cdecl expandHook(const char* text) {
+    if(!text) return text;
+    // Leave unlocalized native text on its original path. Token-only localized
+    // text needs no copy into the engine's undocumented global scratch buffer.
+    if(!strchr(text,marker)) return originalExpand(text);
+    if(!strchr(text,11)) return text;
+    try {
+        auto& value=expandedBuffers[expandedSlot++ % expandedBuffers.size()];
+        value=transport::expand(text,[](const char* token){return originalExpand(token);});
+        return value.c_str();
+    } catch(...) { log("TEXT expansion rejected; owned buffer limit"); return ""; }
+}
+static const char* __cdecl pdaExpand(const char* text) {
+    try {
+        auto& value=pdaBuffers[pdaSlot++ % pdaBuffers.size()];
+        const char* expanded=expandHook(text);
+        value=expanded?expanded:"";
+        if(value.size()>1800) { log("PDA expanded text rejected; 2048-byte line budget"); return ""; }
+        return value.c_str();
+    } catch(...) { log("PDA expansion failed"); return ""; }
+}
+// The original 0x580640 takes its sole argument in EAX, not on the stack.
+static __declspec(naked) void pdaExpandAdapter() {
+    __asm {
+        push eax
+        call pdaExpand
+        add esp,4
+        ret
+    }
+}
+static const char* __cdecl pdaWord(char* out,const char* text) {
+    if(!text) { out[0]=0; return text; }
+    if(strchr(text,marker)) return transport::word(out,text);
+    char probe[191];
+    const char* end=transport::word(probe,text);
+    // Also bound the ASCII suffix after the final translated glyph. Short
+    // native words retain the original E/J/K special handling.
+    if(end-text==190 && *end && static_cast<signed char>(end[-1])>32)
+        return transport::word(out,text);
+    return reinterpret_cast<const char*(__cdecl*)(char*,const char*)>(0x580660)(out,text);
+}
+static const char* __cdecl pdaSkip(const char* text) { return transport::skip(text); }
 static int __cdecl sizeHook(const char* name) {
     if(auto r=resource(name)) return static_cast<int>(r->bytes.size());
     return originalSize(name);
@@ -225,9 +280,14 @@ static void install() {
     call(0x43e663,{0xe8,0x18,0x20,0x10,0x00},bsHook);
     call(0x583bb5,{0xe8,0x26,0xc9,0xff,0xff},pdaHook);
     call(0x611885,{0xe8,0x66,0xeb,0xff,0xff},modeHook);
+    call(0x58074d,{0xe8,0x0e,0xff,0xff,0xff},pdaWord);
+    call(0x580832,{0xe8,0xd9,0xfd,0xff,0xff},pdaSkip);
+    call(0x580c2a,{0xe8,0x11,0xfa,0xff,0xff},pdaExpandAdapter);
+    call(0x580c4c,{0xe8,0xef,0xf9,0xff,0xff},pdaExpandAdapter);
     for(uintptr_t a:{0x610a96,0x6119f3,0x611a59,0x611d1b,0x611d58,0x612561}) patches.push_back({a,{0x3c,0x2c},{0x3c,marker}});
     struct Hook { uintptr_t address; std::vector<unsigned char> before; const void* target; void** original; };
     std::vector<Hook> hooks={
+        {0x610260,{0x53,0x8b,0x5c,0x24,0x08},expandHook,reinterpret_cast<void**>(&originalExpand)},
         {0x49ddf0,{0xa1,0xd0,0x0f,0x91,0x00},sizeHook,reinterpret_cast<void**>(&originalSize)},
         {0x49e4e0,{0xa1,0xd0,0x0f,0x91,0x00},readHook,reinterpret_cast<void**>(&originalRead)},
         {0x6119d0,{0x51,0xa1,0xa0,0x88,0x9e,0x00},countHook,reinterpret_cast<void**>(&originalCount)},
@@ -290,6 +350,51 @@ extern "C" __declspec(dllexport) int __cdecl LocalizationSelfTest(const wchar_t*
         *(firstDds+16)=1; // width 257 instead of native 256
         try { parse(badDds); return 9; } catch(const std::exception&) {}
         if(encoded(std::string("\x1f")+"00015") || encoded(std::string("\x1f")+"1536")) return 4;
+        // Pure owned-buffer checks: never call native addresses from this host.
+        if(!encoded(std::string("\x1f")+"0001\vI %1\n") || encoded("\vZ")) return 10;
+        if(transport::budget("\vA\vB%1")!=365) return 18;
+        const std::string atom=std::string("\x1f")+"0001";
+        std::string longPda;
+        for(int i=0;i<250;++i) longPda+=atom;
+        const char* cursor=longPda.c_str();
+        size_t atoms=0;
+        char word[202]; memset(word,0x7f,sizeof(word));
+        while(*cursor) {
+            if(transport::skip(cursor)!=cursor) return 11;
+            auto next=transport::word(word,cursor);
+            if(next-cursor!=5 || std::string(word)!=atom || word[200]!=0x7f) return 12;
+            cursor=next; ++atoms;
+        }
+        if(atoms!=250) return 13;
+        const char* adapterInput=longPda.c_str();
+        const char* adapterResult=nullptr;
+        __asm {
+            mov eax,adapterInput
+            call pdaExpandAdapter
+            mov adapterResult,eax
+        }
+        if(!adapterResult || strcmp(adapterResult,longPda.c_str()) || adapterResult==adapterInput) return 17;
+        auto expanded=transport::expand((atom+"\vJ\vI"+atom).c_str(),[](const char* token){return token[1]=='J'?"":"'Key'";});
+        if(expanded!=atom+"'Key'"+atom) return 14;
+        std::string wide(500,'x');
+        const char* rest=transport::word(word,wide.c_str());
+        if(rest-wide.c_str()!=190 || strlen(word)!=190 || word[200]!=0x7f) return 15;
+        // This wrapper branch is entirely owned code; no native fallback call.
+        if(pdaWord(word,wide.c_str())!=wide.c_str()+190 || strlen(word)!=190) return 19;
+        std::string edge(190,'x');
+        if(*transport::word(word,edge.c_str()) || strlen(word)!=190) return 20;
+        std::string tooLarge(4096,'x');
+        try { transport::expand("\vI",[&](const char*){return tooLarge.c_str();}); return 21; }
+        catch(const std::runtime_error&) {}
+        for(const auto& item:parsed.pda) {
+            auto expandedPda=transport::expand(item.target.c_str(),[](const char*){return "'Synthetic key'";});
+            const char* p=expandedPda.c_str();
+            while(*p) {
+                const char* next=transport::word(word,p);
+                if(next<=p || next>expandedPda.c_str()+expandedPda.size() || strlen(word)>190) return 16;
+                p=next;
+            }
+        }
         auto memory=static_cast<unsigned char*>(VirtualAlloc(nullptr,4096,MEM_COMMIT|MEM_RESERVE,PAGE_READWRITE));
         if(!memory) return 5;
         const std::vector<unsigned char> baseline={1,2,3,4,5},modified={5,4,3,2,1};

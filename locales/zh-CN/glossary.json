@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "locale": "zh-CN",
-  "status": "seed; active entries used by current PoC; proposed entries await contextual review",
+  "status": "proposed merge; current existing entries plus PDA reviewed choices",
   "entries": [
     {
       "id": "profile",
@@ -102,7 +102,9 @@
       "status": "active",
       "evidence": [
         "pda:p055.r001.s000",
-        "pda:p002.r000.s000"
+        "pda:p002.r000.s000",
+        "pda:p000.r001.s000",
+        "pda:p002.r001.s000"
       ],
       "note": "当前章节名"
     },
@@ -113,147 +115,1250 @@
       "category": "location",
       "status": "active",
       "evidence": [
-        "pda:p055.r003.s000"
+        "pda:p055.r003.s000",
+        "pda:p002.r001.s000",
+        "pda:p009.r001.s002"
       ],
-      "note": "与隔离病房区分"
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "isolation_ward",
       "source": "isolation ward",
       "preferred": "隔离病房",
       "category": "location",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
         "pda:p002.r001.s000"
       ],
-      "note": "简介正文尚未翻译"
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "john_vattic",
       "source": "John Vattic",
       "preferred": "约翰·瓦蒂克",
       "category": "character",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
-        "pda:p001.r001.s000"
+        "pda:p001.r001.s000",
+        "pda:p003.r001.s001",
+        "pda:p004.r001.s002"
       ],
-      "note": "人名暂定，后续结合语音与人物资料确认；不声称官方译名"
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "jayne_wilde",
       "source": "Jayne Wilde",
       "preferred": "简·怀尔德",
       "category": "character",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
         "bs:680",
-        "bs:908"
+        "bs:908",
+        "pda:p001.r003.s000",
+        "pda:p007.r001.s006",
+        "pda:p008.r001.s007"
       ],
-      "note": "拼写为 Jayne；人名暂定"
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "starke",
       "source": "Starke",
       "preferred": "斯塔克",
       "category": "character",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
-        "bs:514"
+        "bs:514",
+        "pda:p001.r002.s000",
+        "pda:p004.r001.s004",
+        "pda:p010.r001.s000"
       ],
-      "note": "姓氏暂定，完整名待资源定位"
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "winterice",
       "source": "WinterICE",
       "preferred": "WinterICE",
       "category": "proper-name",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
-        "bs:902"
+        "bs:902",
+        "pda:p005.r001.s001",
+        "pda:p006.r001.s001",
+        "pda:p007.r001.s002"
       ],
-      "note": "暂留原名，组织/行动称谓及中文译名待剧情核对"
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "zener",
       "source": "Zener",
       "preferred": "泽纳",
       "category": "proper-name",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
-        "bs:788"
+        "bs:788",
+        "pda:p017.r001.s001",
+        "pda:p017.r001.s003",
+        "pda:p018.r001.s001"
       ],
-      "note": "设施/计划相关专名，具体语境待核对"
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "telekinesis",
       "source": "Telekinesis",
       "preferred": "念力",
       "category": "ability",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
         "bs:694",
-        "pda:p049.r001.s000"
+        "pda:p049.r001.s000",
+        "pda:p050.r000.s000"
       ],
-      "note": "能力名暂定"
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "healing",
       "source": "Healing",
       "preferred": "治疗",
       "category": "ability",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
         "bs:697",
-        "pda:p049.r002.s000"
+        "pda:p049.r002.s000",
+        "pda:p051.r000.s000",
+        "pda:p051.r002.s000"
       ],
-      "note": ""
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "psi_attack",
       "source": "Psi Attack",
       "preferred": "灵能攻击",
       "category": "ability",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
         "bs:708",
-        "pda:p049.r003.s000"
+        "pda:p049.r003.s000",
+        "pda:p052.r000.s000"
       ],
-      "note": ""
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "charm",
       "source": "Charm",
       "preferred": "魅惑",
       "category": "ability",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
         "bs:695",
-        "pda:p049.r004.s000"
+        "pda:p049.r004.s000",
+        "pda:p053.r000.s000",
+        "pda:p053.r002.s000"
       ],
-      "note": "须结合能力实际效果确认，不按一般词义直接定稿"
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "projection",
       "source": "Projection",
       "preferred": "精神投射",
       "category": "ability",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
         "bs:698",
-        "pda:p049.r005.s000"
+        "pda:p049.r005.s000",
+        "pda:p054.r000.s000",
+        "pda:p054.r003.s000"
       ],
-      "note": ""
+      "note": "本轮 PDA 语境采用的项目译法；不声称官方译名，游戏内排版待验收。"
     },
     {
       "id": "psi_blast",
       "source": "Psi Blast",
       "preferred": "灵能爆破",
       "category": "ability",
-      "status": "proposed",
+      "status": "active",
       "evidence": [
         "bs:713"
       ],
-      "note": "与 Psi Attack 保持区分"
+      "note": "菜单扩展采用的项目译法；实机待验收"
+    },
+    {
+      "id": "chapter_preparation",
+      "source": "Preparation",
+      "preferred": "准备",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r002.s000",
+        "pda:p003.r000.s000",
+        "pda:p055.r006.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_diligence",
+      "source": "Diligence",
+      "preferred": "勤勉",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r003.s000",
+        "pda:p004.r000.s000",
+        "pda:p055.r014.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_experimentation",
+      "source": "Experimentation",
+      "preferred": "实验",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r004.s000",
+        "pda:p005.r000.s000",
+        "pda:p055.r017.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_fieldwork",
+      "source": "Fieldwork",
+      "preferred": "实地行动",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r005.s000",
+        "pda:p006.r000.s000",
+        "pda:p055.r020.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_escape",
+      "source": "Escape",
+      "preferred": "逃脱",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r006.s000",
+        "pda:p007.r000.s000",
+        "pda:p055.r027.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_madness",
+      "source": "Madness",
+      "preferred": "疯狂",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r007.s000",
+        "pda:p008.r000.s000",
+        "pda:p055.r029.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_rescue",
+      "source": "Rescue",
+      "preferred": "营救",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r008.s000",
+        "pda:p009.r000.s000",
+        "pda:p055.r037.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_reliance",
+      "source": "Reliance",
+      "preferred": "信赖",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r009.s000",
+        "pda:p010.r000.s000",
+        "pda:p055.r039.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_entrapped",
+      "source": "Entrapped",
+      "preferred": "困局",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r010.s000",
+        "pda:p011.r000.s000",
+        "pda:p055.r048.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_streetlife",
+      "source": "Streetlife",
+      "preferred": "街头",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r011.s000",
+        "pda:p012.r000.s000",
+        "pda:p055.r050.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_teamwork",
+      "source": "Teamwork",
+      "preferred": "协作",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r012.s000",
+        "pda:p013.r000.s000",
+        "pda:p055.r056.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_breakout",
+      "source": "Breakout",
+      "preferred": "突围",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r013.s000",
+        "pda:p014.r000.s000",
+        "pda:p055.r065.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_conspiracy",
+      "source": "Conspiracy",
+      "preferred": "阴谋",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r014.s000",
+        "pda:p015.r000.s000",
+        "pda:p015.r001.s000",
+        "pda:p055.r067.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_infiltration",
+      "source": "Infiltration",
+      "preferred": "潜入",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r015.s000",
+        "pda:p016.r000.s000",
+        "pda:p055.r075.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_childcare",
+      "source": "Childcare",
+      "preferred": "守护",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r016.s000",
+        "pda:p017.r000.s000",
+        "pda:p055.r080.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_confrontation",
+      "source": "Confrontation",
+      "preferred": "对峙",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r017.s000",
+        "pda:p018.r000.s000",
+        "pda:p055.r085.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "chapter_redemption",
+      "source": "Redemption",
+      "preferred": "救赎",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p000.r018.s000",
+        "pda:p019.r000.s000",
+        "pda:p055.r089.s000"
+      ],
+      "note": "章节名；普通动作词须按上下文翻译，不作子串全局替换。"
+    },
+    {
+      "id": "grienko",
+      "source": "Grienko",
+      "preferred": "格里恩科",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p001.r009.s000",
+        "pda:p006.r001.s005",
+        "pda:p013.r001.s005",
+        "pda:p016.r001.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "hanson",
+      "source": "Hanson",
+      "preferred": "汉森",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p001.r011.s000",
+        "pda:p018.r001.s002",
+        "pda:p019.r001.s000",
+        "pda:p028.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "tex",
+      "source": "Tex",
+      "preferred": "特克斯",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p001.r004.s000",
+        "pda:p022.r000.s000",
+        "pda:p022.r003.s000",
+        "pda:p024.r003.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "jc",
+      "source": "JC",
+      "preferred": "JC",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p001.r005.s000",
+        "pda:p025.r003.s000",
+        "pda:p035.r001.s007",
+        "pda:p055.r011.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "cortelli",
+      "source": "Cortelli",
+      "preferred": "科尔泰利",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p001.r006.s000",
+        "pda:p024.r000.s000",
+        "pda:p024.r003.s000",
+        "pda:p035.r001.s003"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "ballard",
+      "source": "Ballard",
+      "preferred": "巴拉德",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p001.r007.s000",
+        "pda:p023.r000.s000",
+        "pda:p023.r003.s000",
+        "pda:p035.r001.s011"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "franklin",
+      "source": "Franklin",
+      "preferred": "富兰克林",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p001.r008.s000",
+        "pda:p026.r000.s000",
+        "pda:p035.r001.s009",
+        "pda:p055.r013.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "sasha_barranikov",
+      "source": "Sasha Barranikov",
+      "preferred": "萨莎·巴拉尼科夫",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p001.r010.s000",
+        "pda:p032.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "joshua_starke",
+      "source": "Joshua Starke",
+      "preferred": "约书亚·斯塔克",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p021.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "william_robert_jackson",
+      "source": "William Robert Jackson",
+      "preferred": "威廉·罗伯特·杰克逊",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p022.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "patrick_ballard",
+      "source": "Patrick Ballard",
+      "preferred": "帕特里克·巴拉德",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p023.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "anthony_cortelli",
+      "source": "Anthony Cortelli",
+      "preferred": "安东尼·科尔泰利",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p024.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "juan_carlos_verdes",
+      "source": "Juan Carlos Verdes",
+      "preferred": "胡安·卡洛斯·贝尔德斯",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p025.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "martha_franklin",
+      "source": "Martha Franklin",
+      "preferred": "玛莎·富兰克林",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p026.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "silas_hanson",
+      "source": "Silas Hanson",
+      "preferred": "赛拉斯·汉森",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p028.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "viktor_grienko",
+      "source": "Viktor Grienko",
+      "preferred": "维克托·格里恩科",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p006.r001.s005",
+        "pda:p029.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "pavlov",
+      "source": "Pavlov",
+      "preferred": "巴甫洛夫",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p029.r003.s001",
+        "pda:p030.r000.s000",
+        "pda:p030.r001.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "stalin",
+      "source": "Stalin",
+      "preferred": "斯大林",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p029.r003.s003",
+        "pda:p031.r000.s000",
+        "pda:p043.r001.s002"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "anna",
+      "source": "Anna",
+      "preferred": "安娜",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p033.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "nadja",
+      "source": "Nadja",
+      "preferred": "娜佳",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p033.r001.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "ivan",
+      "source": "Ivan",
+      "preferred": "伊万",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p030.r000.s000",
+        "pda:p033.r002.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "tanya",
+      "source": "Tanya",
+      "preferred": "塔妮娅",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p033.r003.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "pieter",
+      "source": "Pieter",
+      "preferred": "彼得",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "pda:p033.r004.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "nse",
+      "source": "National Security Executive",
+      "preferred": "国家安全执行局",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p028.r002.s001",
+        "pda:p034.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "nse_abbreviation",
+      "source": "NSE",
+      "preferred": "国家安全执行局",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p014.r001.s002",
+        "pda:p014.r001.s005",
+        "pda:p015.r001.s000",
+        "pda:p034.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "ushc",
+      "source": "USHC",
+      "preferred": "美国碳氢公司",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p006.r001.s003",
+        "pda:p029.r004.s001",
+        "pda:p041.r000.s000",
+        "pda:p055.r047.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "ushc_full",
+      "source": "United States HydroCarb",
+      "preferred": "美国碳氢公司",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p041.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "tyumen",
+      "source": "Tyumen Oblast",
+      "preferred": "秋明州",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p036.r000.s000",
+        "pda:p042.r001.s001"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "osiris",
+      "source": "Osiris Medical Facility",
+      "preferred": "奥西里斯医疗中心",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p008.r001.s001",
+        "pda:p037.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "penfold",
+      "source": "Penfold Asylum",
+      "preferred": "彭福尔德精神病院",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p008.r001.s005",
+        "pda:p009.r001.s003",
+        "pda:p011.r001.s004",
+        "pda:p038.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "kastein",
+      "source": "Kastein",
+      "preferred": "卡斯坦",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p004.r001.s001",
+        "pda:p040.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "dubrensk",
+      "source": "Dubrensk",
+      "preferred": "杜布伦斯克",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p013.r001.s003",
+        "pda:p014.r001.s004",
+        "pda:p015.r001.s000",
+        "pda:p016.r001.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "tenements",
+      "source": "Tenements",
+      "preferred": "廉租公寓区",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p039.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "zener_children",
+      "source": "Zener Children",
+      "preferred": "泽纳儿童",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p017.r001.s003",
+        "pda:p018.r001.s001",
+        "pda:p032.r001.s001",
+        "pda:p043.r001.s010"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "zener_project",
+      "source": "Zener Project",
+      "preferred": "泽纳计划",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p043.r000.s000",
+        "pda:p047.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "parapsychology",
+      "source": "Parapsychology",
+      "preferred": "超心理学",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p020.r002.s001",
+        "pda:p021.r003.s000",
+        "pda:p029.r002.s000",
+        "pda:p043.r001.s001"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "cold_war",
+      "source": "Cold War",
+      "preferred": "冷战",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p043.r001.s000",
+        "pda:p046.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "ussr",
+      "source": "USSR",
+      "preferred": "苏联",
+      "category": "proper-name",
+      "status": "active",
+      "evidence": [
+        "pda:p041.r001.s001",
+        "pda:p043.r001.s008",
+        "pda:p044.r001.s001",
+        "pda:p045.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "psychic_abilities",
+      "source": "Psychic Abilities",
+      "preferred": "超能力",
+      "category": "ability",
+      "status": "active",
+      "evidence": [
+        "pda:p043.r001.s007",
+        "pda:p044.r001.s006",
+        "pda:p049.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "psychokinesis",
+      "source": "Psychokinesis",
+      "preferred": "心灵致动",
+      "category": "ability",
+      "status": "active",
+      "evidence": [
+        "pda:p050.r000.s001"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "psi_pulse",
+      "source": "Psi Pulse",
+      "preferred": "灵能脉冲",
+      "category": "ability",
+      "status": "active",
+      "evidence": [
+        "pda:p052.r003.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "radial_blast",
+      "source": "Radial Blast",
+      "preferred": "范围爆破",
+      "category": "ability",
+      "status": "active",
+      "evidence": [
+        "pda:p052.r007.s000",
+        "pda:p052.r009.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "telepathic_charm",
+      "source": "Telepathic Charm",
+      "preferred": "心灵魅惑",
+      "category": "ability",
+      "status": "active",
+      "evidence": [
+        "pda:p053.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "possession",
+      "source": "Possession",
+      "preferred": "附身",
+      "category": "ability",
+      "status": "active",
+      "evidence": [
+        "pda:p049.r006.s000",
+        "pda:p054.r004.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "animal_tranquillizer",
+      "source": "Animal Tranquillizer",
+      "preferred": "兽用麻醉枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r001.s000",
+        "pda:p057.r000.s000",
+        "pda:p058.r002.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "military_tranquillizer",
+      "source": "Military Tranquillizer",
+      "preferred": "军用麻醉枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r002.s000",
+        "pda:p058.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "pistol",
+      "source": "Pistol",
+      "preferred": "手枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r003.s000",
+        "pda:p056.r004.s000",
+        "pda:p058.r002.s000",
+        "pda:p059.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "pistol_45",
+      "source": ".45 Pistol",
+      "preferred": ".45口径手枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r004.s000",
+        "pda:p060.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "revolver",
+      "source": "Revolver",
+      "preferred": "左轮手枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r005.s000",
+        "pda:p061.r000.s000",
+        "pda:p061.r002.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "smg",
+      "source": "SMG",
+      "preferred": "冲锋枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r006.s000",
+        "pda:p062.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "sniper_rifle",
+      "source": "Sniper Rifle",
+      "preferred": "狙击步枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r007.s000",
+        "pda:p063.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "soviet_rifle",
+      "source": "Soviet Rifle",
+      "preferred": "苏制步枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r008.s000",
+        "pda:p064.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "assault_rifle",
+      "source": "Assault Rifle",
+      "preferred": "突击步枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r009.s000",
+        "pda:p065.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "sawn_off_shotgun",
+      "source": "Sawn-off Shotgun",
+      "preferred": "短管霰弹枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r010.s000",
+        "pda:p066.r000.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "shotgun",
+      "source": "Shotgun",
+      "preferred": "霰弹枪",
+      "category": "weapon",
+      "status": "active",
+      "evidence": [
+        "pda:p056.r010.s000",
+        "pda:p056.r011.s000",
+        "pda:p066.r000.s000",
+        "pda:p066.r002.s000"
+      ],
+      "note": "本轮 PDA 全文语境统一，项目译名，非官方定名。"
+    },
+    {
+      "id": "cutscene",
+      "source": "Cutscene",
+      "preferred": "过场动画",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:493"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "graphics_options",
+      "source": "Graphics Options",
+      "preferred": "图形选项",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:6318"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "control_options",
+      "source": "Control Options",
+      "preferred": "操作选项",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:6320"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "checkpoint",
+      "source": "checkpoint",
+      "preferred": "检查点",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:331"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "difficulty",
+      "source": "Difficulty",
+      "preferred": "难度",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:1451"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "general_stats",
+      "source": "General Stats",
+      "preferred": "综合统计",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:5188"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "level_stats",
+      "source": "Level Stats",
+      "preferred": "关卡统计",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:5192"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "mouse_sensitivity",
+      "source": "Mouse Sensitivity",
+      "preferred": "鼠标灵敏度",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:6362"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "resolution",
+      "source": "Resolution",
+      "preferred": "分辨率",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:6316"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "dynamic_lighting",
+      "source": "Dynamic Lighting",
+      "preferred": "动态光照",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:6315"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "decals",
+      "source": "Decals",
+      "preferred": "贴花",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:6358"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "specular",
+      "source": "Specular",
+      "preferred": "镜面反射",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:6361"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "particle_quality",
+      "source": "Particle Quality",
+      "preferred": "粒子质量",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:6360"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "unarmed",
+      "source": "Unarmed",
+      "preferred": "徒手",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:445"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "stealth_rating",
+      "source": "Stealth rating",
+      "preferred": "潜行评分",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:1440"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "morality_rating",
+      "source": "Morality rating",
+      "preferred": "道德评分",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:1445"
+      ],
+      "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
     }
   ]
 }

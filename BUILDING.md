@@ -1,6 +1,6 @@
 # 构建与离线验证
 
-当前中文样本、独立 x86 ASI、离线宿主和 **PoC 004 无边框测试包已完成离线构建与检查**；游戏内显示及高清材质/FusionFix 共存均待用户验收。**以下自动化只处理文件或运行自有测试宿主，不启动游戏。**
+当前为 **PoC 005 菜单/PDA 扩展测试包**，菜单/短 PDA 的历史用户反馈来自 004。005 的新字体、长文和按键显示待用户验收。以下自动化只处理文件或运行自有宿主，不启动游戏。
 
 ## 环境与输入
 
@@ -25,9 +25,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1
 
 ## 中文样本输出
 
-输入为 [locales/zh-CN/poc.json](locales/zh-CN/poc.json)：21 条菜单、11 条剧情字幕候选，以及 Isolation 任务页的 4 条 PDA 文本。字幕候选尚未完成场景映射，4 条 PDA 文本也不是 4 个页面。
+入口为 [locales/zh-CN/poc.json](locales/zh-CN/poc.json)，合并菜单和 PDA 分目录后共 832 条 BS（821 条菜单/共享界面、11 条原有字幕候选）与 PDA 68 页的 447 段。字幕候选尚未完成场景映射。
 
-构建器校验 EXE、主文本和找到的全部 `pdaps_a.raw` 副本的 hash，逐条核对原文；不接受未知版本或原文不符的数据。字体由各语言的 `font.json` 固定提交与 SHA-256；中文现用思源黑体 Regular，字形由样本文本确定；当前六页分配跳过原引擎特殊编号 178、184，共 1,534 个候选字位，不代表完整汉化容量已解决。编码后 BS 上限为 255 字节、PDA 上限为 450 字节；这些保守护栏不是游戏布局验收。
+构建器校验 EXE、主文本和找到的全部 `pdaps_a.raw` 副本的 hash，逐条核对原文；不接受未知版本或原文不符的数据。字体由各语言的 `font.json` 固定提交与 SHA-256；中文现用思源黑体 Regular，字形由样本文本确定；当前六页分配跳过原引擎特殊编号 178、184，共 1,534 个候选字位，不代表完整汉化容量已解决。BS 编码及最坏按键展开后上限为 255 字节、PDA 最坏展开后上限为 1,800 字节；这些保守护栏不是游戏布局验收。
 
 | 输出 | 用途 |
 |---|---|
@@ -59,11 +59,11 @@ $Root = (Get-Location).Path
 `tools/stage_poc.py` 重新构建语言包与 ASI、运行自有离线宿主，再复制原游戏、固定 FusionFix 与可选 ReMade 输入。它不启动游戏，不加载第三方 DLL；拒绝已有输出、输入/输出重叠和目录联接，核对构建前后原安装及第三方输入的 hash。
 
 ```powershell
-python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix --remastered-root "ReMade With Second Sight Remastered Textures" --out dist/poc-zh-CN-004
-python -X utf8 tools/stage_poc.py --verify --out dist/poc-zh-CN-004
+python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix --remastered-root "ReMade With Second Sight Remastered Textures" --out dist/poc-zh-CN-005
+python -X utf8 tools/stage_poc.py --verify --out dist/poc-zh-CN-005
 ```
 
-004 已存在时使用新的递增编号，例如 005。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
+005 已存在时使用新的递增编号，例如 006。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
 
 HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。两份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK、FusionFix 二进制及输入配置不变；输出配置仅将 `[MAIN] WindowMode` 从 `0` 改为 `2`，固定输出 hash 与 override 记录写入清单。004 起默认无边框，其余设置不变。
 
@@ -73,7 +73,7 @@ HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复
 
 新包完整校验通过后，构建器按递增编号保留最近两个受管包。`tools/package_retention.py` 生成带清单 hash 的计划；`tools/prune_test_packages.ps1` 验证绝对路径位于仓库 `dist/`、无联接、清单和 EXE 身份一致，且副本未被运行，再删除旧包。计划保存在 `build/package-retention/<包名>/retention-plan.json`。
 
-失败/未完成/无法识别的目录、外部输入与研究记录不自动删除。保留规则按全局包编号排序，跨语言也要使用新的编号。旧包的测试存档、配置和日志随包删除，重要反馈应先保存到包外。当前 `dist/` 保留 003、004，早期未编号副本已删除。历史 `build/poc-20261117/runtime` 的清理调用被执行器拦截，目录仍存在，不将它记为已清理；它不属于后续受管发布目录。
+失败/未完成/无法识别的目录、外部输入与研究记录不自动删除。保留规则按全局包编号排序，跨语言也要使用新的编号。旧包的测试存档、配置和日志随包删除，重要反馈应先保存到包外。005 完成后 `dist/` 保留 004、005，003 按新包清单计划清理；早期未编号副本已删除。历史 `build/poc-20261117/runtime` 的清理调用被执行器拦截，目录仍存在，不将它记为已清理；它不属于后续受管发布目录。
 
 `--verify` 只检查清单文件与固定依赖，不运行游戏；手动改配置、禁用模块后会报告差异，不代表实机故障。
 
@@ -177,3 +177,21 @@ python -X utf8 tools/verify_poc.py evidence --out build/editorial-validation-005
 ```
 
 证据目录需尚不存在。本轮 104 项测试通过；旧译文夹具触发两条句号错误，修订后检查通过。只生成语言包与回滚证据，不更新用户正在验收的 004，也未另建完整游戏副本。
+
+## 005 分目录译文与长 PDA
+
+菜单与 PDA 扩展文件在 `locales/zh-CN/`，由 `poc.json.catalogs` 声明。每条新译文保存 `source_sha256` 和 `source_tokens`，构建时从固定原版还原源文并逐条核对；不提交完整英文提取池。需要双语审校稿时运行：
+
+```powershell
+python -X utf8 tools/export_catalog.py --game-root $Game --locale zh-CN --out build/review-005.json
+```
+
+输出须为忽略的 build 内新路径。构建 manifest 保存实际译文快照和目录输入 hash；回滚验证读取该快照，不依赖后来变化的源码译文。PDA 验证支持全部 447 个字段，不再写死四条样本。
+
+```powershell
+python -X utf8 tools/inspect_renderer.py "$Game/secondsight.EXE" --self-test --output build/renderer-005.json
+python -X utf8 tools/verify_poc.py prepare --game-root $Game --locale-build build/locale-zh-CN --out build/pda-evidence-005
+python -X utf8 tools/verify_poc.py evidence --out build/pda-evidence-005
+```
+
+证据输出须尚不存在。新增五处调用契约、按键长度预算和自有缓冲区见[005 文本研究](docs/research/TEXT_CONTRACTS_005.md)；覆盖范围与验收清单见[005 记录](docs/MENU_PDA_005.md)。

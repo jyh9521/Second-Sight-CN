@@ -1,0 +1,5116 @@
+[
+  {
+    "id": "p000.r000.s000",
+    "target": "剧情梗概",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8eb3755381519d7f0479d75446e56e20084834c0460d7ec94926932372ea6c47"
+  },
+  {
+    "id": "p000.r001.s000",
+    "target": "隔离",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "isolation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "45c4fc064e525974b1c12d9f7168edcde18dcbbf878aa21fd761da5cdfc59702"
+  },
+  {
+    "id": "p000.r002.s000",
+    "target": "准备",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_preparation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cf2befb0f1a62829287ee4fda7df90334ccdc12a1ba046fff131fb81381e3bbd"
+  },
+  {
+    "id": "p000.r003.s000",
+    "target": "勤勉",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_diligence"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "db2b0313ac4db290aa2b288e97336382d1e94b52e3905803758d38aa0d2ea7a4"
+  },
+  {
+    "id": "p000.r004.s000",
+    "target": "实验",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_experimentation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d416644b474b55515f291a2655ae684c2f087bd4a7e34918d8479f9f19b8367a"
+  },
+  {
+    "id": "p000.r005.s000",
+    "target": "实地行动",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_fieldwork"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "84f596d8b407478c439542aabd7275403c25979b52af6ff8dfc200db5bc7371a"
+  },
+  {
+    "id": "p000.r006.s000",
+    "target": "逃脱",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_escape"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "037c968467aa3fd7c059c7d0b57e3460aa332f30db816efcd98943724a1d8db0"
+  },
+  {
+    "id": "p000.r007.s000",
+    "target": "疯狂",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_madness"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1eb2dced2651481299155df1b8395d0b77a6b93c933c8fc418be1b545de553de"
+  },
+  {
+    "id": "p000.r008.s000",
+    "target": "营救",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_rescue"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a29dbdd38f71a09d7ecb1b6a4c65ea1d1c4a2dd046b692706531a687dd744f46"
+  },
+  {
+    "id": "p000.r009.s000",
+    "target": "信赖",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_reliance"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5257f809148be0dffe138f353cddf0b82bd2bc346ef8cfbf1500d1b570229d74"
+  },
+  {
+    "id": "p000.r010.s000",
+    "target": "困局",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_entrapped"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0b96d629c87116653ea9439b09d8b4481254c02cc3982b45e0d3e32c6788b1c8"
+  },
+  {
+    "id": "p000.r011.s000",
+    "target": "街头",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_streetlife"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6fc9aed2d80f0fca8bd3373b07862c03e0d99f60753ca6adcc1f4338605e8c37"
+  },
+  {
+    "id": "p000.r012.s000",
+    "target": "协作",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_teamwork"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4a84556e7fd02081e0e92242b82822cce9eb6bae14aec2590bbf14c24e74930e"
+  },
+  {
+    "id": "p000.r013.s000",
+    "target": "突围",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_breakout"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "921b14d5fb12f668386c11cac4c7d1cecd54165986c05caff8a7c5001270909f"
+  },
+  {
+    "id": "p000.r014.s000",
+    "target": "阴谋",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_conspiracy"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6e911eba808afe8332be7b0f81477a3762428bdb46aeb32cadf4dc4a4bc7eee4"
+  },
+  {
+    "id": "p000.r015.s000",
+    "target": "潜入",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_infiltration"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "dbb2d8a252526047a4aba4dc6051212386aac48155058aa5c1c286be1af3ed42"
+  },
+  {
+    "id": "p000.r016.s000",
+    "target": "守护",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_childcare"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b0377e52418b47637234bf046e0b13821bc297f0e6c107daa2e1f578a8fd8b3a"
+  },
+  {
+    "id": "p000.r017.s000",
+    "target": "对峙",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_confrontation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8e3f14b2e60df2f9313b68a031915e8f1d9c343ea9193302a999f43b55bf00c5"
+  },
+  {
+    "id": "p000.r018.s000",
+    "target": "救赎",
+    "context": "PDA page 000; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_redemption"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a5cb3e05865aef75f212023810e771af62e0d037cbe245a38187129e83d1bc82"
+  },
+  {
+    "id": "p001.r000.s000",
+    "target": "人物",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6fac39e2845bb81253124d4d6b5e8c475020dac1851c68cd92129432e9e7de92"
+  },
+  {
+    "id": "p001.r001.s000",
+    "target": "约翰·瓦蒂克",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c5c9ba32eb190b7543fa58a76264e671fb2d0b25af26fa4419197dc76044bc97"
+  },
+  {
+    "id": "p001.r002.s000",
+    "target": "斯塔克上校",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "acebc2c54380ffc85b3c34fd854c39aadff1c65ffd59bf8e6145664a0d75411b"
+  },
+  {
+    "id": "p001.r003.s000",
+    "target": "简·怀尔德",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "jayne_wilde"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8582c8d5c5aef9f6b51d18861dec6776888cb2cdd290f6c29535cf9d8b5c0dd3"
+  },
+  {
+    "id": "p001.r004.s000",
+    "target": "特克斯",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "tex"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "310633a75ca8060c81178097853e122a34978aab71efd969a341b4bafab35089"
+  },
+  {
+    "id": "p001.r005.s000",
+    "target": "JC",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "jc"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a767e517e7eb77fd62ca83c0e92d142baeb0fa0b563442ddd3e4f2ee33c4cc87"
+  },
+  {
+    "id": "p001.r006.s000",
+    "target": "科尔泰利",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "cortelli"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16ecf3f330b1de0cec46d12c9cc01fb510e9624d94c73ad9cc1617305182c016"
+  },
+  {
+    "id": "p001.r007.s000",
+    "target": "巴拉德",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "ballard"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "babea4f80c4bcf1990b8a0e50fe4ae2a5140b82c190198f4433292ed8a42a5e4"
+  },
+  {
+    "id": "p001.r008.s000",
+    "target": "富兰克林",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "franklin"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "f6f7e02bd0286ce088026be5c0b8ebdba16280e940b4c5b52b4dcff01542b180"
+  },
+  {
+    "id": "p001.r009.s000",
+    "target": "格里恩科教授",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5512428727b26831007e6b97d31a4eb326b2366ff1603986ec0dbcdebdc86f27"
+  },
+  {
+    "id": "p001.r010.s000",
+    "target": "萨莎·巴拉尼科夫",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "sasha_barranikov"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "21d1109e89c0a853acec10809482c41be7f0c1020606e9bb1d91f17db6646dc2"
+  },
+  {
+    "id": "p001.r011.s000",
+    "target": "汉森局长",
+    "context": "PDA page 001; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "hanson"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1a537ef8f5291a0291865248690774fc68af5254d96a74c183de95c4c689ee3b"
+  },
+  {
+    "id": "p002.r000.s000",
+    "target": "隔离",
+    "context": "PDA page 002; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "isolation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "45c4fc064e525974b1c12d9f7168edcde18dcbbf878aa21fd761da5cdfc59702"
+  },
+  {
+    "id": "p002.r001.s000",
+    "target": "戒备森严的医疗机构里有一片隔离病房。一名身份不明的男子在隔离室中从药物引起的昏迷中醒来。他记不起自己的过去，却本能地察觉囚禁他的人不怀好意。他必须设法逃出去。",
+    "context": "PDA page 002; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "isolation",
+      "isolation_cell",
+      "isolation_ward"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "590d35258d648aa823925aae6cbc70b3eddc2e9c5a0241ddf31b61d42b24d950"
+  },
+  {
+    "id": "p003.r000.s000",
+    "target": "准备",
+    "context": "PDA page 003; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_preparation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cf2befb0f1a62829287ee4fda7df90334ccdc12a1ba046fff131fb81381e3bbd"
+  },
+  {
+    "id": "p003.r001.s000",
+    "target": "接到临时通知后，",
+    "context": "PDA page 003; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0e34688168736c68ab1bf9ae88172f2b3f74004986ed43af8766fd35aa4aab56"
+  },
+  {
+    "id": "p003.r001.s001",
+    "target": "约翰·瓦蒂克博士",
+    "context": "PDA page 003; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9a4d66f11d49b2792679bb7450f4aa6019cc42a073437220ae0072f6e6f0856c"
+  },
+  {
+    "id": "p003.r001.s002",
+    "target": "前往一处",
+    "context": "PDA page 003; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1e62448a536556a03630eb38e17643307c928ed256c17dbf3f7e9a5ef7875438"
+  },
+  {
+    "id": "p003.r001.s003",
+    "target": "美军基地",
+    "context": "PDA page 003; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2a101876206fdb066a4aa9ad5fcd6f061ff978a54dfd74448be8d1986ecc51ab"
+  },
+  {
+    "id": "p003.r001.s004",
+    "target": "报到。基地位于德国，他原以为只需提供专业科学建议。",
+    "context": "PDA page 003; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a33e9b8ddd51f8425f041f3918047af0bfbe3fa358778bc01da4bc6cd9c3cec5"
+  },
+  {
+    "id": "p003.r002.s000",
+    "target": "抵达后他才得知，参加小队任务简报之前，自己还必须接受军事训练。",
+    "context": "PDA page 003; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9016436949ee733b4b6120a90f20c0177f74e3b663a4334e2a83cc88b1534182"
+  },
+  {
+    "id": "p004.r000.s000",
+    "target": "勤勉",
+    "context": "PDA page 004; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_diligence"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "db2b0313ac4db290aa2b288e97336382d1e94b52e3905803758d38aa0d2ea7a4"
+  },
+  {
+    "id": "p004.r001.s000",
+    "target": "在",
+    "context": "PDA page 004; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9d37314fdda0ae496d21429dd7aa8ed2762a694a7a39df581bd06a2eb0c15014"
+  },
+  {
+    "id": "p004.r001.s001",
+    "target": "卡斯坦美军基地，",
+    "context": "PDA page 004; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "kastein"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "374b1c67ca83c49e2fded8800d333591cce7429a2658573ab1e28f691d94f09c"
+  },
+  {
+    "id": "p004.r001.s002",
+    "target": "约翰·瓦蒂克",
+    "context": "PDA page 004; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "538632280ed4f19a5d7f8eb1c427bacdb0696d3830f768170693170a97689242"
+  },
+  {
+    "id": "p004.r001.s003",
+    "target": "决定通过模拟训练任务进一步磨炼军事技能，指导他的是经验丰富的",
+    "context": "PDA page 004; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "714c8d3f89b54f6d8fddbb4f0d5eb995cc3aff16e93a0705f48c3cde5b639ed9"
+  },
+  {
+    "id": "p004.r001.s004",
+    "target": "斯塔克上校",
+    "context": "PDA page 004; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "acebc2c54380ffc85b3c34fd854c39aadff1c65ffd59bf8e6145664a0d75411b"
+  },
+  {
+    "id": "p004.r001.s005",
+    "target": "。",
+    "context": "PDA page 004; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cdb4ee2aea69cc6a83331bbe96dc2caa9a299d21329efb0336fc02a82e1839a8"
+  },
+  {
+    "id": "p005.r000.s000",
+    "target": "实验",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_experimentation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d416644b474b55515f291a2655ae684c2f087bd4a7e34918d8479f9f19b8367a"
+  },
+  {
+    "id": "p005.r001.s000",
+    "target": "参加",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9c24a69ef35b16b41eb369c8ed0d1d2dc6f0ebf34eb39ee4fe83f9f63b4ced15"
+  },
+  {
+    "id": "p005.r001.s001",
+    "target": "WinterICE ",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p005.r001.s002",
+    "target": "行动六个月后，",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "295c5fa35eaa8cb70aaf534ea0f33c3f3b7ba3b0a3cf1a6a5490ea2bd84aeb29"
+  },
+  {
+    "id": "p005.r001.s003",
+    "target": "约翰·瓦蒂克",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "538632280ed4f19a5d7f8eb1c427bacdb0696d3830f768170693170a97689242"
+  },
+  {
+    "id": "p005.r001.s004",
+    "target": "发现自己被囚禁在一所戒备森严的",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "94b18943f9d07ec330dde67cf54777dfb805566f6681e872affbf8ffa41bf13d"
+  },
+  {
+    "id": "p005.r001.s005",
+    "target": "医疗机构",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d701ace7bf4aa3cfa1c87e9d084880f78ce5677a4781e6d40560d1b56782b207"
+  },
+  {
+    "id": "p005.r001.s006",
+    "target": "内。他曾接受大量外科手术，身心备受创伤。逃亡途中，约翰发现自己竟拥有惊人的",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8cea739e7fb0ec905491269e1ef9376336034fc2b62db640701e8467d909d676"
+  },
+  {
+    "id": "p005.r001.s007",
+    "target": "超能力",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4329a55efdcce1fa412d2406b45c6415fb5d56d9f5916fa7c06c0bd9b1e19c0c"
+  },
+  {
+    "id": "p005.r001.s008",
+    "target": "。",
+    "context": "PDA page 005; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cdb4ee2aea69cc6a83331bbe96dc2caa9a299d21329efb0336fc02a82e1839a8"
+  },
+  {
+    "id": "p006.r000.s000",
+    "target": "实地行动",
+    "context": "PDA page 006; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_fieldwork"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "84f596d8b407478c439542aabd7275403c25979b52af6ff8dfc200db5bc7371a"
+  },
+  {
+    "id": "p006.r001.s000",
+    "target": "代号为",
+    "context": "PDA page 006; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "103c5169871d49be7a2ebf9e6fe4720244cbf1fdbccdbfaca489898ea069504c"
+  },
+  {
+    "id": "p006.r001.s001",
+    "target": "WinterICE ",
+    "context": "PDA page 006; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p006.r001.s002",
+    "target": "的小队已抵达西西伯利亚。他们正前往",
+    "context": "PDA page 006; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "10031490a098e027c191d9b50bf23ad9cd07b2b8eb435130be208f95c91c5a17"
+  },
+  {
+    "id": "p006.r001.s003",
+    "target": "美国碳氢公司",
+    "context": "PDA page 006; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "ushc"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "229c7df78e7d4b039065c49d8b6e8e2a081fae7cdf116e3f7210022aedbded7e"
+  },
+  {
+    "id": "p006.r001.s004",
+    "target": "的输油管道站，希望在那里找到更多关于",
+    "context": "PDA page 006; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b6a9b03df289da3a761b819f52661c29a38fb77a190c9ff15b1e47289fb4fbdf"
+  },
+  {
+    "id": "p006.r001.s005",
+    "target": "维克托·格里恩科教授",
+    "context": "PDA page 006; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "grienko",
+      "viktor_grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b0a1383071cd7b1e541b9d2395b277585e609228939e1db997aa146c2e2577be"
+  },
+  {
+    "id": "p006.r001.s006",
+    "target": "的情报。距离管道站还有几公里时，他们遭到身份不明的部队袭击。",
+    "context": "PDA page 006; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "43b85242c9ee8bf57c9c674de9237cda3f5662cb7061e60596d6b3bfedd3d466"
+  },
+  {
+    "id": "p007.r000.s000",
+    "target": "逃脱",
+    "context": "PDA page 007; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_escape"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "037c968467aa3fd7c059c7d0b57e3460aa332f30db816efcd98943724a1d8db0"
+  },
+  {
+    "id": "p007.r001.s000",
+    "target": "约翰·瓦蒂克",
+    "context": "PDA page 007; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "538632280ed4f19a5d7f8eb1c427bacdb0696d3830f768170693170a97689242"
+  },
+  {
+    "id": "p007.r001.s001",
+    "target": "发现自己并不是",
+    "context": "PDA page 007; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "dc53c2fd0e5fb6b7f25018415d380d4033fe46e8f1599626cc6e7c6cdd4d5d1c"
+  },
+  {
+    "id": "p007.r001.s002",
+    "target": "WinterICE ",
+    "context": "PDA page 007; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p007.r001.s003",
+    "target": "行动的唯一幸存者。他必须逃离医疗机构，赶往那所",
+    "context": "PDA page 007; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b2df4ba7bc4c98efb79959cbf9d542b841fca3005a9a3097c8530606e9580f6d"
+  },
+  {
+    "id": "p007.r001.s004",
+    "target": "精神病院",
+    "context": "PDA page 007; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "f80b54c39c7c8549c5d7b0453523258e53383c356984117901755a2becb7edf6"
+  },
+  {
+    "id": "p007.r001.s005",
+    "target": "，因为",
+    "context": "PDA page 007; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2a8cbd075a36c54e845e09e26de107837aee337843deb58d43e35b16d7f00c7e"
+  },
+  {
+    "id": "p007.r001.s006",
+    "target": "简·怀尔德",
+    "context": "PDA page 007; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "jayne_wilde"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eae7ca33d4c8316b1730f9442448a1f2fe2693517dfeab0361a5f24a60d8db57"
+  },
+  {
+    "id": "p007.r001.s007",
+    "target": "就被关押在那里。",
+    "context": "PDA page 007; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a8fed723bab0dd223bb650e8efeed8717bfa48e999e9154d9507581ed1851810"
+  },
+  {
+    "id": "p008.r000.s000",
+    "target": "疯狂",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_madness"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1eb2dced2651481299155df1b8395d0b77a6b93c933c8fc418be1b545de553de"
+  },
+  {
+    "id": "p008.r001.s000",
+    "target": "偷车逃出",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eb0c8d639f4da3c5244c6ecdd1cb92111de9f46541990789657f2c3542c75270"
+  },
+  {
+    "id": "p008.r001.s001",
+    "target": "奥西里斯医疗中心",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "osiris"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e84734dd5f8f9b91241f5b75908cb008096c1c63efcd9354a6988b48a3ac94b7"
+  },
+  {
+    "id": "p008.r001.s002",
+    "target": "之后，",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0a07f659461970d8d8dcefe4fff96a1745599810dc7d47391e95c803b7b2072c"
+  },
+  {
+    "id": "p008.r001.s003",
+    "target": "约翰·瓦蒂克",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "538632280ed4f19a5d7f8eb1c427bacdb0696d3830f768170693170a97689242"
+  },
+  {
+    "id": "p008.r001.s004",
+    "target": "来到了",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "620f8db346462efbf608061a51e31c3fd26cd71cd5f4718825b3ccfa829201c8"
+  },
+  {
+    "id": "p008.r001.s005",
+    "target": "彭福尔德精神病院",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "penfold"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5090545681c044221674986021e51aca0a25015d36fadedb393a378ce25b710f"
+  },
+  {
+    "id": "p008.r001.s006",
+    "target": "。他知道",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a4bfad1953a11cdc33974eeec933d76e3c92e7c300912e1f3e5e5debfed4d400"
+  },
+  {
+    "id": "p008.r001.s007",
+    "target": "简·怀尔德",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "jayne_wilde"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eae7ca33d4c8316b1730f9442448a1f2fe2693517dfeab0361a5f24a60d8db57"
+  },
+  {
+    "id": "p008.r001.s008",
+    "target": "被关押在院内某处——他必须找到她。",
+    "context": "PDA page 008; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "47d304da1fe700b93773a7dc3a3017472452dd5818fa911e5115a7edd092f16c"
+  },
+  {
+    "id": "p009.r000.s000",
+    "target": "营救",
+    "context": "PDA page 009; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_rescue"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a29dbdd38f71a09d7ecb1b6a4c65ea1d1c4a2dd046b692706531a687dd744f46"
+  },
+  {
+    "id": "p009.r001.s000",
+    "target": "约翰找到了",
+    "context": "PDA page 009; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eb75c1709e4c130396afe06b2507907e2a703257e8459aa04578c973316a35d2"
+  },
+  {
+    "id": "p009.r001.s001",
+    "target": "简·怀尔德",
+    "context": "PDA page 009; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "jayne_wilde"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eae7ca33d4c8316b1730f9442448a1f2fe2693517dfeab0361a5f24a60d8db57"
+  },
+  {
+    "id": "p009.r001.s002",
+    "target": "，她正被关在一间隔离室里，地点就在",
+    "context": "PDA page 009; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "isolation",
+      "isolation_cell"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7529268fcb8895a1ce011a0f5d2cc89cccd064e9063e9c9ce84f3d792113f2ca"
+  },
+  {
+    "id": "p009.r001.s003",
+    "target": "彭福尔德精神病院",
+    "context": "PDA page 009; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "penfold"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5090545681c044221674986021e51aca0a25015d36fadedb393a378ce25b710f"
+  },
+  {
+    "id": "p009.r001.s004",
+    "target": "。简极度痛苦，精神状态很不稳定。约翰必须帮助她穿过精神病院的屋顶与庭院，逃往安全之地。",
+    "context": "PDA page 009; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "480ee2828765f4ecac1b71f8c2616e90d2dfc262427a5bc2b7e9c8d0eae4530b"
+  },
+  {
+    "id": "p010.r000.s000",
+    "target": "信赖",
+    "context": "PDA page 010; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_reliance"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5257f809148be0dffe138f353cddf0b82bd2bc346ef8cfbf1500d1b570229d74"
+  },
+  {
+    "id": "p010.r001.s000",
+    "target": "斯塔克上校",
+    "context": "PDA page 010; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d4e88bd95421a49ca281ec0d013b6b68960f9221cb00b9ad4aed99a6f8cbb4b5"
+  },
+  {
+    "id": "p010.r001.s001",
+    "target": "和",
+    "context": "PDA page 010; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "427a379ae3e6b749a8893bac35e20ab8dadb124ee64a5c615c3548f05ae44017"
+  },
+  {
+    "id": "p010.r001.s002",
+    "target": "约翰·瓦蒂克",
+    "context": "PDA page 010; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "538632280ed4f19a5d7f8eb1c427bacdb0696d3830f768170693170a97689242"
+  },
+  {
+    "id": "p010.r001.s003",
+    "target": "正在",
+    "context": "PDA page 010; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6f9933d6aa0a0152fd2f55e94fd81692e7a3a591ba230dda010da8ab138ba427"
+  },
+  {
+    "id": "p010.r001.s004",
+    "target": "WinterICE ",
+    "context": "PDA page 010; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p010.r001.s005",
+    "target": "营地守夜。约翰看见附近林间峡谷中出现奇怪的亮光，于是两人离开营地前去调查。",
+    "context": "PDA page 010; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a103ee1b868462315089af64670d3dd1c449b5d0a9926ecc6dc4b37846c30163"
+  },
+  {
+    "id": "p011.r000.s000",
+    "target": "困局",
+    "context": "PDA page 011; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_entrapped"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0b96d629c87116653ea9439b09d8b4481254c02cc3982b45e0d3e32c6788b1c8"
+  },
+  {
+    "id": "p011.r001.s000",
+    "target": "约翰·瓦蒂克",
+    "context": "PDA page 011; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "538632280ed4f19a5d7f8eb1c427bacdb0696d3830f768170693170a97689242"
+  },
+  {
+    "id": "p011.r001.s001",
+    "target": "和",
+    "context": "PDA page 011; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "427a379ae3e6b749a8893bac35e20ab8dadb124ee64a5c615c3548f05ae44017"
+  },
+  {
+    "id": "p011.r001.s002",
+    "target": "简·怀尔德",
+    "context": "PDA page 011; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "jayne_wilde"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eae7ca33d4c8316b1730f9442448a1f2fe2693517dfeab0361a5f24a60d8db57"
+  },
+  {
+    "id": "p011.r001.s003",
+    "target": "正在穿过庞大的雨水排水系统逃亡，这片地下管网位于",
+    "context": "PDA page 011; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "14696e3209194df360262c756b4bf62295ee92164a713c53241d27f768a7f7e1"
+  },
+  {
+    "id": "p011.r001.s004",
+    "target": "彭福尔德精神病院",
+    "context": "PDA page 011; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "penfold"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5090545681c044221674986021e51aca0a25015d36fadedb393a378ce25b710f"
+  },
+  {
+    "id": "p011.r001.s005",
+    "target": "下方。全副武装的部队已奉命前来拦截他们，命令是格杀勿论。",
+    "context": "PDA page 011; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0d8cdb4b5532d0aad285159c052427c8929c2a62e18118b71e411935f4a475b5"
+  },
+  {
+    "id": "p012.r000.s000",
+    "target": "街头",
+    "context": "PDA page 012; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_streetlife"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6fc9aed2d80f0fca8bd3373b07862c03e0d99f60753ca6adcc1f4338605e8c37"
+  },
+  {
+    "id": "p012.r001.s000",
+    "target": "简开车将约翰送到纽约一片",
+    "context": "PDA page 012; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cb082ba8adb59fffaf1ddb681bcd6e44f60dbd69ef520b829807941ed8f78e25"
+  },
+  {
+    "id": "p012.r001.s001",
+    "target": "廉租公寓区",
+    "context": "PDA page 012; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "fab89946876be93e3dc937270dd2226ef930f7eba4c6a56ef541f27ae8c255b1"
+  },
+  {
+    "id": "p012.r001.s002",
+    "target": "附近，",
+    "context": "PDA page 012; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2a8cbd075a36c54e845e09e26de107837aee337843deb58d43e35b16d7f00c7e"
+  },
+  {
+    "id": "p012.r001.s003",
+    "target": "斯塔克上校",
+    "context": "PDA page 012; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d4e88bd95421a49ca281ec0d013b6b68960f9221cb00b9ad4aed99a6f8cbb4b5"
+  },
+  {
+    "id": "p012.r001.s004",
+    "target": "就藏身于此。政府特工正在附近巡逻，而约翰还不知道斯塔克的具体住处。",
+    "context": "PDA page 012; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "fc442da3e4e8d7bc7457a5a4cfd9667b48f61c99c327665ca1eb2cbb5fd9db01"
+  },
+  {
+    "id": "p013.r000.s000",
+    "target": "协作",
+    "context": "PDA page 013; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_teamwork"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4a84556e7fd02081e0e92242b82822cce9eb6bae14aec2590bbf14c24e74930e"
+  },
+  {
+    "id": "p013.r001.s000",
+    "target": "代号为",
+    "context": "PDA page 013; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "103c5169871d49be7a2ebf9e6fe4720244cbf1fdbccdbfaca489898ea069504c"
+  },
+  {
+    "id": "p013.r001.s001",
+    "target": "WinterICE ",
+    "context": "PDA page 013; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p013.r001.s002",
+    "target": "的小队已抵达",
+    "context": "PDA page 013; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6ba6c0fe44fd414d711fadc087707469925cf7bcdec1ce514e1a6445c00421d7"
+  },
+  {
+    "id": "p013.r001.s003",
+    "target": "杜布伦斯克",
+    "context": "PDA page 013; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "dubrensk"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3bd75373d0597cb896fb7058e088cefd8baa268e50145d5f0d4b5fc606e13c4d"
+  },
+  {
+    "id": "p013.r001.s004",
+    "target": "郊外，搜寻",
+    "context": "PDA page 013; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ee2ffbf79c14f75fd79403c2ae754dcdb6f4cc1ce7ae93200891562bb78f8957"
+  },
+  {
+    "id": "p013.r001.s005",
+    "target": "格里恩科的",
+    "context": "PDA page 013; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "50837016ed96e7091a0d11aaa06abcda17e5f4bbb05967054656baa221c5dc75"
+  },
+  {
+    "id": "p013.r001.s006",
+    "target": "研究设施。村子起初看似空无一人，直到俄军士兵向小队开火。",
+    "context": "PDA page 013; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "bbedc424254261ffdb918b7032cb569ea829af7453763a00f67b31d438c38c7c"
+  },
+  {
+    "id": "p014.r000.s000",
+    "target": "突围",
+    "context": "PDA page 014; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_breakout"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "921b14d5fb12f668386c11cac4c7d1cecd54165986c05caff8a7c5001270909f"
+  },
+  {
+    "id": "p014.r001.s000",
+    "target": "斯塔克",
+    "context": "PDA page 014; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7f33ca6074e554a7228fb5430be8496b02e7ea943844092a3a404e87622f375b"
+  },
+  {
+    "id": "p014.r001.s001",
+    "target": "向约翰提供了情报，证实",
+    "context": "PDA page 014; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e81aa2edbbf10d29da7591797a6735d15045f57e6c87f59e70aaaa58b5c7ae83"
+  },
+  {
+    "id": "p014.r001.s002",
+    "target": "国家安全执行局",
+    "context": "PDA page 014; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "nse_abbreviation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "09b56301129259748432d6925ebadcbb40ee3287b1d3a7c30affcd6ca5bd8d29"
+  },
+  {
+    "id": "p014.r001.s003",
+    "target": "参与了发生在",
+    "context": "PDA page 014; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7bbbd143c3992cb9e4930d72d26212731fe3c4e07541d8a92e05a2a7fb2ca391"
+  },
+  {
+    "id": "p014.r001.s004",
+    "target": "杜布伦斯克",
+    "context": "PDA page 014; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "dubrensk"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "374a828795928a2edba3f3bb9467b7ce97c4aa6603b39d4e4ccbe45202078ed4"
+  },
+  {
+    "id": "p014.r001.s005",
+    "target": "的事件。公寓楼已被该局特工包围，他们正在强攻大楼。约翰和斯塔克必须逃出去，约翰才能前往国家安全执行局总部。",
+    "context": "PDA page 014; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "nse_abbreviation",
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b8a037e61291fd654149c4107d38b7665309d9fdeecb0ca5c46f01a3f042a38e"
+  },
+  {
+    "id": "p015.r000.s000",
+    "target": "阴谋",
+    "context": "PDA page 015; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_conspiracy"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6e911eba808afe8332be7b0f81477a3762428bdb46aeb32cadf4dc4a4bc7eee4"
+  },
+  {
+    "id": "p015.r001.s000",
+    "target": "斯塔克提供的阴谋证据将约翰引向国家安全执行局总部。他们究竟在谋划什么？这一切与杜布伦斯克发生的事件又有什么关联？",
+    "context": "PDA page 015; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "chapter_conspiracy",
+      "dubrensk",
+      "nse_abbreviation",
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0b0f943af9703d949baadf4bf9138ae38e6e8995fe7aa60122d732111ccec303"
+  },
+  {
+    "id": "p016.r000.s000",
+    "target": "潜入",
+    "context": "PDA page 016; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_infiltration"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "dbb2d8a252526047a4aba4dc6051212386aac48155058aa5c1c286be1af3ed42"
+  },
+  {
+    "id": "p016.r001.s000",
+    "target": "WinterICE 小队试图进入杜布伦斯克村时遭遇了顽强抵抗，形势危急。简和斯塔克上校认为，凭借超能力，约翰独自行动最有希望找到格里恩科。",
+    "context": "PDA page 016; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "dubrensk",
+      "grienko",
+      "starke",
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "06d32594df6d1bbd2347cf7900d69daf8de2a971530748580638450b4acac804"
+  },
+  {
+    "id": "p017.r000.s000",
+    "target": "守护",
+    "context": "PDA page 017; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_childcare"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b0377e52418b47637234bf046e0b13821bc297f0e6c107daa2e1f578a8fd8b3a"
+  },
+  {
+    "id": "p017.r001.s000",
+    "target": "杜布伦斯克村教堂内的秘密电梯将约翰带到了地下的",
+    "context": "PDA page 017; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "dubrensk"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "f30fe8b42d05385caeec19bdc943ee72bd9826d2796327d3eaf91b42c3ac5ba2"
+  },
+  {
+    "id": "p017.r001.s001",
+    "target": "泽纳研究设施",
+    "context": "PDA page 017; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "zener"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ba0fe88a00fd4d17286fdab88163d7f2639afa1f1475681cf6ea121c238e88bd"
+  },
+  {
+    "id": "p017.r001.s002",
+    "target": "。可是格里恩科在哪里？那些",
+    "context": "PDA page 017; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "562ed346bcaa5459f0a155853036b0d63d538efe8584b4c5a7e4224efdfb101b"
+  },
+  {
+    "id": "p017.r001.s003",
+    "target": "泽纳儿童",
+    "context": "PDA page 017; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "zener",
+      "zener_children"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cd9fbf0e0a30a917897c4a43f2149a76e757690671e7478f2151e19c07719dfa"
+  },
+  {
+    "id": "p017.r001.s004",
+    "target": "又遭遇了什么？",
+    "context": "PDA page 017; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8a8de823d5ed3e12746a62ef169bcf372be0ca44f0a1236abc35df05d96928e1"
+  },
+  {
+    "id": "p018.r000.s000",
+    "target": "对峙",
+    "context": "PDA page 018; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_confrontation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8e3f14b2e60df2f9313b68a031915e8f1d9c343ea9193302a999f43b55bf00c5"
+  },
+  {
+    "id": "p018.r001.s000",
+    "target": "约翰终于意识到，在杜布伦斯克屠杀",
+    "context": "PDA page 018; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7bdbe44d68a16f193eec1667f8de71f61bbc68b4efe78dcdd32a6a33bcebc223"
+  },
+  {
+    "id": "p018.r001.s001",
+    "target": "泽纳儿童",
+    "context": "PDA page 018; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "zener",
+      "zener_children"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "35d972e4b6bfb88437558033f342304f978ba77aa710f4a9b9dc955443b1474c"
+  },
+  {
+    "id": "p018.r001.s002",
+    "target": "的正是汉森麾下的国家安全执行局部队。他们带回的组织样本被用于生物工程超能力研究。他必须找到汉森。",
+    "context": "PDA page 018; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "hanson"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c206b437ae03965aaea62701b47e12feb0a68ce019fc5daa06668f06bae3a015"
+  },
+  {
+    "id": "p019.r000.s000",
+    "target": "救赎",
+    "context": "PDA page 019; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_redemption"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a5cb3e05865aef75f212023810e771af62e0d037cbe245a38187129e83d1bc82"
+  },
+  {
+    "id": "p019.r001.s000",
+    "target": "汉森当时就在杜布伦斯克！如果那时就能阻止他，在他那扭曲的",
+    "context": "PDA page 019; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "dubrensk",
+      "hanson"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "566499bd7b88e8eb60afb7db10a4622f4438ae68397a40ece7f7bb9a5546fd0f"
+  },
+  {
+    "id": "p019.r001.s001",
+    "target": "研究计划",
+    "context": "PDA page 019; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "22fa812dd75fc2813b76b4f1c060e483f5afd0711aed3755a66e242e1f8163ce"
+  },
+  {
+    "id": "p019.r001.s002",
+    "target": "尚未开始之前，一切是否会有所不同？",
+    "context": "PDA page 019; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5db04280fed1cd3acf9e12ebb54c0580a966538720b838a4c1eea34ace931d25"
+  },
+  {
+    "id": "p020.r000.s000",
+    "target": "约翰·瓦蒂克博士",
+    "context": "PDA page 020; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "44807b7b69d4093acff55c002f68865ac1eb6fab79fd87562bb3665b10f60ecb"
+  },
+  {
+    "id": "p020.r002.s000",
+    "target": "麻省理工学院的科学家，主要研究方向是探究",
+    "context": "PDA page 020; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1978accb94823585c1086836a67ea77433456ca788a9421fa9978ea189b9fe8e"
+  },
+  {
+    "id": "p020.r002.s001",
+    "target": "超心理学",
+    "context": "PDA page 020; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "parapsychology"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "640eccb7f9b9bb12a9a2050d513a05c541a1a5cc81362b9a3213f7b232979f8d"
+  },
+  {
+    "id": "p020.r002.s002",
+    "target": "的科学依据是否可信。在简·怀尔德推荐下加入 WinterICE 小队。六个月后，他发现自己只能一点点拼凑支离破碎的人生——WinterICE 究竟遭遇了什么？",
+    "context": "PDA page 020; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "jayne_wilde",
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8a5c4a9a44d7b7ff5bb309705f1aa092cd63176fa18bd1b4f6cb4cad5b0ff8c7"
+  },
+  {
+    "id": "p021.r000.s000",
+    "target": "约书亚·斯塔克上校",
+    "context": "PDA page 021; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "joshua_starke",
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "bd18342a6b319c1fa498061fbd6857121c2999df0aefd27461c3fbb52a01af98"
+  },
+  {
+    "id": "p021.r002.s000",
+    "target": "WinterICE ",
+    "context": "PDA page 021; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p021.r002.s001",
+    "target": "指挥官",
+    "context": "PDA page 021; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "522c8c98d3590f2e1ba2cb5f12bce4422044cadfd452f86758b22d7e86556da8"
+  },
+  {
+    "id": "p021.r003.s000",
+    "target": "斯塔克上校曾多次出色完成服役任务，后来选择离开常规部队，转而领导 WinterICE 这类小型特种行动队。他开创了将超心理学应用于反恐行动的先河。",
+    "context": "PDA page 021; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "parapsychology",
+      "starke",
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c221efe2d28c395071761d5d128b4c7fb411723e51be91b3ec768cf916dcbc87"
+  },
+  {
+    "id": "p022.r000.s000",
+    "target": "威廉·罗伯特·杰克逊（“特克斯”）",
+    "context": "PDA page 022; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "tex",
+      "william_robert_jackson"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2cfb5bd1c039901f983367cbee0ad70dc0aa1ce2f498a64f92c7b0c863de43e3"
+  },
+  {
+    "id": "p022.r002.s000",
+    "target": "WinterICE ",
+    "context": "PDA page 022; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p022.r002.s001",
+    "target": "爆破专家",
+    "context": "PDA page 022; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7f1acbfab86eb8a92eff8ea50887547bfbd6228c55bda600a3b4a437000ff51d"
+  },
+  {
+    "id": "p022.r003.s000",
+    "target": "特克斯爱说俏皮话的作风常常惹人不快，但队友们早已发现，在这副外表之下，是一位能力出众、技艺精湛且值得信赖的战友。",
+    "context": "PDA page 022; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "tex"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "867e1a32bb00043442e1f80e7faf18b9b89eab5b9795594d2547060a7f2fb7cb"
+  },
+  {
+    "id": "p023.r000.s000",
+    "target": "帕特里克·巴拉德",
+    "context": "PDA page 023; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "ballard",
+      "patrick_ballard"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9e89491b7b6471b430d50939c3d4bc401758bd6ea71f6a08befc5fbb3bcba831"
+  },
+  {
+    "id": "p023.r000.s001",
+    "target": "医学博士",
+    "context": "PDA page 023; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7abcf6dac49247ef3111e13199b86b909f5ee306b0599c64c5b76b20ca3972a2"
+  },
+  {
+    "id": "p023.r002.s000",
+    "target": "WinterICE ",
+    "context": "PDA page 023; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p023.r002.s001",
+    "target": "战地军医",
+    "context": "PDA page 023; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5a895071f631cd00f5dba8cc07d803f29d8e0054df1a69513d78c41b402cfd79"
+  },
+  {
+    "id": "p023.r003.s000",
+    "target": "巴拉德全身心投入工作，很少有闲暇聊天。然而，无论炮火多么猛烈，他总能沉着而高效地处理伤员。他的寡言与镇定让患者倍感安心。",
+    "context": "PDA page 023; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "ballard"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "54bf5131792ce039b039668087c040764e6f43d575aca481de90faa753228c87"
+  },
+  {
+    "id": "p024.r000.s000",
+    "target": "安东尼·科尔泰利",
+    "context": "PDA page 024; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "anthony_cortelli",
+      "cortelli"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "500347b582b7183ba01596df2f2be9f1cdb13c847444d0b98839ea82af5cab2a"
+  },
+  {
+    "id": "p024.r002.s000",
+    "target": "WinterICE ",
+    "context": "PDA page 024; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p024.r002.s001",
+    "target": "通讯官",
+    "context": "PDA page 024; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a92352bb29128b08cb15f33e16d3ad7100b62bfed7fb15d699b06bf757485415"
+  },
+  {
+    "id": "p024.r003.s000",
+    "target": "即使面对最老旧、临时拼凑的通讯设备，科尔泰利也能从中接收到信号，这项本领曾在以往的任务中为小队带来关键情报。据说他背着全套装备通过新兵营障碍训练场的速度，比队里任何人都快。（当然，特克斯对此绝不会服气。）",
+    "context": "PDA page 024; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "cortelli",
+      "tex"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d6e402821d9fa301b02d25c3c62d9af0477195a0885e6150e5f6529363529adb"
+  },
+  {
+    "id": "p025.r000.s000",
+    "target": "胡安·卡洛斯·贝尔德斯",
+    "context": "PDA page 025; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "juan_carlos_verdes"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "24735aced986f55ab9c3382637e08050ffa86999012deb92fd3cf4b69602fc52"
+  },
+  {
+    "id": "p025.r002.s000",
+    "target": "WinterICE ",
+    "context": "PDA page 025; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p025.r002.s001",
+    "target": "武器专家",
+    "context": "PDA page 025; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "102bb278d487242903b7dd89804d5fdb8e7cbc4ad7eea0b1591b25612f562d48"
+  },
+  {
+    "id": "p025.r003.s000",
+    "target": "JC 说话轻声细语，却是武器领域的行家。不论新式还是旧式，几乎任何武器到他手里都能运用自如。",
+    "context": "PDA page 025; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "jc"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "719080cd60675e72980e5f8a603c03463a1d050619795e0bb230ed44fdb83a54"
+  },
+  {
+    "id": "p026.r000.s000",
+    "target": "玛莎·富兰克林",
+    "context": "PDA page 026; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "franklin",
+      "martha_franklin"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ef47dc359d372562bdf850305f452be5ecb0bc1e906d4cc95d93c2df09115f86"
+  },
+  {
+    "id": "p026.r002.s000",
+    "target": "WinterICE ",
+    "context": "PDA page 026; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p026.r002.s001",
+    "target": "侦察兵／狙击手",
+    "context": "PDA page 026; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4e1fcf0b1cf39e444cc5c355dee54d39baa8ce4cb14ecf04a4ac09bbb855bc76"
+  },
+  {
+    "id": "p026.r003.s000",
+    "target": "这位老兵冷若冰霜的举止并不意味着她缺乏热情。正是这份冷静，使她在瞄准并打出手术刀般精准的一枪时，几乎不受任何干扰。",
+    "context": "PDA page 026; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cbc9e8601fd872ad54481dfa006a5447dfad97852bc87dcfddd6bce9010dec6c"
+  },
+  {
+    "id": "p027.r000.s000",
+    "target": "简·怀尔德",
+    "context": "PDA page 027; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "jayne_wilde"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8582c8d5c5aef9f6b51d18861dec6776888cb2cdd290f6c29535cf9d8b5c0dd3"
+  },
+  {
+    "id": "p027.r002.s000",
+    "target": "WinterICE ",
+    "context": "PDA page 027; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p027.r002.s001",
+    "target": "民间顾问",
+    "context": "PDA page 027; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b48b2f565b7c60241cde98e2de1f680fdc5025179fc54a8d81727fe0898fd71a"
+  },
+  {
+    "id": "p027.r003.s000",
+    "target": "她声称自己拥有预知能力，军方指挥层对此极为重视。据说，她凭借超能力给出的建议曾多次引导小队避开潜在灾难。约翰·瓦蒂克也是在她的推荐下加入 WinterICE 小队的。",
+    "context": "PDA page 027; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic",
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3a8946df2f4c188bbf781c74a7eb5c928ac381aba7f3be332f4fbff1fbb77baf"
+  },
+  {
+    "id": "p028.r000.s000",
+    "target": "赛拉斯·汉森局长",
+    "context": "PDA page 028; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "hanson",
+      "silas_hanson"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "35784a749af71f9a0a1f5a8bf2989c9cfaac35730a759b27ecccb1645d566067"
+  },
+  {
+    "id": "p028.r002.s000",
+    "target": "行动主管，任职于",
+    "context": "PDA page 028; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "88fbcc9c81a08cf9931feeabc253a18cd430dc771c0756940f7e64bf120e7a25"
+  },
+  {
+    "id": "p028.r002.s001",
+    "target": "国家安全执行局",
+    "context": "PDA page 028; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "nse"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4ef87023ca3503021a4957d9ab9436fd41f83b2546605652ea10b9978cd12d98"
+  },
+  {
+    "id": "p028.r002.s002",
+    "target": "。",
+    "context": "PDA page 028; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cdb4ee2aea69cc6a83331bbe96dc2caa9a299d21329efb0336fc02a82e1839a8"
+  },
+  {
+    "id": "p028.r003.s000",
+    "target": "汉森负责战术武器研究，已发起多项尖端计划。遗憾的是，他深信为了达到目的可以不择手段，早已不再顾及自己工作所涉及的道德问题。",
+    "context": "PDA page 028; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "hanson"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "75b511605fe693e07926e3ca63769e1b17d37154eb3d32aef399e91f2456937e"
+  },
+  {
+    "id": "p029.r000.s000",
+    "target": "维克托·格里恩科教授",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "grienko",
+      "viktor_grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b0a1383071cd7b1e541b9d2395b277585e609228939e1db997aa146c2e2577be"
+  },
+  {
+    "id": "p029.r002.s000",
+    "target": "俄罗斯超心理学研究者。",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "parapsychology"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "248007d35f731bf5ab82d2a7822bb1ca0b778ee75774009a102718c520ed8806"
+  },
+  {
+    "id": "p029.r003.s000",
+    "target": "格里恩科求学时成绩出众，早年曾在圣彼得堡师从",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cc6b033ba0d02665745d18f2db3013b1bfe53eb2baf1791a5dc750e89027acd7"
+  },
+  {
+    "id": "p029.r003.s001",
+    "target": "巴甫洛夫",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "pavlov"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2e436916fbdfb6ec985b55d604474a4019a353a41c0e02ec33af6d050571b743"
+  },
+  {
+    "id": "p029.r003.s002",
+    "target": "。第二次世界大战期间，他因在战俘营协助德国的研究而声名狼藉。官方记录称他于战争结束时死亡，但也有传闻称他参与了",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3e0adefe8a3dc00edf4489c79bdacf60ba322a89d418024761147bae62707588"
+  },
+  {
+    "id": "p029.r003.s003",
+    "target": "斯大林",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "stalin"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "30e44066f2d042c4720e323baaa76d7460d7a2ff7b2f4c3b04676cf974788782"
+  },
+  {
+    "id": "p029.r003.s004",
+    "target": "在西伯利亚发起的一项秘密计划。",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9ba35dd7e578958c0bf6ccc2058900f5c36847b913228414caca45db42282313"
+  },
+  {
+    "id": "p029.r004.s000",
+    "target": "据称，有人曾在",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "f4c84804046fa4a44ba475b76c414c7cc3aba8e9bdb870a6c02cee4a62ff5e7b"
+  },
+  {
+    "id": "p029.r004.s001",
+    "target": "美国碳氢公司",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "ushc"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "229c7df78e7d4b039065c49d8b6e8e2a081fae7cdf116e3f7210022aedbded7e"
+  },
+  {
+    "id": "p029.r004.s002",
+    "target": "位于西西伯利亚的输油管道站见到他。当时他正试图联系美国当局，寻求政治庇护，并声称掌握了足以改变世界的超能力研究成果。",
+    "context": "PDA page 029; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "85a90434771d633352904ba4dd0b21bcebca0f1fd6637a0b9039b9fbe2ff0e2e"
+  },
+  {
+    "id": "p030.r000.s000",
+    "target": "伊万·彼得罗维奇·巴甫洛夫",
+    "context": "PDA page 030; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "ivan",
+      "pavlov"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b9f68a3627acb64653c8f150fda650ffe4dc6d8dc24028a72f394530cc6cb898"
+  },
+  {
+    "id": "p030.r001.s000",
+    "target": "巴甫洛夫是同时代最伟大的生理学家之一，二十世纪初在俄国从事研究。他最著名的成果是对条件反射和高级脑功能的研究。",
+    "context": "PDA page 030; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "pavlov"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d13f97e5bcb81415b64ae3ec5e1e2567c2d2defdff3cd65099a65ae06b6fe263"
+  },
+  {
+    "id": "p031.r000.s000",
+    "target": "约瑟夫·斯大林",
+    "context": "PDA page 031; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "stalin"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b54177a84602b44ee4f9091581d5225edffbff6e8577fb23621a7a3beb4f5dda"
+  },
+  {
+    "id": "p031.r001.s000",
+    "target": "苏联共产党领导人，自1924年执政，直至1953年去世。后世认为他是一位残暴的独裁者，对恐怖运动及其他备受质疑的行为负有责任。",
+    "context": "PDA page 031; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "754687c59ef30b30d8d9da9d2896a5374cfaa8a57f06aa958c6295bf422ed401"
+  },
+  {
+    "id": "p032.r000.s000",
+    "target": "萨莎·巴拉尼科夫",
+    "context": "PDA page 032; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "sasha_barranikov"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "21d1109e89c0a853acec10809482c41be7f0c1020606e9bb1d91f17db6646dc2"
+  },
+  {
+    "id": "p032.r001.s000",
+    "target": "负责照料",
+    "context": "PDA page 032; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0d66d30cb412c2c8643db933439c44c022c27f59942cd63d1a1bd25d7fc9ab47"
+  },
+  {
+    "id": "p032.r001.s001",
+    "target": "泽纳儿童",
+    "context": "PDA page 032; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "zener",
+      "zener_children"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ab242066c33d961b960ba97490e335ba5097e908aa8a75e097ab223677c520a5"
+  },
+  {
+    "id": "p032.r001.s002",
+    "target": "的护士。",
+    "context": "PDA page 032; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cdb4ee2aea69cc6a83331bbe96dc2caa9a299d21329efb0336fc02a82e1839a8"
+  },
+  {
+    "id": "p033.r000.s000",
+    "target": "安娜",
+    "context": "PDA page 033; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "anna"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "bf4fccd616251b678c56b9cb7a46819b1266853c180637642f5bc7d6b01f5554"
+  },
+  {
+    "id": "p033.r001.s000",
+    "target": "娜佳",
+    "context": "PDA page 033; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "nadja"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c8b7fe0e4dcbcbc44a574a330ccfa69743be0e407d073ab0b5c832412cac6470"
+  },
+  {
+    "id": "p033.r002.s000",
+    "target": "伊万",
+    "context": "PDA page 033; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "ivan"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ebec404b6897056f95c343d7e7d2a12e081adc36413163a03ce3248e9d312c97"
+  },
+  {
+    "id": "p033.r003.s000",
+    "target": "塔妮娅",
+    "context": "PDA page 033; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "tanya"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "31cae906048ac3f9dcd9525d0db54d766ffeca05e3c6f87e92f96306b8122d93"
+  },
+  {
+    "id": "p033.r004.s000",
+    "target": "彼得",
+    "context": "PDA page 033; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "pieter"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c7da90de5ae5f6f977492db0bbbed1e66f35280a6f7ebc28989c07bca9490b40"
+  },
+  {
+    "id": "p034.r000.s000",
+    "target": "国家安全执行局（NSE）",
+    "context": "PDA page 034; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "nse",
+      "nse_abbreviation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0dc3e7c4cf7e66be7465198a5308b721c6443f9a9f389357554d71aa857239b1"
+  },
+  {
+    "id": "p034.r001.s000",
+    "target": "负责执行高度专业化的国家安全保卫任务的政府机构。其大多数行动均属高度机密。",
+    "context": "PDA page 034; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2c3f5534d86b19c636bca56619aa678c3d8865795fa639e8d1ea3f89db2fd897"
+  },
+  {
+    "id": "p035.r000.s000",
+    "target": "WinterICE",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c98525e36f374f9c2c9aa9f41b0ac5e4ca4d136afc68eec1c65dbbfbb87021f4"
+  },
+  {
+    "id": "p035.r001.s000",
+    "target": "一支专门执行战术渗透、撤离和反恐任务的海军陆战队小队。固定成员包括",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "102e6e654072a9e2d70c798f28b9e799eb0cde5102f8965f861358c14d6f1334"
+  },
+  {
+    "id": "p035.r001.s001",
+    "target": "斯塔克上校",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a2e2fcee0f9eefd1918beee5e52fcf45ab0667350691eeb4d32b8c3b93447d43"
+  },
+  {
+    "id": "p035.r001.s002",
+    "target": "、",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0a07f659461970d8d8dcefe4fff96a1745599810dc7d47391e95c803b7b2072c"
+  },
+  {
+    "id": "p035.r001.s003",
+    "target": "科尔泰利",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "cortelli"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16ecf3f330b1de0cec46d12c9cc01fb510e9624d94c73ad9cc1617305182c016"
+  },
+  {
+    "id": "p035.r001.s004",
+    "target": "、",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0a07f659461970d8d8dcefe4fff96a1745599810dc7d47391e95c803b7b2072c"
+  },
+  {
+    "id": "p035.r001.s005",
+    "target": "特克斯",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "tex"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "310633a75ca8060c81178097853e122a34978aab71efd969a341b4bafab35089"
+  },
+  {
+    "id": "p035.r001.s006",
+    "target": "、",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0a07f659461970d8d8dcefe4fff96a1745599810dc7d47391e95c803b7b2072c"
+  },
+  {
+    "id": "p035.r001.s007",
+    "target": "JC",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "jc"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a767e517e7eb77fd62ca83c0e92d142baeb0fa0b563442ddd3e4f2ee33c4cc87"
+  },
+  {
+    "id": "p035.r001.s008",
+    "target": "、",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0a07f659461970d8d8dcefe4fff96a1745599810dc7d47391e95c803b7b2072c"
+  },
+  {
+    "id": "p035.r001.s009",
+    "target": "富兰克林",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "franklin"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e65cec506a18f40ad696d2f1128e31ac20e8cca84fcb32590a8e29dd736042c2"
+  },
+  {
+    "id": "p035.r001.s010",
+    "target": "以及",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "427a379ae3e6b749a8893bac35e20ab8dadb124ee64a5c615c3548f05ae44017"
+  },
+  {
+    "id": "p035.r001.s011",
+    "target": "巴拉德",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "ballard"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "babea4f80c4bcf1990b8a0e50fe4ae2a5140b82c190198f4433292ed8a42a5e4"
+  },
+  {
+    "id": "p035.r001.s012",
+    "target": "。民间顾问",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0b8e4e458c788f7286ea147474f1f9551e1b5c1a8554700499aeb83f1b4ec9ce"
+  },
+  {
+    "id": "p035.r001.s013",
+    "target": "简·怀尔德",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "jayne_wilde"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eae7ca33d4c8316b1730f9442448a1f2fe2693517dfeab0361a5f24a60d8db57"
+  },
+  {
+    "id": "p035.r001.s014",
+    "target": "和",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "427a379ae3e6b749a8893bac35e20ab8dadb124ee64a5c615c3548f05ae44017"
+  },
+  {
+    "id": "p035.r001.s015",
+    "target": "约翰·瓦蒂克",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c5c9ba32eb190b7543fa58a76264e671fb2d0b25af26fa4419197dc76044bc97"
+  },
+  {
+    "id": "p035.r001.s016",
+    "target": "为他们提供协助。此次任务是追踪",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c76f6f94658f04a621789b3816496f25d3e0f1795eef1493506bdf1f9b6d89b2"
+  },
+  {
+    "id": "p035.r001.s017",
+    "target": "格里恩科教授",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4144e4f8f41a998ff91e15f18608e271494159cae1e012f6c6ffe67c946b1c8b"
+  },
+  {
+    "id": "p035.r001.s018",
+    "target": "，查明他究竟在研究什么。",
+    "context": "PDA page 035; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e58f028ecf82f4e7c3a57f8836c11503a78c9691b3727ca895f249d8d50c04de"
+  },
+  {
+    "id": "p036.r000.s000",
+    "target": "秋明州",
+    "context": "PDA page 036; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "tyumen"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "49d80f3be154dfd1c5d75bf308363259eb140356d4e4969ef90308df61aa5656"
+  },
+  {
+    "id": "p036.r001.s000",
+    "target": "俄罗斯联邦的一个行政区，位于西西伯利亚、哈萨克斯坦以北。",
+    "context": "PDA page 036; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b478a281a044c201309c2b47caed5ccb1aadbb8a228d62a59ce15e56c7faa610"
+  },
+  {
+    "id": "p037.r000.s000",
+    "target": "奥西里斯医疗中心",
+    "context": "PDA page 037; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "osiris"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e84734dd5f8f9b91241f5b75908cb008096c1c63efcd9354a6988b48a3ac94b7"
+  },
+  {
+    "id": "p037.r001.s000",
+    "target": "位于北卡罗来纳州的一所戒备森严的军事临床研究机构。已公开的专业领域包括干细胞研究、脑外科、组织移植及灵长类比较生物学。许多研究领域的信息依据联邦安全规定列为机密。",
+    "context": "PDA page 037; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a77219c624c0ece51d46064eed841edd25f62338f0bac2282c34406f0daaed2f"
+  },
+  {
+    "id": "p038.r000.s000",
+    "target": "彭福尔德精神病院",
+    "context": "PDA page 038; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "penfold"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5090545681c044221674986021e51aca0a25015d36fadedb393a378ce25b710f"
+  },
+  {
+    "id": "p038.r001.s000",
+    "target": "这所位于佛蒙特州的精神病院始建于十九世纪末。当时，美国为履行改善精神疾病患者待遇的“道德承诺”，大规模兴建精神病院。按现代临床标准衡量，这里的设施早已严重落伍，却不知为何仍在运营，至今依然是当地一处气势逼人的地标。",
+    "context": "PDA page 038; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4308e50bc9992032aeea5926b94da4851121abb217d08850cf1e38a92efb0719"
+  },
+  {
+    "id": "p038.r001.s001",
+    "target": "简·怀尔德",
+    "context": "PDA page 038; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "jayne_wilde"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eae7ca33d4c8316b1730f9442448a1f2fe2693517dfeab0361a5f24a60d8db57"
+  },
+  {
+    "id": "p038.r001.s002",
+    "target": "就被关押在这里。",
+    "context": "PDA page 038; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a4e10fd20ab49e693204a0556ac94abd9f64c2a7aece7fa33998bf22831deafe"
+  },
+  {
+    "id": "p039.r000.s000",
+    "target": "廉租公寓区",
+    "context": "PDA page 039; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "tenements"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1205dc77f31a0d046933dbd4584da21938e36a9801fa8cab4fc27169e5277f63"
+  },
+  {
+    "id": "p039.r001.s000",
+    "target": "纽约的贫民区，",
+    "context": "PDA page 039; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "720e23d494e9a45df8f272ca1ada93a44794cc04306444b829079f408483a458"
+  },
+  {
+    "id": "p039.r001.s001",
+    "target": "斯塔克上校",
+    "context": "PDA page 039; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d4e88bd95421a49ca281ec0d013b6b68960f9221cb00b9ad4aed99a6f8cbb4b5"
+  },
+  {
+    "id": "p039.r001.s002",
+    "target": "在这里长大。他在",
+    "context": "PDA page 039; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8ef3c14cf6468a868d4f43bc44c530721336aa9d6f4c0226cfc645a924f78158"
+  },
+  {
+    "id": "p039.r001.s003",
+    "target": "WinterICE ",
+    "context": "PDA page 039; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "16757dc3586a00052b2ac6e6332874176a3c32bd83bcb631a87300fe77168b62"
+  },
+  {
+    "id": "p039.r001.s004",
+    "target": "行动后遭到传讯，随后擅离部队回到此地。他一直躲藏在这里，试图洗清罪名，证明自己在杜布伦斯克的指挥并无疏失。",
+    "context": "PDA page 039; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "dubrensk"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eee76d41f99351e846a830d9cf2aca3c423e54bdd4c2a2a2b0b906130bcdced5"
+  },
+  {
+    "id": "p040.r000.s000",
+    "target": "卡斯坦",
+    "context": "PDA page 040; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "kastein"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0ac32035e61e89673878943fdca67538c9333236148925633bc568b9dd16caf4"
+  },
+  {
+    "id": "p040.r001.s000",
+    "target": "位于德国汉堡的美军基地，是 WinterICE 行动的战略基地，也负责训练",
+    "context": "PDA page 040; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "211c3409b867c37ad7c8e5abd8d330c2749e49f2817096b705478ff2f417f7c9"
+  },
+  {
+    "id": "p040.r001.s001",
+    "target": "约翰·瓦蒂克",
+    "context": "PDA page 040; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "john_vattic"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c5c9ba32eb190b7543fa58a76264e671fb2d0b25af26fa4419197dc76044bc97"
+  },
+  {
+    "id": "p040.r001.s002",
+    "target": "。",
+    "context": "PDA page 040; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cdb4ee2aea69cc6a83331bbe96dc2caa9a299d21329efb0336fc02a82e1839a8"
+  },
+  {
+    "id": "p041.r000.s000",
+    "target": "美国碳氢公司（USHC）",
+    "context": "PDA page 041; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "ushc",
+      "ushc_full"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9e95300e52f48131a4b0e7a5838b1539d2db61f033962019750d88ea03d8f34c"
+  },
+  {
+    "id": "p041.r001.s000",
+    "target": "一家北美石油化工企业，将业务拓展至西西伯利亚，以把握前",
+    "context": "PDA page 041; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1d6a2bbc13ce7ef622ef62ed6998ccecebf0fac2b04828160903276aeb688bab"
+  },
+  {
+    "id": "p041.r001.s001",
+    "target": "苏联",
+    "context": "PDA page 041; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "ussr"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e4755b63db17b4b8560ecdb52ae0bcc48298928d729f8222179039f734fe8853"
+  },
+  {
+    "id": "p041.r001.s002",
+    "target": "解体后当地涌现的商业机会。",
+    "context": "PDA page 041; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8dccf256f6d5783e62bba717ef04a6cfcea41d9befffa5ade55235e0b6a0eeb0"
+  },
+  {
+    "id": "p042.r000.s000",
+    "target": "杜布伦斯克",
+    "context": "PDA page 042; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "dubrensk"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "374a828795928a2edba3f3bb9467b7ce97c4aa6603b39d4e4ccbe45202078ed4"
+  },
+  {
+    "id": "p042.r001.s000",
+    "target": "西伯利亚的一座村庄，位于",
+    "context": "PDA page 042; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2f604f38e94dfbe8acd5dc01da593d772e3e19c3f0120c419a97a0548ac02e8f"
+  },
+  {
+    "id": "p042.r001.s001",
+    "target": "秋明州",
+    "context": "PDA page 042; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "tyumen"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "49d80f3be154dfd1c5d75bf308363259eb140356d4e4969ef90308df61aa5656"
+  },
+  {
+    "id": "p042.r001.s002",
+    "target": "，地处偏远，交通不便，是",
+    "context": "PDA page 042; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4acd152baad83395f3f435613ba87584483a0442e79fc007e09a1737071a6edf"
+  },
+  {
+    "id": "p042.r001.s003",
+    "target": "格里恩科的",
+    "context": "PDA page 042; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "50837016ed96e7091a0d11aaa06abcda17e5f4bbb05967054656baa221c5dc75"
+  },
+  {
+    "id": "p042.r001.s004",
+    "target": "研究计划所在地。",
+    "context": "PDA page 042; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "f37ee970a0f2d255e702626ceb02afd4e64d90260057cc934b18d1ea225f3b1f"
+  },
+  {
+    "id": "p043.r000.s000",
+    "target": "泽纳计划",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "zener",
+      "zener_project"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "613c36bff2328db006f669aa8ca0e2d2d2050de68a4665f4200346c34a9ca5a3"
+  },
+  {
+    "id": "p043.r001.s000",
+    "target": "冷战",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "cold_war"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1eed4fba6c0c3ece0166dec921df73c96ad580eccb59b7a4b65ac8faf09bf482"
+  },
+  {
+    "id": "p043.r001.s001",
+    "target": "时期的超心理学研究及优生学计划，由",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "parapsychology"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "67c3a5832ee2a2715f31a56dda60d84add97f620d51855f16bb15ab7c4a5e514"
+  },
+  {
+    "id": "p043.r001.s002",
+    "target": "斯大林",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "stalin"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "30e44066f2d042c4720e323baaa76d7460d7a2ff7b2f4c3b04676cf974788782"
+  },
+  {
+    "id": "p043.r001.s003",
+    "target": "委托，于",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "f517d560c7ea95d64c42cbed27d5f7ff8fe7ebddb12046d23452b9094576264f"
+  },
+  {
+    "id": "p043.r001.s004",
+    "target": "杜布伦斯克",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "dubrensk"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3bd75373d0597cb896fb7058e088cefd8baa268e50145d5f0d4b5fc606e13c4d"
+  },
+  {
+    "id": "p043.r001.s005",
+    "target": "建立，执行者是",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9155f2107df0c88558aa43e75fa9bf86ce55dec6653c8eaa257bc335bf3d6fa3"
+  },
+  {
+    "id": "p043.r001.s006",
+    "target": "格里恩科",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "731b355bad59cb9d9a460601bf6f8809262eacf78d072b088e96deb714970cd7"
+  },
+  {
+    "id": "p043.r001.s007",
+    "target": "，时间为1953年。该计划旨在探索超能力用于推动",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "psychic_abilities"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9298753fea0538dd66e96d564bcee91baf5abce0742953bb84b0a256f594dc0d"
+  },
+  {
+    "id": "p043.r001.s008",
+    "target": "苏联",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "ussr"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "29880dc726e1ae122f908d580b0ed8970f146247e09a6ae9d859b1bedbfa0784"
+  },
+  {
+    "id": "p043.r001.s009",
+    "target": "扩张的潜力。设想的应用范围从秘密情报搜集、间谍活动，到在战场上部署超能力突击部队。然而，当计划的成功产物——所谓的",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b0b54903e4715b7a8340402d9b9a1375e243aca2df4c9dc9bfa25a1742274b4c"
+  },
+  {
+    "id": "p043.r001.s010",
+    "target": "泽纳儿童",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "zener",
+      "zener_children"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ab242066c33d961b960ba97490e335ba5097e908aa8a75e097ab223677c520a5"
+  },
+  {
+    "id": "p043.r001.s011",
+    "target": "——被发现性格孤僻、疏离且不愿配合时，计划遭到取消，经费也被中断。",
+    "context": "PDA page 043; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "165b87c9432150ac74f83c4e47675e2733ae7481cd4e40aa38d1deffe5e6bd3b"
+  },
+  {
+    "id": "p044.r000.s000",
+    "target": "泽纳儿童",
+    "context": "PDA page 044; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "zener",
+      "zener_children"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ab242066c33d961b960ba97490e335ba5097e908aa8a75e097ab223677c520a5"
+  },
+  {
+    "id": "p044.r001.s000",
+    "target": "在遍布",
+    "context": "PDA page 044; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "697f8c18a1efdadea870d9a9832eb944645ee3b4653c0281f8673e954a14ac71"
+  },
+  {
+    "id": "p044.r001.s001",
+    "target": "苏联",
+    "context": "PDA page 044; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "ussr"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "29880dc726e1ae122f908d580b0ed8970f146247e09a6ae9d859b1bedbfa0784"
+  },
+  {
+    "id": "p044.r001.s002",
+    "target": "的各地区测试项目中，拥有“天赋”的儿童被挑选出来，经铁路送往",
+    "context": "PDA page 044; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ecad8d4d69ec03549d5d58d5a624dab62c2ec5720217b3bdae9f2cef0be82359"
+  },
+  {
+    "id": "p044.r001.s003",
+    "target": "杜布伦斯克",
+    "context": "PDA page 044; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "dubrensk"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3bd75373d0597cb896fb7058e088cefd8baa268e50145d5f0d4b5fc606e13c4d"
+  },
+  {
+    "id": "p044.r001.s004",
+    "target": "村，成为",
+    "context": "PDA page 044; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7dfb357707ccb18dc153611d32f7525a179c3f9592224c375b36530817e513e7"
+  },
+  {
+    "id": "p044.r001.s005",
+    "target": "格里恩科的",
+    "context": "PDA page 044; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "50837016ed96e7091a0d11aaa06abcda17e5f4bbb05967054656baa221c5dc75"
+  },
+  {
+    "id": "p044.r001.s006",
+    "target": "研究对象。绝大多数孩子最终被淘汰，官方说法是他们已平安回到父母身边。真正的成功案例，是少数拥有非凡超能力的儿童。这些泽纳儿童还表现出一种特殊的发育停滞综合征，使他们永远停留在青春期前的状态。",
+    "context": "PDA page 044; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "psychic_abilities",
+      "zener",
+      "zener_children"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3f3a5bc430f7d30f563aaf583311325b3afce2bc741f78fc73e2f6ee92dd6693"
+  },
+  {
+    "id": "p045.r000.s000",
+    "target": "苏维埃社会主义共和国联盟（苏联）",
+    "context": "PDA page 045; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "ussr"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e8ec8e7c0fe625e189dc104dd865c70695375d743fffcb3473117e7733a6ac89"
+  },
+  {
+    "id": "p045.r001.s000",
+    "target": "由俄罗斯及其他共和国组成的联盟，成立于1922年，于1991年底正式解体。",
+    "context": "PDA page 045; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "35d201952510a506808e002485658010488771fcc83bf35785483c3d5995e9c5"
+  },
+  {
+    "id": "p046.r000.s000",
+    "target": "冷战",
+    "context": "PDA page 046; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "cold_war"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "18e45484c254c877261ddedaa2b36492073c0e3e2c9d01d98860f778a65b0581"
+  },
+  {
+    "id": "p046.r001.s000",
+    "target": "自第二次世界大战结束一直延续到二十世纪八十年代末的东西方紧张对峙时期。双方的威慑与竞争几近演变成真正的战争，核军备竞赛是其中的典型。",
+    "context": "PDA page 046; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c4938dfa0a9a73db44919eb1c9a6430c706277a30e5525c48a78ed84c3cbb845"
+  },
+  {
+    "id": "p047.r000.s000",
+    "target": "美国泽纳计划",
+    "context": "PDA page 047; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "zener",
+      "zener_project"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "70120f1a16dbc7d23941aff14e9737273be46ab251423430db18cf226d753ea4"
+  },
+  {
+    "id": "p047.r001.s000",
+    "target": "汉森局长基于格里恩科教授的成果发起的研究计划，目标是利用干细胞生物工程制造超能力特工。所需的遗传物质来自从泽纳儿童身上提取的组织样本。",
+    "context": "PDA page 047; original segment/link order preserved",
+    "text_kind": "narrative",
+    "terms": [
+      "grienko",
+      "hanson",
+      "zener",
+      "zener_children"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "081f5b9faf3251c5ffd4bb9e2a720eba4472e41cf91acb7c3d63cbae5fa86240"
+  },
+  {
+    "id": "p048.r000.s000",
+    "target": "超心理学",
+    "context": "PDA page 048; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "parapsychology"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "21d3d139fe00eed7a5e0a1aeedc1391d7c17cbcadfbd911ff070de8f7502b29e"
+  },
+  {
+    "id": "p048.r001.s000",
+    "target": "对超能力现象的科学研究",
+    "context": "PDA page 048; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "afdb3d5d9d19684a35977efcbb6fe7a55b7910d5ea0efc9076e43b824763a0b3"
+  },
+  {
+    "id": "p049.r000.s000",
+    "target": "超能力",
+    "context": "PDA page 049; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "psychic_abilities"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "bb686fbeb256200d20d3b6f66c1160026bf149eb83510f27b48a354c7eb07520"
+  },
+  {
+    "id": "p049.r001.s000",
+    "target": "念力",
+    "context": "PDA page 049; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "telekinesis"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "f410d53a7a4787a7ed6c4b9df3f67eb1d79789df4d108a670b2c99b598c8a593"
+  },
+  {
+    "id": "p049.r002.s000",
+    "target": "治疗",
+    "context": "PDA page 049; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "healing"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "44bc3799892c50fad1f4f76100cd74ebf28f922da6f977a772352d3291b92fdf"
+  },
+  {
+    "id": "p049.r003.s000",
+    "target": "灵能攻击",
+    "context": "PDA page 049; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "psi_attack"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5c0c92e450cd7a9224088968a6bdde326375dc09c3d9676434e8544672b18567"
+  },
+  {
+    "id": "p049.r004.s000",
+    "target": "魅惑",
+    "context": "PDA page 049; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "charm"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cb202ce740ea23b09a039a51724a26f05a05cbd44cb1fb5692f72a7c406b4201"
+  },
+  {
+    "id": "p049.r005.s000",
+    "target": "精神投射",
+    "context": "PDA page 049; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "projection"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "54be5f95d16052f1446591cbd08c5598a2be27aa36faf18e955e8b2dfb1fec8a"
+  },
+  {
+    "id": "p049.r006.s000",
+    "target": "附身",
+    "context": "PDA page 049; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "possession"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "18e556f7feed1c4774ba2262a9ef50441960dfa08dadbf07fd4011f655b4f544"
+  },
+  {
+    "id": "p050.r000.s000",
+    "target": "念力",
+    "context": "PDA page 050; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "telekinesis"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2659904cb960bf2c53d6a906f02d7a7448ef2c3d6d2ee33810daf31c02b3ee9a"
+  },
+  {
+    "id": "p050.r000.s001",
+    "target": "／心灵致动",
+    "context": "PDA page 050; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "psychokinesis"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "340ccc89718489cf417fea583f8ea7365cda95de2ca3a68874aad8c588ddeb33"
+  },
+  {
+    "id": "p050.r002.s000",
+    "target": "不必接触物体即可远程操控它们的能力",
+    "context": "PDA page 050; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "378848036576e72c3c18a6ce0c551f0d5d96178db7115308ad8df5d9aed1d26a"
+  },
+  {
+    "id": "p050.r003.s000",
+    "target": "\u000bJ \u000bG 选择目标",
+    "context": "PDA page 050; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4a",
+      "0b47"
+    ],
+    "source_sha256": "792defae8f020599daeb14adb46ca2c98110f6e3d3206e52ebbae9f1fd087470"
+  },
+  {
+    "id": "p050.r004.s000",
+    "target": "\u000bJ \u000bI 发动念力控制。使用 \u000bE 操控目标物体。在松开 \u000bI 的同时保持 \u000bE 偏转，即可将物体掷出。",
+    "context": "PDA page 050; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4a",
+      "0b49",
+      "0b45",
+      "0b49",
+      "0b45"
+    ],
+    "source_sha256": "62ccef2414f867a4c96803f07540b65637d1fc209845d1e5b6fce42c5026c837"
+  },
+  {
+    "id": "p051.r000.s000",
+    "target": "治疗",
+    "context": "PDA page 051; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "healing"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "44bc3799892c50fad1f4f76100cd74ebf28f922da6f977a772352d3291b92fdf"
+  },
+  {
+    "id": "p051.r002.s000",
+    "target": "运用超能力修复身体损伤。治疗量与消耗的灵能直接相关。治疗过程中无法移动。",
+    "context": "PDA page 051; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "healing"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "47378feef6fd5b706362a8d706d82fba4e0ce3ebc2e3c5b15a2597354510c900"
+  },
+  {
+    "id": "p051.r003.s000",
+    "target": "\u000bJ \u000bI 将灵能转化为生命值",
+    "context": "PDA page 051; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4a",
+      "0b49"
+    ],
+    "source_sha256": "ce0f33e9b1eefb7cc25f1275c88e19406912fb4e71e12106ef4267d0f9cde6a6"
+  },
+  {
+    "id": "p051.r004.s000",
+    "target": "也可用于治疗友方角色",
+    "context": "PDA page 051; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2f6e9d17c37cb7298bc97c874a5fe6bc66c5e4df5ed8c60f8063e3a922143da6"
+  },
+  {
+    "id": "p051.r005.s000",
+    "target": "\u000bJ \u000bG 选中友方角色。\u000bJ \u000bI 治疗对方。",
+    "context": "PDA page 051; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4a",
+      "0b47",
+      "0b4a",
+      "0b49"
+    ],
+    "source_sha256": "19c80c9f325e2456ff2cc2db89eaf05acf72c9969a0eef70c76d067f2c969f3a"
+  },
+  {
+    "id": "p052.r000.s000",
+    "target": "灵能攻击",
+    "context": "PDA page 052; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "psi_attack"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5c0c92e450cd7a9224088968a6bdde326375dc09c3d9676434e8544672b18567"
+  },
+  {
+    "id": "p052.r002.s000",
+    "target": "将纯粹的灵能转化为破坏力惊人的物理攻击，以冲击波的形式释放。",
+    "context": "PDA page 052; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d22004d9098927a9534951a50fc0fdea87ca5c08f4c5425c0b6c834e1daffbd6"
+  },
+  {
+    "id": "p052.r003.s000",
+    "target": "灵能脉冲",
+    "context": "PDA page 052; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "psi_pulse"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "777267a59dccaccb16db01f9e2a7d7398a7ffc9a67d3b118a8c9ece615c7456d"
+  },
+  {
+    "id": "p052.r004.s000",
+    "target": "向目标发射凝聚的灵能球进行定向攻击",
+    "context": "PDA page 052; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b4f819d1011bcbfbf8af1558dc09cfa49afc0fc6c2fed31a4e1458cf3f958116"
+  },
+  {
+    "id": "p052.r005.s000",
+    "target": "\u000bJ \u000bG 选择目标",
+    "context": "PDA page 052; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4a",
+      "0b47"
+    ],
+    "source_sha256": "47c49923097d945af441b7c4d72dc6288053ae65cad1240f82345ff0a57a2aae"
+  },
+  {
+    "id": "p052.r006.s000",
+    "target": "\u000bJ \u000bI 蓄积灵能，然后松开 \u000bI 发射。",
+    "context": "PDA page 052; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4a",
+      "0b49",
+      "0b49"
+    ],
+    "source_sha256": "9102871b06912e8c1f31ba17077c161184c185ce9517293684a3ace8924bed2e"
+  },
+  {
+    "id": "p052.r007.s000",
+    "target": "范围爆破",
+    "context": "PDA page 052; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "radial_blast"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "324c8dc6e2bf1ca2087d030fd962b85a658f8d460349c9c02465f5cb930e4ca5"
+  },
+  {
+    "id": "p052.r008.s000",
+    "target": "以向四周扩散的灵能波发动范围攻击",
+    "context": "PDA page 052; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b773adf8e933032fa75d9e41340eba53a4339f9b791021a5d14dc3ea19f67a2a"
+  },
+  {
+    "id": "p052.r009.s000",
+    "target": "\u000bJ \u000bI 为范围爆破蓄力",
+    "context": "PDA page 052; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "radial_blast"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4a",
+      "0b49"
+    ],
+    "source_sha256": "2f8b58a6e67cc92b211dea65c3b4ea80b0ef692f068716502d5057654040ef62"
+  },
+  {
+    "id": "p053.r000.s000",
+    "target": "心灵魅惑",
+    "context": "PDA page 053; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "charm",
+      "telepathic_charm"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "183f0f0d47451398e8106763f493787e25c65096b7b4b12a2c8746bf0fc25973"
+  },
+  {
+    "id": "p053.r002.s000",
+    "target": "运用超能力影响他人心智，将想法植入对方脑海。主要用途是误导他人，使其察觉不到自己的存在。接触被魅惑的对象，或在对方清楚看见自己时尝试魅惑，都会立即打破幻象。",
+    "context": "PDA page 053; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "charm"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "f37220a71b8424c90cda982d95e2eee0eab898e37a1236511bd7535b6993ccce"
+  },
+  {
+    "id": "p053.r003.s000",
+    "target": "\u000bJ \u000bI 维持心灵魅惑",
+    "context": "PDA page 053; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "charm"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4a",
+      "0b49"
+    ],
+    "source_sha256": "c00f4c08f12d306c0b2583896bb275612831f519e4ca40e8b004f9a911ab4b6c"
+  },
+  {
+    "id": "p053.r004.s000",
+    "target": "也可与能够感应超能力的友方角色进行心灵交流，传递简单的信息，或平复其躁狂与痛苦。",
+    "context": "PDA page 053; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4a90887017e39aa843087c0ed285a1b2ad60ccd7f014a506c5393473a2aa3a7a"
+  },
+  {
+    "id": "p053.r005.s000",
+    "target": "\u000bJ \u000bG 选中友方角色。\u000bJ \u000bI 与其进行心灵交流。",
+    "context": "PDA page 053; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4a",
+      "0b47",
+      "0b4a",
+      "0b49"
+    ],
+    "source_sha256": "fa7c06d73745748273f397f0f0f81847940863dbf964735d5f4ea59a4b8f6608"
+  },
+  {
+    "id": "p054.r000.s000",
+    "target": "精神投射",
+    "context": "PDA page 054; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "projection"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "54be5f95d16052f1446591cbd08c5598a2be27aa36faf18e955e8b2dfb1fec8a"
+  },
+  {
+    "id": "p054.r002.s000",
+    "target": "让精神脱离肉体的能力。投射形成的虚体只能与物质世界进行有限的互动。",
+    "context": "PDA page 054; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0a3c812837a019533ef5fc15903531d0f6d156822924da9b73918921df813c40"
+  },
+  {
+    "id": "p054.r003.s000",
+    "target": "\u000bK \u000bI 发动精神投射。投射状态下使用 \u000b2 与物体互动，或按 \u000b4 返回肉体。",
+    "context": "PDA page 054; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "projection"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b4b",
+      "0b49",
+      "0b32",
+      "0b34"
+    ],
+    "source_sha256": "b621b87aae776a6c9fe6a0c12575ca9156053bb873f65505e182bcddfdae0bd1"
+  },
+  {
+    "id": "p054.r004.s000",
+    "target": "附身",
+    "context": "PDA page 054; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "possession"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "18e556f7feed1c4774ba2262a9ef50441960dfa08dadbf07fd4011f655b4f544"
+  },
+  {
+    "id": "p054.r005.s000",
+    "target": "通过超能力控制他人的高级心智活动",
+    "context": "PDA page 054; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "48400e095f8c8aaf9b651a5067ea806ce8d5fc012f56953ba7f1677aa8f1e027"
+  },
+  {
+    "id": "p054.r006.s000",
+    "target": "投射状态下靠近其他角色时按 \u000b2 即可附身。按 \u000b4 即可放弃对被附身角色的控制。",
+    "context": "PDA page 054; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [
+      "0b32",
+      "0b34"
+    ],
+    "source_sha256": "ccd1a68907d6b9fd18854d00ed22a0a26a9da5d0714e810a87427a67094821b2"
+  },
+  {
+    "id": "p055.r000.s000",
+    "target": "任务目标",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "objectives"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "eba92953899468e3f79c084370cc455f39c256e77b5277ff480e3384ff9ecc27"
+  },
+  {
+    "id": "p055.r001.s000",
+    "target": "隔离",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "isolation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "45c4fc064e525974b1c12d9f7168edcde18dcbbf878aa21fd761da5cdfc59702"
+  },
+  {
+    "id": "p055.r002.s000",
+    "target": "逃离",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "51a71c911fc8936b569967efc9f91d4439c23a24fd0f6cfa735e64d09a72aa2f"
+  },
+  {
+    "id": "p055.r003.s000",
+    "target": "离开隔离室",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "isolation",
+      "isolation_cell"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "271405f80683fc361630b2cf0cfddcb7ee553868f81afa3d77eca9644b580772"
+  },
+  {
+    "id": "p055.r004.s000",
+    "target": "找到手术室的门禁卡",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3a73ffe92389b8bdc3b965e08fd228781fa94953cd4d18d16bc1ef271ac0d169"
+  },
+  {
+    "id": "p055.r005.s000",
+    "target": "找到电梯密码",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ab85ed25e703719c03430014c65260a6094419d34a76aa52b6a3dba39aac148f"
+  },
+  {
+    "id": "p055.r006.s000",
+    "target": "准备",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_preparation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cf2befb0f1a62829287ee4fda7df90334ccdc12a1ba046fff131fb81381e3bbd"
+  },
+  {
+    "id": "p055.r007.s000",
+    "target": "完成军事训练",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "bf04adbf6d8d6d1390222c97750e608b0e959a93552b008e8925b88df362cb05"
+  },
+  {
+    "id": "p055.r008.s000",
+    "target": "与科尔泰利完成障碍穿越训练",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "cortelli"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "859c4624e0d4f5753b3d672d99e90bc7fd820b140fea092aca33f6fa975c3f76"
+  },
+  {
+    "id": "p055.r009.s000",
+    "target": "与特克斯完成潜行训练",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "tex"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7cd134991ac74c847281892f46abf2d50813d7a4e342ec1e0145b6f28855b7bc"
+  },
+  {
+    "id": "p055.r010.s000",
+    "target": "潜行到基地大门",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "07ed51b7a9fb8fff2aaa5863cec35e79936989d12af551775e66b6495e263927"
+  },
+  {
+    "id": "p055.r011.s000",
+    "target": "与 JC 完成射击训练",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "jc"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b292192fff51a8e3b87a22555ee6d9d7044c49b90e493b6c9ded73838fa72b86"
+  },
+  {
+    "id": "p055.r012.s000",
+    "target": "强攻或潜行到基地大门",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "60a79afa40ae3aad48049f3049d417c1c21e33ab4b2ecce70dca8d5121c9e6e6"
+  },
+  {
+    "id": "p055.r013.s000",
+    "target": "与富兰克林完成狙击训练",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "franklin"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d7f07197650cfe077cae46edd704ecb6666739caf39d4213c8d8b3ceaf266cf8"
+  },
+  {
+    "id": "p055.r014.s000",
+    "target": "勤勉",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_diligence"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "db2b0313ac4db290aa2b288e97336382d1e94b52e3905803758d38aa0d2ea7a4"
+  },
+  {
+    "id": "p055.r015.s000",
+    "target": "潜入工厂仓库",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "527d23d5eb4c5be32dcec82fcc7c198208aba8c520f71fa5c7f121a91372ba20"
+  },
+  {
+    "id": "p055.r016.s000",
+    "target": "遵循斯塔克上校的指示",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e188067d665bc05556b91d75b968ebc21262c0bc2a392e3037958ce48656475d"
+  },
+  {
+    "id": "p055.r017.s000",
+    "target": "实验",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_experimentation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d416644b474b55515f291a2655ae684c2f087bd4a7e34918d8479f9f19b8367a"
+  },
+  {
+    "id": "p055.r018.s000",
+    "target": "找到并进入病历室",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "21e3ceb1487133d0d4433b5793d1236805a201a467e36c237e0ab85bdea52c63"
+  },
+  {
+    "id": "p055.r019.s000",
+    "target": "取得病历室的通行卡",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "168200276be9204ab2108704e15661efee0b78b333d52c4ed3d94f14558e9953"
+  },
+  {
+    "id": "p055.r020.s000",
+    "target": "实地行动",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_fieldwork"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "84f596d8b407478c439542aabd7275403c25979b52af6ff8dfc200db5bc7371a"
+  },
+  {
+    "id": "p055.r021.s000",
+    "target": "保护简存活",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d4db43f32e2af1e1f47e746c3515fb4ef59744e89b9a7e5d3405777b8b8925dc"
+  },
+  {
+    "id": "p055.r022.s000",
+    "target": "跟随 WinterICE 前往输油管道站",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "599a938a3abb68f59aa2c5c2cb2daf9c94c06b0c36a59ad97924ba08f13b3b82"
+  },
+  {
+    "id": "p055.r023.s000",
+    "target": "追上简并查明出了什么事",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1bb865db228dbe164599f8ebeb7d7f0ce1ba3f3169c08af56acfd192dfa21cc2"
+  },
+  {
+    "id": "p055.r024.s000",
+    "target": "寻找离开输油管道站的路",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1bc180000cb6622b91a9ba940da78e402aff8a88cdbddb5bab9dc43ba9fad24b"
+  },
+  {
+    "id": "p055.r025.s000",
+    "target": "查找格里恩科的情报",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5a2926648b46f2c30208320fb0b80b6f2aedd7f28f39227f9f56a7d5cd80cd83"
+  },
+  {
+    "id": "p055.r026.s000",
+    "target": "从安全门离开",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d22854acfbd9fc372e98e52767c31aba00ea07023065b66d699667e096cd6abc"
+  },
+  {
+    "id": "p055.r027.s000",
+    "target": "逃脱",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_escape"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "037c968467aa3fd7c059c7d0b57e3460aa332f30db816efcd98943724a1d8db0"
+  },
+  {
+    "id": "p055.r028.s000",
+    "target": "寻找逃离医疗中心的路线",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "62b590bfea368d235f575b16b4d5595ad267b860ecde486db759eac9334a67d6"
+  },
+  {
+    "id": "p055.r029.s000",
+    "target": "疯狂",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_madness"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "1eb2dced2651481299155df1b8395d0b77a6b93c933c8fc418be1b545de553de"
+  },
+  {
+    "id": "p055.r030.s000",
+    "target": "找到简",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6ae1f892245110b3d0e3712478320bd7139ac395db0aaa2d750db976d085f57c"
+  },
+  {
+    "id": "p055.r031.s000",
+    "target": "设法进入精神病院大楼",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6b74548cf6f738f4b08774911d1c2e09cd4f8f6d3ea096bfa35b63f0d006e7bc"
+  },
+  {
+    "id": "p055.r032.s000",
+    "target": "找到图书馆钥匙",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "de297c4b66cdbb8f59fe3dd70530bc7491e0d48f654843d283f189773d2dd22a"
+  },
+  {
+    "id": "p055.r033.s000",
+    "target": "前往西翼的高戒备区",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7e33537cc7dff4b1ce02c0c5041e72c81b536b45a51426f837674499dc5188b3"
+  },
+  {
+    "id": "p055.r034.s000",
+    "target": "找到图书馆上层安全门的控制装置",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "52a41a1981ec09bfe23760a8c32f1b9fb51c933473182b79b9e06388c6241986"
+  },
+  {
+    "id": "p055.r035.s000",
+    "target": "找到宿舍门禁卡",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "09d1b0af9eba0f8f98b80f6b0070e480c77dd54212f791358c3b1c2a22255b13"
+  },
+  {
+    "id": "p055.r036.s000",
+    "target": "找到安全门密码",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ec8042e940a4eaef7388ed8e795cc881df57f2de53039b7e965b6beccda3e402"
+  },
+  {
+    "id": "p055.r037.s000",
+    "target": "营救",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_rescue"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a29dbdd38f71a09d7ecb1b6a4c65ea1d1c4a2dd046b692706531a687dd744f46"
+  },
+  {
+    "id": "p055.r038.s000",
+    "target": "与简一起逃离精神病院",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a6e244612d0d09556bb31437774c9e48ce637b79381aaa62f635843967fd8848"
+  },
+  {
+    "id": "p055.r039.s000",
+    "target": "信赖",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_reliance"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5257f809148be0dffe138f353cddf0b82bd2bc346ef8cfbf1500d1b570229d74"
+  },
+  {
+    "id": "p055.r040.s000",
+    "target": "保护斯塔克上校存活",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ead62f317d3d3a9c4974884c12b2f942aba40a526733dd07fe574a31f56ae99e"
+  },
+  {
+    "id": "p055.r041.s000",
+    "target": "跟随斯塔克侦察周边区域",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "251cde7e84b309766280fccb1b3c552692353b162b34850afce14e054b9d71f3"
+  },
+  {
+    "id": "p055.r042.s000",
+    "target": "设法进入基地",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3b9b770702ba696ffeb96c9ced57a4578c611f2a04f2c651f1a23b79f0c760a2"
+  },
+  {
+    "id": "p055.r043.s000",
+    "target": "击昏基地内所有守卫，不要触发警报。",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "bf9037e998b4173f174ee6eef67ba3fc68584b06321cb4a2af28dc596b50cf70"
+  },
+  {
+    "id": "p055.r044.s000",
+    "target": "打开基地另一端的大门",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6a3c23b9e6f6e094b379b6d6eff3029651dbef604b9e1f3c42d79021f14e91b1"
+  },
+  {
+    "id": "p055.r045.s000",
+    "target": "找到铁路货场",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4f1f177b9954d6ca791b62e8ee687b614d1f3d9c0c53719a8af8e74b26c43fe3"
+  },
+  {
+    "id": "p055.r046.s000",
+    "target": "跟随斯塔克并查明出了什么事",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5e274d0ccceebf890a849922447cd1f25f7d150fb2701da99fd38c83503017e3"
+  },
+  {
+    "id": "p055.r047.s000",
+    "target": "探索货场，寻找更多关于美国碳氢公司活动的线索。",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "ushc"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0f04669595c4fdb2b07287c1b9efb8b8677c4f6c96d4bfbbe944bde9df1f4190"
+  },
+  {
+    "id": "p055.r048.s000",
+    "target": "困局",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_entrapped"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0b96d629c87116653ea9439b09d8b4481254c02cc3982b45e0d3e32c6788b1c8"
+  },
+  {
+    "id": "p055.r049.s000",
+    "target": "与简一起穿过雨水排水道逃离",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c893c3b2a47c52a9c7178ad0ca58cff66153dae7eea32ac107748b811b1bfa26"
+  },
+  {
+    "id": "p055.r050.s000",
+    "target": "街头",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_streetlife"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6fc9aed2d80f0fca8bd3373b07862c03e0d99f60753ca6adcc1f4338605e8c37"
+  },
+  {
+    "id": "p055.r051.s000",
+    "target": "找到斯塔克上校",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ad5b0bd80f4a78071bbe99a73ab6d177812f7e34ce41a1bca58ffa41bc0f6444"
+  },
+  {
+    "id": "p055.r052.s000",
+    "target": "送达包裹",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2dbbe6d7b9011ef9e2d73bfbb2bfaa71237739df2af8e4d1e937e9946b8e0432"
+  },
+  {
+    "id": "p055.r053.s000",
+    "target": "取得堵在巷口的帮派成员的信任",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cc0c9f630fe8f6a4c17dc61e462f44da376d0a650f62b946c290f5102d908cde"
+  },
+  {
+    "id": "p055.r054.s000",
+    "target": "帮助帮派击退国家安全执行局特工",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "nse_abbreviation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "974368051599d53c37734ca7dccb2403e01f0e5eaa75fa53fb8a201b2bcfa912"
+  },
+  {
+    "id": "p055.r055.s000",
+    "target": "沿消防梯到达顶部的斯塔克公寓",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7a776eaff1c548e1ef82dc1b84bed41def4ed89b3b9148c343625249f1d79283"
+  },
+  {
+    "id": "p055.r056.s000",
+    "target": "协作",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_teamwork"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "4a84556e7fd02081e0e92242b82822cce9eb6bae14aec2590bbf14c24e74930e"
+  },
+  {
+    "id": "p055.r057.s000",
+    "target": "保护 WinterICE 全员存活",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "winterice"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9daa200fa0a4a517ebb06ece7b628fdf63b18aab65fd6d6e44910cfcd2627dcf"
+  },
+  {
+    "id": "p055.r058.s000",
+    "target": "找到格里恩科的基地",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "22cef81ba9fc80481ca302a027e02c39e4779aabfd37c98a89c67f37c2ceaceb"
+  },
+  {
+    "id": "p055.r059.s000",
+    "target": "帮助科尔泰利修复无线电设备",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "cortelli"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5b800c19fda4d330405f37e5e9674d4fe15d9e9d25a4cdde635b841b8c59d34c"
+  },
+  {
+    "id": "p055.r060.s000",
+    "target": "帮助 JC 守住发射机房",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "jc"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "05a642fc28128eb75c761ecd0989203a817fb83ba99574bf6fdf1687c336f23f"
+  },
+  {
+    "id": "p055.r061.s000",
+    "target": "告诉斯塔克上校更换无线电频率",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6e0092a1044c4796ed5639b6af28e1d79f2aa144a74f912a01f600451f272cd8"
+  },
+  {
+    "id": "p055.r062.s000",
+    "target": "找到穿过楼群的路线",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3073ee8501ac96100db2e0b28983e8253a935787e940c042e70a96e7e1c39ae6"
+  },
+  {
+    "id": "p055.r063.s000",
+    "target": "设法打开上锁的铁门",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "7e60e3e40b83612d710039a662b157c7f01f5f088fd92bbbe5b30bf0f8084c7d"
+  },
+  {
+    "id": "p055.r064.s000",
+    "target": "找到富兰克林的钥匙所对应的门",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "franklin"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9fb2aed6b49e6b81f343730481524af1e5e52c6d5ca54299fe0ee07fcaf3e8f0"
+  },
+  {
+    "id": "p055.r065.s000",
+    "target": "突围",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_breakout"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "921b14d5fb12f668386c11cac4c7d1cecd54165986c05caff8a7c5001270909f"
+  },
+  {
+    "id": "p055.r066.s000",
+    "target": "与斯塔克上校一起逃离大楼",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a177ff8bd324681b529c919a45f64780edded45c88ad50c55d25058a1020eebc"
+  },
+  {
+    "id": "p055.r067.s000",
+    "target": "阴谋",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_conspiracy"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6e911eba808afe8332be7b0f81477a3762428bdb46aeb32cadf4dc4a4bc7eee4"
+  },
+  {
+    "id": "p055.r068.s000",
+    "target": "核实斯塔克提供的国家安全执行局直接参与杜布伦斯克事件的证据",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "dubrensk",
+      "nse_abbreviation",
+      "starke"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e64550a20218fc51d5897e0c2c41d8fb8a424fa462bf85462406ff0766420739"
+  },
+  {
+    "id": "p055.r069.s000",
+    "target": "找到可用于登录电脑的用户名",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5770a1e5dd1e708515707aa1da77d7cff5b241155f7390cf23493134972f9ecd"
+  },
+  {
+    "id": "p055.r070.s000",
+    "target": "搜索电脑以寻找更多证据",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "371921ad336a966c2a2c34265aa3515e071d14e528ace7413030ff748778ba12"
+  },
+  {
+    "id": "p055.r071.s000",
+    "target": "找到播放视听演示的软件",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "14b260c1f23c731b840a9b0b50aa5dcaa488c4c900ca88cdb26ee284feb37ff4"
+  },
+  {
+    "id": "p055.r072.s000",
+    "target": "找到磁盘以将视听演示转移到另一台电脑",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b3ef343219820861ae4b19c7fc224d54b81dec5e05b04ccc1b9b46c06f6cede1"
+  },
+  {
+    "id": "p055.r073.s000",
+    "target": "将演示复制到装有播放软件的电脑上",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "075a1e38bc0a0834123822d291765232d499f305b09d2f807a50173e8b4b0a35"
+  },
+  {
+    "id": "p055.r074.s000",
+    "target": "前往多媒体室观看演示",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "0d4d91e3ce09077a9ae5ad761519894f377238d7aaa2143e069e3e103c8c5cad"
+  },
+  {
+    "id": "p055.r075.s000",
+    "target": "潜入",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_infiltration"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "dbb2d8a252526047a4aba4dc6051212386aac48155058aa5c1c286be1af3ed42"
+  },
+  {
+    "id": "p055.r076.s000",
+    "target": "寻找并通过村庄教堂进入泽纳基地",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "zener"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6e99e7eb22f90f5c3a14349292ef070f60d8a1d64a7272a442b747ca023fabc8"
+  },
+  {
+    "id": "p055.r077.s000",
+    "target": "在红色房屋内找到教堂钥匙",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "521982508e11b744822f822f0ad7929bbc431a8edf83b9ec04a6e7db41d94572"
+  },
+  {
+    "id": "p055.r078.s000",
+    "target": "放下桥梁",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ff56ed92ea45ae00b17e72a29af74b6c3705eab1f278fbdd7542fb84683896b6"
+  },
+  {
+    "id": "p055.r079.s000",
+    "target": "找到离开直升机降落区所需的门钥匙",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "e016b722c239af2c4a9b6f27def3fd95240d8ca18c48eb700b49ba75048442f9"
+  },
+  {
+    "id": "p055.r080.s000",
+    "target": "守护",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_childcare"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b0377e52418b47637234bf046e0b13821bc297f0e6c107daa2e1f578a8fd8b3a"
+  },
+  {
+    "id": "p055.r081.s000",
+    "target": "找到格里恩科",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "grienko"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "96b70e780348272dda04e89efd28405223796687e5e8f51fb7ab21e483e67976"
+  },
+  {
+    "id": "p055.r082.s000",
+    "target": "恢复供电",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "aa504e6b69588aa1109d78a6e8bc1d3e100c7ddec07c1c2dfe3b7e698836a3ab"
+  },
+  {
+    "id": "p055.r083.s000",
+    "target": "进入控制室",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cf697f54d529d645c3aa265850ce4c261772c04d2662f7d4bacf6a9697241db4"
+  },
+  {
+    "id": "p055.r084.s000",
+    "target": "帮助泽纳儿童",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "zener",
+      "zener_children"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "895c6bf51a18a37171b127c12e13faef4b14b500079f41714c7511b3e03f7f38"
+  },
+  {
+    "id": "p055.r085.s000",
+    "target": "对峙",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_confrontation"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8e3f14b2e60df2f9313b68a031915e8f1d9c343ea9193302a999f43b55bf00c5"
+  },
+  {
+    "id": "p055.r086.s000",
+    "target": "找到汉森",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "hanson"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "18c65d7bb6bf6a67b05ffdd7cd3d7c7df99eacabeb6d71ca0dd52ba3fefb256f"
+  },
+  {
+    "id": "p055.r087.s000",
+    "target": "乘电梯前往上层",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "d561f92d860f39ef01040bc36df07c409cecde4339e118b14393e415bff91dad"
+  },
+  {
+    "id": "p055.r088.s000",
+    "target": "击败超能力士兵",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6a0e9b1c12d2e9c4ab2a00dac418f1de212eba603b6aacb97bbca8aaa233d0f4"
+  },
+  {
+    "id": "p055.r089.s000",
+    "target": "救赎",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "chapter_redemption"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "a5cb3e05865aef75f212023810e771af62e0d037cbe245a38187129e83d1bc82"
+  },
+  {
+    "id": "p055.r090.s000",
+    "target": "找到汉森",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "hanson"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "18c65d7bb6bf6a67b05ffdd7cd3d7c7df99eacabeb6d71ca0dd52ba3fefb256f"
+  },
+  {
+    "id": "p055.r091.s000",
+    "target": "进入下层区域",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "dba701e7f7969f7c9c791ed3f9cc71f026c49e3efc78cabc834d51866ac398f2"
+  },
+  {
+    "id": "p055.r092.s000",
+    "target": "击败汉森剩余的士兵",
+    "context": "PDA page 055; original segment/link order preserved",
+    "text_kind": "objective",
+    "terms": [
+      "hanson"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "20a95cf03af20ca25792fb0c1d0d90695c66b9e72849ea4df15cf44561c7e8b2"
+  },
+  {
+    "id": "p056.r000.s000",
+    "target": "武器",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "aafc7b0e9b9e48bdd9f860937e6e80ea5a9a02942e9cdc42e8135210212a89aa"
+  },
+  {
+    "id": "p056.r001.s000",
+    "target": "兽用麻醉枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "animal_tranquillizer"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6a87d67206a484599858bc1bf296d1ac9757d2c2598f1af405dbd2edbe441a7e"
+  },
+  {
+    "id": "p056.r002.s000",
+    "target": "军用麻醉枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "military_tranquillizer"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9cabe91f2999ae9822c24f753f076112238b36fef0a91e64eddea1675ae24c35"
+  },
+  {
+    "id": "p056.r003.s000",
+    "target": "手枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "pistol"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "af93da41d0267ccfac9f8665d865d55dcc3f4690d9349355a729d970cfde2d43"
+  },
+  {
+    "id": "p056.r004.s000",
+    "target": ".45口径手枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "pistol",
+      "pistol_45"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "388f0fdc0b5c53305e96e96271a1fdf964b91f19cabe3b02f3d80740217451b4"
+  },
+  {
+    "id": "p056.r005.s000",
+    "target": "左轮手枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "revolver"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b015d3ddeff42d858d06bfc28ab994f070479ba167c7f26d00f16decc9331a16"
+  },
+  {
+    "id": "p056.r006.s000",
+    "target": "冲锋枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "smg"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3dba798451964a4445520cd6ce5bc71e5f119e3a1e5be3c7bd6204d92dd8425d"
+  },
+  {
+    "id": "p056.r007.s000",
+    "target": "狙击步枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "sniper_rifle"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3b33696ee16cd1e512246035807da2639f328e1c67485f9c6822af7153370a64"
+  },
+  {
+    "id": "p056.r008.s000",
+    "target": "苏制步枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "soviet_rifle"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c309edb13816b63e0886bc8908021f41ea53d0de92511eeb757643fdedde49bc"
+  },
+  {
+    "id": "p056.r009.s000",
+    "target": "突击步枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "assault_rifle"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "941a63b2b42cf168b71173fbe8dfb0599a493b02014850446e43e27170ce15ea"
+  },
+  {
+    "id": "p056.r010.s000",
+    "target": "短管霰弹枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "sawn_off_shotgun",
+      "shotgun"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c9e7557a68bd1dcd97701d7964c15fa44774c8dcc95d8c8fe7b690c0a3fb2a8c"
+  },
+  {
+    "id": "p056.r011.s000",
+    "target": "霰弹枪",
+    "context": "PDA page 056; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "shotgun"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "050991792ba0040cbbaffd71ee45d7d99d96c74467d4ac4f04f56113964f6a0a"
+  },
+  {
+    "id": "p057.r000.s000",
+    "target": "兽用麻醉枪",
+    "context": "PDA page 057; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "animal_tranquillizer"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "6a87d67206a484599858bc1bf296d1ac9757d2c2598f1af405dbd2edbe441a7e"
+  },
+  {
+    "id": "p057.r002.s000",
+    "target": "发射微型麻醉镖的手持武器，镖内装有起效迅速的神经毒素。药效强劲，能使目标失去行动能力，但不会留下伤害。毒素必须到达大脑才能生效，因此命中部位至关重要。命中头部会立即起效，击中身体其他部位则需等待药效发作。",
+    "context": "PDA page 057; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "5165ef96f8a3832fcb4bf74417080892de19f235f5a0cf57b10983cedb58e6e5"
+  },
+  {
+    "id": "p058.r000.s000",
+    "target": "军用麻醉枪",
+    "context": "PDA page 058; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "military_tranquillizer"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "9cabe91f2999ae9822c24f753f076112238b36fef0a91e64eddea1675ae24c35"
+  },
+  {
+    "id": "p058.r002.s000",
+    "target": "重型军用麻醉手枪，其构造与功能均与兽用麻醉枪相同。可用于控制人群及执行需要隐蔽行动的敏感任务。",
+    "context": "PDA page 058; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "animal_tranquillizer",
+      "pistol"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "f3bcf4e4a8e5d3d13c898c502a81560fa84b7acbd5c98c973f23a38a012f7692"
+  },
+  {
+    "id": "p059.r000.s000",
+    "target": "手枪",
+    "context": "PDA page 059; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "pistol"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "af93da41d0267ccfac9f8665d865d55dcc3f4690d9349355a729d970cfde2d43"
+  },
+  {
+    "id": "p059.r002.s000",
+    "target": "通用型半自动手枪，弹匣容量8发。装填方便，训练有素的射手能用它打出令人惊讶的精度，是性能均衡的随身武器。",
+    "context": "PDA page 059; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "cb98effd63fb99312bf81a1c565fe22bb5e43c37a1463f770b23f27dfa77f2cb"
+  },
+  {
+    "id": "p060.r000.s000",
+    "target": ".45口径手枪",
+    "context": "PDA page 060; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "pistol",
+      "pistol_45"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "388f0fdc0b5c53305e96e96271a1fdf964b91f19cabe3b02f3d80740217451b4"
+  },
+  {
+    "id": "p060.r002.s000",
+    "target": "制式.45口径半自动手枪，弹匣容量7发，威力强劲，深受私人安保公司和政府执法机构青睐。",
+    "context": "PDA page 060; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "pistol"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "62e0eacefc4356df01ed97fe10f67c87933e60416d46fb8aebc3605ff529f211"
+  },
+  {
+    "id": "p061.r000.s000",
+    "target": "左轮手枪",
+    "context": "PDA page 061; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "revolver"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "b015d3ddeff42d858d06bfc28ab994f070479ba167c7f26d00f16decc9331a16"
+  },
+  {
+    "id": "p061.r002.s000",
+    "target": "可靠耐用的老式六发左轮手枪，至今仍深受“周六夜生活”一族的喜爱。",
+    "context": "PDA page 061; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "revolver"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "66231f8964b566e857e9419fcad5cda4a80c32470325c626efd38a92fba5094e"
+  },
+  {
+    "id": "p062.r000.s000",
+    "target": "冲锋枪",
+    "context": "PDA page 062; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "smg"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3dba798451964a4445520cd6ce5bc71e5f119e3a1e5be3c7bd6204d92dd8425d"
+  },
+  {
+    "id": "p062.r002.s000",
+    "target": "紧凑便携、射速高的冲锋枪。安保部队需要更强火力时，常用它代替手枪。它非常适合近距离交战，但远距离射击的精度和穿透力较为有限。",
+    "context": "PDA page 062; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "pistol"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "ebcf8f5d6173acd1d9447c929f853e1e4516e2f6a1f8f2b3eb4689015b241db7"
+  },
+  {
+    "id": "p063.r000.s000",
+    "target": "狙击步枪",
+    "context": "PDA page 063; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "sniper_rifle"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3b33696ee16cd1e512246035807da2639f328e1c67485f9c6822af7153370a64"
+  },
+  {
+    "id": "p063.r002.s000",
+    "target": "远距离作战的首选武器。精密光学瞄准镜可用于精准瞄准，高速弹药在极远距离上也能保持很高的命中精度。弹匣容量5发，装填速度较慢。",
+    "context": "PDA page 063; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "2d033eac30a9ab73a0f4a84507284f0c3a8252a03ad7d938a32a24483ac5b093"
+  },
+  {
+    "id": "p064.r000.s000",
+    "target": "苏制步枪",
+    "context": "PDA page 064; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "soviet_rifle"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c309edb13816b63e0886bc8908021f41ea53d0de92511eeb757643fdedde49bc"
+  },
+  {
+    "id": "p064.r002.s000",
+    "target": "大批量生产的自动步枪，虽然略显过时，但依然实用，弹匣容量24发。可靠性和耐用性弥补了射速中等、精度有限的不足。",
+    "context": "PDA page 064; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "3faa8378a6869543a6c71babfbac90579d3c9788fc38a2371fa6002c0fa70f9f"
+  },
+  {
+    "id": "p065.r000.s000",
+    "target": "突击步枪",
+    "context": "PDA page 065; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "assault_rifle"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "941a63b2b42cf168b71173fbe8dfb0599a493b02014850446e43e27170ce15ea"
+  },
+  {
+    "id": "p065.r002.s000",
+    "target": "威力强大的美军制式自动步枪，射速快，制止力出色，弹匣容量32发。",
+    "context": "PDA page 065; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "58ad009a28b7f60021639166e49cf4c73e128200625daf808a749c1c3b9e8f91"
+  },
+  {
+    "id": "p066.r000.s000",
+    "target": "短管霰弹枪",
+    "context": "PDA page 066; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "sawn_off_shotgun",
+      "shotgun"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "c9e7557a68bd1dcd97701d7964c15fa44774c8dcc95d8c8fe7b690c0a3fb2a8c"
+  },
+  {
+    "id": "p066.r002.s000",
+    "target": "截短枪管与枪托的双管霰弹枪，更易隐藏，适合近距离作战。单发伤害很高，但远距离精度较差，装填速度也较慢。",
+    "context": "PDA page 066; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "shotgun"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "42f17086e64e9c2750a84884c6e7af08431e372e838b8b17e35abe0d6f1a7abb"
+  },
+  {
+    "id": "p067.r000.s000",
+    "target": "霰弹枪",
+    "context": "PDA page 067; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "shotgun"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "050991792ba0040cbbaffd71ee45d7d99d96c74467d4ac4f04f56113964f6a0a"
+  },
+  {
+    "id": "p067.r002.s000",
+    "target": "现代泵动式霰弹枪，容量8发，近距离威力惊人，不是胆小者能驾驭的武器。",
+    "context": "PDA page 067; original segment/link order preserved",
+    "text_kind": "ui",
+    "terms": [
+      "shotgun"
+    ],
+    "status": "translated; offline QA and user runtime acceptance pending",
+    "source_tokens": [],
+    "source_sha256": "8cd2a763cc5ab24a40fceeaa99f627bda80c0898c2398f92a95f41f5c0534d0e"
+  }
+]

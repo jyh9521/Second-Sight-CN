@@ -39,7 +39,7 @@
 | 字体 SHA-256 | `2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b` |
 | `Sans/LICENSE` SHA-256 | `6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2` |
 
-构建器首次从该提交下载字体和许可证，后续复用缓存；每次校验 hash。生成的图集基于该字体，不改标为项目 MIT 内容。语言包输出保留 `OFL.txt`，使用图集的测试包也必须保留许可、上述版权/商标通知与来源信息；当前通知文件为 [assets/FONT-NOTICE.txt](assets/FONT-NOTICE.txt)，打包器将它与 `OFL.txt` 一并复制。完整字体缓存位于忽略的 `build/dependencies/`；不依赖 Windows 本机字体。
+构建器首次从该提交下载字体和许可证，后续复用缓存；每次校验 hash。生成的图集基于该字体，不改标为项目 MIT 内容。语言包输出保留 `OFL.txt`，使用图集的测试包也必须保留许可、上述版权/商标通知与来源信息；当前通知从各 locale 的 font.json 生成 `FONT-NOTICE.txt`，打包器将它与 `OFL.txt` 一并复制。完整字体缓存位于忽略的 `build/dependencies/`；不依赖 Windows 本机字体。
 
 更换字体或扩大字库前，重新核对来源、版本、覆盖、许可与必要署名，不能把当前选择的结论直接套到其他字体。
 

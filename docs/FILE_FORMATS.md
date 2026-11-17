@@ -95,3 +95,9 @@ PoC 选中 `p055.r000.s000` 至 `p055.r003.s000`，即一个 Isolation 任务页
 ## 编辑数据补充
 
 PoC 每条文本新增 `text_kind`（ui/objective/narrative）和 `terms`（术语 ID 列表），不改变运行时 SLP1 格式。各 locale 的 `style.json`、`glossary.json`、`font.json` 分别提供标点策略、术语状态/定位及字体身份；manifest 记录这些源文件的 hash。当前英文简介页为 p002，短任务页为 p055；用户可见反馈见[编辑基线](FONT_AND_EDITORIAL.md)。
+
+## 005 目录与传输扩展
+
+SLP1 布局不变，新增数据为 832 条 BS、447 条 PDA，仍有六张图集。源码由 poc.json 的 catalogs 声明分文件；新增记录使用 source_sha256 与 source_tokens，构建时绑定固定源资源，不发布完整英文池。manifest 新增 targets 快照与 coverage 统计，回滚验证读取冻结的目标值。
+
+005 编码器保留源绑定的 VT+1..K、LF/TAB 和 %1..%9。图集只收集可见字符，不把 opcode/模板参数作为字形。BS 传输和按键展开后均限制255字节；物理键名及movement/mouse标签最多27字节；PDA展开后最多1,800字节。详细原生分档规则及五个新增接入点见[文本契约](research/TEXT_CONTRACTS_005.md)。此前四样本、450字节与Noto描述属于初始PoC历史。
