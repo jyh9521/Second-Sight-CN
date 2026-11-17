@@ -2,7 +2,7 @@
 
 > 共享构建要求见[构建规范](docs/BUILD_STANDARD.md)、[安装与恢复](docs/INSTALLATION_STANDARD.md)和[验收标准](docs/ACCEPTANCE.md)。本页保留本作实际输入、命令与历史结果；规范迁移未重建游戏产物。
 
-> 当前检查点：严格目录 51 项发现已由[编辑修复](docs/EDITORIAL_REPAIR.md)处理；当前 [009 完整候选](docs/RENDER_POLISH_009.md) 含时长型对白、无底板字幕及新版字库。本地保留 008/009，被清理的旧包资料先另存。早期采用记录与下方历史命令不倒写成最新验收。
+> 当前检查点：严格目录 51 项发现已由[编辑修复](docs/EDITORIAL_REPAIR.md)处理；当前 [010 完整候选](docs/HUD_TEXT_010.md) 加入 HUD 小字缩放，保留 009 字库与字幕改动。本地保留 009/010，被清理的旧包资料先另存。早期采用记录与下方历史命令不倒写成最新验收。
 
 ## 新规范只读审计入口
 
@@ -84,7 +84,7 @@ python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix -
 python -X utf8 tools/stage_poc.py --verify --out $Package
 ```
 
-009 已完成，后续重建必须选择更高编号；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
+010 已完成，后续重建必须选择更高编号；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
 
 HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。Compatibility、FusionFix、本地化三份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK、FusionFix 二进制及输入配置不变；输出配置仅将 `[MAIN] WindowMode` 从 `0` 改为 `2`，固定输出 hash 与 override 记录写入清单。004 起默认无边框，其余设置不变。
 

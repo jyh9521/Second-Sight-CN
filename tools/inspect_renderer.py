@@ -19,6 +19,13 @@ EXPECTED_SIZE = 5_484_544
 MARKER_SITES = (0x610A96, 0x6119F3, 0x611A59, 0x611D1B, 0x611D58, 0x612561)
 PROTECTED_ENTRIES = (0x612BC0, 0x613330)
 PATCH_SITES = {
+    "hud_hint_wrap_begin": (0x62FEA7, "e8e406feff"),
+    "hud_hint_wrap_end": (0x62FEFB, "e89006feff"),
+    "hud_hint_draw_begin": (0x63009D, "e8ee04feff"),
+    "hud_hint_draw_end": (0x630208, "e88303feff"),
+    "hud_weapon_begin": (0x57B9D2, "e8b94b0900"),
+    "hud_weapon_wrap": (0x57BA6E, "e8fd610900"),
+    "hud_weapon_end": (0x57BAF5, "e8964a0900"),
     "hd_atlas_row_pixels": (0x612603, "c1e004"),
     "hd_atlas_bottom_pixel": (0x612606, "8d5010"),
     "hd_atlas_column_pixels": (0x612615, "c1e104"),

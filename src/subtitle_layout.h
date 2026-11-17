@@ -8,7 +8,7 @@ struct Scope { Style style; Style* previous; std::uint32_t fontIndex, descriptor
 static Scope cutscene{};
 // This is a pixel-space renderer. Match its 480-line reference UI at each height.
 inline float screenScale(int height) { return height > 0 && height <= 16384 ? static_cast<float>(height) / 480.0f : 1.0f; }
-static int begin(Scope& scope, int font) {
+static int beginScaled(Scope& scope, int font, float scale) {
     using SetFont = int (__cdecl*)(int);
     auto& current = *reinterpret_cast<Style**>(0x9e88ac);
     auto& index = *reinterpret_cast<std::uint32_t*>(0x9e88a4);
@@ -17,10 +17,12 @@ static int begin(Scope& scope, int font) {
     if (!scope.active) { scope.previous = current; scope.fontIndex = index; scope.descriptor = descriptor; }
     const int previous = reinterpret_cast<SetFont>(0x610590)(font);
     scope.style = *current;
-    const float scale = screenScale(*reinterpret_cast<const int*>(0x872504));
     scope.style.x *= scale; scope.style.y *= scale;
     current = &scope.style; scope.active = true;
     return previous;
+}
+static int begin(Scope& scope, int font) {
+    return beginScaled(scope,font,screenScale(*reinterpret_cast<const int*>(0x872504)));
 }
 static void end(Scope& scope) {
     if (!scope.active) return;

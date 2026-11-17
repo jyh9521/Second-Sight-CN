@@ -35,6 +35,44 @@ static const LiteralContract literalContracts[]={
 static Pack pack;
 static gameplay_captions::State GameplayCaptionState;
 
+namespace {
+subtitle_layout::Scope hintWrapStyle{}, hintDrawStyle{}, weaponLabelStyle{};
+float hudTextScale() {
+    const int height=*reinterpret_cast<const int*>(0x872504);
+    // Scale the small HUD labels less aggressively than full subtitles.
+    return height>=720 && height<=16384 ? (std::min)(static_cast<float>(height)/720.0f,4.0f) : 1.0f;
+}
+int endHudText(subtitle_layout::Scope& scope,int font) {
+    if(!scope.active) return reinterpret_cast<int(__cdecl*)(int)>(0x610590)(font);
+    const int previous=*reinterpret_cast<const int*>(0x9e88a4);
+    const bool ownsCurrent=*reinterpret_cast<subtitle_layout::Style**>(0x9e88ac)==&scope.style;
+    subtitle_layout::end(scope);
+    return ownsCurrent ? previous : reinterpret_cast<int(__cdecl*)(int)>(0x610590)(font);
+}
+}
+extern "C" __declspec(noinline) int __cdecl HudHintWrapStart(int font) {
+    return subtitle_layout::beginScaled(hintWrapStyle,font,hudTextScale());
+}
+extern "C" __declspec(noinline) int __cdecl HudHintWrapEnd(int font) {
+    return endHudText(hintWrapStyle,font);
+}
+extern "C" __declspec(noinline) int __cdecl HudHintDrawStart(int font) {
+    return subtitle_layout::beginScaled(hintDrawStyle,font,hudTextScale());
+}
+extern "C" __declspec(noinline) int __cdecl HudHintDrawEnd(int font) {
+    return endHudText(hintDrawStyle,font);
+}
+extern "C" __declspec(noinline) int __cdecl HudWeaponStart(int font) {
+    return subtitle_layout::beginScaled(weaponLabelStyle,font,hudTextScale());
+}
+extern "C" __declspec(noinline) int __cdecl HudWeaponEnd(int font) {
+    return endHudText(weaponLabelStyle,font);
+}
+extern "C" __declspec(noinline) char* __cdecl HudWeaponWrap(const char* text,float width) {
+    // Preserve the original number of glyphs per line in the centred variant.
+    return reinterpret_cast<char*(__cdecl*)(const char*,float)>(0x611c70)(text,width*hudTextScale());
+}
+
 static void log(const char* message) {
     FILE* file = nullptr;
     if (_wfopen_s(&file, (directory+L"SecondSight.Localization.log").c_str(), L"ab") == 0) {
@@ -532,6 +570,15 @@ static void install() {
     call(0x543031,{0xe8,0x5a,0xd5,0x0c,0x00},subtitle_layout::beginCutscene);
     call(0x63d78a,{0xe8,0xa1,0x20,0x00,0x00},GameplayCaptionDrawHook);
     call(0x63d494,{0xe8,0x67,0x21,0x00,0x00},GameplayCaptionResetHook);
+    // Paired SetFont calls only in the tutorial notice and selected weapon
+    // label paths; scale native measure/wrap/draw together, then restore.
+    call(0x62fea7,{0xe8,0xe4,0x06,0xfe,0xff},HudHintWrapStart);
+    call(0x62fefb,{0xe8,0x90,0x06,0xfe,0xff},HudHintWrapEnd);
+    call(0x63009d,{0xe8,0xee,0x04,0xfe,0xff},HudHintDrawStart);
+    call(0x630208,{0xe8,0x83,0x03,0xfe,0xff},HudHintDrawEnd);
+    call(0x57b9d2,{0xe8,0xb9,0x4b,0x09,0x00},HudWeaponStart);
+    call(0x57ba6e,{0xe8,0xfd,0x61,0x09,0x00},HudWeaponWrap);
+    call(0x57baf5,{0xe8,0x96,0x4a,0x09,0x00},HudWeaponEnd);
     patches.push_back({0x5431e8,{0xd9,0x05,0xb4,0x74,0x96,0x00},
                        branch(0x5431e8,subtitle_layout::endCutsceneHook,6,0xe9)});
     call(0x610efd,{0xe8,0xce,0xcf,0xdf,0xff},BeginTextBatchHook);
