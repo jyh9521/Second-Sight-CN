@@ -71,3 +71,7 @@ Windows 上 `Path.write_text()` 默认换行转换可能把 LF 清单改成 CRLF
 ## Python 调用 Windows PowerShell 的模块路径
 
 从 PowerShell 7 环境经 Python 调用 Windows PowerShell 5.1 时，可能继承不同版本的模块路径，导致 `Get-FileHash` 未被正确导入。包内开关和清理脚本先把当前 `$PSHOME/Modules` 放到模块搜索路径前端；不修改机器的永久环境设置。
+
+## 不要在重建测试包时丢失用户要求的窗口模式
+
+003 复制上游默认配置导致 `WindowMode=0`，没有延续用户需要的无边框。004 起打包策略显式生成 `WindowMode=2` 的输出，保留其他配置字节及上游输入，记录前后 hash；旧包配置不追溯重置。窗口模式测试与崩溃归因分开，设置正确也不能证明菜单实机通过。

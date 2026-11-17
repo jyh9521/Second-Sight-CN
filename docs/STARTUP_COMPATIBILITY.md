@@ -57,3 +57,7 @@ python -X utf8 tools/startup_compat.py probe --image build/startup-003/MODIFIED_
 预期日志：`game/scripts/SecondSight.Compatibility.log` 出现 `COMPAT APPLIED`，UAL 日志随后记录 FusionFix、本地化模块的加载。本地化日志再结合实际菜单截图判断。以上是预期，不是已观测的 003 运行结果。
 
 **状态：已完成针对既有启动故障的离线修正；003 是否成功进入菜单，以及后续画面/音频/输入/场景切换，仍待用户验收。**
+
+## 后续用户结果（003 → 004）
+
+003 的用户日志已确认兼容适配生效，FusionFix 和本地化 ASI 都完成加载；字体资源已读、32 条 BS 已替换。但用户未进入主菜单，反复失焦后在原 EXE 的另一处纹理路径退出。上述原有离线证据保持不变；新故障、无边框要求与当前待验收状态见[004 记录](STARTUP_004.md)。

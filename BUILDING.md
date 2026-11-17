@@ -1,6 +1,6 @@
 # 构建与离线验证
 
-当前中文样本、独立 x86 ASI、离线宿主和 **PoC 003 启动兼容测试包已完成离线构建与检查**；游戏内显示及高清材质/FusionFix 共存均待用户验收。**以下自动化只处理文件或运行自有测试宿主，不启动游戏。**
+当前中文样本、独立 x86 ASI、离线宿主和 **PoC 004 无边框测试包已完成离线构建与检查**；游戏内显示及高清材质/FusionFix 共存均待用户验收。**以下自动化只处理文件或运行自有测试宿主，不启动游戏。**
 
 ## 环境与输入
 
@@ -59,13 +59,13 @@ $Root = (Get-Location).Path
 `tools/stage_poc.py` 重新构建语言包与 ASI、运行自有离线宿主，再复制原游戏、固定 FusionFix 与可选 ReMade 输入。它不启动游戏，不加载第三方 DLL；拒绝已有输出、输入/输出重叠和目录联接，核对构建前后原安装及第三方输入的 hash。
 
 ```powershell
-python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix --remastered-root "ReMade With Second Sight Remastered Textures" --out dist/poc-zh-CN-003
-python -X utf8 tools/stage_poc.py --verify --out dist/poc-zh-CN-003
+python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix --remastered-root "ReMade With Second Sight Remastered Textures" --out dist/poc-zh-CN-004
+python -X utf8 tools/stage_poc.py --verify --out dist/poc-zh-CN-004
 ```
 
-003 已存在时使用新的递增编号，例如 004。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
+004 已存在时使用新的递增编号，例如 005。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
 
-HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。两份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK 和 FusionFix 配置不变。
+HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。两份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK、FusionFix 二进制及输入配置不变；输出配置仅将 `[MAIN] WindowMode` 从 `0` 改为 `2`，固定输出 hash 与 override 记录写入清单。004 起默认无边框，其余设置不变。
 
 包内提供 `TESTING.md`、`package.json`、原安装与高清输入清单、`Disable-Localization.ps1` 和 `Set-HD.ps1`。`game/profiles/` 初始为空；不复制个人存档，但用户目录/注册表隔离仍待实测。手动启动和分层排查见[三合一测试说明](docs/INTEGRATED_TESTING.md)。
 
@@ -73,13 +73,13 @@ HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复
 
 新包完整校验通过后，构建器按递增编号保留最近两个受管包。`tools/package_retention.py` 生成带清单 hash 的计划；`tools/prune_test_packages.ps1` 验证绝对路径位于仓库 `dist/`、无联接、清单和 EXE 身份一致，且副本未被运行，再删除旧包。计划保存在 `build/package-retention/<包名>/retention-plan.json`。
 
-失败/未完成/无法识别的目录、外部输入与研究记录不自动删除。保留规则按全局包编号排序，跨语言也要使用新的编号。旧包的测试存档、配置和日志随包删除，重要反馈应先保存到包外。当前 `dist/` 保留 002、003，早期未编号副本已删除。历史 `build/poc-20261117/runtime` 的清理调用被执行器拦截，目录仍存在，不将它记为已清理；它不属于后续受管发布目录。
+失败/未完成/无法识别的目录、外部输入与研究记录不自动删除。保留规则按全局包编号排序，跨语言也要使用新的编号。旧包的测试存档、配置和日志随包删除，重要反馈应先保存到包外。当前 `dist/` 保留 003、004，早期未编号副本已删除。历史 `build/poc-20261117/runtime` 的清理调用被执行器拦截，目录仍存在，不将它记为已清理；它不属于后续受管发布目录。
 
 `--verify` 只检查清单文件与固定依赖，不运行游戏；手动改配置、禁用模块后会报告差异，不代表实机故障。
 
 ### PoC 002 加载器历史证据
 
-以下是当时的回滚流程与留存证据，不代表 001/002 启动成功。001 已按两版保留规则删除；重做该历史实验须自行提供相应基线，而非重新使用已删除目录。当前 003 的验证见下一节。
+以下是当时的回滚流程与留存证据，不代表 001/002 启动成功。001 已按两版保留规则删除；重做该历史实验须自行提供相应基线，而非重新使用已删除目录。003 的历史验证见下文；当前 004 的配置验证见末节。
 
 ```powershell
 python -X utf8 tools/verify_integration.py prepare --baseline dist/poc-zh-CN-001 --package dist/poc-zh-CN-002 --out build/integration-002
@@ -140,7 +140,7 @@ bash build/resource-probe-local/ROLLBACK.sh build/resource-probe-local/ROLLBACK_
 
 每次构建记录输入/产物 hash、工具版本、修改字段、命令与退出状态。仅提交源码、原创译文和合成测试；不提交原版资产或完整隔离副本。正式发布前还需完成用户验收和[许可检查](LICENSING.md)。
 
-PoC 002 新增分离加载器、完整材质输入身份和最近两版保留流程；当前合成测试为 **84 项通过**。三者运行时共存继续由用户验证。
+PoC 002 新增分离加载器、完整材质输入身份和最近两版保留流程；003 当时合成测试为 **84 项通过**。三者运行时共存继续由用户验证。
 
 ## PoC 003 启动兼容回归
 
@@ -152,4 +152,15 @@ $Root = (Get-Location).Path
 python -X utf8 tools/startup_compat.py preflight --exe "$Game/secondsight.EXE"
 ```
 
-原始离线探针应失败（23/27、退出 2），原生适配器处理后的分析图像为 27/27、退出 0；另一副本回滚恢复原始字节与原始缺失签名，回滚命令退出 0。证据位于 `build/startup-003/`；完整方法、地址、用户日志与局限见[启动兼容记录](docs/STARTUP_COMPATIBILITY.md)。这些命令不运行任何游戏指令；下一步是用户手动验证 003 的主菜单。
+原始离线探针应失败（23/27、退出 2），原生适配器处理后的分析图像为 27/27、退出 0；另一副本回滚恢复原始字节与原始缺失签名，回滚命令退出 0。证据位于 `build/startup-003/`；完整方法、地址、用户日志与局限见[启动兼容记录](docs/STARTUP_COMPATIBILITY.md)。这些命令不运行任何游戏指令；003 用户测试后来确认越过加载故障，但在另一处纹理路径退出；当前状态见下一节。
+
+## PoC 004 无边框策略与配置回滚
+
+004 只将输出 FusionFix 配置的 `MAIN.WindowMode` 改为 `2`，不改源码模块或第三方二进制。`tools/fusionfix_config.py` 保留其他字节；清单的 `fusionfix_config` 记录输入/输出 hash 与 override。93 项合成测试通过。
+
+```powershell
+python -X utf8 tools/verify_window_mode.py prepare --source FusionFix/scripts/SecondSight.FusionFix.cfg --out build/window-004
+python -X utf8 tools/verify_window_mode.py evidence --out build/window-004
+```
+
+证据目录需尚不存在；已生成时选新目录。BASELINE 退出 2（仍为独占全屏），MODIFIED/ROLLBACK 退出 0；回滚只恢复独立配置副本，交付包保持无边框。实际失焦与退出原因仍待用户实验，详见[004 记录](docs/STARTUP_004.md)。

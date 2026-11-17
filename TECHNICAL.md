@@ -97,3 +97,7 @@ PDA 使用独立的 `data/pdaps_[aefgis].raw` 资源，每个后缀在 17 个剧
 ## PoC 003：GOG/FusionFix 启动契约
 
 001/002 的用户转储均在 FusionFix 的空 pattern 向量处读取地址 0，尚未加载本地化 ASI。四处 GOG 跳板造成上游直接签名不匹配。003 使用先加载的独立兼容模块，核对固定输入并仅在用户启动的进程内提供 22 字节指令契约，Overlay 使用私有持久 float；磁盘 EXE/FusionFix 不变。84 项合成测试和原生宿主通过，27 条直接签名从 4 项缺失变为全部唯一，实机待测。详见[启动兼容记录](docs/STARTUP_COMPATIBILITY.md)。
+
+## PoC 004：默认无边框，二进制不变
+
+003 用户日志确认 Compatibility、FusionFix、本地化按序初始化，并完成 6 次字体读取与 32 条 BS 替换；随后原 EXE 的 RVA `0x135FC` 在纹理槽 0 对象为空时读取地址 0。失焦、空槽与各模组的因果关系尚未确证。004 只将输出配置 `MAIN.WindowMode` 从 0 改为 2（offset 330 一个字节），不增加游戏指令修改；构建器验证输入/输出 hash 并记录覆盖字段。配置回滚在独立副本完成，实机待用户测试，详见[004 技术记录](docs/STARTUP_004.md)。

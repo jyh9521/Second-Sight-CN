@@ -134,6 +134,23 @@ class LayoutTests(unittest.TestCase):
     def test_both_layouts(self):
         for hd in (False,True): stage.validate_layout(self.record(hd))
 
+    def test_new_package_requires_pinned_borderless_override(self):
+        for hd in (False, True):
+            data=self.record(hd)
+            data.update(package_id="poc-zh-CN-004",version=4)
+            with self.assertRaisesRegex(ValueError,"borderless"):
+                stage.validate_layout(data)
+            data['fusionfix_config']=stage.fusionfix_config_record()
+            data['files']['game/'+stage.FUSION_CONFIG_PATH]=stage.BORDERLESS_CONFIG_SHA
+            stage.validate_layout(data)
+            for field,value in (("source_sha256","wrong"),("output_sha256","wrong"),
+                                ("overrides",{"MAIN.WindowMode":0}),("policy","unknown")):
+                altered=copy.deepcopy(data);altered['fusionfix_config'][field]=value
+                with self.assertRaisesRegex(ValueError,"borderless"):
+                    stage.validate_layout(altered)
+            data['files']['game/'+stage.FUSION_CONFIG_PATH]=stage.FUSION_FILES[stage.FUSION_CONFIG_PATH]
+            with self.assertRaises(ValueError): stage.validate_layout(data)
+
     def test_startup_adapter_requires_explicit_preload(self):
         for hd in (False,True):
             data=self.record(hd);data['startup_compat']='gog-fusionfix-contracts-v1'
@@ -202,6 +219,53 @@ class LayoutTests(unittest.TestCase):
                 integration.prepare(out,*packages)
             self.assertEqual((out/"MODIFIED_FILE.json").read_bytes(),(packages[1]/"package.json").read_bytes())
             self.assertIn("../../..",(out/"ROLLBACK.sh").read_text())
+
+
+class BorderlessConfigTests(unittest.TestCase):
+    def test_only_main_window_mode_byte_changes(self):
+        for newline in (b'\n',b'\r\n'):
+            source=newline.join((b'; WindowMode = 0',b'[MAIN]',b'WindowMode = 0 ; original',
+                                 b'FPSLimit = -1',b'[OTHER]',b'WindowMode = 1',b''))
+            result=stage.borderless_config(source)
+            self.assertEqual(result,source.replace(b'WindowMode = 0 ; original',b'WindowMode = 2 ; original'))
+            self.assertEqual(sum(a!=b for a,b in zip(source,result)),1)
+
+    def test_case_whitespace_and_no_final_newline(self):
+        self.assertEqual(stage.borderless_config(b'[main]\n  windowmode\t= 1'),b'[main]\n  windowmode\t= 2')
+        source=b'[MAIN]\nWindowMode=2'
+        self.assertEqual(stage.borderless_config(source),source)
+
+    def test_missing_duplicate_and_invalid_modes_rejected(self):
+        for source in (b'[OTHER]\nWindowMode=0',b'[MAIN]\n;WindowMode=0',
+                       b'[MAIN]\nWindowMode=0\nWindowMode=1',
+                       b'[MAIN]\nWindowMode=0\n[MAIN]\nX=1',
+                       b'[MAIN]\nWindowMode=3',b'[MAIN]\nWindowMode=00',
+                       b'[MAIN]\nWindowMode=0 garbage'):
+            with self.subTest(source=source),self.assertRaises(ValueError):
+                stage.borderless_config(source)
+
+    def test_writer_preserves_input_and_records_both_hashes(self):
+        source=b'[MAIN]\r\nWindowMode = 0\r\nFPSLimit = -1\r\n'
+        output=source.replace(b'WindowMode = 0',b'WindowMode = 2')
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);original=root/'input.cfg';target=root/'output.cfg'
+            original.write_bytes(source)
+            with patch.dict(stage.FUSION_FILES,{stage.FUSION_CONFIG_PATH:hashlib.sha256(source).hexdigest()}), \
+                 patch.object(stage,'BORDERLESS_CONFIG_SHA',hashlib.sha256(output).hexdigest()):
+                record=stage.write_fusionfix_config(original,target)
+                self.assertEqual(original.read_bytes(),source)
+                self.assertEqual(target.read_bytes(),output)
+                self.assertEqual(record,stage.fusionfix_config_record())
+                self.assertEqual(record['overrides'],{'MAIN.WindowMode':2})
+                with self.assertRaises(FileExistsError):stage.write_fusionfix_config(original,target)
+
+    def test_wrong_source_rejected_before_output_creation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);original=root/'input.cfg';target=root/'output.cfg'
+            original.write_bytes(b'[MAIN]\nWindowMode=0')
+            with self.assertRaisesRegex(ValueError,'input'):
+                stage.write_fusionfix_config(original,target)
+            self.assertFalse(target.exists())
 
 
 if __name__=="__main__": unittest.main()

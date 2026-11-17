@@ -1,6 +1,6 @@
 # 三合一测试包
 
-本包包含 **ReMade 高清材质、FusionFix 和中文最小样本**。003 增加 GOG/FusionFix 启动兼容模块，针对 001/002 已复现的启动退出；当前首先验证能否进入主菜单。文件整合与离线检查不等于三者运行时共存通过；游戏由用户手动启动。本轮不修改原安装，不修改 EXE 的 LAA 标志。
+本包包含 **ReMade 高清材质、FusionFix 和中文最小样本**。004 沿用 GOG/FusionFix 启动兼容模块，并默认无边框。003 已越过前一处加载故障，但反复失焦后在另一处纹理路径退出；本次先验证无边框、自动切出及主菜单。文件整合与离线检查不等于三者运行时共存通过；游戏由用户手动启动。本轮不修改原安装，不修改 EXE 的 LAA 标志。
 
 ## 文件与用途
 
@@ -11,18 +11,18 @@
 | `game/dsound.dll` | FusionFix 自带的 Ultimate ASI Loader 10.0.2，仅改文件名 |
 | `game/dsound.ini` | 开启诊断日志，显式先加载 Compatibility，保留默认延迟初始化 |
 | `game/scripts/SecondSight.Compatibility.asi` | 仅在进程内适配四处 GOG/FusionFix 指令契约，磁盘 EXE 不变 |
-| `game/scripts/SecondSight.FusionFix.asi`、`.cfg` | 固定 FusionFix `13.11.2026.1802-7bce79f`，使用输入目录的原始配置 |
+| `game/scripts/SecondSight.FusionFix.asi`、`.cfg` | 固定 FusionFix `13.11.2026.1802-7bce79f`，输入配置仅覆盖 `MAIN.WindowMode=2`，其余值不变 |
 | `game/scripts/SecondSight.Localization.asi` | 独立汉化模块 |
 | `game/scripts/localization/` | 语言包、字形清单及许可通知 |
 
-003 使用固定 FusionFix 输入目录的默认配置；原 001 的配置已在删除旧包前保存到本地故障证据目录。
+004 输出配置仅将固定输入的 `WindowMode=0` 改为 `2`；不改帧率、失焦暂停或其他设置。输入配置保持原字节。003 配置/日志和原 001 配置均已在本地故障证据目录保留。
 
 这是独立的本地游戏副本，不依赖原目录的硬链接或目录联接，也不把三个模组同名覆盖。原安装中的 GOG 输入包装器未复制进测试包。ReMade 本地 DLL 没有版本资源，以包内 hash 清单识别，不根据网站版本号推定其版本。
 
 ## 你来测试
 
 1. 打开本测试包的 `game/` 目录（包编号见 `package.json`），由你手动双击 `secondsight.EXE`。不要使用指向原安装或旧测试包的快捷方式。若从终端启动，先切换到这个 `game/` 目录；ReMade 按工作目录查找材质。
-2. 本次先确认能否进入菜单；成功后再看“新游戏”“选项”“字幕”等样本及 FusionFix 功能，再检查场景纹理是否生效。记录分辨率、窗口模式和设置。
+2. 本次先确认游戏是否无边框覆盖屏幕、是否仍自动切出、能否停留在菜单。若再次被切出或退出，保留日志并反馈，不必反复切回。成功后再看“新游戏”“选项”“字幕”等样本及 FusionFix 功能，再检查场景纹理是否生效。记录分辨率、窗口模式和设置。
 3. 检查剧情中的候选句，例如“我在哪里？”；进入 Isolation 的 PDA 任务页，观察“任务目标 / 隔离 / 逃离。 / 离开隔离室。”。候选字幕尚未全部定位，不把遇到英文当作整包故障。
 4. 记录进出 PDA、读取存档、关卡切换、切换窗口后的字形、贴图和稳定性。高清包含 108 张 8K 材质，留意加载时间、内存增长和崩溃；本轮没有降采样或应用 4GB 补丁。
 5. 退出后保留截图和日志：`game/dsound.log`、`game/scripts/SecondSight.Compatibility.log`、`game/scripts/SecondSight.Localization.log`，以及实际生成的 ReMade/FusionFix 日志。日志没有生成时也请报告，不以文件存在代替功能验收。
@@ -31,7 +31,7 @@
 
 包内 `game/profiles/` 初始为空，不复制原存档；请自行备份重要存档。文件副本隔离不代表用户目录或注册表状态已实测隔离。
 
-003 的启动修正依据与离线/实机边界见[启动兼容记录](https://github.com/jyh9521/Second-Sight-CN/blob/main/docs/STARTUP_COMPATIBILITY.md)。不要单独关闭 Compatibility 模块再搭配当前固定 FusionFix；该组合会重新遇到原始签名不匹配。
+004 的新故障证据、无边框策略与待验收边界见[004 记录](https://github.com/jyh9521/Second-Sight-CN/blob/main/docs/STARTUP_004.md)；003 的启动适配依据见[兼容记录](https://github.com/jyh9521/Second-Sight-CN/blob/main/docs/STARTUP_COMPATIBILITY.md)。不要单独关闭 Compatibility 模块再搭配当前固定 FusionFix；该组合会重新遇到原始签名不匹配。
 
 ## 出问题时分层排查
 
