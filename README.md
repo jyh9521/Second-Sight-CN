@@ -52,3 +52,8 @@ python -X utf8 -m unittest discover -s tests -v
 项目自有代码采用 [MIT](LICENSE)，原创译文采用 [CC BY-SA 4.0](LICENSE-translations.md)。当前思源黑体与早期 Noto Sans CJK SC 均按 SIL OFL 1.1 保留字体许可；第三方内容遵循各自许可，见[许可与分发边界](LICENSING.md)。仓库不包含原版游戏、完整原始资源或整套 FusionFix/ReMade 二进制。
 
 字体来源、[名词表](locales/zh-CN/glossary.json)和标点铁律见[翻译约定](TRANSLATING.md)。
+
+
+## 维护规范
+
+本项目已接入汉化基准 **2.1**；本次仅更新工程文档，不改变上述补丁版本、发布内容或验证状态。维护前读取 [AGENTS](AGENTS.md) 与[迁移说明](docs/MIGRATION.md)，再按任务查阅[工程规范](docs/LOCALIZATION_STANDARD.md)、[验收标准](docs/ACCEPTANCE.md)、[README写作规范](docs/README_STANDARD.md)和[中文风格](locales/zh-CN/STYLE.md)。
