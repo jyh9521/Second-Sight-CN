@@ -1,458 +1,54 @@
-# Licensing
+# 许可与分发边界
 
-This document describes the licensing boundaries of the localization project.
+本项目提供独立编写的本地化工具、技术说明和原创译文，不拥有《Second Sight》原作或第三方修复项目的版权。
 
-A game localization repository may contain multiple categories of material with different legal and licensing requirements.
+## 项目自有内容
 
-Do not assume that one license automatically applies to every file in the repository.
+| 内容 | 许可 |
+|---|---|
+| 本项目原创代码、脚本和相关原创工程文档 | [MIT](LICENSE) |
+| 本项目原创译文 | [CC BY-SA 4.0](LICENSE-translations.md) |
+| 游戏原文、原始资源及第三方内容 | 各自权利人的许可，不因进入本项目而改用上述许可 |
 
----
+本页不替代许可证正文。版权与署名以对应文件为准；不要删除来源、许可文件或更改记录。
 
-# 1. Project-Owned Code and Tools
+## 原版游戏文件
 
-Original code written specifically for this project should use the license declared in the repository's main `LICENSE` file, unless a file or directory explicitly states otherwise.
+使用者自行提供原版游戏。完整 EXE、PAK、音频、视频、贴图、字体及其完整修改副本不提交到 Git，也不随测试包或 Release 再分发。
 
-Possible choices include:
+本地 `build/` 可以保存用户文件的隔离副本和验证证据；它被忽略并不代表其内容可以公开发布。发行应优先采用原创模块、构建器、结构化译文及必要差分，并在打包时再次检查是否混入原始资产。
 
-- MIT
-- MPL-2.0
-- Apache-2.0
-- GPL-compatible licenses where appropriate
+测试夹具使用合成数据，不从原始封包截取完整资源充当测试素材。源码仓库也不上传完整提取后的英文文本池。
 
-The selected license should match the project's technical and upstream constraints.
+## FusionFix 与 Ultimate ASI Loader
 
-Do not relicense upstream code incompatibly.
+用户提供的 `FusionFix/` 是本地依赖目录，不纳入本项目自有代码或翻译许可。源码参考以[固定上游提交](https://github.com/ThirteenAG/WidescreenFixesPack/tree/7bce79ffaeee61f95db59a68b35a150cd8644223/source/SecondSight.FusionFix)为准。
 
----
+初始核查发现：上游仓库根 `license` 为 GPLv3，本地二进制版本资源的许可文字则写 MIT。二者存在差异，不能仅凭 DLL 元数据把整套上游代码声明为 MIT。若后续复制、修改或分发上游内容，先核对具体文件的适用许可，保留来源与修改记录，再按对应条件组织发布。
 
-# 2. Translation Text
+当前路线是独立本地化模块，不把阅读上游代码自动视为已复用上游实现；实际依赖和引入的代码须单独登记。
 
-Original translation work may be licensed separately from program code.
+## 字体与其他模组
 
-A common option for translation data is:
+当前 PoC 使用 **Noto Sans CJK SC Regular 2.004**，字体元数据版权为 `© 2014-2021 Adobe (http://www.adobe.com/).`，商标通知为 `Noto is a trademark of Google Inc.`。来源为 [notofonts/noto-cjk 固定提交](https://github.com/notofonts/noto-cjk/tree/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans)，采用 [SIL Open Font License 1.1](https://github.com/notofonts/noto-cjk/blob/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/LICENSE)。
 
-```text
-CC BY-SA 4.0
-```
+| 输入 | 固定值 |
+|---|---|
+| 提交 | `f8d157532fbfaeda587e826d4cd5b21a49186f7c` |
+| 文件 | `Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf` |
+| 字体 SHA-256 | `2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b` |
+| `Sans/LICENSE` SHA-256 | `6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2` |
 
-This allows reuse for:
+构建器首次从该提交下载字体和许可证，后续复用缓存；每次校验 hash。生成的图集基于该字体，不改标为项目 MIT 内容。语言包输出保留 `OFL.txt`，使用图集的测试包也必须保留许可、上述版权/商标通知与来源信息；当前通知文件为 [assets/FONT-NOTICE.txt](assets/FONT-NOTICE.txt)，打包器将它与 `OFL.txt` 一并复制。完整字体缓存位于忽略的 `build/dependencies/`；不依赖 Windows 本机字体。
 
-- Traditional Chinese versions
-- ports
-- remasters
-- additional platforms
-- derivative localization projects
+更换字体或扩大字库前，重新核对来源、版本、覆盖、许可与必要署名，不能把当前选择的结论直接套到其他字体。
 
-while requiring attribution and share-alike distribution.
+Nexus 模组由用户提供后再评估技术与分发条件。兼容某个模组不等于获得其再分发授权；测试包默认不捆绑尚未核实许可的模组文件。
 
-If another license is used, document it explicitly.
+## 发布前检查
 
----
-
-# 3. Source-Language Game Text
-
-Source-language text extracted from the original commercial game remains copyrighted by the original rights holders.
-
-Including original strings in translation tables does not mean this project grants rights to those original strings.
-
-Use original game text only to the extent reasonably necessary for:
-
-- translation
-- interoperability
-- patch construction
-- technical analysis
-- context preservation
-
-Do not treat original game text as project-owned material.
-
----
-
-# 4. Original Game Assets
-
-Unless redistribution is explicitly permitted, do not commit or redistribute complete proprietary game assets such as:
-
-- executables
-- ELF files
-- DLLs
-- full archives
-- audio
-- video
-- textures
-- models
-- proprietary fonts
-- complete original data directories
-
-Users should normally provide their own legally obtained original game files.
-
----
-
-# 5. Binary Patches and Transformation Data
-
-Transformation data may be distributed when appropriate.
-
-Examples include:
-
-- xdelta patches
-- IPS patches
-- BPS patches
-- byte-diff descriptions
-- patch scripts
-- build scripts
-- binary patch manifests
-
-Prefer distributing transformation data instead of complete modified proprietary binaries.
-
-A patched full executable may still contain substantial copyrighted original code and should be treated accordingly.
-
----
-
-# 6. Upstream Open-Source Code
-
-Files derived from upstream open-source projects remain subject to their original licenses.
-
-Document all upstream components.
-
-Example:
-
-| Component | Upstream | License |
-|---|---|---|
-| Runtime patch | project URL | MPL-2.0 |
-| Archive library | project URL | MIT |
-| Font | project URL | SIL OFL 1.1 |
-
-Do not remove required copyright notices.
-
-Do not relicense upstream code under incompatible terms.
-
----
-
-# 7. Upstream EULA or Source-Available Code
-
-Some projects expose source code under an EULA, source-available license, SDK agreement, or other non-open-source terms.
-
-Such code may require separate treatment.
-
-Document:
-
-- source
-- governing agreement
-- redistribution limits
-- modification limits
-- whether derivative patches may be shared
-- whether full modified source may be redistributed
-
-Do not label such code as open source unless the license actually qualifies.
-
----
-
-# 8. Fonts
-
-Fonts must follow their own licenses.
-
-Common examples include:
-
-- SIL Open Font License 1.1
-- Apache License 2.0
-- other font-specific licenses
-
-Do not copy proprietary operating-system fonts into the repository merely because they are installed locally.
-
-If the build uses a system font, document that dependency.
-
-Prefer redistributable open fonts when practical.
-
----
-
-# 9. Third-Party Tools
-
-External tools may have their own licenses and redistribution restrictions.
-
-Document:
-
-- tool name
-- source
-- version
-- license
-- whether the tool is bundled
-- whether the user must obtain it separately
-
-Do not redistribute third-party binaries without confirming permission.
-
----
-
-# 10. Reverse-Engineering Notes
-
-Original technical documentation written for this project may use the same license as project documentation or another explicitly declared license.
-
-Examples include:
-
-- format descriptions
-- diagrams
-- offset tables
-- rendering notes
-- reverse-engineering summaries
-- implementation notes
-
-Document factual discoveries without unnecessarily embedding copyrighted game content.
-
----
-
-# 11. Generated Files
-
-Generated output inherits licensing constraints from its inputs.
-
-A generated file is not automatically freely redistributable merely because a project tool created it.
-
-Examples:
-
-- rebuilt archives may contain original copyrighted game assets
-- patched executables still contain original executable code
-- subtitled videos remain derivative works of original videos
-- generated font atlases may include glyphs from third-party fonts
-
-Treat generated files according to their actual contents.
-
----
-
-# 12. Repository Source vs Release Artifacts
-
-The Git repository should preferably contain:
-
-- original project code
-- scripts
-- translation data
-- patch definitions
-- documentation
-- legally redistributable assets
-
-GitHub Releases may contain:
-
-- ready-to-use patch packages
-- installers
-- redistributable prebuilt tools
-- large generated artifacts
-- optional subtitle packs
-
-Release packaging does not override copyright or license restrictions.
-
----
-
-# 13. Game-Derived Resources
-
-Be cautious with files derived directly from original game assets.
-
-Examples:
-
-- edited textures
-- modified videos
-- rebuilt archives
-- extracted fonts
-- modified executable sections
-
-If redistribution status is uncertain, prefer generating them locally from user-supplied originals.
-
-Do not assume that changing an asset makes it freely redistributable.
-
----
-
-# 14. Translation Licenses and Original Text
-
-Translation files may contain both:
-
-- original game text
-- project-created target-language text
-
-These two parts may have different legal status.
-
-Where practical, document that:
-
-- source-language text remains property of the original rights holders
-- target-language translation is licensed by the translation contributors under the project's chosen translation license
-
-A translation license does not grant rights over the original game text.
-
----
-
-# 15. Contributor Licensing
-
-If the project accepts contributions, make licensing expectations clear.
-
-Contributors should understand that their contributions may be distributed under the licenses declared for the relevant part of the project.
-
-If code and translation text use different licenses, document that distinction clearly.
-
----
-
-# 16. Attribution
-
-Preserve attribution for:
-
-- upstream developers
-- reverse-engineering researchers
-- translation contributors
-- font authors
-- external tool authors
-- original game developers and publishers
-
-Recommended locations include:
-
-```text
-README.md
-LICENSING.md
-NOTICE.md
-```
-
-Do not remove legally required notices from upstream components.
-
----
-
-# 17. Recommended License Split
-
-A common project structure may use:
-
-```text
-LICENSE
-```
-
-for project-owned code and tools,
-
-and:
-
-```text
-LICENSE-translations.md
-```
-
-for original translation work.
-
-Example:
-
-```text
-Code and tools:
-MIT
-
-Original translation text:
-CC BY-SA 4.0
-
-Fonts:
-their own licenses
-
-Upstream code:
-its original license
-
-Game text and assets:
-copyright remains with original rights holders
-```
-
-This is only a recommended pattern.
-
-Actual licensing must follow the real upstream and project constraints.
-
----
-
-# 18. Directory-Specific Licensing
-
-Where different directories use different terms, document them explicitly.
-
-Example:
-
-```text
-src/
-  MIT
-
-tools/
-  MIT
-
-locales/
-  CC BY-SA 4.0 for original translation text
-
-patches/upstream-engine/
-  governed by upstream license or EULA
-
-assets/fonts/
-  governed by each font's license
-```
-
-Do not rely on contributors guessing which license applies.
-
----
-
-# 19. License Files
-
-Common files may include:
-
-```text
-LICENSE
-LICENSE-translations.md
-LICENSING.md
-NOTICE.md
-```
-
-Their roles should be:
-
-- `LICENSE` — formal license for project-owned code
-- `LICENSE-translations.md` — formal license for original translation work
-- `LICENSING.md` — explanation of licensing boundaries
-- `NOTICE.md` — attribution and third-party notices where useful
-
-Not every project needs all four, but the distinction should remain clear.
-
----
-
-# 20. Uncertain Licensing Status
-
-If the licensing status of a file or upstream component is uncertain:
-
-- do not guess
-- do not silently mark it as redistributable
-- document the uncertainty
-- avoid redistribution until clarified
-
-Prefer omission over accidental unauthorized redistribution.
-
----
-
-# 21. Project-Specific Licensing Notes
-
-Use this section to record the actual licensing arrangement for the specific project.
-
-Template:
-
-```text
-Project-owned code:
-[license]
-
-Project-owned translation:
-[license]
-
-Upstream project:
-[name / URL / license]
-
-Fonts:
-[name / license]
-
-Third-party tools:
-[name / license]
-
-Game source text:
-copyright retained by original rights holders
-
-Game assets:
-not redistributed unless explicitly permitted
-```
-
-Replace this section with project-specific information when adapting the template.
-
----
-
-# 22. Final Licensing Standard
-
-A mature localization project should make it clear:
-
-- what the project authors own
-- what contributors may reuse
-- what requires attribution
-- what must remain under an upstream license
-- what must not be redistributed
-- what must be generated locally from original game files
-
-If the licensing boundary is not obvious, document it explicitly.
+- 每个第三方依赖均有版本、来源、许可与必要通知。
+- 原创代码和译文分开标记；没有用项目许可覆盖原作内容。
+- 包内没有原版或完整重建游戏文件、提取资源、私人路径/日志或凭据。
+- 字体与依赖的再分发条件已核对；只发布实际有权发布的部分。
+- 构建清单、输入身份、回滚方法和验证状态与发布内容一致。

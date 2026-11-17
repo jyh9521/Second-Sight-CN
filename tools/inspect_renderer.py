@@ -47,6 +47,8 @@ RANGES = {
     "resource_size": (0x49DDF0, 0x49DE2D),
     "resource_sort_key": (0x49E490, 0x49E4C5),
     "resource_read": (0x49E4E0, 0x49E578),
+    "resource_read_return": (0x49EB2B, 0x49EB6B),
+    "ui_255byte_copy": (0x4BEAA0, 0x4BEAE4),
     "texture_enqueue": (0x4A0130, 0x4A019C),
     "texture_queue_dispatch": (0x49FA5C, 0x49FAB8),
     "texture_load": (0x413A60, 0x413B62),

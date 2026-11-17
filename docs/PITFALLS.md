@@ -1,517 +1,59 @@
-# Pitfalls
+# 踩坑记录
 
-## Second Sight reconnaissance findings — 2026-11-17
+这里记录已经观察到的边界和容易误判的做法。静态证据、离线结果和游戏内验收分开记录；新增结论需要带输入版本和复现方法。
 
-- **Verified:** P4CK header +0x0C is filename-pool size, not total directory size.
-  The initial total-size hypothesis failed on `anim/animg2.pak`; all 258 packages
-  validate using `directory + record_bytes + filename_bytes == file_size`.
-- **Verified:** Five duplicate names in `anim/animg2.pak` are valid input. The
-  initial name-uniqueness parser was corrected to preserve record identity and
-  reject only ambiguous name-based modifications. A synthetic regression covers it.
-- **Verified:** BS aliases share offsets. Modifying pooled bytes in place can
-  modify several IDs; the probe changes only ID 850 by append-and-repoint.
-- **Verified static:** Texture `.raw` references can be converted to `.dds` by
-  the PC loader. API imports or Japanese path strings alone prove neither Unicode
-  support nor availability of the required font assets.
-- **Unverified runtime:** Arcade copies of BS tables parse correctly, but their
-  active loading order has not been traced. Structural tests are not in-game tests.
-- **Verified configuration/source:** FusionFix `TextLanguage` controls its own
-  settings. Its text-position hooks require coordination with localization hooks;
-  they do not provide Chinese decoding for the original game.
+## UTF-8 译文不等于引擎支持 Unicode
 
-See [the assessment](ASSESSMENT_2026-11-17.md) for evidence and remaining work.
+普通文字路径以单字节字符为主，原有特殊分支使用“逗号 + 十进制字形编号”。直接把 BS 字符串换成 UTF-8 只能证明字节写入成功，不能证明游戏能显示中文。当前 PoC 将标记改为 `0x1F`，每个可见译文字符编码为四位编号，数字本身也编码，防止原解析器把相邻数字吞入编号。编辑态文本、游戏字节和字形映射须分层，字宽与子串边界同时适配。
 
-This document records failed approaches, misleading assumptions, fragile workflows, compatibility traps, and other technical mistakes discovered during development of the localization project.
+## 日文字库不是即插即用的中文方案
 
-The purpose is to preserve negative knowledge.
+EXE 引用了 `jpnfont1`～`jpnfont6`，但扫描全部 PAK 没找到这些成员；初始化还存在跳过记录和关闭模式的路径。六页×256 格只是名义布局，不代表 PC 分支完整、可直接使用或容量足够。保留这条研究线索，不把它写成已完成的中文支持。
 
-A failed approach can be as valuable as a successful one if it prevents future contributors from repeating the same work.
+## FusionFix 的设置语言不是游戏语言
 
----
+`TextLanguage` 只控制 FusionFix 设置界面。其开发者覆盖层字体也不等于游戏字体。中文字形与 BS/PDA 数据仍需独立实现，不通过改一行 cfg 宣称兼容。
 
-# 1. How to Use This Document
+FusionFix 已接管部分文字/HUD 入口；再写一个跳转可能覆盖旧钩子。必须确认预期原字节、加载顺序和链式调用，或选择不冲突的接入位置。
 
-Add an entry whenever a problem meets one or more of these conditions:
+## 两个 dinput8.dll 不能并排同名加载
 
-- it consumed significant investigation time
-- the obvious solution turned out to be wrong
-- the failure can corrupt data or crash the game
-- the issue is easy to reproduce accidentally
-- the cause is not obvious from the symptoms
-- the workaround has important side effects
-- the problem is version-specific
-- the problem is tool-specific
-- future contributors are likely to repeat the same mistake
+原安装中的文件是 GOG Input wrapper，FusionFix 提供的是 Ultimate ASI Loader。替换前须记录 hash、保存原文件并提供恢复步骤；不要把“文件存在”当成已经正确加载了两套功能，也不要改动原安装作为第一轮实验。
 
-Do not use this file for ordinary TODO items.
+## P4CK 中成员名不一定唯一
 
-Use `docs/KNOWN_ISSUES.md` for unresolved player-visible limitations.
+`anim/animg2.pak` 存在 5 处同名成员。应保留目录顺序和条目索引，名称歧义时拒绝按名字替换，不能用字典去重丢掉条目。
 
-Use this file for technical traps and lessons learned.
+P4CK 头部 `0x0C` 是文件名池长度，不是目录总长度。成员相对偏移、载荷偏移与目录偏移也不能混用。完整结构见[文件格式](FILE_FORMATS.md)。
 
----
+## 共享字符串偏移不是独立存储
 
-# 2. Entry Template
+BS 多个 ID 可共享同一个字符串地址。原地覆写可能连带修改其他 ID；变长文本还可能破坏后续字符串。探针采用追加后重定向指定 ID，验证其余 ID 不变。ID 0 还承担当前解析器识别表长的锚点，不能把探针误当作任意 ID 的完整导入器。
 
-Use the following structure for each pitfall.
+## PDA 的 raw 后缀不代表纯文本
 
-```markdown
-## Short descriptive title
+PDA 是结构化资源，不应扫描到可读内容就逐段替换。现有解析器用页/行/段和指针字段定位文本；PoC 在解析/重定位后替换字段指针，不依赖只拦截底层读文件，以免加载/缓存路径绕过替换。离线重建的 `MODIFIED_FILE.raw` 只是验证产物，不是当前运行时安装文件。
 
-**Status:** Verified / High-confidence / Unverified
+字体 `.raw` 名称也会在 PC 加载器内改为 `.dds`。以实际加载代码和成员数据判定格式，不靠后缀推断。
 
-**Affected area:**
-- resource format
-- font
-- executable patch
-- archive
-- build system
-- translation
-- runtime hook
-- toolchain
+## 多份相同资源不代表全部同时生效
 
-**Symptoms:**
-Describe what happens.
+BS 存在于两个 arcade 包，PDA 在剧情包重复。当前字节相同不证明优先级，也不证明单改一份能覆盖全流程。需要用户场景反馈和可追溯资源映射，避免只见到一处成功就声明全游戏覆盖。
 
-**Initial assumption:**
-Describe what seemed likely at first.
+## 离线通过不等于游戏通过
 
-**Actual cause:**
-Describe the verified or suspected root cause.
+回写后的字节、目录、hash 和回滚均正确，仍可能遇到加载器对齐、缓存、编码、布局和生命周期问题。初始追加探针使用保守对齐，但没有完成游戏加载验收。
 
-**Failed approach:**
-Describe what was tried and why it failed.
+用户明确要求自行启动游戏；自动化不为了补截图擅自启动。中断启动、进程出现、标题窗口出现也不能自动记为中文菜单、字幕或 PDA 通过。
 
-**Working solution:**
-Describe the correct workaround or fix.
+## 小样本不等于覆盖整个功能
 
-**How to detect it:**
-List checks, hashes, logs, or behaviors that reveal the problem.
+当前 11 条剧情文本只有候选 ID，未完成场景对应；不能写成“已汉化 11 条实测字幕”。PDA 的 4 条记录属于同一个 Isolation 任务页，不是 4 个页面，尚不能证明长段落、分页或滚动。构建器拒绝控制码和 `%`，不要删除原文格式标记来绕过检查。
 
-**Regression test:**
-Describe how to make sure the problem does not return.
+离线宿主的错误 EXE 身份拒绝是预期通过条件；它既没有运行游戏，也没有证明游戏内钩子安装成功。测试时应同时保留模块日志、包版本和用户截图。
 
-**Related files:**
-List relevant source files, scripts, resources, or documentation.
-```
+## 证据来源要准确
 
----
+初始深层反编译 provider 因 JDK 配置失效未运行；相关细节来自 pefile/Capstone 的静态分析。记录真正执行的工具和输入 hash，不把工具入口存在写成该工具已完成反编译。
 
-# 3. Preserve Failed Approaches
-
-Do not delete a failed experiment merely because a better solution was found.
-
-Useful failed approaches include:
-
-- replacing only a font texture
-- changing encoding without changing the decoder
-- rebuilding an archive without updating secondary metadata
-- patching only one copy of a linked string
-- increasing a buffer without updating a length check
-- converting all text files to UTF-8
-- using system locale as a hidden runtime dependency
-- copying generated files from an old project directory
-- manually editing binary data without reproducible tooling
-
-Record what failed and why.
-
----
-
-# 4. Binary Patch Pitfalls
-
-Typical risks include:
-
-- patch offsets differ between game versions
-- executable packing changes file offsets
-- RVA and file offset are confused
-- expected bytes are not verified
-- patch writes cross instruction boundaries
-- branch displacement is calculated incorrectly
-- patched code assumes the wrong calling convention
-- stack cleanup differs between versions
-- instruction cache or loader behavior differs by platform
-
-For every binary patch problem, record:
-
-- target version
-- target hash
-- address or offset
-- original bytes
-- patched bytes
-- exact failure behavior
-
-Never record only "the patch crashed."
-
----
-
-# 5. Encoding Pitfalls
-
-Common mistakes include:
-
-- assuming visible Korean, Japanese, or Chinese text implies a standard code page
-- treating byte length as character length
-- treating character length as glyph count
-- converting runtime files to UTF-8 without verifying parser support
-- trimming bytes that are actually part of a multibyte sequence
-- interpreting control codes as text
-- applying Unicode normalization that changes expected byte sequences
-- confusing encoded text with direct glyph indexes
-
-When an encoding issue is found, record:
-
-- sample source bytes
-- expected display
-- actual display
-- decoding rule
-- terminator behavior
-- control-code interaction
-
----
-
-# 6. Font Pitfalls
-
-Common failures include:
-
-- replacing the atlas without replacing the character map
-- replacing glyphs without updating width metrics
-- using a font that does not cover all translated characters
-- exceeding texture size limits
-- exceeding glyph count limits
-- using the wrong baseline
-- changing line height unintentionally
-- assuming monospaced behavior in a proportional system
-- generating glyphs in a different order than the runtime expects
-- using proprietary fonts that cannot be redistributed
-
-Record both visual symptoms and technical cause.
-
----
-
-# 7. UI Layout Pitfalls
-
-Typical symptoms include:
-
-- clipping
-- overlapping labels
-- buttons expanding incorrectly
-- subtitles leaving the visible area
-- menu rows colliding
-- dialog boxes becoming too small
-- text scaling differently at high resolution
-
-Possible causes include:
-
-- logical resolution differs from physical resolution
-- text measurement uses physical pixels
-- UI layout uses fixed coordinates
-- font scale and layout scale are independent
-- string width is calculated before localization replacement
-- line wrapping occurs before runtime substitution
-
-Record which coordinate system each relevant component uses.
-
----
-
-# 8. Archive Rebuild Pitfalls
-
-Common mistakes include:
-
-- updating the archive TOC but not a secondary manifest
-- ignoring alignment
-- changing entry order
-- recompressing with incompatible settings
-- forgetting checksums
-- using a generic packer that does not match the game's variant
-- failing to update filename indexes
-- producing correct-looking archives that crash only at runtime
-
-When documenting an archive problem, include:
-
-- archive type
-- tool used
-- original structure
-- rebuilt structure
-- relevant offsets
-- alignment requirements
-- secondary metadata
-
----
-
-# 9. Linked Resource Pitfalls
-
-Some text may appear in multiple locations.
-
-Failure to update all copies may cause:
-
-- invisible items
-- missing documents
-- broken quest progression
-- crashes
-- wrong labels
-- broken resource lookup
-
-Record linked groups explicitly.
-
-Where possible, replace manual duplication with one source-of-truth translation entry.
-
----
-
-# 10. Translation Data Pitfalls
-
-Common problems include:
-
-- duplicate IDs
-- source and target columns swapped
-- spreadsheet software changing encoding
-- CSV delimiter corruption
-- automatic quote escaping
-- line endings altered unexpectedly
-- placeholders removed by machine translation
-- tabs inserted into TSV fields
-- leading zeros removed from IDs
-- formulas evaluated by spreadsheet software
-- strings normalized unintentionally
-
-Document safe editing tools and unsafe workflows.
-
----
-
-# 11. Spreadsheet Pitfalls
-
-If translation data is edited in spreadsheet software, watch for:
-
-- automatic date conversion
-- numeric ID conversion
-- scientific notation
-- encoding changes on CSV export
-- dropped leading zeros
-- escaped quotes
-- line break conversion
-- formulas replacing literal text
-
-Prefer TSV, JSON, PO, or other formats that preserve text predictably.
-
-If spreadsheet software is supported, document the exact import/export procedure.
-
----
-
-# 12. Build System Pitfalls
-
-Common problems include:
-
-- build scripts assuming absolute local paths
-- hidden dependencies on old output directories
-- stale generated files masking failures
-- release builds using untracked local resources
-- tools found through PATH on one machine but not another
-- case-sensitive paths working on Windows but failing on Linux
-- different Python versions changing output
-- different compiler architectures producing incompatible binaries
-
-Record clean-build failures and their causes.
-
----
-
-# 13. Dependency Pitfalls
-
-Document external tools that:
-
-- changed behavior between versions
-- are no longer downloadable
-- have incompatible licenses
-- require GUI interaction
-- depend on system locale
-- produce non-deterministic output
-- silently overwrite files
-- do not support long paths
-- do not support Unicode paths
-
-Where possible, pin known-good versions.
-
----
-
-# 14. Runtime Hook Pitfalls
-
-Common problems include:
-
-- hook runs before the target module is loaded
-- hook runs too late
-- thread-safety problems
-- recursive hook calls
-- hook conflicts with other mods
-- proxy DLL name conflicts
-- function signature mismatch
-- renderer-specific assumptions
-- anti-cheat or integrity systems blocking injection
-
-Document initialization order and compatibility limitations.
-
----
-
-# 15. Emulator Pitfalls
-
-When testing console games, distinguish:
-
-- game bugs
-- patch bugs
-- emulator bugs
-- renderer bugs
-- timing bugs
-
-Record:
-
-- emulator version
-- backend
-- settings
-- whether the issue reproduces on hardware or another emulator
-
-Do not diagnose emulator-specific behavior as a game-format fact without evidence.
-
----
-
-# 16. Save Data Pitfalls
-
-Localization changes can sometimes affect save compatibility.
-
-Possible causes include:
-
-- translated identifiers
-- changed resource indexes
-- string length changes in serialized structures
-- locale-specific save paths
-- checksum differences
-- version tags
-
-Never assume visible text is safe to translate if it is also used as an internal key.
-
----
-
-# 17. Subtitle Pitfalls
-
-Common problems include:
-
-- subtitle text exceeds safe width
-- hard line breaks conflict with automatic wrapping
-- subtitle timing shifts after video re-encoding
-- subtitle renderer does not support target glyphs
-- pre-rendered subtitles use the wrong font
-- line count exceeds engine limits
-
-Record exact timing and rendering constraints.
-
----
-
-# 18. Media Re-Encoding Pitfalls
-
-If video or audio must be regenerated, document:
-
-- codec
-- encoder
-- version
-- bitrate
-- dimensions
-- frame rate
-- audio format
-- muxing requirements
-
-Generated media may differ across tool versions.
-
-Do not assume functional equivalence implies byte-identical output.
-
----
-
-# 19. Path and Filesystem Pitfalls
-
-Common problems include:
-
-- Unicode paths
-- spaces in paths
-- very long paths
-- case sensitivity
-- slash direction
-- reserved Windows filenames
-- read-only installation directories
-- Steam or launcher auto-repair
-- antivirus quarantine
-
-Build tools should quote paths correctly and avoid unnecessary path assumptions.
-
----
-
-# 20. Git Pitfalls
-
-Common repository mistakes include:
-
-- committing generated output
-- committing proprietary game files
-- committing local-only instructions unintentionally
-- tracking files that should remain ignored
-- losing executable bits
-- line-ending conversion
-- Git LFS pointer mistakes
-- renaming only by case on case-insensitive filesystems
-
-Document project-specific Git requirements if needed.
-
----
-
-# 21. Release Pitfalls
-
-Before release, verify that the package does not accidentally include:
-
-- original game binaries
-- private paths
-- debug logs
-- temporary files
-- proprietary fonts
-- test assets
-- developer-only configuration
-- untranslated debug strings
-- stale build output
-
-A release should be built from a clean output directory.
-
----
-
-# 22. Regression Prevention
-
-Whenever a significant pitfall is fixed, add a regression check where practical.
-
-Possible checks include:
-
-- unit tests
-- hash verification
-- expected-byte checks
-- translation validation
-- font coverage checks
-- archive parser checks
-- clean-build CI
-- smoke-test scripts
-
-A documented pitfall is useful.
-
-A documented pitfall plus an automated regression test is better.
-
----
-
-# 23. Project-Specific Pitfalls
-
-Add project-specific entries below this line.
-
-Remove unused template text when adapting this document to a real project.
-
----
-
-# 24. Final Pitfall Standard
-
-This file should make it possible for a future contributor to answer:
-
-- what looked correct but was actually wrong
-- what caused crashes or corruption
-- which tools or versions were unsafe
-- which assumptions were disproven
-- which resources must be changed together
-- how to detect recurring failures
-- how to avoid repeating previous research
-
-Negative knowledge should be preserved as carefully as successful implementation details.
+初始评估和旧验证日志是历史快照。后续 Git 提交、工具能力或运行状态变化时，更新当前文档，不倒写旧实验结果，也不删掉失败线索。

@@ -1,0 +1,5 @@
+LIBRARY SecondSight.Localization.asi
+EXPORTS
+    InitializeASI
+    LocalizationStatus
+    LocalizationSelfTest

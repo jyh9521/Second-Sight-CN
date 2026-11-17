@@ -1,0 +1,21 @@
+name: Offline validation
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: python -m pip install -r requirements.txt
+      - run: python -X utf8 -m unittest discover -s tests -v
+      - run: python -X utf8 tools/inspect_renderer.py --self-test
+      - run: powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1
+      - run: python -X utf8 tools/make_host_fixture.py build/synthetic/locale.bin
+      - shell: pwsh
+        run: |
+          & .\build\runtime\localization_host.exe "$PWD\build\runtime\SecondSight.Localization.asi" "$PWD\build\synthetic\locale.bin"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

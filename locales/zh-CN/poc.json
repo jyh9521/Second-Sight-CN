@@ -1,0 +1,225 @@
+{
+  "schema": 1,
+  "locale": "zh-CN",
+  "status": "proof-of-concept; user-runtime-review-pending",
+  "bs": [
+    {
+      "id": 850,
+      "source": "New Game",
+      "target": "新游戏",
+      "context": "menu"
+    },
+    {
+      "id": 872,
+      "source": "Subtitles",
+      "target": "字幕",
+      "context": "menu"
+    },
+    {
+      "id": 875,
+      "source": "Main Menu",
+      "target": "主菜单",
+      "context": "menu"
+    },
+    {
+      "id": 876,
+      "source": "Play",
+      "target": "开始",
+      "context": "menu"
+    },
+    {
+      "id": 883,
+      "source": "Statistics",
+      "target": "统计",
+      "context": "menu"
+    },
+    {
+      "id": 899,
+      "source": "Options",
+      "target": "选项",
+      "context": "menu"
+    },
+    {
+      "id": 840,
+      "source": "Load Profile",
+      "target": "载入档案",
+      "context": "menu"
+    },
+    {
+      "id": 855,
+      "source": "Profile Manager",
+      "target": "档案管理",
+      "context": "menu"
+    },
+    {
+      "id": 856,
+      "source": "Select Profile",
+      "target": "选择档案",
+      "context": "menu"
+    },
+    {
+      "id": 857,
+      "source": "Reading",
+      "target": "读取中",
+      "context": "menu"
+    },
+    {
+      "id": 858,
+      "source": "Ready",
+      "target": "就绪",
+      "context": "menu"
+    },
+    {
+      "id": 859,
+      "source": "Save Profile",
+      "target": "保存档案",
+      "context": "menu"
+    },
+    {
+      "id": 836,
+      "source": "Enter Name",
+      "target": "输入名称",
+      "context": "menu"
+    },
+    {
+      "id": 826,
+      "source": "Warning",
+      "target": "警告",
+      "context": "menu"
+    },
+    {
+      "id": 827,
+      "source": "Confirm",
+      "target": "确认",
+      "context": "menu"
+    },
+    {
+      "id": 830,
+      "source": "Delete Profile",
+      "target": "删除档案",
+      "context": "menu"
+    },
+    {
+      "id": 835,
+      "source": "Enable Autosave",
+      "target": "启用自动保存",
+      "context": "menu"
+    },
+    {
+      "id": 870,
+      "source": "Mono",
+      "target": "单声道",
+      "context": "menu"
+    },
+    {
+      "id": 871,
+      "source": "Stereo",
+      "target": "立体声",
+      "context": "menu"
+    },
+    {
+      "id": 873,
+      "source": "Vibration",
+      "target": "振动",
+      "context": "menu"
+    },
+    {
+      "id": 868,
+      "source": "Waiting",
+      "target": "请稍候",
+      "context": "menu"
+    },
+    {
+      "id": 1331,
+      "source": "Where am I?",
+      "target": "我在哪里？",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 1332,
+      "source": "Just what did you think you were doing?",
+      "target": "你当时到底在想什么？",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 1333,
+      "source": "What made you think you could get away with it?",
+      "target": "你以为你能逃脱惩罚吗？",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 1334,
+      "source": "What made you think you could get away with just shooting people?",
+      "target": "你以为随意开枪杀人也能逍遥法外吗？",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 1335,
+      "source": "Let me help you.",
+      "target": "让我帮你。",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 1337,
+      "source": "Oh God!",
+      "target": "天哪！",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 5986,
+      "source": "Just what did you think you were doing?",
+      "target": "你当时到底在想什么？",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 5987,
+      "source": "What made you think you could get away with it?",
+      "target": "你以为你能逃脱惩罚吗？",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 5988,
+      "source": "What made you think you could get away with just shooting people?",
+      "target": "你以为随意开枪杀人也能逍遥法外吗？",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 5989,
+      "source": "Where am I?",
+      "target": "我在哪里？",
+      "context": "story-subtitle candidate; scene mapping pending"
+    },
+    {
+      "id": 5990,
+      "source": "Let me help you",
+      "target": "让我帮你。",
+      "context": "story-subtitle candidate; scene mapping pending"
+    }
+  ],
+  "pda": [
+    {
+      "id": "p055.r000.s000",
+      "source": "Objectives",
+      "target": "任务目标",
+      "context": "Isolation objective page"
+    },
+    {
+      "id": "p055.r001.s000",
+      "source": "Isolation",
+      "target": "隔离",
+      "context": "Isolation objective page"
+    },
+    {
+      "id": "p055.r002.s000",
+      "source": "Escape.",
+      "target": "逃离。",
+      "context": "Isolation objective page"
+    },
+    {
+      "id": "p055.r003.s000",
+      "source": "Get out of the isolation cell.",
+      "target": "离开隔离室。",
+      "context": "Isolation objective page"
+    }
+  ]
+}

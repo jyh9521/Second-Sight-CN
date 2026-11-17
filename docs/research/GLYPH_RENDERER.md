@@ -129,6 +129,8 @@ wrap 在 `0x611D1B` 自行复制 marker 和数字，不通过 `0x610680`，因�
 
 wrap 的临时工作区约 0x200 字节，循环在 `0x611DF1` 比较 500；但数字复制的内层循环没有逐字节容量检查，构建端必须约束 token 数字长度。`0x610260` 的复制路径亦未发现完整边界检查，不应仅因 BS 能放长文本就放行超长菜单/PDA 字符串。
 
+另一个更紧的 UI 边界：`0x4BEAA6` 压入 `0xFF`，`0x4BEAB3` 调用 bounded-copy，`0x4BEAC4` 将目的缓冲区 `+0xFF` 强制写 NUL，之后才调用 count。超过 **255 编码字节**的文本会先被按字节截断，token-aware count 无法挽回。应在 POC 构建和 pack 验证中为 BS 设置 255 字节保守上限；后续应按具体消费者区分限制，而不是宣称所有字符串具有统一容量。离线检查当前 32 条 BS 最长为 85 字节、4 条 PDA 最长为 30 字节，未触及此边界。
+
 ## 6. Atlas、宽度与混排
 
 draw 的 glyph ID 右移 8 位选择 descriptor 页，低 4 位选择列，低字节右移 4 位选择行。六页共 1536 格，代码未发现页数边界检查。
@@ -138,6 +140,8 @@ draw 的 glyph ID 右移 8 位选择 descriptor 页，低 4 位选择列，低�
 JPN 模式的 glyph scale 为 `LatinDescriptor.height / JpnDescriptor.height * 0.87`，常量位于 `0x7DE438`。measure 和 draw 都执行此逻辑；不是独立给 draw 放大字形。修改大小必须对两条路径一致考虑。
 
 mode 分支会从正常 style 的 Latin descriptor 重新取得 metrics 和间距表，因此 JPN descriptor 的 `+08/+0C` 为 0 不必填入伪表；普通未翻译 ASCII 仍走 Latin 路径。全局行高、标点、图标和混排基线的实际外观仍需用户确认。
+
+离线复审还检查了 `l_103.pak` 的六语言 BS（每份 6526 项）：均未发现原文裸 `0x1F`；`0x8BACA8` 的 128 项高位字节映射也没有输出 `0x1F`。这降低当前语料冲突风险，不等同于证明所有运行时拼接字符串或其他 mod 都不使用该字节。
 
 ## 7. BS 指针表接入
 
