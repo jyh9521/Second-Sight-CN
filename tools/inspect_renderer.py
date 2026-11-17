@@ -19,6 +19,9 @@ EXPECTED_SIZE = 5_484_544
 MARKER_SITES = (0x610A96, 0x6119F3, 0x611A59, 0x611D1B, 0x611D58, 0x612561)
 PROTECTED_ENTRIES = (0x612BC0, 0x613330)
 PATCH_SITES = {
+    "gameplay_speech_event": (0x456610, "85c0578bfa"),
+    "gameplay_caption_draw": (0x63D78A, "e8a1200000"),
+    "gameplay_caption_reset": (0x63D494, "e867210000"),
     "cutscene_subtitle_style": (0x543031, "e85ad50c00"),
     "cutscene_subtitle_restore": (0x5431E8, "d905b4749600"),
     "text_batch_begin": (0x610EFD, "e8cecfdfff"),

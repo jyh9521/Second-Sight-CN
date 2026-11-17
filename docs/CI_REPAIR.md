@@ -30,9 +30,20 @@ EDITORIAL FAIL: errors=51; punctuation + glossary; no game execution
 
 当前 [.github/workflows/offline.yml](../.github/workflows/offline.yml) 的工程和严格目录 job 均保留。工程 job 已在上述两次真实远端运行中成功；无需为本次故障改动编译参数或降低检查等级。
 
-修订目录后，必须重新执行严格检查，再推送候选并核对**该提交**的新 Actions 运行。旧失败记录不会因新源码修复而自动改成成功。远端新运行结果待实际发生后追加；本页不预写通过。
+修订目录后，重新执行严格检查，再推送候选并核对**该提交**的新 Actions 运行。旧失败记录不会因新源码修复而自动改成成功。
 
 日志另有旧版 checkout/setup-python 的 Node 运行时弃用 warning；它未使上述工程 job 失败，和这次 51 项数据发现分开处理，不将升级动作冒充根因修复。
+
+## 已验证的远端恢复
+
+目录修复提交 `64c0e7501755d0bfed407cee5eb206f66b04cde6` 的新运行 [44057388724](https://github.com/jyh9521/Second-Sight-CN/actions/runs/44057388724) 已实际完成，结论为 **success**：
+
+| job | ID | 实际结果 |
+|---|---|---|
+| offline | `133950138196` | success：241 项测试、文档/覆盖检查、MSVC 构建及合成宿主通过 |
+| Strict catalog gate | `133950138871` | success：`EDITORIAL PASS: errors=0; punctuation + glossary; no game execution` |
+
+修复的是[逐句数据及精确语境适配](EDITORIAL_REPAIR.md)，没有关闭检查或通知。该远端通过仅绑定此提交；后续字幕运行时改动仍需其自身新运行结果，不从本次绿灯外推。
 
 ## 证据位置与边界
 
@@ -42,5 +53,6 @@ EDITORIAL FAIL: errors=51; punctuation + glossary; no game execution
 - `jobs-44050722902.json`、`jobs-44037912405.json`：job/step 结果
 - `job-133927553070.log`、`job-133885166632.log`：失败 job 的真实日志
 - `catalog-baseline.json`：本地失败命令、stdout/stderr 和退出码
+- `run-44057388724.json`、`jobs-44057388724.json` 和对应两个 job 日志：修复提交的实际远端成功证据
 
 读取 GitHub 使用既有目标仓库授权，凭据不打印、不写入证据。上述目录不提交到 GitHub。没有启动游戏、运行第三方模组、采集转储或修改邮件通知设置。

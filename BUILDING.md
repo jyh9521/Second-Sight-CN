@@ -2,7 +2,7 @@
 
 > 共享构建要求见[构建规范](docs/BUILD_STANDARD.md)、[安装与恢复](docs/INSTALLATION_STANDARD.md)和[验收标准](docs/ACCEPTANCE.md)。本页保留本作实际输入、命令与历史结果；规范迁移未重建游戏产物。
 
-> 新基准现状：当前逐句目录门禁有 51 项未解决发现（27 条记录），`build_locale.py` 会在资源写出前拒绝构建。这是数据失败，不是缺少游戏文件。先读[采用记录](docs/BASELINE_ADOPTION.md)和[验收快照](docs/ADOPTION_VALIDATION.md)。本轮未重跑以下历史完整包构建命令；006/007 保持冻结，当前没有 008。
+> 当前检查点：严格目录 51 项发现已由[编辑修复](docs/EDITORIAL_REPAIR.md)处理；新增对白字幕与过场缩放已进入 [008 完整候选](docs/CAPTION_PACKAGE_008.md)。本地保留 007/008，006 的配置/日志先保存后清理。早期采用记录与下方历史命令不倒写成最新验收。
 
 ## 新规范只读审计入口
 
@@ -13,12 +13,12 @@ python -X utf8 tools/check_docs.py
 python -X utf8 tools/audit_locale_policy.py --locale-dir locales/zh-CN --out build/baseline-adoption-20261117/style-audit.json
 ```
 
-逐句审计当前返回 2。新输入清单工具 `tools/inventory_inputs.py --help` 只生成原始输入清单，不表示完整 G0 门禁已实现；实际本地命令在 VERIFICATION 中。公开安装器/升级卸载事务未实现，适用要求见[安装标准](docs/INSTALLATION_STANDARD.md)。
+逐句审计当前返回 0。新输入清单工具 `tools/inventory_inputs.py --help` 只生成原始输入清单，不表示完整 G0 门禁已实现；实际本地命令在 VERIFICATION 中。公开安装器/升级卸载事务未实现，适用要求见[安装标准](docs/INSTALLATION_STANDARD.md)。
 
 
 > **交付约定（2026-11-17 更新）：先完成全量汉化、文字校对与离线检查，再一次性交由用户测试。中间版本只作开发检查点，不再要求用户逐版验收；自动化不启动游戏。**
 
-当前全量首轮006已构建：5,957条BS、PDA68页共447段、2条EXE提示及1张载入位图。144项测试、完整真实/合成包宿主、复现构建、资源副本回滚和5414文件校验均通过。14条旧文本与防御性EXE提示的有界静态核查结果见研究文档，不提升为未知路径已实测。以下自动化只处理文件或运行自有宿主，不启动游戏；不以 005 实测作为继续工作的前提。
+历史全量首轮 006 检查点：5,957条BS、PDA68页共447段、2条EXE提示及1张载入位图。144项测试、完整真实/合成包宿主、复现构建、资源副本回滚和5414文件校验均通过。14条旧文本与防御性EXE提示的有界静态核查结果见研究文档，不提升为未知路径已实测。以下自动化只处理文件或运行自有宿主，不启动游戏；不以 005 实测作为继续工作的前提。
 
 ## 环境与输入
 
@@ -49,7 +49,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1
 
 | 输出 | 用途 |
 |---|---|
-| `build/locale-zh-CN/locale.bin` | SLP3 语言包（007，兼容读取 SLP2）：BS/PDA/两条 EXE 提示的原文校验记录和标记编码译文、6 张 512×512 字体 DDS + 1 张 256×64 载入提示 DDS |
+| `build/locale-zh-CN/locale.bin` | SLP3 语言包（007 起采用，兼容读取 SLP2）：BS/PDA/两条 EXE 提示的原文校验记录和标记编码译文、6 张 512×512 字体 DDS + 1 张 256×64 载入提示 DDS |
 | `build/locale-zh-CN/manifest.json` | 输入 hash、字形映射、字体来源与资源 hash |
 | `build/locale-zh-CN/atlas-preview.png`、`ui-preview-0.png` | 第一页字形及独立生成载入提示预览，不是游戏截图 |
 | `build/locale-zh-CN/OFL.txt` | 字体原许可证，随使用图集的测试包保留 |
@@ -84,7 +84,7 @@ python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix -
 python -X utf8 tools/stage_poc.py --verify --out $Package
 ```
 
-006已存在，重建请选择更高编号，例如007；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
+008 已完成，后续重建必须选择更高编号；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
 
 HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。Compatibility、FusionFix、本地化三份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK、FusionFix 二进制及输入配置不变；输出配置仅将 `[MAIN] WindowMode` 从 `0` 改为 `2`，固定输出 hash 与 override 记录写入清单。004 起默认无边框，其余设置不变。
 
@@ -239,7 +239,7 @@ python -X utf8 tools/verify_glyph_fix.py evidence --out $Evidence
 
 证据脚本依次运行基线（预期退出2）、修改（0）、隔离回滚（0），并回读全部产物。再次验证修改产物可单独使用 `modified` 子命令；不要对已回滚副本重复执行首次回滚操作。
 
-## 字幕离线调查与字号候选
+## 首轮字幕离线调查与字号候选（历史）
 
 以下命令已在仓库根目录执行，`$Game` 沿用本页固定原版输入路径；没有启动游戏或生成新完整包。构建输出为自有 ASI/宿主，语言包沿用冻结的 007，不绕过当前编辑门禁。研究结论、候选 hash 和未解决项见[字幕记录](docs/research/SUBTITLE_008.md)。
 
@@ -260,10 +260,26 @@ python -X utf8 tools/verify_subtitle_fix.py evidence --out build/subtitle-008/ve
 
 BASELINE 子检查退出 1（固定字号，预期红），MODIFIED 退出 0（12/12 联合布局例），ROLLBACK 退出 0（独立文件恢复 007 hash，独立内存恢复旧布局）；总 evidence 退出 0。真实编译 wrapHook 在基线/修改/恢复均保留，只改变字号两点。最终 GPU、操作系统分配及现场状态是明确的合成边界；不是像素或游戏内验证。`ROLLBACK.sh` 只针对命名夹具，不是安装器；再次运行 evidence 前须重新建立未恢复的独立夹具。
 
-明确提供的转储可只读检查。以下为未来 007 新转储的**未执行示例**，`$Dump` 必须由用户提供具体路径；工具不启动或采集进程：
+明确提供的转储可只读检查；新增对白字幕不再以提供转储为前置条件。以下保留首轮调查的**未执行示例**，`$Dump` 必须由用户提供具体路径；工具不启动或采集进程：
 
 ```powershell
 python -X utf8 tools/inspect_subtitle_dump.py --dump $Dump --expected-candidate 007 --out build/subtitle-008/voice-audit/current-007.json
 ```
 
 旧 006 转储已用同一工具读取并明确标为 historical，不用其字段值判断新 007 问题。缺失内存、模组身份不足或不匹配的主映像保持 unknown。
+
+## 008 新增对白字幕与完整包
+
+实际构建和红/绿/隔离恢复命令从仓库根目录执行；`$Game` 为本页固定原安装。以下新建目录已经存在，重新执行 prepare/stage 时需换新的证据目录/包编号，不覆盖冻结产物：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1 -Out build/gameplay-captions/runtime-final
+python -X utf8 tools/build_locale.py --game-root $Game --locale zh-CN --out build/gameplay-captions/locale
+python -X utf8 tools/verify_gameplay_captions.py prepare --out build/gameplay-captions/verification-final --game-root $Game --baseline-package dist/poc-zh-CN-007 --runtime build/gameplay-captions/runtime-final --locale-build build/gameplay-captions/locale
+python -X utf8 tools/verify_gameplay_captions.py evidence --out build/gameplay-captions/verification-final
+python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix --remastered-root "ReMade With Second Sight Remastered Textures" --out dist/poc-zh-CN-008
+```
+
+上述各命令退出 0；evidence 内 BASELINE=1（预期红）、MODIFIED=0、ROLLBACK=0。新增语音事件/绘制 33 项、过场几何 12 项通过；恢复副本回到 007 的 ASI/语言包 hash，原生行为恢复无新增字幕和固定像素字号。实际包内 ASI/locale 与上述冻结候选逐字节相同。
+
+原生 ABI、事件语义和回放边界以[新增字幕研究](docs/research/GAMEPLAY_CAPTIONS.md)为准；包身份、完整命令结果与保留清单见[008 记录](docs/CAPTION_PACKAGE_008.md)。这些是数据/离线资源/本地包文件验证，游戏内和正式发行验收仍未执行。

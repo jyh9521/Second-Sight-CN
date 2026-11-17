@@ -10,6 +10,7 @@ from pathlib import Path
 import re
 import stat
 import subprocess
+import shutil
 
 KEEP = 2
 FORMATS = {"second-sight-local-test-v1", "second-sight-local-test-v2"}
@@ -74,9 +75,41 @@ def apply_retention(root: Path,new_package: Path,evidence: Path) -> dict:
     evidence.mkdir(parents=True,exist_ok=True)
     path=evidence/"retention-plan.json"
     path.write_text(json.dumps(plan,indent=2)+"\n",encoding="utf-8")
+    # Preserve saves, settings and diagnostic logs before the checked pruner
+    # removes a complete old package. Keep these small, hashed and outside dist.
+    preserve_user_files(plan,evidence/"preserved-user-files")
     subprocess.run(["powershell","-NoProfile","-ExecutionPolicy","Bypass","-File",
                     str(root/"tools/prune_test_packages.ps1"),"-Plan",str(path)],check=True)
     remaining=candidates(root/"dist")
     require([x["name"] for x in remaining]==[x["name"] for x in plan["keep"]],"retention result differs from checked plan")
     print(f"RETENTION PASS: kept={len(remaining)}; removed={len(plan['remove'])}; limit={KEEP}",flush=True)
     return plan
+
+
+def preserve_user_files(plan: dict, destination: Path) -> dict:
+    records={}
+    for row in plan["remove"]:
+        source=Path(row["path"]).resolve()
+        require(source.parent==Path(plan["root"]).resolve(),"backup source escapes dist")
+        require(source.name==row["name"],"backup source name differs")
+        assert_plain_tree(source)
+        require(not destination.resolve().is_relative_to(source),"backup inside deletion target")
+        for file in source.rglob("*"):
+            if not file.is_file(): continue
+            relative=file.relative_to(source)
+            if "profiles" not in relative.parts and file.suffix.lower() not in {".cfg",".ini",".log"}: continue
+            target=destination/row["name"]/relative
+            digest=hashlib.sha256(file.read_bytes()).hexdigest()
+            if target.exists():
+                require(target.is_file() and not is_link(target) and hashlib.sha256(target.read_bytes()).hexdigest()==digest,
+                        "existing user backup differs")
+            else:
+                target.parent.mkdir(parents=True,exist_ok=True)
+                assert_plain_tree(destination)
+                shutil.copy2(file,target)
+            require(hashlib.sha256(target.read_bytes()).hexdigest()==digest,"user backup hash mismatch")
+            records[f"{row['name']}/{relative.as_posix()}"]=digest
+    if records:
+        (destination/"manifest.json").write_text(json.dumps(records,indent=2)+"\n",encoding="utf-8")
+        require(json.loads((destination/"manifest.json").read_text(encoding="utf-8"))==records,"user backup manifest mismatch")
+    return records

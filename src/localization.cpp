@@ -14,6 +14,7 @@
 #include "text_transport.h"
 #include "glyph_batch.h"
 #include "subtitle_layout.h"
+#include "gameplay_captions.h"
 #include <intrin.h>
 #pragma intrinsic(_ReturnAddress)
 
@@ -32,6 +33,7 @@ static const LiteralContract literalContracts[]={
     {2,0x576a14,0x7dc280,"Button inoperative"}
 };
 static Pack pack;
+static gameplay_captions::State GameplayCaptionState;
 
 static void log(const char* message) {
     FILE* file = nullptr;
@@ -339,6 +341,7 @@ static int __cdecl readHook(const char* name,void* buffer,int size) {
     return originalRead(name,buffer,size);
 }
 static void __cdecl bsHook() {
+    GameplayCaptionState.clear();
     auto table=*reinterpret_cast<char***>(0x90a338);
     size_t count=0;
     if(table) for(const auto& item:pack.bs) if(!transport::deferred(item.index) && matchesText(table[item.index],item)) {
@@ -380,6 +383,88 @@ static const char* __cdecl substringHook(const char* text,int count) {
     if(!*reinterpret_cast<int*>(0x9e88a0)) return originalSubstring(text,count);
     auto p=reinterpret_cast<const char*(__cdecl*)(const char*)>(0x610260)(text);
     if(p) while(count>0 && *p) { p=nextGlyph(p); --count; } return p;
+}
+// Independent captions follow actual speech lifetime events, not the native
+// optional display bit. Source-bound locale text is the only content source.
+extern "C" __declspec(noinline) const char* __cdecl GameplayCaptionLookup(uint32_t bs) {
+    auto table=*reinterpret_cast<char***>(0x90a338);
+    if(!table) return nullptr;
+    for(const auto& item:pack.bs) if(item.index==bs) {
+        const char* current=table[bs];
+        if(current==item.target.c_str() || matchesText(current,item)) return item.target.c_str();
+        return nullptr;
+    }
+    return nullptr;
+}
+extern "C" void* GameplayCaptionOriginal=nullptr;
+extern "C" __declspec(noinline) void __cdecl GameplayCaptionObserve(uintptr_t owner,int event) {
+    if(!owner) return;
+    if(event==1 || event==3 || event==4) { GameplayCaptionState.finish(owner); return; }
+    // 0=queued, 5=cancel queued, 6=request refused: never end the active voice.
+    if(event!=2) return;
+    const auto fields=reinterpret_cast<const uint32_t*>(owner);
+    const int handle=static_cast<int>(fields[1]);
+    const uint32_t bs=fields[2];
+    const auto old=GameplayCaptionState.find(owner);
+    if(old && old->bs==bs && old->handle==handle) return;
+    GameplayCaptionState.finish(owner);
+    if(handle<0 || !bs) return;
+    const char* text=GameplayCaptionLookup(bs);
+    if(!text || !reinterpret_cast<int(__cdecl*)(int)>(0x60d8f0)(handle)) return;
+    GameplayCaptionState.active(owner,bs,handle,static_cast<int>(fields[4]),text);
+}
+extern "C" __declspec(naked) void GameplayCaptionEventHook() {
+    __asm {
+        pushfd
+        pushad
+        push edx
+        push esi
+        call GameplayCaptionObserve
+        add esp,8
+        popad
+        popfd
+        jmp dword ptr [GameplayCaptionOriginal]
+    }
+}
+extern "C" __declspec(noinline) void __cdecl GameplayCaptionResetHook() {
+    GameplayCaptionState.clear();
+    reinterpret_cast<void(__cdecl*)()>(0x63f600)();
+}
+extern "C" __declspec(noinline) void __cdecl GameplayCaptionDrawHook() {
+    // This call site is already behind the native HUD/pause gates. A scripted
+    // sequence flag is not proof that speech has a separate timed caption;
+    // do not suppress missing dialogue merely because such a sequence exists.
+    const auto voice=GameplayCaptionState.choose();
+    if(!voice) { reinterpret_cast<void(__cdecl*)()>(0x63f830)(); return; }
+    if(!reinterpret_cast<int(__cdecl*)()>(0x50bd60)()) return;
+    const int width=*reinterpret_cast<int*>(0x872500),height=*reinterpret_cast<int*>(0x872504);
+    if(width<=0 || height<=0 || width>16384 || height>16384) return;
+    subtitle_layout::Scope scope{};
+    subtitle_layout::begin(scope,21);
+    const float scale=subtitle_layout::screenScale(height);
+    const float available=static_cast<float>(width)-40.0f*scale;
+    if(available<=0) { subtitle_layout::end(scope); return; }
+    auto wrap=reinterpret_cast<char*(__cdecl*)(const char*,float)>(0x611c70);
+    const char* text=wrap(voice->text,available);
+    int textWidth=0,textHeight=0;
+    reinterpret_cast<void(__cdecl*)(int*,int*,const char*)>(0x611a90)(&textWidth,&textHeight,text);
+    // Extremely long entries fit within a bounded part of the viewport without
+    // truncating any words. Normal dialogue retains the resolution-scaled size.
+    if(textHeight>height/3 && textHeight>0) {
+        const float fit=static_cast<float>(height/3)/static_cast<float>(textHeight);
+        scope.style.x*=fit; scope.style.y*=fit;
+        text=wrap(voice->text,available);
+        reinterpret_cast<void(__cdecl*)(int*,int*,const char*)>(0x611a90)(&textWidth,&textHeight,text);
+    }
+    int x=(width-textWidth)/2,y=height-static_cast<int>(30.0f*scale)-textHeight;
+    const int padding=(std::max)(2,static_cast<int>(4.0f*scale));
+    const auto blend=reinterpret_cast<int(__cdecl*)(int)>(0x40d110);
+    const int previous=blend(1);
+    reinterpret_cast<void(__cdecl*)(int,int,int,int,uint32_t,int)>(0x638b40)
+        (x-padding,y-padding,x+textWidth+padding,y+textHeight+padding,0x40000000,8);
+    reinterpret_cast<void(__cdecl*)(int*,int*,const char*,uint32_t)>(0x6132e0)(&x,&y,text,0xffffff80);
+    blend(previous);
+    subtitle_layout::end(scope);
 }
 // These three cdecl symbols stay visible in the link MAP for instruction-level
 // offline replay. Only the four guarded text sites below can enter them in-game.
@@ -439,6 +524,8 @@ static void install() {
     // Scope resolution scaling to the timed cutscene subtitle layout only.
     // Measurement, wrapping and drawing share one private style; restore on exit.
     call(0x543031,{0xe8,0x5a,0xd5,0x0c,0x00},subtitle_layout::beginCutscene);
+    call(0x63d78a,{0xe8,0xa1,0x20,0x00,0x00},GameplayCaptionDrawHook);
+    call(0x63d494,{0xe8,0x67,0x21,0x00,0x00},GameplayCaptionResetHook);
     patches.push_back({0x5431e8,{0xd9,0x05,0xb4,0x74,0x96,0x00},
                        branch(0x5431e8,subtitle_layout::endCutsceneHook,6,0xe9)});
     call(0x610efd,{0xe8,0xce,0xcf,0xdf,0xff},BeginTextBatchHook);
@@ -466,6 +553,7 @@ static void install() {
     patches.push_back({0x6125fc,{0xc1,0xf8,4},{0xc1,0xf8,5}});
     struct Hook { uintptr_t address; std::vector<unsigned char> before; const void* target; void** original; };
     std::vector<Hook> hooks={
+        {0x456610,{0x85,0xc0,0x57,0x8b,0xfa},GameplayCaptionEventHook,&GameplayCaptionOriginal},
         {0x611c70,{0x81,0xec,0x04,0x02,0,0},wrapHook,reinterpret_cast<void**>(&originalWrap)},
         {0x610260,{0x53,0x8b,0x5c,0x24,0x08},expandHook,reinterpret_cast<void**>(&originalExpand)},
         {0x49ddf0,{0xa1,0xd0,0x0f,0x91,0x00},sizeHook,reinterpret_cast<void**>(&originalSize)},
@@ -497,6 +585,7 @@ static void install() {
     }
     log("TEXT batch texture-transition flush installed; normal pass only");
     log("SUBTITLE cutscene layout scales with render height; private style restored after captions");
+    log("CAPTIONS speech lifecycle observer and independent gameplay renderer installed; source-bound locale text; runtime acceptance pending");
     log("HOOKS installed; FusionFix TextAtPointer/TextAtValue sites untouched; runtime acceptance pending");
 }
 
@@ -517,6 +606,7 @@ extern "C" __declspec(dllexport) int __cdecl LocalizationStatus() { return statu
 // Offline harness exercises only owned data/memory, never game addresses.
 extern "C" __declspec(dllexport) int __cdecl LocalizationSelfTest(const wchar_t* path) {
     try {
+        if(!gameplay_captions::selfTest()) return 52;
         glyph_batch::State batch;
         uint8_t pending=0; std::string calls;
         auto end=[&]() { calls+="E"; };
