@@ -4,17 +4,22 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
 from assess_resources import require
 from build_locale import ROOT, EXE_SHA, build
+from package_retention import apply_retention, assert_plain_tree, candidates, is_link, sequence
 
 FUSION_FILES = {
     "dinput8.dll":"63b465dbc1bf9c5ab4e33c3ccad099d9edb702f2c51587ac8d4f196497396437",
     "scripts/SecondSight.FusionFix.asi":"939d0bbc6dacca73b4323fa018ba11d04a87dde5073e795b5914db85d6158430",
     "scripts/SecondSight.FusionFix.cfg":"a05007595a84708d4973785e5ef690f6d95901484af3542c00045d2f5f49c826",
 }
+REMASTER_DLL_SHA = "8aa884f7a6f4a4fa5294f457c0480149dc684479c9adbd8617c14c539d47f947"
+REMASTER_INVENTORY_SHA = "2ee7e2b39b9e56f3c55ab396157775f18bb5adbd411aab983a654d235281da5a"
+LOADER_INI = "[GlobalSets]\nLoadPlugins=1\nDontLoadFromDllMain=1\nDebugLog=1\n"
 
 def sha(path: Path) -> str:
     with path.open("rb") as file:
@@ -25,27 +30,87 @@ def inventory(path: Path) -> dict:
     return {p.relative_to(path).as_posix():sha(p) for p in sorted(path.rglob("*")) if p.is_file()}
 
 
+def remastered_inventory(root: Path, hashes: dict | None = None) -> list[dict]:
+    """Pin the complete assessed input, not just its proxy DLL or DDS count."""
+    if hashes is None:
+        assert_plain_tree(root)
+        hashes=inventory(root)
+    rows=[dict(path=name,size=(root/name).stat().st_size,sha256=value)
+          for name,value in sorted(hashes.items(),key=lambda pair:Path(pair[0]))]
+    require(len(rows)==5111,"expected exactly one ReMade DLL and 5110 textures")
+    require(hashes.get("dinput8.dll")==REMASTER_DLL_SHA,"unsupported ReMade DLL")
+    require(all(name=="dinput8.dll" or re.fullmatch(r"Remaster_Textures/tex_[0-9A-F]{8}\.dds",name)
+                for name in hashes),"unexpected ReMade input file")
+    digest=hashlib.sha256(json.dumps(rows,sort_keys=True,separators=(",",":")).encode()).hexdigest()
+    require(digest==REMASTER_INVENTORY_SHA,"ReMade inventory differs from assessed input")
+    return rows
+
+
+def validate_layout(record: dict) -> None:
+    require(record.get("format") in ("second-sight-local-test-v1","second-sight-local-test-v2"),"not a test package")
+    files=record["files"]
+    require(files.get("game/secondsight.EXE")==EXE_SHA,"game EXE identity missing/changed")
+    hd=record["format"].endswith("v2") and bool(record.get("remastered"))
+    loader="dsound.dll" if hd else "dinput8.dll"
+    if record["format"].endswith("v2"):
+        require(record.get("loader")==loader,"unexpected loader route")
+        require(record.get("status")=="awaiting-user-runtime-test","invalid package status")
+        require(record.get("version")==sequence(record.get("package_id","")),"invalid package sequence")
+        require(isinstance(record.get("version"),int),"missing package sequence")
+    for name,expected in FUSION_FILES.items():
+        destination=loader if name=="dinput8.dll" else name
+        require(files.get("game/"+destination)==expected,f"FusionFix identity missing/changed: {destination}")
+    require("game/scripts/SecondSight.Localization.asi" in files,"localization ASI missing")
+    require("game/scripts/localization/locale.bin" in files,"locale pack missing")
+    if hd:
+        require(files.get("game/dinput8.dll")==REMASTER_DLL_SHA,"ReMade proxy identity missing/changed")
+        require(record["remastered"].get("inventory_sha256")==REMASTER_INVENTORY_SHA,"unknown ReMade inventory")
+        require(files.get("game/dsound.ini")==hashlib.sha256(LOADER_INI.encode()).hexdigest(),"loader settings missing/changed")
+
+
 def verify(out: Path) -> None:
+    assert_plain_tree(out)
     record=json.loads((out/"package.json").read_text(encoding="utf-8"))
-    require(record["format"]=="second-sight-local-test-v1", "not a test package")
+    validate_layout(record)
     for name,expected in record["files"].items():
+        require(not Path(name).is_absolute() and ".." not in Path(name).parts and ":" not in name,"invalid manifest path")
         path=(out/name).resolve()
         require(path.is_relative_to(out.resolve()), "package path escapes root")
         require(sha(path)==expected, f"package file changed: {name}")
-    require(sha(out/"game/secondsight.EXE")==EXE_SHA,"game EXE changed")
-    for name,expected in FUSION_FILES.items():
-        require(sha(out/"game"/name)==expected,f"FusionFix changed: {name}")
-    print(f"PACKAGE PASS: files={len(record['files'])}; original EXE; pinned FusionFix; independent ASI; runtime=PENDING")
+    if record.get("remastered"):
+        subset={name.removeprefix("game/"):value for name,value in record["files"].items()
+                if name=="game/dinput8.dll" or name.startswith("game/Remaster_Textures/")}
+        remastered_inventory(out/"game",subset)
+    print(f"PACKAGE PASS: files={len(record['files'])}; original EXE; pinned FusionFix; independent ASI; HD={bool(record.get('remastered'))}; runtime=PENDING",flush=True)
 
 
-def stage(game: Path, fusionfix: Path, out: Path, locale: str) -> None:
-    game,fusionfix,out=game.resolve(),fusionfix.resolve(),out.resolve()
+def validate_output(out: Path, locale: str) -> int:
+    dist=ROOT/"dist"
+    if dist.exists(): require(not is_link(dist),"linked dist root rejected")
     require(not out.exists(),"choose a new output directory; existing output is not overwritten")
-    require(not out.is_relative_to(game) and not game.is_relative_to(out),"output overlaps original game")
+    require(out.resolve().parent==dist.resolve(),"output must be a direct child of repository dist")
+    version=sequence(out.name)
+    require(version is not None and out.name==f"poc-{locale}-{version:03d}","use poc-<locale>-NNN package name")
+    existing=candidates(dist)
+    require(not existing or version>existing[0]["version"],"output must have a new higher sequence")
+    return version
+
+
+def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path | None = None) -> None:
+    version=validate_output(out,locale)
+    game,fusionfix,out=game.resolve(),fusionfix.resolve(),out.resolve()
+    remastered=remastered.resolve() if remastered else None
+    for source in (game,fusionfix,remastered):
+        if source:
+            require(not out.is_relative_to(source) and not source.is_relative_to(out),"output overlaps input")
+            assert_plain_tree(source)
     require(sha(game/"secondsight.EXE")==EXE_SHA,"unsupported executable")
     for name,expected in FUSION_FILES.items():
         require(sha(fusionfix/name)==expected,f"unsupported FusionFix input: {name}")
+    print("STAGE: hashing original game and supplied dependencies",flush=True)
     before=inventory(game)
+    fusion_before=inventory(fusionfix)
+    hd_before=remastered_inventory(remastered) if remastered else None
     locale_dir=ROOT/"build"/f"locale-{locale}"
     build(game,locale,locale_dir)
     subprocess.run(["powershell","-NoProfile","-ExecutionPolicy","Bypass","-File",str(ROOT/"tools/build_runtime.ps1")],check=True,cwd=ROOT)
@@ -53,15 +118,23 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str) -> None:
     subprocess.run([str(runtime/"localization_host.exe"),str(runtime/"SecondSight.Localization.asi"),str(locale_dir/"locale.bin")],check=True,cwd=ROOT)
     target=out/"game"
     target.mkdir(parents=True)
+    print("STAGE: copying independent game files (no links, no launch)",flush=True)
     for folder in ("pak","win32","trailers"):
         shutil.copytree(game/folder,target/folder)
     (target/"profiles").mkdir() # fresh local profile; original save files are not copied or changed
     for name in ("secondsight.EXE","secondsight.cfg"):
         shutil.copy2(game/name,target/name)
     for name in FUSION_FILES:
-        destination=target/name
+        destination=target/("dsound.dll" if remastered and name=="dinput8.dll" else name)
         destination.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(fusionfix/name,destination)
+    if remastered:
+        print("STAGE: copying ReMade DLL and all 5110 DDS textures",flush=True)
+        shutil.copy2(remastered/"dinput8.dll",target/"dinput8.dll")
+        shutil.copytree(remastered/"Remaster_Textures",target/"Remaster_Textures")
+        (target/"dsound.ini").write_text(LOADER_INI,encoding="ascii",newline="\n")
+        shutil.copy2(ROOT/"tools/Set-HD.ps1",out/"Set-HD.ps1")
+        (out/"remastered-input-inventory.json").write_text(json.dumps(hd_before,indent=2)+"\n",encoding="utf-8")
     shutil.copy2(runtime/"SecondSight.Localization.asi",target/"scripts/SecondSight.Localization.asi")
     translated=target/"scripts/localization"
     translated.mkdir()
@@ -69,10 +142,10 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str) -> None:
         shutil.copy2(locale_dir/name,translated/name)
     shutil.copy2(ROOT/"LICENSE",translated/"LICENSE-code.txt")
     shutil.copy2(ROOT/"assets/FONT-NOTICE.txt",translated/"FONT-NOTICE.txt")
-    if (ROOT/"docs/POC_TESTING.md").exists():
-        shutil.copy2(ROOT/"docs/POC_TESTING.md",out/"TESTING.md")
+    shutil.copy2(ROOT/("docs/INTEGRATED_TESTING.md" if remastered else "docs/POC_TESTING.md"),out/"TESTING.md")
     disable='''# Does not start or stop the game. Run only after manually closing the test game.
 $ErrorActionPreference = 'Stop'
+$env:PSModulePath = (Join-Path $PSHOME 'Modules') + [IO.Path]::PathSeparator + $env:PSModulePath
 $root = [IO.Path]::GetFullPath($PSScriptRoot)
 $asi = Join-Path $root 'game\\scripts\\SecondSight.Localization.asi'
 $disabled = "$asi.disabled"
@@ -84,13 +157,20 @@ Move-Item -LiteralPath $asi -Destination $disabled
 Write-Output 'DISABLE PASS: Localization ASI disabled; FusionFix retained; no game launched'
 '''
     (out/"Disable-Localization.ps1").write_text(disable,encoding="utf-8",newline="\n")
+    print("STAGE: verifying source preservation and output hashes",flush=True)
     after=inventory(game)
     require(before==after,"original game inventory changed during staging")
+    require(fusion_before==inventory(fusionfix),"FusionFix input changed during staging")
+    if remastered:
+        require(hd_before==remastered_inventory(remastered),"ReMade input changed during staging")
     (out/"source-inventory.json").write_text(json.dumps(before,indent=2)+"\n",encoding="utf-8")
-    record=dict(format="second-sight-local-test-v1",locale=locale,status="awaiting-user-runtime-test",
-                source=str(game),source_unchanged=True,files=inventory(out))
+    record=dict(format="second-sight-local-test-v2",package_id=out.name,version=version,
+                locale=locale,status="awaiting-user-runtime-test",loader="dsound.dll" if remastered else "dinput8.dll",
+                remastered=dict(inventory_sha256=REMASTER_INVENTORY_SHA,dds_count=5110) if remastered else None,
+                source=str(game),source_unchanged=True,dependencies_unchanged=True,files=inventory(out))
     (out/"package.json").write_text(json.dumps(record,indent=2)+"\n",encoding="utf-8")
     verify(out)
+    apply_retention(ROOT,out,ROOT/"build/package-retention"/out.name)
     print(f"STAGE PASS: {out}; original files={len(before)} unchanged; game NOT launched")
 
 
@@ -98,6 +178,7 @@ if __name__=="__main__":
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--game-root",type=Path)
     p.add_argument("--fusionfix-root",type=Path)
+    p.add_argument("--remastered-root",type=Path,help="optional, exact assessed ReMade input")
     p.add_argument("--out",type=Path,required=True)
     p.add_argument("--locale",default="zh-CN")
     p.add_argument("--verify",action="store_true")
@@ -105,4 +186,4 @@ if __name__=="__main__":
     if args.verify: verify(args.out)
     else:
         require(args.game_root is not None and args.fusionfix_root is not None,"game and FusionFix inputs required")
-        stage(args.game_root,args.fusionfix_root,args.out,args.locale)
+        stage(args.game_root,args.fusionfix_root,args.out,args.locale,args.remastered_root)
