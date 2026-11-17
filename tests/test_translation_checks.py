@@ -55,13 +55,15 @@ class EditorialTests(unittest.TestCase):
         for text in ['先开门。再离开。','确定吗？请确认。','保存完成，请继续。按键返回。']:
             self.assertTrue(needs_full_stop_removal(text,'ui',self.policy['punctuation']))
 
-    def test_repository_pending_findings_are_not_acceptance(self):
-        # Adoption audit baseline, NOT an allowlist. The build and editorial CLI
-        # still reject all these findings until reviewed and corrected.
-        errors=check_locale(ROOT/'locales/zh-CN')
-        self.assertEqual(len(errors),51)
-        self.assertEqual(sum('sentence-policy violation' in e for e in errors),45)
-        self.assertEqual(sum('sentence-policy review' in e for e in errors),6)
+    def test_repository_has_no_unresolved_findings(self):
+        self.assertEqual(check_locale(ROOT/'locales/zh-CN'),[])
+
+    def test_unbound_review_findings_remain_errors(self):
+        data,glossary=self.fixture()
+        data['pda'][0].update(target='隔离室 F. 保存成功。', terms=[])
+        errors=check_data(data,self.policy,glossary)
+        self.assertEqual(sum('sentence-policy violation' in e for e in errors),1)
+        self.assertEqual(sum('sentence-policy review' in e for e in errors),1)
 
 
 if __name__=='__main__':unittest.main()

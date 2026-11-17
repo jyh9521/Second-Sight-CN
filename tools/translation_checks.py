@@ -6,7 +6,7 @@ from pathlib import Path
 from assess_resources import require
 from locale_catalog import load_catalog
 from text_transport import check_contract
-from audit_locale_policy import audit_text
+from audit_locale_policy import audit_text, punctuation_contexts
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -17,7 +17,7 @@ def needs_full_stop_removal(text: str, kind: str, rule: dict) -> bool:
     return any(f['kind']=='violation' for f in audit_text(rule['locale'],text,role))
 
 
-def check_data(data: dict, policy: dict, glossary: dict) -> list[str]:
+def check_data(data: dict, policy: dict, glossary: dict, contexts: dict | None = None) -> list[str]:
     require(policy['schema']==glossary['schema']==1,'unsupported editorial schema')
     require(data['locale']==policy['locale']==glossary['locale'],'editorial locale mismatch')
     terms={}
@@ -39,7 +39,8 @@ def check_data(data: dict, policy: dict, glossary: dict) -> list[str]:
                     errors.append(f'{where}: {error}')
             if kind not in policy['text_kinds']:
                 errors.append(f'{where}: missing/invalid text_kind');continue
-            for finding in audit_text(policy['locale'],row['target'],policy['role_mapping'][kind]):
+            for finding in audit_text(policy['locale'],row['target'],policy['role_mapping'][kind],
+                                      (contexts or {}).get((group, row['id']))):
                 errors.append(f"{where}: sentence-policy {finding['kind']} at {finding['index']+1}: {finding['reason']}")
             for key in row.get('terms',[]):
                 term=terms.get(key)
@@ -55,7 +56,8 @@ def check_data(data: dict, policy: dict, glossary: dict) -> list[str]:
 def check_locale(directory: Path, data: dict | None = None) -> list[str]:
     read=lambda name:json.loads((directory/name).read_text(encoding='utf-8'))
     policy=read('style.json')
-    errors=check_data(data if data is not None else load_catalog(directory),policy,read('glossary.json'))
+    data = data if data is not None else load_catalog(directory)
+    errors=check_data(data,policy,read('glossary.json'),punctuation_contexts(directory,data))
     from ui_textures import load
     for row in load(directory):
         visible='\n'.join(line['text'] for line in row['layout']['lines'])

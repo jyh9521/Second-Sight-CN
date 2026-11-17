@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "locale": "zh-CN",
+  "entries": [
+    {
+      "group": "bs",
+      "id": 2411,
+      "source_sha256": "2297b77a55fbb701725492df2ba9eac23dc208e9341a15fab5a6aaf748a058f9",
+      "target_sha256": "269a428d2fa3bc7359c49dd768888bb77bbd3122e39399e4b1a4e6e07d9f7899",
+      "source_span": {
+        "start": 8,
+        "end": 9,
+        "text": "'"
+      },
+      "target_span": {
+        "start": 8,
+        "end": 9,
+        "text": "'"
+      },
+      "purpose": "year_abbreviation",
+      "evidence": "BS 2411; source title uses apostrophe immediately before 92 (year abbreviation), not a quoted span."
+    },
+    {
+      "group": "bs",
+      "id": 3275,
+      "source_sha256": "b65e04fbb46183377df733475af36cd1651acc0b2b4a8379cd97f0b9b246aa92",
+      "target_sha256": "3be92b07e6f24d65a1f193856c9f9596bfbdf91d268832552796435c95775070",
+      "source_span": {
+        "start": 103,
+        "end": 104,
+        "text": "."
+      },
+      "target_span": {
+        "start": 32,
+        "end": 33,
+        "text": "."
+      },
+      "purpose": "name_initial",
+      "evidence": "BS 3275; source names the nearest passcard holder as Dr. F. Giddler; target F. remains the given-name initial."
+    },
+    {
+      "group": "bs",
+      "id": 3632,
+      "source_sha256": "7820ddd984f54103adb2dbf15c21fffcd53c2fabdc8b985adfbf32702e85bbf7",
+      "target_sha256": "0e81086e6cd541833026ecab23ff81a358fff37d4475a77b4d124ea225053ba4",
+      "source_span": {
+        "start": 21,
+        "end": 22,
+        "text": "("
+      },
+      "target_span": {
+        "start": 6,
+        "end": 7,
+        "text": "("
+      },
+      "purpose": "fragment_open",
+      "evidence": "BS 3631/3632/3633 are adjacent terminal message fragments. Raw BS 3633 is #15), SHA256 e1238c150116ce2199b22094bbb6dc25df26528e68bf1538b4b7fdd34cf7bc3a; the opening parenthesis belongs to this code fragment. Runtime composition remains unverified."
+    },
+    {
+      "group": "bs",
+      "id": 4067,
+      "source_sha256": "4db41af9f22b476fe3024bfa5fa3e9b06121c494f43b7356ded34fc92216ab7c",
+      "target_sha256": "bb882bba240b253a323fb8ef150dc973427387b712f4b7894063c70c57345846",
+      "source_span": {
+        "start": 25,
+        "end": 26,
+        "text": "."
+      },
+      "target_span": {
+        "start": 10,
+        "end": 11,
+        "text": "."
+      },
+      "purpose": "name_initial",
+      "evidence": "BS 4067; source wing label gives surname followed by J. inside parentheses; target keeps the same initial."
+    },
+    {
+      "group": "bs",
+      "id": 4509,
+      "source_sha256": "323e9754b724b1dc20a40ea4354f60da859b2fdac271772d52c85fe8c99a1cbc",
+      "target_sha256": "59d4bfcb73ad3d1dab91f520e4718c54aed7c987259bd84464bb92d99ff29686",
+      "source_span": {
+        "start": 1,
+        "end": 2,
+        "text": ")"
+      },
+      "target_span": {
+        "start": 1,
+        "end": 2,
+        "text": "）"
+      },
+      "purpose": "numbered_list",
+      "evidence": "BS 4509; source begins with 1) as the first numbered camera-control instruction; target uses the fullwidth list marker."
+    },
+    {
+      "group": "bs",
+      "id": 4510,
+      "source_sha256": "b32b07968d0d80a9c154553cc2d7c730b14f515b28f6d353d974fe4ba866857b",
+      "target_sha256": "af5281f46e181f8855a4ab19350e034eb662409bece3840ab6b58c9995e8b5e9",
+      "source_span": {
+        "start": 1,
+        "end": 2,
+        "text": ")"
+      },
+      "target_span": {
+        "start": 1,
+        "end": 2,
+        "text": "）"
+      },
+      "purpose": "numbered_list",
+      "evidence": "BS 4510; source begins with 2) as the second numbered room-selection instruction; target uses the fullwidth list marker."
+    }
+  ]
+}

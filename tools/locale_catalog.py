@@ -11,6 +11,8 @@ from assess_resources import require
 def catalog_files(directory: Path) -> list[str]:
     data = json.loads((directory / 'poc.json').read_text(encoding='utf-8'))
     names = ['poc.json', 'style.json', 'glossary.json', 'font.json']
+    if (directory / 'punctuation-context.json').exists():
+        names.append('punctuation-context.json')
     if 'ui_textures' in data:
         require(data['ui_textures']=='ui-textures.json', 'invalid UI texture catalog filename')
         names.append(data['ui_textures'])

@@ -8747,7 +8747,7 @@
   },
   {
     "id": 3275,
-    "target": "仅限持卡人员进入病历室。离您最近的持卡人是灵长类研究实验室的 F. 吉德勒医生。",
+    "target": "仅限持卡人员进入病历室 离您最近的持卡人是灵长类研究实验室的 F. 吉德勒医生",
     "context": "BS interface/tutorial/computer label or prompt; adjacent split lines reviewed together",
     "text_kind": "ui",
     "terms": [
@@ -14090,7 +14090,7 @@
   },
   {
     "id": 3779,
-    "target": "正在释放内存……完成。\n应用程序已关闭。\n\nMEDFAC:pr_data/>",
+    "target": "正在释放内存……完成\n应用程序已关闭\n\nMEDFAC:pr_data/>",
     "context": "BS interface/tutorial/computer label or prompt; adjacent split lines reviewed together; literal password/account/endpoint/filename kept unchanged inside translated prose",
     "text_kind": "ui",
     "terms": [],

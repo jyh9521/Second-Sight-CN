@@ -54,7 +54,7 @@
   },
   {
     "id": 59,
-    "target": "数据已损坏。载入失败\n\u000b2 确定",
+    "target": "数据已损坏 载入失败\n\u000b2 确定",
     "context": "Shared UI/HUD/item/character/location label; actual use may vary across original builds",
     "text_kind": "ui",
     "terms": [],
@@ -681,7 +681,7 @@
   },
   {
     "id": 313,
-    "target": "“Second Sight”“Free Radical Design”及所有相关标志均为\nFree Radical Design Limited的商标。\n(C) Free Radical Design Limited 2000—2004。保留所有权利。\n",
+    "target": "“Second Sight”“Free Radical Design”及所有相关标志均为\nFree Radical Design Limited的商标\n(C) Free Radical Design Limited 2000—2004 保留所有权利\n",
     "context": "Title legal notice; trademark/company spellings and line break count preserved; layout requires long-text support",
     "text_kind": "ui",
     "terms": [],
@@ -695,7 +695,7 @@
   },
   {
     "id": 314,
-    "target": "(C) 2004 Free Radical Design Limited。保留所有权利。\n\n“Second Sight”和“Free Radical Design”均为\nFree Radical Design Limited的商标。\n由Free Radical Design Limited开发。\n由The Codemasters Software Company Limited发行\n（以下简称“Codemasters”）。\n“Codemasters”为注册商标，\n“GENIUS AT PLAY”为Codemasters的商标。\n未经授权，禁止对本产品进行复制、改编、出租、出借、转售、\n街机使用、收费使用、广播、有线传播、\n公开表演、发行或提取，\n亦不得对本产品组成部分中的任何商标或受版权保护的作品\n进行上述活动。",
+    "target": "(C) 2004 Free Radical Design Limited 保留所有权利\n\n“Second Sight”和“Free Radical Design”均为\nFree Radical Design Limited的商标\n由Free Radical Design Limited开发\n由The Codemasters Software Company Limited发行\n（以下简称“Codemasters”）\n“Codemasters”为注册商标，\n“GENIUS AT PLAY”为Codemasters的商标。\n未经授权，禁止对本产品进行复制、改编、出租、出借、转售、\n街机使用、收费使用、广播、有线传播、\n公开表演、发行或提取，\n亦不得对本产品组成部分中的任何商标或受版权保护的作品\n进行上述活动。",
     "context": "Title legal notice; trademark/company spellings and line break count preserved; layout requires long-text support",
     "text_kind": "ui",
     "terms": [],

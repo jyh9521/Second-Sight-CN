@@ -6056,7 +6056,7 @@
   },
   {
     "id": 6121,
-    "target": "存档数量已达上限。要覆盖一个存档吗？",
+    "target": "存档数量已达上限 要覆盖一个存档吗？",
     "context": "Generic dialog/button text adjacent to console-specific save screens",
     "text_kind": "ui",
     "terms": [],

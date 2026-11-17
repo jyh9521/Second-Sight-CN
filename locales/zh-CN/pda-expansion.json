@@ -3168,7 +3168,7 @@
   },
   {
     "id": "p046.r001.s000",
-    "target": "自第二次世界大战结束一直延续到二十世纪八十年代末的东西方紧张对峙时期。双方的威慑与竞争几近演变成真正的战争，核军备竞赛是其中的典型。",
+    "target": "自第二次世界大战结束一直延续到二十世纪八十年代末的东西方紧张对峙时期 双方的威慑与竞争几近演变成真正的战争，核军备竞赛是其中的典型。",
     "context": "PDA page 046; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [],
@@ -3359,7 +3359,7 @@
   },
   {
     "id": "p050.r004.s000",
-    "target": "\u000bJ \u000bI 发动念力控制。使用 \u000bE 操控目标物体。在松开 \u000bI 的同时保持 \u000bE 偏转，即可将物体掷出。",
+    "target": "\u000bJ \u000bI 发动念力控制 使用 \u000bE 操控目标物体 在松开 \u000bI 的同时保持 \u000bE 偏转，即可将物体掷出。",
     "context": "PDA page 050; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [],
@@ -3387,7 +3387,7 @@
   },
   {
     "id": "p051.r002.s000",
-    "target": "运用超能力修复身体损伤。治疗量与消耗的灵能直接相关。治疗过程中无法移动。",
+    "target": "运用超能力修复身体损伤 治疗量与消耗的灵能直接相关 治疗过程中无法移动",
     "context": "PDA page 051; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [
@@ -3422,7 +3422,7 @@
   },
   {
     "id": "p051.r005.s000",
-    "target": "\u000bJ \u000bG 选中友方角色。\u000bJ \u000bI 治疗对方。",
+    "target": "\u000bJ \u000bG 选中友方角色 \u000bJ \u000bI 治疗对方",
     "context": "PDA page 051; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [],
@@ -3595,7 +3595,7 @@
   },
   {
     "id": "p053.r005.s000",
-    "target": "\u000bJ \u000bG 选中友方角色。\u000bJ \u000bI 与其进行心灵交流。",
+    "target": "\u000bJ \u000bG 选中友方角色 \u000bJ \u000bI 与其进行心灵交流",
     "context": "PDA page 053; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [],
@@ -3622,7 +3622,7 @@
   },
   {
     "id": "p054.r002.s000",
-    "target": "让精神脱离肉体的能力。投射形成的虚体只能与物质世界进行有限的互动。",
+    "target": "让精神脱离肉体的能力 投射形成的虚体只能与物质世界进行有限的互动",
     "context": "PDA page 054; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [],
@@ -3632,7 +3632,7 @@
   },
   {
     "id": "p054.r003.s000",
-    "target": "\u000bK \u000bI 发动精神投射。投射状态下使用 \u000b2 与物体互动，或按 \u000b4 返回肉体。",
+    "target": "\u000bK \u000bI 发动精神投射 投射状态下使用 \u000b2 与物体互动，或按 \u000b4 返回肉体。",
     "context": "PDA page 054; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [
@@ -3671,7 +3671,7 @@
   },
   {
     "id": "p054.r006.s000",
-    "target": "投射状态下靠近其他角色时按 \u000b2 即可附身。按 \u000b4 即可放弃对被附身角色的控制。",
+    "target": "投射状态下靠近其他角色时按 \u000b2 即可附身 按 \u000b4 即可放弃对被附身角色的控制",
     "context": "PDA page 054; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [],
@@ -4892,7 +4892,7 @@
   },
   {
     "id": "p058.r002.s000",
-    "target": "重型军用麻醉手枪，其构造与功能均与兽用麻醉枪相同。可用于控制人群及执行需要隐蔽行动的敏感任务。",
+    "target": "重型军用麻醉手枪，其构造与功能均与兽用麻醉枪相同。可用于控制人群及执行需要隐蔽行动的敏感任务",
     "context": "PDA page 058; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [
@@ -5012,7 +5012,7 @@
   },
   {
     "id": "p063.r002.s000",
-    "target": "远距离作战的首选武器。精密光学瞄准镜可用于精准瞄准，高速弹药在极远距离上也能保持很高的命中精度。弹匣容量5发，装填速度较慢。",
+    "target": "远距离作战的首选武器 精密光学瞄准镜可用于精准瞄准，高速弹药在极远距离上也能保持很高的命中精度。弹匣容量5发，装填速度较慢。",
     "context": "PDA page 063; original segment/link order preserved",
     "text_kind": "ui",
     "terms": [],

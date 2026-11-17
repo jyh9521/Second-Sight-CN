@@ -1,6 +1,7 @@
 import copy
 import json
 from pathlib import Path
+import shutil
 import sys
 import tempfile
 import unittest
@@ -60,15 +61,22 @@ class SentenceRegressions(unittest.TestCase):
         files=list((ROOT/'locales/zh-CN').glob('*.json'))
         before={p:p.read_bytes() for p in files}
         report=audit(ROOT/'locales/zh-CN')
-        self.assertEqual(len(report['findings']),51)
-        self.assertEqual(report['status'],'fail')
+        self.assertEqual(report['findings'],[])
+        self.assertEqual(report['status'],'pass')
         self.assertEqual(before,{p:p.read_bytes() for p in files})
 
     def test_build_stops_before_resource_processing(self):
         with tempfile.TemporaryDirectory() as folder:
             game=Path(folder)/'input';game.mkdir();(game/'secondsight.exe').write_bytes(b'synthetic')
             output=Path(folder)/'output'
-            with patch.object(build_locale,'digest',return_value=build_locale.EXE_SHA), patch.object(build_locale,'dependency') as fetch:
+            locale=Path(folder)/'locales/zh-CN'
+            shutil.copytree(ROOT/'locales/zh-CN',locale)
+            catalog=locale/'menu-expansion.json'
+            rows=json.loads(catalog.read_text(encoding='utf-8'))
+            next(row for row in rows if row['id']==1363)['target']+='。'
+            catalog.write_text(json.dumps(rows,ensure_ascii=False),encoding='utf-8')
+            with patch.object(build_locale,'digest',return_value=build_locale.EXE_SHA), patch.object(build_locale,'dependency') as fetch, \
+                 patch.object(build_locale,'ROOT',Path(folder)):
                 with self.assertRaisesRegex(ValueError,'editorial checks failed'):
                     build_locale.build(game,'zh-CN',output)
                 fetch.assert_not_called()
