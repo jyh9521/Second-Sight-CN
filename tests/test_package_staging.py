@@ -185,7 +185,9 @@ class LayoutTests(unittest.TestCase):
                 (package/"package.json").write_text(json.dumps(record)+"\n",encoding="utf-8",newline="\n")
                 packages.append(package)
             out=root/"build/nested/evidence"
-            with patch.object(integration,"ROOT",root),contextlib.redirect_stdout(io.StringIO()):
+            (root/"alias-parent").mkdir()
+            # Exercise equivalent lexical/canonical roots (also covers CI's short TEMP path).
+            with patch.object(integration,"ROOT",root/"alias-parent"/".."),contextlib.redirect_stdout(io.StringIO()):
                 integration.prepare(out,*packages)
             self.assertEqual((out/"MODIFIED_FILE.json").read_bytes(),(packages[1]/"package.json").read_bytes())
             self.assertIn("../../..",(out/"ROLLBACK.sh").read_text())

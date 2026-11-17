@@ -16,12 +16,15 @@ COPY_FILES=("game/dinput8.dll","game/dsound.dll","game/scripts/SecondSight.Fusio
 
 
 def prepare(out: Path,baseline: Path,package: Path) -> None:
-    require(out.resolve().is_relative_to(ROOT/"build"),"evidence must be under build")
+    # Windows CI TEMP may use an 8.3 alias: compare canonical paths on both sides.
+    root=ROOT.resolve()
+    out,baseline,package=out.resolve(),baseline.resolve(),package.resolve()
+    require(out.is_relative_to(root/"build"),"evidence must be under build")
     require(not (out/"integration.json").exists(),"choose a fresh evidence directory")
     for name in ("MODIFIED_FILE.json","DIFF_FILE.json","VERIFICATION.txt","ROLLBACK.sh","rollback-copy"):
         require(not (out/name).exists(),f"existing evidence must not be overwritten: {name}")
     for path in (baseline,package):
-        require(path.resolve().parent==ROOT/"dist","package must be under dist")
+        require(path.parent==root/"dist","package must be under dist")
     out.mkdir(parents=True,exist_ok=True)
     old=json.loads((baseline/"package.json").read_text(encoding="utf-8"))
     new=json.loads((package/"package.json").read_text(encoding="utf-8"))
@@ -44,11 +47,11 @@ def prepare(out: Path,baseline: Path,package: Path) -> None:
         dest=fixture/name;dest.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(package/name,dest)
     # This is a tiny DLL/data fixture with no game EXE, not another game test package.
-    relative_root=shlex.quote(os.path.relpath(ROOT,out).replace("\\","/"))
+    relative_root=shlex.quote(os.path.relpath(root,out).replace("\\","/"))
     script='''#!/usr/bin/env bash
 set -euo pipefail
 cd -- "$(dirname -- "$0")"/'''+relative_root+'''
-python -X utf8 tools/verify_integration.py rollback --out '''+shlex.quote(out.relative_to(ROOT).as_posix())+'''
+python -X utf8 tools/verify_integration.py rollback --out '''+shlex.quote(out.relative_to(root).as_posix())+'''
 '''
     (out/"ROLLBACK.sh").write_text(script,encoding="utf-8",newline="\n")
     os.chmod(out/"ROLLBACK.sh",0o755)
