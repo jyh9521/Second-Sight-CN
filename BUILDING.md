@@ -238,3 +238,32 @@ python -X utf8 tools/verify_glyph_fix.py evidence --out $Evidence
 ```
 
 证据脚本依次运行基线（预期退出2）、修改（0）、隔离回滚（0），并回读全部产物。再次验证修改产物可单独使用 `modified` 子命令；不要对已回滚副本重复执行首次回滚操作。
+
+## 字幕离线调查与字号候选
+
+以下命令已在仓库根目录执行，`$Game` 沿用本页固定原版输入路径；没有启动游戏或生成新完整包。构建输出为自有 ASI/宿主，语言包沿用冻结的 007，不绕过当前编辑门禁。研究结论、候选 hash 和未解决项见[字幕记录](docs/research/SUBTITLE_008.md)。
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1 -Out build/runtime-subtitle-008
+python -X utf8 tools/inspect_dialogue_routes.py --game $Game --locale locales/zh-CN --out build/subtitle-008/voice-audit/dialogue-routes.json
+python -X utf8 tools/inspect_integration.py --exe "$Game/secondsight.EXE" --fusionfix-source build/assessment-20261117/fusionfix_upstream/source_checkout --out build/subtitle-008/verification/integration.json
+```
+
+分别退出 0：自有构建通过、五条源绑定及八处指令匹配、27 条固定 FusionFix pattern 的写区间与 18 处汉化补丁不重叠。最后一条要求已缓存的固定上游 Git 对象；工具拒绝将任意上游版本视为已审计版本。
+
+字号回归四件产物需要新的 `build/` 证据子目录，先保存修改前自有 `src/localization.cpp` 为其中的 `BASELINE.cpp`。本轮已保存，执行命令如下（已有证据时不要再次 prepare）：
+
+```powershell
+python -X utf8 tools/verify_subtitle_fix.py prepare --out build/subtitle-008/verification --game-root $Game --baseline-package dist/poc-zh-CN-007 --runtime build/runtime-subtitle-008
+python -X utf8 tools/verify_subtitle_fix.py evidence --out build/subtitle-008/verification
+```
+
+BASELINE 子检查退出 1（固定字号，预期红），MODIFIED 退出 0（12/12 联合布局例），ROLLBACK 退出 0（独立文件恢复 007 hash，独立内存恢复旧布局）；总 evidence 退出 0。真实编译 wrapHook 在基线/修改/恢复均保留，只改变字号两点。最终 GPU、操作系统分配及现场状态是明确的合成边界；不是像素或游戏内验证。`ROLLBACK.sh` 只针对命名夹具，不是安装器；再次运行 evidence 前须重新建立未恢复的独立夹具。
+
+明确提供的转储可只读检查。以下为未来 007 新转储的**未执行示例**，`$Dump` 必须由用户提供具体路径；工具不启动或采集进程：
+
+```powershell
+python -X utf8 tools/inspect_subtitle_dump.py --dump $Dump --expected-candidate 007 --out build/subtitle-008/voice-audit/current-007.json
+```
+
+旧 006 转储已用同一工具读取并明确标为 historical，不用其字段值判断新 007 问题。缺失内存、模组身份不足或不匹配的主映像保持 unknown。

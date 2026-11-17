@@ -13,6 +13,7 @@
 #include <stdexcept>
 #include "text_transport.h"
 #include "glyph_batch.h"
+#include "subtitle_layout.h"
 #include <intrin.h>
 #pragma intrinsic(_ReturnAddress)
 
@@ -435,6 +436,11 @@ static void install() {
         patches.push_back({c.instruction,before,after});
     }
     auto call=[&](uintptr_t a,std::initializer_list<unsigned char> b,const void* fn) { patches.push_back({a,b,branch(a,fn,b.size(),0xe8)}); };
+    // Scope resolution scaling to the timed cutscene subtitle layout only.
+    // Measurement, wrapping and drawing share one private style; restore on exit.
+    call(0x543031,{0xe8,0x5a,0xd5,0x0c,0x00},subtitle_layout::beginCutscene);
+    patches.push_back({0x5431e8,{0xd9,0x05,0xb4,0x74,0x96,0x00},
+                       branch(0x5431e8,subtitle_layout::endCutsceneHook,6,0xe9)});
     call(0x610efd,{0xe8,0xce,0xcf,0xdf,0xff},BeginTextBatchHook);
     patches.push_back({0x610fa8,{0xe9,0x53,0xd1,0xdf,0xff},branch(0x610fa8,EndTextBatchHook,5,0xe9)});
     call(0x6125c1,{0xe8,0x5a,0xd6,0xdf,0xff},BindTextTextureHook);
@@ -490,6 +496,7 @@ static void install() {
         ++done;
     }
     log("TEXT batch texture-transition flush installed; normal pass only");
+    log("SUBTITLE cutscene layout scales with render height; private style restored after captions");
     log("HOOKS installed; FusionFix TextAtPointer/TextAtValue sites untouched; runtime acceptance pending");
 }
 

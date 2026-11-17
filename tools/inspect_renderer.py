@@ -19,6 +19,8 @@ EXPECTED_SIZE = 5_484_544
 MARKER_SITES = (0x610A96, 0x6119F3, 0x611A59, 0x611D1B, 0x611D58, 0x612561)
 PROTECTED_ENTRIES = (0x612BC0, 0x613330)
 PATCH_SITES = {
+    "cutscene_subtitle_style": (0x543031, "e85ad50c00"),
+    "cutscene_subtitle_restore": (0x5431E8, "d905b4749600"),
     "text_batch_begin": (0x610EFD, "e8cecfdfff"),
     "text_batch_end_tail": (0x610FA8, "e953d1dfff"),
     "text_page_bind": (0x6125C1, "e85ad6dfff"),
