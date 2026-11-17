@@ -141,6 +141,8 @@ class LayoutTests(unittest.TestCase):
         for name in stage.TWEAKS_FILES:
             data["files"][f"{stage.TWEAKS_DIR}/{name}"]="digest"
         stage.validate_layout(data)
+        data["gameplay_tweaks"]=stage.TWEAKS_DEFAULT
+        stage.validate_layout(data)
         for name in stage.TWEAKS_FILES:
             invalid=copy.deepcopy(data)
             invalid["files"]["game/scripts/"+name]="digest"
@@ -149,6 +151,42 @@ class LayoutTests(unittest.TestCase):
             del invalid["files"][f"{stage.TWEAKS_DIR}/{name}"]
             with self.assertRaisesRegex(ValueError,"outside the game"):
                 stage.validate_layout(invalid)
+
+    def test_new_packages_install_tweaks_and_keep_a_toggleable_copy(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            out=root/"package"
+            active=out/"game/scripts"
+            active.mkdir(parents=True)
+            binary=root/"module.asi"
+            binary.write_bytes(b"synthetic optional module")
+            labels=root/"labels.ini"
+            labels.write_text("[Menu]\nTitle=Sample\n",encoding="utf-8")
+            stage.stage_gameplay_tweaks(out,binary,labels)
+            files=stage.package_files(out)
+            self.assertTrue(stage.verify_tweaks(out,files))
+            self.assertEqual((active/stage.TWEAKS_FILES[0]).read_text(encoding="utf-16"),labels.read_text(encoding="utf-8"))
+            for name in stage.TWEAKS_FILES:
+                self.assertNotIn("game/scripts/"+name,files)
+                self.assertEqual(files[stage.TWEAKS_DIR+"/"+name],stage.sha(active/name))
+                (active/name).unlink()
+            self.assertFalse(stage.verify_tweaks(out,files))
+
+    def test_imported_fusionfix_config_is_recorded_but_binary_remains_pinned(self):
+        data=self.record(True)
+        data.update(package_id="poc-zh-CN-012",version=12,fusionfix_config=stage.fusionfix_config_record())
+        config_hash="1"*64
+        data["local_fusionfix_config"]={"from_package":"poc-zh-CN-011","sha256":config_hash}
+        data["files"]["game/"+stage.FUSION_CONFIG_PATH]=config_hash
+        stage.validate_layout(data)
+        for key,value in (("from_package","poc-zh-CN-012"),("sha256",None)):
+            invalid=copy.deepcopy(data)
+            invalid["local_fusionfix_config"][key]=value
+            with self.assertRaisesRegex(ValueError,"local FusionFix"):
+                stage.validate_layout(invalid)
+        data["files"]["game/scripts/SecondSight.FusionFix.asi"]=config_hash
+        with self.assertRaisesRegex(ValueError,"FusionFix identity"):
+            stage.validate_layout(data)
 
     @unittest.skipUnless(os.name=="nt","test the Windows installation and rollback script")
     def test_optional_script_roundtrip_and_conflict(self):

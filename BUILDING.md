@@ -88,7 +88,7 @@ python -X utf8 tools/stage_poc.py --verify --out $Package
 
 HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。Compatibility、FusionFix、本地化三份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK、FusionFix 二进制及输入配置不变；输出配置仅将 `[MAIN] WindowMode` 从 `0` 改为 `2`，固定输出 hash 与 override 记录写入清单。004 起默认无边框，其余设置不变。
 
-包内提供 `TESTING.md`、`package.json`、原安装与高清输入清单、`Disable-Localization.ps1`、`Set-HD.ps1` 和默认不加载的 [GameplayTweaks 模块](docs/MENU_TWEAKS_011.md)。`game/profiles/` 初始为空；不复制个人存档，但用户目录/注册表隔离仍待实测。手动启动和分层排查见[三合一测试说明](docs/INTEGRATED_TESTING.md)。
+包内提供 `TESTING.md`、`package.json`、原安装与高清输入清单、`Disable-Localization.ps1`、`Set-HD.ps1` 和默认加载、可单独停用的 [GameplayTweaks 模块](docs/MENU_TWEAKS_011.md)。新构建的 `game/profiles/` 初始为空，不自动复制个人存档。GOG 版可从 32 位注册表安装位置选择共享存档根目录；复制文件不改注册表，也不代表存档已隔离。手动启动和分层排查见[三合一测试说明](docs/INTEGRATED_TESTING.md)。
 
 ### 永远只保留最近两个已完成的测试包
 

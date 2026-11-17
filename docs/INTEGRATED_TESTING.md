@@ -40,7 +40,7 @@
 “快速滚动”“按钮不可用”有已核对消费者及局部容量，但实际 PC 触发可达性尚未完全闭合，现作防御性覆盖。载入提示由 `ui-textures.json` 独立生成，不改原图像素或高清 DDS；版权原图和标志原样保留。旧暂停/Controls 已核对非当前 PC 使用路径，不另加补丁。
 
 BS 日志中的 `expected-direct` 应对照实际交付 manifest 的 `bs_binding.direct_ids`，`deferred` 包括未直接改表的旧文本及五段组合终端。不要把 5,957 总条数直接当成直接替换数量，也不要继续套用 005 的 `expected=832`。PDA 本轮目标为 447 段。日志计数不代替可见文本和布局验收。
-包内 `game/profiles/` 初始为空，不复制原存档；请自行备份重要存档。文件副本隔离不代表用户目录或注册表状态已实测隔离。
+新构建不会自动复制存档。GOG 版从注册表安装位置定位 `profiles/`；若该位置指向原安装，各测试包可能读写同一存档。012 本地迁移已保存副本到包内 `game/profiles/`，不改注册表或共享存档。
 
 004 的新故障证据、无边框策略与待验收边界见[004 记录](https://github.com/jyh9521/Second-Sight-CN/blob/main/docs/STARTUP_004.md)；003 的启动适配依据见[兼容记录](https://github.com/jyh9521/Second-Sight-CN/blob/main/docs/STARTUP_COMPATIBILITY.md)。不要单独关闭 Compatibility 模块再搭配当前固定 FusionFix；该组合会重新遇到原始签名不匹配。
 
@@ -80,10 +80,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\Set-HD.ps1 -Mode enable
 
 010 重点：在 4K 重看左上按键教程和左下“徒手”，记录是否够大、是否遮住图标。
 
-012 重点：用相同分辨率比较主菜单、地图和 PDA；检查地图边框、箭头和交互区域；看过场左下时间地点、字幕以及选择「治疗」后文字能否显示完整。选测作弊菜单时，先关闭游戏，在测试包根目录执行：
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Set-GameplayTweaks.ps1 -Mode Enable
-```
-
-由你手动启动包内游戏，按 F1 打开「《第二视界》作弊菜单」，勾选无限生命、无限超能力或隐身。关面板保留勾选，退出游戏后开关清空。关闭游戏后可用同一脚本的 `-Mode Disable` 移除加载副本，保留汉化、FusionFix、无边框和高清材质。实际 F1 焦点、鼠标与 Ctrl+F10 共存、玩家伤害、能量和 NPC 感知由用户在游戏内验收。详细边界见仓库的 `docs/MENU_TWEAKS_011.md`。
+012 重点：用相同分辨率比较主菜单、地图和 PDA；检查地图边框、箭头和交互区域；看过场左下时间地点、字幕以及选择「治疗」后文字能否显示完整。作弊菜单默认加载。由你手动启动包内游戏，按 F1 打开「《第二视界》作弊菜单」，勾选无限生命、无限超能力或隐身。关面板保留勾选，退出游戏后开关清空。关闭游戏后可用同一脚本的 `-Mode Disable` 移除加载副本，保留汉化、FusionFix、无边框和高清材质；用 `-Mode Enable` 可重新启用。实际 F1 焦点、鼠标与 Ctrl+F10 共存、玩家伤害、能量和 NPC 感知由用户在游戏内验收。详细边界见仓库的 `docs/MENU_TWEAKS_011.md`。
