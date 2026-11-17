@@ -134,6 +134,58 @@ class LayoutTests(unittest.TestCase):
     def test_both_layouts(self):
         for hd in (False,True): stage.validate_layout(self.record(hd))
 
+    def test_tweaks_must_stage_outside_the_loader_tree(self):
+        data=self.record(True)
+        data["gameplay_tweaks"]="optional-disabled-v1"
+        data["files"]["Set-GameplayTweaks.ps1"]="script"
+        for name in stage.TWEAKS_FILES:
+            data["files"][f"{stage.TWEAKS_DIR}/{name}"]="digest"
+        stage.validate_layout(data)
+        for name in stage.TWEAKS_FILES:
+            invalid=copy.deepcopy(data)
+            invalid["files"]["game/scripts/"+name]="digest"
+            with self.assertRaisesRegex(ValueError,"outside the game"):
+                stage.validate_layout(invalid)
+            del invalid["files"][f"{stage.TWEAKS_DIR}/{name}"]
+            with self.assertRaisesRegex(ValueError,"outside the game"):
+                stage.validate_layout(invalid)
+
+    @unittest.skipUnless(os.name=="nt","test the Windows installation and rollback script")
+    def test_optional_script_roundtrip_and_conflict(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            active=root/"game/scripts"; active.mkdir(parents=True)
+            stored=root/stage.TWEAKS_DIR; stored.mkdir(parents=True)
+            keep=active/"SecondSight.FusionFix.asi"
+            keep.write_bytes(b"synthetic unrelated FusionFix")
+            files={}
+            for i,name in enumerate(stage.TWEAKS_FILES):
+                (stored/name).write_bytes(f"synthetic module asset {i}".encode())
+                files[f"{stage.TWEAKS_DIR}/{name}"]=stage.sha(stored/name)
+            (root/"package.json").write_text(json.dumps({"files":files}),encoding="utf-8")
+            script=root/"Set-GameplayTweaks.ps1"
+            shutil.copy2(stage.ROOT/"tools"/script.name,script)
+            def run(mode):
+                return subprocess.run(["powershell","-NoProfile","-ExecutionPolicy","Bypass",
+                                       "-File",str(script),"-Mode",mode],capture_output=True)
+            before=stage.inventory(root)
+            result=run("Status")
+            self.assertEqual(result.returncode,0,result.stderr)
+            self.assertIn(b"disabled",result.stdout)
+            for mode in ("Enable","Enable","Status"):
+                result=run(mode)
+                self.assertEqual(result.returncode,0,result.stderr)
+                self.assertIn(b"enabled",result.stdout)
+            conflict=active/stage.TWEAKS_FILES[1]
+            conflict.write_bytes(b"unknown user file")
+            self.assertNotEqual(run("Disable").returncode,0)
+            self.assertEqual(conflict.read_bytes(),b"unknown user file")
+            shutil.copy2(stored/conflict.name,conflict)
+            result=run("Disable")
+            self.assertEqual(result.returncode,0,result.stderr)
+            self.assertIn(b"disabled",result.stdout)
+            self.assertEqual(stage.inventory(root),before)
+
     def test_new_package_requires_pinned_borderless_override(self):
         for hd in (False, True):
             data=self.record(hd)

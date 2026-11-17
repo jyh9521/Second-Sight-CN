@@ -18,10 +18,14 @@ if errorlevel 1 exit /b 1
 cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /LD /utf-8 /Brepro "$root\src\startup_compat.cpp" /link /DEF:"$root\src\startup_compat.def" /OUT:"$output\SecondSight.Compatibility.asi" /INCREMENTAL:NO /Brepro advapi32.lib
 if errorlevel 1 exit /b 1
 cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /utf-8 /Brepro "$root\tests\compatibility_host.cpp" /link /OUT:"$output\compatibility_host.exe" /INCREMENTAL:NO /Brepro
+if errorlevel 1 exit /b 1
+cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /LD /utf-8 /Brepro "$root\src\gameplay_tweaks.cpp" /link /DEF:"$root\src\gameplay_tweaks.def" /OUT:"$output\SecondSight.GameplayTweaks.asi" /MAP:"$output\SecondSight.GameplayTweaks.map" /INCREMENTAL:NO /Brepro bcrypt.lib user32.lib gdi32.lib
+if errorlevel 1 exit /b 1
+cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /utf-8 /Brepro "$root\tests\gameplay_tweaks_host.cpp" /link /OUT:"$output\gameplay_tweaks_host.exe" /INCREMENTAL:NO /Brepro
 exit /b %errorlevel%
 "@
 [IO.File]::WriteAllText((Join-Path $output 'compile.cmd'),$build,[Text.Encoding]::ASCII)
 Push-Location $output
 try { & $env:ComSpec /d /c (Join-Path $output 'compile.cmd'); if ($LASTEXITCODE -ne 0) { throw "MSVC failed: $LASTEXITCODE" } }
 finally { Pop-Location }
-Write-Output "BUILD PASS: localization + compatibility x86 ASIs and offline hosts; game not launched"
+Write-Output "BUILD PASS: localization + compatibility + optional gameplay tweaks x86 ASIs and offline hosts; game not launched"

@@ -6,6 +6,7 @@ from pathlib import Path
 import subprocess
 from assess_resources import require
 from startup_compat import mapped_game,transform,contracts
+from replay_menu_tweaks import MENU, tweak_spans
 
 ROOT=Path(__file__).resolve().parents[1]
 PIN='7bce79ffaeee61f95db59a68b35a150cd8644223'
@@ -49,25 +50,33 @@ def inspect(exe: Path, checkout: Path) -> dict:
            (0x610efd,5),(0x610fa8,5),(0x6125c1,5),(0x612677,5)]
     from inspect_renderer import PATCH_SITES
     spans += [(a,len(bytes.fromhex(b))) for name,(a,b) in PATCH_SITES.items() if name.startswith(('hd_atlas_','hud_'))]
+    spans += [(a,len(sig)) for a,sig in MENU.items()]
     spans += [(int(r['va'],16),len(bytes.fromhex(r['before']))) for r in profile['atlas']['patches']]
     literal=json.loads((ROOT/'assets/exe-text-contracts.json').read_text(encoding='utf-8'))
     spans += [(int(r['patch_va'],16),len(bytes.fromhex(r['expected']))) for r in literal['records']]
+    tweaks=[(a,len(before)) for a,before,_,_ in tweak_spans()]
+    require_disjoint(spans,tweaks)
+    require_disjoint([(0x612bc0,5),(0x613330,5)],tweaks)
+    for i,(a,n) in enumerate(tweaks):
+        require_disjoint([(a,n)],tweaks[:i])
     audited=[]
     for row in rows:
         require(row['pattern'] in sources[row['source']].decode(),'pattern not in pinned source')
         require(row['passed'],'pattern did not match uniquely')
         writes=write_envelopes(row,sources[row['source']])
         require_disjoint(writes,spans)
+        require_disjoint(writes,tweaks)
         audited.append(dict(source=row['source'],pattern_address=row['expected_address'],
                             writes=[dict(address=hex(a),size=n) for a,n in writes],
                             method='source-bound cutscene writes' if row['pattern'] in CUTSCENE_WRITES
                             else 'conservative 96-byte pattern envelope'))
     return dict(commit=PIN,source_hashes={n:hashlib.sha256(v).hexdigest() for n,v in sources.items()},
                 new_localization_spans=[dict(address=hex(a),size=n) for a,n in spans],
+                optional_gameplay_tweaks_spans=[dict(address=hex(a),size=n) for a,n in tweaks],
                 pattern_contract='assets/fusionfix-startup-contracts.json',matched_patterns=len(rows),
                 pattern_code_envelope=96,audited_write_envelopes=audited,
                 startup_view='after four existing compatibility contracts; original disk unchanged',
-                result=f'PASS: {len(rows)} pinned game-pattern write envelopes are disjoint from {len(spans)} new code spans',
+                result=f'PASS: {len(rows)} pinned game-pattern envelopes disjoint from {len(spans)} localization and {len(tweaks)} optional tweaks spans',
                 scope='static write-site audit, not runtime module-order or device acceptance',
                 nearest_text_hooks=['0x612BC0','0x613330'],game_executed=False)
 

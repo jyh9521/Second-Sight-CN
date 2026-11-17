@@ -1,0 +1,4 @@
+LIBRARY SecondSight.GameplayTweaks.asi
+EXPORTS
+    InitializeASI
+    GameplayTweaksStatus

@@ -527,6 +527,26 @@ extern "C" __declspec(noinline) void __cdecl BindTextTextureHook(int texture) {
                    reinterpret_cast<void(__cdecl*)()>(0x40e100),
                    reinterpret_cast<void(__cdecl*)(int)>(0x40fc20));
 }
+// The atlas and glyph placement are already shared with subtitles/PDA.
+// Only these two front-end callers get a single shadow instead of the four
+// overlapping outline passes. Keep the native foreground, colors and width.
+extern "C" __declspec(noinline) void __cdecl MenuContrastDraw(
+    float x,float y,float width,const char* value,uint32_t foreground,uint32_t shadow) {
+    const char* token=value;
+    while(token && *token && !transport::glyph(token)) ++token;
+    if(!token || !*token) {
+        reinterpret_cast<void(__cdecl*)(float,float,float,const char*,uint32_t,uint32_t)>(0x612d50)(
+            x,y,width,value,foreground,shadow);
+        return;
+    }
+    const auto draw=reinterpret_cast<void(__cdecl*)(float*,float*,float,const char*,uint32_t)>(0x612c10);
+    auto& outline=*reinterpret_cast<uint32_t*>(0x9e3688);
+    const auto previous=outline;
+    float shadowX=x+1.0f,shadowY=y+1.0f;
+    outline=1; draw(&shadowX,&shadowY,width,value,shadow);
+    outline=0; draw(&x,&y,width,value,foreground);
+    outline=previous;
+}
 struct Patch { uintptr_t address; std::vector<unsigned char> before,after; };
 static bool write(uintptr_t address,const std::vector<unsigned char>& bytes) {
     DWORD old=0,ignored=0;
@@ -565,6 +585,8 @@ static void install() {
         patches.push_back({c.instruction,before,after});
     }
     auto call=[&](uintptr_t a,std::initializer_list<unsigned char> b,const void* fn) { patches.push_back({a,b,branch(a,fn,b.size(),0xe8)}); };
+    call(0x4b758a,{0xe8,0xc1,0xb7,0x15,0x00},MenuContrastDraw);
+    call(0x4bf717,{0xe8,0x34,0x36,0x15,0x00},MenuContrastDraw);
     // Scope resolution scaling to the timed cutscene subtitle layout only.
     // Measurement, wrapping and drawing share one private style; restore on exit.
     call(0x543031,{0xe8,0x5a,0xd5,0x0c,0x00},subtitle_layout::beginCutscene);

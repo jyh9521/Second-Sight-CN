@@ -29,6 +29,8 @@ jobs:
         run: |
           & .\build\runtime\compatibility_host.exe "$PWD\build\runtime\SecondSight.Compatibility.asi"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\build\runtime\gameplay_tweaks_host.exe "$PWD\build\runtime\SecondSight.GameplayTweaks.asi"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
   catalog-acceptance:
     name: Strict catalog gate (pending findings are failures)

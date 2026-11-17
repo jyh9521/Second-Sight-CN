@@ -26,6 +26,8 @@ REMASTER_DLL_SHA = "8aa884f7a6f4a4fa5294f457c0480149dc684479c9adbd8617c14c539d47
 REMASTER_INVENTORY_SHA = "2ee7e2b39b9e56f3c55ab396157775f18bb5adbd411aab983a654d235281da5a"
 LOADER_INI = "[GlobalSets]\nLoadPlugins=1\nDontLoadFromDllMain=1\nDebugLog=1\n"
 COMPAT_LOADER_INI = LOADER_INI+"LoadExtraPlugins=scripts\\SecondSight.Compatibility.asi\n"
+TWEAKS_FILES = ("SecondSight.GameplayTweaks.ini","SecondSight.GameplayTweaks.asi")
+TWEAKS_DIR = "optional/gameplay-tweaks"
 
 def sha(path: Path) -> str:
     with path.open("rb") as file:
@@ -90,6 +92,12 @@ def validate_layout(record: dict) -> None:
         require(record["startup_compat"]=="gog-fusionfix-contracts-v1","unknown compatibility adapter")
         require("game/scripts/SecondSight.Compatibility.asi" in files,"startup adapter missing")
         require(files.get("game/"+loader.replace(".dll",".ini"))==hashlib.sha256(COMPAT_LOADER_INI.encode()).hexdigest(),"compatibility load-first setting missing/changed")
+    if record.get("gameplay_tweaks"):
+        require(record["gameplay_tweaks"]=="optional-disabled-v1","unknown gameplay tweaks bundle")
+        require("Set-GameplayTweaks.ps1" in files,"gameplay tweaks toggle script missing")
+        for name in TWEAKS_FILES:
+            require(f"{TWEAKS_DIR}/{name}" in files and f"game/scripts/{name}" not in files,
+                    f"optional module must be staged outside the game: {name}")
     if hd:
         require(files.get("game/dinput8.dll")==REMASTER_DLL_SHA,"ReMade proxy identity missing/changed")
         require(record["remastered"].get("inventory_sha256")==REMASTER_INVENTORY_SHA,"unknown ReMade inventory")
@@ -106,6 +114,13 @@ def verify(out: Path) -> None:
         path=(out/name).resolve()
         require(path.is_relative_to(out.resolve()), "package path escapes root")
         require(sha(path)==expected, f"package file changed: {name}")
+    if record.get("gameplay_tweaks"):
+        active=[out/"game"/"scripts"/name for name in TWEAKS_FILES]
+        present=[p for p in active if p.exists()]
+        require(not present or len(present)==len(active),"incomplete optional module installation")
+        for p in present:
+            require(sha(p)==record["files"][f"{TWEAKS_DIR}/{p.name}"],"active optional module changed")
+        print(f"OPTIONAL TWEAKS PASS: {'enabled' if present else 'disabled'}",flush=True)
     if record.get("remastered"):
         subset={name.removeprefix("game/"):value for name,value in record["files"].items()
                 if name=="game/dinput8.dll" or name.startswith("game/Remaster_Textures/")}
@@ -148,6 +163,7 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path 
     runtime=ROOT/"build/runtime"
     subprocess.run([str(runtime/"localization_host.exe"),str(runtime/"SecondSight.Localization.asi"),str(locale_dir/"locale.bin")],check=True,cwd=ROOT)
     subprocess.run([str(runtime/"compatibility_host.exe"),str(runtime/"SecondSight.Compatibility.asi")],check=True,cwd=ROOT)
+    subprocess.run([str(runtime/"gameplay_tweaks_host.exe"),str(runtime/"SecondSight.GameplayTweaks.asi")],check=True,cwd=ROOT)
     target=out/"game"
     target.mkdir(parents=True)
     print("STAGE: copying independent game files (no links, no launch)",flush=True)
@@ -172,6 +188,14 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path 
         (out/"remastered-input-inventory.json").write_text(json.dumps(hd_before,indent=2)+"\n",encoding="utf-8")
     shutil.copy2(runtime/"SecondSight.Localization.asi",target/"scripts/SecondSight.Localization.asi")
     shutil.copy2(runtime/"SecondSight.Compatibility.asi",target/"scripts/SecondSight.Compatibility.asi")
+    optional=out/TWEAKS_DIR
+    optional.mkdir(parents=True)
+    shutil.copy2(runtime/TWEAKS_FILES[1],optional/TWEAKS_FILES[1])
+    labels=ROOT/"locales"/locale/"gameplay-tweaks.ini"
+    # Win32 profile APIs recognize the UTF-16 LE BOM, not UTF-8.
+    (optional/TWEAKS_FILES[0]).write_bytes(b"\xff\xfe"+(labels.read_text(encoding="utf-8-sig") if labels.exists()
+                                  else "[Menu]\n").encode("utf-16-le"))
+    shutil.copy2(ROOT/"tools/Set-GameplayTweaks.ps1",out/"Set-GameplayTweaks.ps1")
     (target/("dsound.ini" if remastered else "dinput8.ini")).write_text(COMPAT_LOADER_INI,encoding="ascii",newline="\n")
     translated=target/"scripts/localization"
     translated.mkdir()
@@ -202,6 +226,7 @@ Write-Output 'DISABLE PASS: Localization ASI disabled; FusionFix retained; no ga
     (out/"source-inventory.json").write_text(json.dumps(before,indent=2)+"\n",encoding="utf-8")
     record=dict(format="second-sight-local-test-v2",package_id=out.name,version=version,
                 startup_compat="gog-fusionfix-contracts-v1",
+                gameplay_tweaks="optional-disabled-v1",
                 fusionfix_config=config_record,
                 locale=locale,status="awaiting-user-runtime-test",loader="dsound.dll" if remastered else "dinput8.dll",
                 remastered=dict(inventory_sha256=REMASTER_INVENTORY_SHA,dds_count=5110) if remastered else None,
