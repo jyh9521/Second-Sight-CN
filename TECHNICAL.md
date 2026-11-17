@@ -67,7 +67,7 @@ PDA 使用独立的 `data/pdaps_[aefgis].raw` 资源，每个后缀在 17 个剧
 
 用户已提供 ReMade 高清模组，已完成[离线兼容评估](docs/REMASTERED_COMPATIBILITY_2026-11-17.md)。它使用 D3DX PNG 内容 hash 替换纹理，附带同名 dinput8 代理并共享 D3D9 钩子；建议保持可选外部依赖，UAL 链载及三方运行时共存待用户验证。PoC 001 未加入该模组；PoC 002 已按下述布局构建。
 
-## 本轮离线结果
+## PoC 001 离线结果（历史）
 
 - 49 项合成单元测试、MSVC x86 构建和自有离线宿主通过。
 - 语言包含 32 条 BS、4 条 PDA、92 个字形和 6 张 DDS；不是全量翻译。
@@ -93,3 +93,7 @@ PDA 使用独立的 `data/pdaps_[aefgis].raw` 资源，每个后缀在 17 个剧
 未选 `d3d9.dll`：游戏相关静态路径使用 `GetSystemDirectoryA` 拼接 `\d3d9.dll`，根目录同名代理并非可靠入口。本轮没有通过加载第三方 DLL 或启动游戏验证这些路线。
 
 `dsound.ini` 采用 `[GlobalSets] LoadPlugins=1 / DontLoadFromDllMain=1 / DebugLog=1`，诊断日志为 `dsound.log`。改名解决的是文件名冲突，不是 D3D9 钩子顺序、中文字库或高清缓存生命周期已经兼容。三合一实机、8K 内存占用和音频输入功能均待用户验收。独立回滚夹具证明高清 DLL 可禁用且两份 ASI 保持字节不变，不宣称原游戏行为已经恢复。
+
+## PoC 003：GOG/FusionFix 启动契约
+
+001/002 的用户转储均在 FusionFix 的空 pattern 向量处读取地址 0，尚未加载本地化 ASI。四处 GOG 跳板造成上游直接签名不匹配。003 使用先加载的独立兼容模块，核对固定输入并仅在用户启动的进程内提供 22 字节指令契约，Overlay 使用私有持久 float；磁盘 EXE/FusionFix 不变。84 项合成测试和原生宿主通过，27 条直接签名从 4 项缺失变为全部唯一，实机待测。详见[启动兼容记录](docs/STARTUP_COMPATIBILITY.md)。

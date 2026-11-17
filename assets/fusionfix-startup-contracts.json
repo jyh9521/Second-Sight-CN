@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "upstream_commit": "7bce79ffaeee61f95db59a68b35a150cd8644223",
+  "purpose": "Mechanical byte-pattern contracts, not upstream implementation or full game resources",
+  "patterns": [
+    {
+      "source": "Cutscenes.ixx",
+      "line": 54,
+      "pattern": "DB 05 ? ? ? ? 6A 7F D8 0D ? ? ? ? E8 ? ? ? ? 50 A1 ? ? ? ? 50 6A 00 6A 00 E8",
+      "expected_address": "0x542fe0"
+    },
+    {
+      "source": "Cutscenes.ixx",
+      "line": 55,
+      "pattern": "DB 05 ? ? ? ? 8B 35 ? ? ? ? 8B 0D ? ? ? ? D8 0D ? ? ? ? 6A 7F",
+      "expected_address": "0x543003"
+    },
+    {
+      "source": "Cutscenes.ixx",
+      "line": 57,
+      "pattern": "A1 ? ? ? ? 85 C0 0F 85 ? ? ? ? D9 05 ? ? ? ? D8 1D ? ? ? ? DF E0 F6 C4 41 0F 85 ? ? ? ? D9 05 ? ? ? ? 56 D8 0D",
+      "expected_address": "0x63c420"
+    },
+    {
+      "source": "Cutscenes.ixx",
+      "line": 58,
+      "pattern": "8B 00 42 52 51 50 E8 ? ? ? ? 83 C4 40 5E C3",
+      "expected_address": "0x63c4b8"
+    },
+    {
+      "source": "dllmain.cpp",
+      "line": 25,
+      "pattern": "BF 94 00 00 00 8B C7",
+      "expected_address": "0x7b617e"
+    },
+    {
+      "source": "Hud.ixx",
+      "line": 97,
+      "pattern": "C7 05 ? ? ? ? 14 00 00 00 A3 ? ? ? ? C7 05 ? ? ? ? 14 00 00 00 A3 ? ? ? ? C3",
+      "expected_address": "0x63775f"
+    },
+    {
+      "source": "Hud.ixx",
+      "line": 98,
+      "pattern": "B8 14 00 00 00 A3 ? ? ? ? A3 ? ? ? ? A3 ? ? ? ? A3",
+      "expected_address": "0x6375c3"
+    },
+    {
+      "source": "Hud.ixx",
+      "line": 99,
+      "pattern": "83 C1 14 89 0D ? ? ? ? E8",
+      "expected_address": "0x63498c"
+    },
+    {
+      "source": "Hud.ixx",
+      "line": 109,
+      "pattern": "83 EC 20 53 56 57 6A 00 E8 ? ? ? ? 8B 54 24 34 8B 5C 24 38 68",
+      "expected_address": "0x612bc0"
+    },
+    {
+      "source": "Hud.ixx",
+      "line": 110,
+      "pattern": "8B 44 24 14 8B 4C 24 10 8B 54 24 0C 50 8B 44 24 0C 51 8B 4C 24 0C 52 6A",
+      "expected_address": "0x613330"
+    },
+    {
+      "source": "Misc.ixx",
+      "line": 34,
+      "pattern": "39 3D ? ? ? ? 74 ? 8B 06 68 ? ? ? ? 50 E8 ? ? ? ? 83 C4 08 85 DB",
+      "expected_address": "0x626a17"
+    },
+    {
+      "source": "Misc.ixx",
+      "line": 38,
+      "pattern": "8B 44 24 08 D9 44 24 10 8B 4C 24 04 D8 0D ? ? ? ? 8B 54 24 0C 50 A1 ? ? ? ?",
+      "expected_address": "0x4433d8"
+    },
+    {
+      "source": "Misc.ixx",
+      "line": 40,
+      "pattern": "DB 05 ? ? ? ? D8 0D ? ? ? ? DB 05 ? ? ? ? D8 0D ? ? ? ? DE F9 DA 48 0C DA 70 20 8B 86 74 03 00 00",
+      "expected_address": "0x442f79"
+    },
+    {
+      "source": "Misc.ixx",
+      "line": 43,
+      "pattern": "A3 ? ? ? ? E8 ? ? ? ? 50 E8 ? ? ? ? 68 ? ? ? ? 68 ? ? ? ? A3 ? ? ? ? E8 ? ? ? ? 83 C4 44",
+      "expected_address": "0x41618d"
+    },
+    {
+      "source": "Misc.ixx",
+      "line": 50,
+      "pattern": "D8 0D ? ? ? ? 51 DB 05 ? ? ? ? 8B 0D ? ? ? ? D8 0D ? ? ? ? DE F9 D9 1C 24 50 51 E8",
+      "expected_address": "0x44975b"
+    },
+    {
+      "source": "Misc.ixx",
+      "line": 54,
+      "pattern": "68 ? ? ? ? 52 E8 ? ? ? ? 8D 44 24 60 83",
+      "expected_address": "0x58392f"
+    },
+    {
+      "source": "Misc.ixx",
+      "line": 56,
+      "pattern": "D8 0D ? ? ? ? D9 9C 24 88 00 00 00 E8",
+      "expected_address": "0x4f01cb"
+    },
+    {
+      "source": "Movies.ixx",
+      "line": 79,
+      "pattern": "6A 1C 8D 4C 24 ? 51 6A 02 6A 05 50 FF 92 4C 01 00 00",
+      "expected_address": "0x62fc85"
+    },
+    {
+      "source": "Movies.ixx",
+      "line": 82,
+      "pattern": "A1 ? ? ? ? 0F AF C7 99 81 E2 FF 01 00 00 03 C2 8B E8 A1",
+      "expected_address": "0x4af960"
+    },
+    {
+      "source": "Movies.ixx",
+      "line": 82,
+      "pattern": "A1 ? ? ? ? 8B 0D ? ? ? ? 69 C0 F6 00 00 00",
+      "expected_address": "0x4afa9f"
+    },
+    {
+      "source": "Movies.ixx",
+      "line": 83,
+      "pattern": "A1 ? ? ? ? C1 E0 08 99 81 E2 FF 01 00 00 03",
+      "expected_address": "0x4a36f9"
+    },
+    {
+      "source": "Movies.ixx",
+      "line": 93,
+      "pattern": "68 ? ? ? ? E8 ? ? ? ? 68 ? ? ? ? E8 ? ? ? ? 83 C4 08 C7 05 ? ? ? ? 02 00 00 00",
+      "expected_address": "0x4af460"
+    },
+    {
+      "source": "Resolution.ixx",
+      "line": 58,
+      "pattern": "8B 44 24 0C 83 F8 3C 7C ? 83 F8 55 7F ? 8B 44 24 04 3D 80 02 00 00",
+      "expected_address": "0x4171b0"
+    },
+    {
+      "source": "Window.ixx",
+      "line": 154,
+      "pattern": "8D 4C 24 74 51 8D 94 24 C0 00 00 00 52 E8",
+      "expected_address": "0x41a093"
+    },
+    {
+      "source": "Window.ixx",
+      "line": 155,
+      "pattern": "A1 ? ? ? ? 8B 0D ? ? ? ? 68 ? ? ? ? 68 ? ? ? ? 89 5C 24 4C",
+      "expected_address": "0x41a024"
+    },
+    {
+      "source": "Window.ixx",
+      "line": 156,
+      "pattern": "68 00 00 CF 00 E8 ? ? ? ? 8B C8 E8",
+      "expected_address": "0x6478b2"
+    },
+    {
+      "source": "Window.ixx",
+      "line": 157,
+      "pattern": "68 00 00 CF 00 68 ? ? ? ? 68 ? ? ? ? 6A 00 FF 15",
+      "expected_address": "0x647a06"
+    }
+  ]
+}

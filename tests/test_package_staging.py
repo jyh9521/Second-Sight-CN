@@ -134,6 +134,17 @@ class LayoutTests(unittest.TestCase):
     def test_both_layouts(self):
         for hd in (False,True): stage.validate_layout(self.record(hd))
 
+    def test_startup_adapter_requires_explicit_preload(self):
+        for hd in (False,True):
+            data=self.record(hd);data['startup_compat']='gog-fusionfix-contracts-v1'
+            data['files']['game/scripts/SecondSight.Compatibility.asi']='own-adapter'
+            with self.assertRaises(ValueError):stage.validate_layout(data)
+            ini='game/'+data['loader'].replace('.dll','.ini')
+            data['files'][ini]=hashlib.sha256(stage.COMPAT_LOADER_INI.encode()).hexdigest()
+            stage.validate_layout(data)
+            del data['files']['game/scripts/SecondSight.Compatibility.asi']
+            with self.assertRaises(ValueError):stage.validate_layout(data)
+
     def test_legacy_compatible(self):
         data=self.record(False); data["format"]="second-sight-local-test-v1"
         del data["loader"]

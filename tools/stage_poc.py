@@ -11,6 +11,7 @@ import sys
 from assess_resources import require
 from build_locale import ROOT, EXE_SHA, build
 from package_retention import apply_retention, assert_plain_tree, candidates, is_link, sequence
+from startup_compat import preflight as startup_preflight
 
 FUSION_FILES = {
     "dinput8.dll":"63b465dbc1bf9c5ab4e33c3ccad099d9edb702f2c51587ac8d4f196497396437",
@@ -20,6 +21,7 @@ FUSION_FILES = {
 REMASTER_DLL_SHA = "8aa884f7a6f4a4fa5294f457c0480149dc684479c9adbd8617c14c539d47f947"
 REMASTER_INVENTORY_SHA = "2ee7e2b39b9e56f3c55ab396157775f18bb5adbd411aab983a654d235281da5a"
 LOADER_INI = "[GlobalSets]\nLoadPlugins=1\nDontLoadFromDllMain=1\nDebugLog=1\n"
+COMPAT_LOADER_INI = LOADER_INI+"LoadExtraPlugins=scripts\\SecondSight.Compatibility.asi\n"
 
 def sha(path: Path) -> str:
     with path.open("rb") as file:
@@ -62,10 +64,15 @@ def validate_layout(record: dict) -> None:
         require(files.get("game/"+destination)==expected,f"FusionFix identity missing/changed: {destination}")
     require("game/scripts/SecondSight.Localization.asi" in files,"localization ASI missing")
     require("game/scripts/localization/locale.bin" in files,"locale pack missing")
+    if record.get("startup_compat"):
+        require(record["startup_compat"]=="gog-fusionfix-contracts-v1","unknown compatibility adapter")
+        require("game/scripts/SecondSight.Compatibility.asi" in files,"startup adapter missing")
+        require(files.get("game/"+loader.replace(".dll",".ini"))==hashlib.sha256(COMPAT_LOADER_INI.encode()).hexdigest(),"compatibility load-first setting missing/changed")
     if hd:
         require(files.get("game/dinput8.dll")==REMASTER_DLL_SHA,"ReMade proxy identity missing/changed")
         require(record["remastered"].get("inventory_sha256")==REMASTER_INVENTORY_SHA,"unknown ReMade inventory")
-        require(files.get("game/dsound.ini")==hashlib.sha256(LOADER_INI.encode()).hexdigest(),"loader settings missing/changed")
+        settings=COMPAT_LOADER_INI if record.get("startup_compat") else LOADER_INI
+        require(files.get("game/dsound.ini")==hashlib.sha256(settings.encode()).hexdigest(),"loader settings missing/changed")
 
 
 def verify(out: Path) -> None:
@@ -105,6 +112,7 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path 
             require(not out.is_relative_to(source) and not source.is_relative_to(out),"output overlaps input")
             assert_plain_tree(source)
     require(sha(game/"secondsight.EXE")==EXE_SHA,"unsupported executable")
+    startup_preflight(game/"secondsight.EXE")
     for name,expected in FUSION_FILES.items():
         require(sha(fusionfix/name)==expected,f"unsupported FusionFix input: {name}")
     print("STAGE: hashing original game and supplied dependencies",flush=True)
@@ -116,6 +124,7 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path 
     subprocess.run(["powershell","-NoProfile","-ExecutionPolicy","Bypass","-File",str(ROOT/"tools/build_runtime.ps1")],check=True,cwd=ROOT)
     runtime=ROOT/"build/runtime"
     subprocess.run([str(runtime/"localization_host.exe"),str(runtime/"SecondSight.Localization.asi"),str(locale_dir/"locale.bin")],check=True,cwd=ROOT)
+    subprocess.run([str(runtime/"compatibility_host.exe"),str(runtime/"SecondSight.Compatibility.asi")],check=True,cwd=ROOT)
     target=out/"game"
     target.mkdir(parents=True)
     print("STAGE: copying independent game files (no links, no launch)",flush=True)
@@ -132,10 +141,11 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path 
         print("STAGE: copying ReMade DLL and all 5110 DDS textures",flush=True)
         shutil.copy2(remastered/"dinput8.dll",target/"dinput8.dll")
         shutil.copytree(remastered/"Remaster_Textures",target/"Remaster_Textures")
-        (target/"dsound.ini").write_text(LOADER_INI,encoding="ascii",newline="\n")
         shutil.copy2(ROOT/"tools/Set-HD.ps1",out/"Set-HD.ps1")
         (out/"remastered-input-inventory.json").write_text(json.dumps(hd_before,indent=2)+"\n",encoding="utf-8")
     shutil.copy2(runtime/"SecondSight.Localization.asi",target/"scripts/SecondSight.Localization.asi")
+    shutil.copy2(runtime/"SecondSight.Compatibility.asi",target/"scripts/SecondSight.Compatibility.asi")
+    (target/("dsound.ini" if remastered else "dinput8.ini")).write_text(COMPAT_LOADER_INI,encoding="ascii",newline="\n")
     translated=target/"scripts/localization"
     translated.mkdir()
     for name in ("locale.bin","manifest.json","OFL.txt"):
@@ -165,6 +175,7 @@ Write-Output 'DISABLE PASS: Localization ASI disabled; FusionFix retained; no ga
         require(hd_before==remastered_inventory(remastered),"ReMade input changed during staging")
     (out/"source-inventory.json").write_text(json.dumps(before,indent=2)+"\n",encoding="utf-8")
     record=dict(format="second-sight-local-test-v2",package_id=out.name,version=version,
+                startup_compat="gog-fusionfix-contracts-v1",
                 locale=locale,status="awaiting-user-runtime-test",loader="dsound.dll" if remastered else "dinput8.dll",
                 remastered=dict(inventory_sha256=REMASTER_INVENTORY_SHA,dds_count=5110) if remastered else None,
                 source=str(game),source_unchanged=True,dependencies_unchanged=True,files=inventory(out))

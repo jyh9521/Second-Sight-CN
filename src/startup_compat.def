@@ -1,0 +1,5 @@
+LIBRARY SecondSight.Compatibility.asi
+EXPORTS
+    InitializeASI
+    CompatibilityStatus
+    CompatibilitySelfTest

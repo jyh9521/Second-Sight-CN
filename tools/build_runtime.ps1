@@ -14,10 +14,14 @@ if errorlevel 1 exit /b 1
 cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /LD /utf-8 /Brepro "$root\src\localization.cpp" /link /DEF:"$root\src\localization.def" /OUT:"$output\SecondSight.Localization.asi" /INCREMENTAL:NO /Brepro advapi32.lib
 if errorlevel 1 exit /b 1
 cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /utf-8 /Brepro "$root\tests\localization_host.cpp" /link /OUT:"$output\localization_host.exe" /INCREMENTAL:NO /Brepro
+if errorlevel 1 exit /b 1
+cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /LD /utf-8 /Brepro "$root\src\startup_compat.cpp" /link /DEF:"$root\src\startup_compat.def" /OUT:"$output\SecondSight.Compatibility.asi" /INCREMENTAL:NO /Brepro advapi32.lib
+if errorlevel 1 exit /b 1
+cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /utf-8 /Brepro "$root\tests\compatibility_host.cpp" /link /OUT:"$output\compatibility_host.exe" /INCREMENTAL:NO /Brepro
 exit /b %errorlevel%
 "@
 [IO.File]::WriteAllText((Join-Path $output 'compile.cmd'),$build,[Text.Encoding]::ASCII)
 Push-Location $output
 try { & $env:ComSpec /d /c (Join-Path $output 'compile.cmd'); if ($LASTEXITCODE -ne 0) { throw "MSVC failed: $LASTEXITCODE" } }
 finally { Pop-Location }
-Write-Output "BUILD PASS: x86 ASI + offline host; game not launched"
+Write-Output "BUILD PASS: localization + compatibility x86 ASIs and offline hosts; game not launched"
