@@ -1,6 +1,6 @@
 # 构建与离线验证
 
-当前中文样本、独立 x86 ASI、离线宿主和 **PoC 001 本地测试包已完成离线构建与检查**；游戏内显示与 FusionFix 共存均待用户验收。**以下自动化只处理文件或运行自有测试宿主，不启动游戏。**
+当前中文样本、独立 x86 ASI、离线宿主和 **PoC 002 三合一本地测试包已完成离线构建与检查**；游戏内显示及高清材质/FusionFix 共存均待用户验收。**以下自动化只处理文件或运行自有测试宿主，不启动游戏。**
 
 ## 环境与输入
 
@@ -54,30 +54,37 @@ $Root = (Get-Location).Path
 
 宿主检查语言包、截断输入、字形标记边界、自有内存的修改/恢复，以及非目标 EXE 身份拒绝。它不会执行游戏内挂钩路径；输出 `HOST PASS` 也不代表中文界面或 FusionFix 实机通过。
 
-## 隔离测试副本
+## 隔离三合一测试副本
 
-`tools/stage_poc.py` 会重新构建语言包与 ASI、运行离线宿主，再复制指定游戏目录和固定 FusionFix 到新目录；不会启动游戏。它拒绝已存在的输出或与原游戏重叠的目录，校验复制前后原安装的文件清单/hash。
-
-```powershell
-python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix --out dist/poc-zh-CN-001
-python -X utf8 tools/stage_poc.py --verify --out dist/poc-zh-CN-001
-```
-
-输出含 `game/`、`TESTING.md`、`package.json`、`source-inventory.json` 和 `Disable-Localization.ps1`。`game/profiles/` 初始为空，不复制原存档；`game/scripts/` 保留固定 FusionFix 并放入独立本地化 ASI。运行时语言包位于 `game/scripts/localization/`。
-
-本轮输出为 `dist/poc-zh-CN-001`；该目录已存在时，重建请另选新名称，不覆盖已交付副本。
-
-`--verify` 校验打包清单中的文件、EXE 与 FusionFix，不启动游戏，也不表示游戏已经加载这些文件。请在手动测试前执行；修改配置或禁用模块后，原始包清单不再代表当前文件状态。具体包是否已完成本轮校验，以验证日志为准。
-
-用户手动退出测试游戏后，可只禁用汉化模块，保留 FusionFix：
+`tools/stage_poc.py` 重新构建语言包与 ASI、运行自有离线宿主，再复制原游戏、固定 FusionFix 与可选 ReMade 输入。它不启动游戏，不加载第三方 DLL；拒绝已有输出、输入/输出重叠和目录联接，核对构建前后原安装及第三方输入的 hash。
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File dist/poc-zh-CN-001/Disable-Localization.ps1
+python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix --remastered-root "ReMade With Second Sight Remastered Textures" --out dist/poc-zh-CN-002
+python -X utf8 tools/stage_poc.py --verify --out dist/poc-zh-CN-002
 ```
 
-脚本校验 ASI hash 后改名为 `.asi.disabled`，不启停进程。禁用后不是恢复纯 GOG 安装，而是保留 FusionFix 的无汉化测试副本；原安装始终未由本流程改动。
+002 已存在时使用新的递增编号，例如 003。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
 
-用户手动验收步骤和需保留的证据见[PoC 测试说明](docs/POC_TESTING.md)。完整隔离副本只供本地测试，不提交 Git、不作为可下载游戏包发布。
+HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。两份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK 和 FusionFix 配置不变。
+
+包内提供 `TESTING.md`、`package.json`、原安装与高清输入清单、`Disable-Localization.ps1` 和 `Set-HD.ps1`。`game/profiles/` 初始为空；不复制个人存档，但用户目录/注册表隔离仍待实测。手动启动和分层排查见[三合一测试说明](docs/INTEGRATED_TESTING.md)。
+
+### 永远只保留最近两个已完成的测试包
+
+新包完整校验通过后，构建器按递增编号保留最近两个受管包。`tools/package_retention.py` 生成带清单 hash 的计划；`tools/prune_test_packages.ps1` 验证绝对路径位于仓库 `dist/`、无联接、清单和 EXE 身份一致，且副本未被运行，再删除旧包。计划保存在 `build/package-retention/<包名>/retention-plan.json`。
+
+失败/未完成/无法识别的目录、外部输入与研究记录不自动删除。保留规则按全局包编号排序，跨语言也要使用新的编号。旧包的测试存档、配置和日志随包删除，重要反馈应先保存到包外。当前 `dist/` 保留 001、002，早期未编号副本已删除。历史 `build/poc-20261117/runtime` 的清理调用被执行器拦截，目录仍存在，不将它记为已清理；它不属于后续受管发布目录。
+
+`--verify` 只检查清单文件与固定依赖，不运行游戏；手动改配置、禁用模块后会报告差异，不代表实机故障。
+
+### 本次加载器与回滚证据
+
+```powershell
+python -X utf8 tools/verify_integration.py prepare --baseline dist/poc-zh-CN-001 --package dist/poc-zh-CN-002 --out build/integration-002
+python -X utf8 tools/verify_integration.py evidence --out build/integration-002
+```
+
+`prepare` 只可对新的证据目录运行；`evidence` 执行基线/修改检查和 Git Bash 回滚脚本。输出为 `MODIFIED_FILE.json`（002 清单快照）、`DIFF_FILE.json`、`VERIFICATION.txt`、`ROLLBACK.sh`。回滚仅在不含游戏 EXE 的独立 DLL/数据夹具内禁用高清层，保留 FusionFix 与汉化，交付包仍保持三者启用；不把这个文件状态写成已验证的游戏行为。测试包是本地副本，不上传完整游戏或模组资产。
 
 ## 中文 PDA 副本回滚证据
 
@@ -127,6 +134,8 @@ bash build/resource-probe-local/ROLLBACK.sh build/resource-probe-local/ROLLBACK_
 
 ## 证据与发布
 
-初始评估完成 15 项合成测试、258 个 PAK 的结构检查和资源探针回滚，历史日志在本地 `build/assessment-20261117/VERIFICATION.txt`，摘要见[初始评估](docs/ASSESSMENT_2026-11-17.md)。本轮完整测试为 **49 项合成测试通过**；MSVC x86 构建与离线宿主通过，语言包为 32 条 BS、4 条 PDA、92 个字形、6 张图集，PoC 001 的 299 个清单文件校验通过，原安装 305 个文件保持不变。本轮未启动游戏，不把这些结果写成实机验收。
+初始评估完成 15 项合成测试、258 个 PAK 的结构检查和资源探针回滚，历史日志在本地 `build/assessment-20261117/VERIFICATION.txt`，摘要见[初始评估](docs/ASSESSMENT_2026-11-17.md)。PoC 001 当时完整测试为 **49 项合成测试通过**；MSVC x86 构建与离线宿主通过，语言包为 32 条 BS、4 条 PDA、92 个字形、6 张图集，PoC 001 的 299 个清单文件校验通过，原安装 305 个文件保持不变。本轮未启动游戏，不把这些结果写成实机验收。
 
 每次构建记录输入/产物 hash、工具版本、修改字段、命令与退出状态。仅提交源码、原创译文和合成测试；不提交原版资产或完整隔离副本。正式发布前还需完成用户验收和[许可检查](LICENSING.md)。
+
+PoC 002 新增分离加载器、完整材质输入身份和最近两版保留流程；当前合成测试为 **71 项通过**。三者运行时共存继续由用户验证。

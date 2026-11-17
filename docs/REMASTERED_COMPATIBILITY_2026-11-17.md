@@ -99,3 +99,7 @@ python -X utf8 -m unittest discover -s tests -v
 本轮结果：`TEXTURE PACK PASS: files=5111; DDS=5110; bytes=8266671416; decoded=True; errors=0; no game launched`；共 56 项合成测试通过。完整清单、DDS 元数据、视觉抽样和静态摘录在忽略目录 `build/remastered-assessment-20261117/`。
 
 用户材质目录已加入 `.gitignore`。只提交评估、检查工具与合成测试，不上传第三方 DLL/DDS。原材质包、原安装和 PoC 001 保留现状；本轮没有建立联合运行通过结论。
+
+## 后续整合记录
+
+用户确认采用 dsound.dll 路线后，已生成 PoC 002 独立三合一测试包。ReMade 保持 dinput8.dll，UAL 改名复制为 dsound.dll；本页前面的“尚未安装”等描述保留为评估时快照。当前操作与最近两版保留规则见[三合一测试说明](INTEGRATED_TESTING.md)。离线构建和回滚通过不改变运行时待用户验收的状态。

@@ -65,7 +65,7 @@ PDA 使用独立的 `data/pdaps_[aefgis].raw` 资源，每个后缀在 17 个剧
 - 如模块持有 D3D9 纹理，还需验证设备重置、关卡切换和资源释放。
 - 原安装与 FusionFix 的 `dinput8.dll` 不是同一文件；测试包必须备份、记录并可恢复原加载器，不能把两个同名 DLL 当成并排加载。
 
-用户已提供 ReMade 高清模组，已完成[离线兼容评估](docs/REMASTERED_COMPATIBILITY_2026-11-17.md)。它使用 D3DX PNG 内容 hash 替换纹理，附带同名 dinput8 代理并共享 D3D9 钩子；建议保持可选外部依赖，UAL 链载及三方运行时共存待用户验证。基础中文样本和 PoC 001 未加入该模组。
+用户已提供 ReMade 高清模组，已完成[离线兼容评估](docs/REMASTERED_COMPATIBILITY_2026-11-17.md)。它使用 D3DX PNG 内容 hash 替换纹理，附带同名 dinput8 代理并共享 D3D9 钩子；建议保持可选外部依赖，UAL 链载及三方运行时共存待用户验证。PoC 001 未加入该模组；PoC 002 已按下述布局构建。
 
 ## 本轮离线结果
 
@@ -83,3 +83,13 @@ PDA 使用独立的 `data/pdaps_[aefgis].raw` 资源，每个后缀在 17 个剧
 - 初始深层反编译 provider 因 JDK 配置未运行；相关静态证据来自 pefile/Capstone，不冒称 Ghidra 已验证。
 
 进入全量翻译前，必须让用户手动验证菜单、字幕和 PDA 的中文、混排与布局，并确认 FusionFix 开关/配置、读档、关卡切换和恢复原版的行为。没有这一轮反馈，进度保持最小样本阶段。
+
+## PoC 002：dsound 分离加载器
+
+已验证的文件状态：ReMade 的 `dinput8.dll` 保持原字节，FusionFix 自带 UAL 10.0.2 改名复制为 `dsound.dll`；两份 ASI 在 `scripts/` 中，5,110 张 DDS 独立复制。原 EXE 保持 SHA-256 和 PE Characteristics `0x010E`，未修改 LAA。构建器固定核对 HD 全输入 inventory digest `2ee7e2b39b9e56f3c55ab396157775f18bb5adbd411aab983a654d235281da5a`，不依赖本地评估缓存才能重建。
+
+静态依据：原 EXE 导入 DSOUND 的 ordinal 2、11，系统 32 位 DLL 分别对应 `DirectSoundEnumerateA`、`DirectSoundCreate8`。UAL v10.0.2 的 [安装说明](https://github.com/ThirteenAG/Ultimate-ASI-Loader/blob/v10.0.2/readme.md#installation)支持 `dsound.dll`；[proxy.cpp](https://github.com/ThirteenAG/Ultimate-ASI-Loader/blob/v10.0.2/source/loader/proxy/proxy.cpp) 的 `OrdinalEntries` 按系统代理库名称和导出名适配序号，[exports.inl](https://github.com/ThirteenAG/Ultimate-ASI-Loader/blob/v10.0.2/source/loader/proxy/exports.inl)包含所需 DirectSound 转发项。不能只拿 UAL 原始 PE 导出表的 ordinal 2/11 直接判定不兼容。
+
+未选 `d3d9.dll`：游戏相关静态路径使用 `GetSystemDirectoryA` 拼接 `\d3d9.dll`，根目录同名代理并非可靠入口。本轮没有通过加载第三方 DLL 或启动游戏验证这些路线。
+
+`dsound.ini` 采用 `[GlobalSets] LoadPlugins=1 / DontLoadFromDllMain=1 / DebugLog=1`，诊断日志为 `dsound.log`。改名解决的是文件名冲突，不是 D3D9 钩子顺序、中文字库或高清缓存生命周期已经兼容。三合一实机、8K 内存占用和音频输入功能均待用户验收。独立回滚夹具证明高清 DLL 可禁用且两份 ASI 保持字节不变，不宣称原游戏行为已经恢复。
