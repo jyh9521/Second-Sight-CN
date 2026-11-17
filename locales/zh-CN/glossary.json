@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "locale": "zh-CN",
-  "status": "proposed merge; current existing entries plus PDA reviewed choices",
+  "status": "active editorial terms; full-text consistency review in progress",
   "entries": [
     {
       "id": "profile",
@@ -1359,6 +1359,546 @@
         "bs:1445"
       ],
       "note": "菜单扩展使用的项目译法；非官方译名，实机布局待验收"
+    },
+    {
+      "id": "mommy_bear",
+      "source": "Mommy Bear",
+      "preferred": "熊妈妈",
+      "category": "callsign",
+      "status": "active",
+      "evidence": [
+        "bs:1218",
+        "bs:1222"
+      ],
+      "note": "无线电呼号，非角色姓名"
+    },
+    {
+      "id": "vipers",
+      "source": "Vipers",
+      "preferred": "蝰蛇帮",
+      "category": "organization",
+      "status": "active",
+      "evidence": [
+        "bs:1733"
+      ],
+      "note": "帮派称谓"
+    },
+    {
+      "id": "huvat_plateau",
+      "source": "Huvat Plateau",
+      "preferred": "胡瓦特高原",
+      "category": "location",
+      "status": "active",
+      "evidence": [
+        "bs:778",
+        "bs:780"
+      ],
+      "note": "地名音译"
+    },
+    {
+      "id": "calton",
+      "source": "Calton",
+      "preferred": "卡尔顿",
+      "category": "location",
+      "status": "active",
+      "evidence": [
+        "bs:758",
+        "bs:760"
+      ],
+      "note": "以章节卡资源位置为准，保留原文与PDA地域差异"
+    },
+    {
+      "id": "rutland",
+      "source": "Rutland",
+      "preferred": "拉特兰",
+      "category": "location",
+      "status": "active",
+      "evidence": [
+        "bs:762",
+        "bs:764",
+        "bs:766"
+      ],
+      "note": "佛蒙特州地名"
+    },
+    {
+      "id": "barranikov",
+      "source": "Barranikov",
+      "preferred": "巴拉尼科夫",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:534"
+      ],
+      "note": "姓名简称与PDA完整名一致"
+    },
+    {
+      "id": "director_hanson",
+      "source": "Director Hanson",
+      "preferred": "汉森主管",
+      "category": "character-title",
+      "status": "active",
+      "evidence": [
+        "bs:1093",
+        "bs:1297",
+        "bs:1320"
+      ],
+      "note": "战术武器研究/行动主管称谓，不把所属机构主管自动写成整个机构局长"
+    },
+    {
+      "id": "vattic",
+      "source": "Vattic",
+      "preferred": "瓦蒂克",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:4402",
+        "bs:4417"
+      ],
+      "note": "全量上下文校对采用的项目译法；姓名简称与PDA完整名一致"
+    },
+    {
+      "id": "john",
+      "source": "John",
+      "preferred": "约翰",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:4540",
+        "bs:4546"
+      ],
+      "note": "全量上下文校对采用的项目译法；姓名简称与PDA完整名一致"
+    },
+    {
+      "id": "jayne",
+      "source": "Jayne",
+      "preferred": "简",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:4528",
+        "bs:4532"
+      ],
+      "note": "全量上下文校对采用的项目译法；姓名简称与PDA完整名一致"
+    },
+    {
+      "id": "wilde",
+      "source": "Wilde",
+      "preferred": "怀尔德",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:4873",
+        "bs:5185"
+      ],
+      "note": "全量上下文校对采用的项目译法；姓名简称与PDA完整名一致"
+    },
+    {
+      "id": "ground_floor",
+      "source": "ground floor",
+      "preferred": "首层",
+      "category": "location",
+      "status": "active",
+      "evidence": [
+        "bs:5344",
+        "bs:5349",
+        "bs:5508",
+        "bs:5509",
+        "bs:5510",
+        "bs:5613"
+      ],
+      "note": "全量上下文校对采用的项目译法；姓名简称与PDA完整名一致"
+    },
+    {
+      "id": "agent_wright",
+      "source": "Agent Wright",
+      "preferred": "赖特探员",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:4668"
+      ],
+      "note": "全量上下文校对采用的项目译法；姓名简称与PDA完整名一致"
+    },
+    {
+      "id": "peter_militts",
+      "source": "Peter Militts",
+      "preferred": "彼得·米利茨",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:5184",
+        "bs:5494"
+      ],
+      "note": "全量上下文校对采用的项目译法；姓名简称与PDA完整名一致"
+    },
+    {
+      "id": "sybil",
+      "source": "Sybil",
+      "preferred": "西比尔",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:5366",
+        "bs:5400"
+      ],
+      "note": "全量上下文校对采用的项目译法；姓名简称与PDA完整名一致"
+    },
+    {
+      "id": "osiris_research",
+      "source": "Osiris Medical Research",
+      "preferred": "奥西里斯医学研究中心",
+      "category": "organization",
+      "status": "active",
+      "evidence": [
+        "bs:2499",
+        "bs:2604",
+        "bs:3307"
+      ],
+      "note": "设施招牌原文变体；Osiris Medical Facility仍使用既定译名奥西里斯医疗中心"
+    },
+    {
+      "id": "henriksen",
+      "source": "Henriksen",
+      "preferred": "亨里克森",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:2599",
+        "bs:2620"
+      ],
+      "note": ""
+    },
+    {
+      "id": "brock",
+      "source": "Brock",
+      "preferred": "布罗克",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:2600"
+      ],
+      "note": ""
+    },
+    {
+      "id": "connelly",
+      "source": "Connelly",
+      "preferred": "康纳利",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:2601"
+      ],
+      "note": ""
+    },
+    {
+      "id": "stubbs",
+      "source": "Stubbs",
+      "preferred": "斯塔布斯",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:2602"
+      ],
+      "note": ""
+    },
+    {
+      "id": "harry",
+      "source": "Harry",
+      "preferred": "哈里",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:2559",
+        "bs:3731"
+      ],
+      "note": ""
+    },
+    {
+      "id": "f_giddler",
+      "source": "F. Giddler",
+      "preferred": "F. 吉德勒",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3275"
+      ],
+      "note": "保留原文名字首字母，不扩写未提供的名字"
+    },
+    {
+      "id": "jensen",
+      "source": "Jensen",
+      "preferred": "延森",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3607"
+      ],
+      "note": "总工程师"
+    },
+    {
+      "id": "jan_windsock",
+      "source": "Jan Windsock",
+      "preferred": "扬·温德索克",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3649"
+      ],
+      "note": "虚构报纸记者"
+    },
+    {
+      "id": "daily_calumniator",
+      "source": "The Daily Calumniator",
+      "preferred": "《诽谤者日报》",
+      "category": "publication",
+      "status": "active",
+      "evidence": [
+        "bs:3649"
+      ],
+      "note": "讽刺性虚构报纸名称，按词义译出"
+    },
+    {
+      "id": "marvin",
+      "source": "Marvin",
+      "preferred": "马文",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3878"
+      ],
+      "note": ""
+    },
+    {
+      "id": "jacobs",
+      "source": "Jacobs",
+      "preferred": "雅各布斯",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3916",
+        "bs:3921"
+      ],
+      "note": ""
+    },
+    {
+      "id": "sutton",
+      "source": "Sutton",
+      "preferred": "萨顿",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3916",
+        "bs:3922"
+      ],
+      "note": ""
+    },
+    {
+      "id": "dodd",
+      "source": "Dodd",
+      "preferred": "多德",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3916",
+        "bs:3923"
+      ],
+      "note": ""
+    },
+    {
+      "id": "west_surname",
+      "source": "West",
+      "preferred": "韦斯特",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3916",
+        "bs:3924"
+      ],
+      "note": "仅病人姓氏，不用于west wing等方位词"
+    },
+    {
+      "id": "drury",
+      "source": "Drury",
+      "preferred": "德鲁里",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3925",
+        "bs:3932",
+        "bs:3958"
+      ],
+      "note": "姓氏用字统一；病人与医生是否同一人未确定，不合并角色身份"
+    },
+    {
+      "id": "reed",
+      "source": "Reed",
+      "preferred": "里德",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3926"
+      ],
+      "note": ""
+    },
+    {
+      "id": "simmons",
+      "source": "Simmons",
+      "preferred": "西蒙斯",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3927"
+      ],
+      "note": ""
+    },
+    {
+      "id": "summers",
+      "source": "Summers",
+      "preferred": "萨默斯",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3934"
+      ],
+      "note": ""
+    },
+    {
+      "id": "phil",
+      "source": "Phil",
+      "preferred": "菲尔",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:3920",
+        "bs:4004"
+      ],
+      "note": ""
+    },
+    {
+      "id": "muriel",
+      "source": "Muriel",
+      "preferred": "穆里尔",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:4123"
+      ],
+      "note": ""
+    },
+    {
+      "id": "duke_wellington",
+      "source": "Duke of Wellington",
+      "preferred": "威灵顿公爵",
+      "category": "character-title",
+      "status": "active",
+      "evidence": [
+        "bs:3959"
+      ],
+      "note": ""
+    },
+    {
+      "id": "radio_control",
+      "source": "Control",
+      "preferred": "指挥中心",
+      "category": "callsign",
+      "status": "active",
+      "evidence": [
+        "bs:2799",
+        "bs:2856",
+        "bs:2972"
+      ],
+      "note": "无线电呼叫语；不用于control room控制室或普通动词control"
+    },
+    {
+      "id": "precognition",
+      "source": "Precognition",
+      "preferred": "预知",
+      "category": "ability",
+      "status": "active",
+      "evidence": [
+        "bs:5898",
+        "bs:6082"
+      ],
+      "note": "最终能力及儿童资料中的能力名称"
+    },
+    {
+      "id": "telepathy",
+      "source": "Telepathy",
+      "preferred": "心灵感应",
+      "category": "ability",
+      "status": "active",
+      "evidence": [
+        "bs:5898"
+      ],
+      "note": "与精神投射、预知区分"
+    },
+    {
+      "id": "kazan_kava_maza",
+      "source": "Kazan Kava Maza",
+      "preferred": "卡赞·卡瓦·马扎",
+      "category": "fictional-sender",
+      "status": "active",
+      "evidence": [
+        "bs:5502",
+        "bs:5503"
+      ],
+      "note": "游戏内诈骗邮件发件人，不是现实演职员"
+    },
+    {
+      "id": "quazambique",
+      "source": "Quazambique",
+      "preferred": "夸赞比克",
+      "category": "fictional-location",
+      "status": "active",
+      "evidence": [
+        "bs:5503"
+      ],
+      "note": "虚构共和国名；保持邮件讽刺语气"
+    },
+    {
+      "id": "novoseysk",
+      "source": "Novoseysk",
+      "preferred": "诺沃谢伊斯克",
+      "category": "location",
+      "status": "active",
+      "evidence": [
+        "bs:5682"
+      ],
+      "note": "原文地名音译"
+    },
+    {
+      "id": "boris",
+      "source": "Boris",
+      "preferred": "鲍里斯",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:5903"
+      ],
+      "note": "儿童样本记录姓名"
+    },
+    {
+      "id": "nina",
+      "source": "Nina",
+      "preferred": "妮娜",
+      "category": "character",
+      "status": "active",
+      "evidence": [
+        "bs:5904"
+      ],
+      "note": "儿童样本记录姓名"
+    },
+    {
+      "id": "fine_remedies_direct",
+      "source": "FINE REMEDIES DIRECT",
+      "preferred": "良方直销",
+      "category": "fictional-company",
+      "status": "active",
+      "evidence": [
+        "bs:5499",
+        "bs:5500"
+      ],
+      "note": "游戏内药品垃圾邮件的虚构发件企业，标题和正文统一"
     }
   ]
 }

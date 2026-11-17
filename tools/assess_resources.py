@@ -104,6 +104,25 @@ class StringTable:
         result.extend(payload + b"\0")
         return bytes(result)
 
+    def replace_many(self, replacements: dict[int, bytes]) -> bytes:
+        """Append selected strings once; preserve aliases of unselected IDs.
+
+        This is an offline copy builder, not a runtime installation method.
+        ID zero remains the table-size anchor used by this resource parser.
+        """
+        for index, payload in replacements.items():
+            require(isinstance(index, int) and 0 < index < len(self.strings), "BS ID outside writable table")
+            require(isinstance(payload, bytes) and b"\0" not in payload, "invalid BS replacement payload")
+        changes = {i: p for i, p in replacements.items() if p != self.strings[i]}
+        if not changes:
+            return self.data
+        require(len(self.data) + sum(len(p) + 1 for p in changes.values()) <= 0xFFFFFFFF, "BS exceeds u32 bounds")
+        result = bytearray(self.data)
+        for index in sorted(changes):
+            struct.pack_into("<I", result, index * 4, len(result))
+            result.extend(changes[index] + b"\0")
+        return bytes(result)
+
 
 MEMBER = "data/strsspxe.bs"
 PROBE_ID = 850

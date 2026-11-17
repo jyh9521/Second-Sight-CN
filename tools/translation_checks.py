@@ -38,8 +38,8 @@ def check_data(data: dict, policy: dict, glossary: dict) -> list[str]:
         terms[term['id']]=term
     require(set(policy['punctuation']['except_kinds']) <= set(policy['text_kinds']),'invalid exception kind')
     errors=[]
-    for group in ('bs','pda'):
-        for row in data[group]:
+    for group in ('bs','pda','exe'):
+        for row in data.get(group,[]):
             where=f"{group}:{row['id']}"
             kind=row.get('text_kind')
             if 'source' in row or 'source_tokens' in row:
@@ -64,7 +64,14 @@ def check_data(data: dict, policy: dict, glossary: dict) -> list[str]:
 
 def check_locale(directory: Path, data: dict | None = None) -> list[str]:
     read=lambda name:json.loads((directory/name).read_text(encoding='utf-8'))
-    return check_data(data if data is not None else load_catalog(directory),read('style.json'),read('glossary.json'))
+    policy=read('style.json')
+    errors=check_data(data if data is not None else load_catalog(directory),policy,read('glossary.json'))
+    from ui_textures import load
+    for row in load(directory):
+        for line in row['layout']['lines']:
+            if needs_full_stop_removal(line['text'],'ui',policy['punctuation']):
+                errors.append(row['contract']['name']+': single UI line must omit terminal full stop')
+    return errors
 
 
 if __name__=='__main__':

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "locale": "zh-CN",
-  "status": "menu and PDA expansion; 005 offline validation / user runtime acceptance pending; 11 subtitle samples unchanged",
+  "status": "full catalog first translation; source-bound offline validation; user runtime acceptance pending",
   "bs": [
     {
       "id": 1331,
@@ -95,14 +95,22 @@
   "pda": [],
   "catalogs": {
     "bs": [
-      "menu-expansion.json"
+      "menu-expansion.json",
+      "story-a.json",
+      "story-b.json",
+      "story-c.json",
+      "story-d.json"
     ],
     "pda": [
       "pda-expansion.json"
+    ],
+    "exe": [
+      "exe-texts.json"
     ]
   },
   "coverage": {
     "pda": "all_nonempty_display_segments",
-    "bs": "selected_player_ui_and_retained_subtitle_samples"
-  }
+    "bs": "complete_table_inventory"
+  },
+  "ui_textures": "ui-textures.json"
 }

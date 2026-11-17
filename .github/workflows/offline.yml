@@ -13,6 +13,7 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - run: python -X utf8 -m unittest discover -s tests -v
       - run: python -X utf8 tools/translation_checks.py --locale-dir locales/zh-CN
+      - run: python -X utf8 tools/audit_coverage.py --locale-dir locales/zh-CN
       - run: python -X utf8 tools/inspect_renderer.py --self-test
       - run: powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1
       - run: python -X utf8 tools/make_host_fixture.py build/synthetic/locale.bin

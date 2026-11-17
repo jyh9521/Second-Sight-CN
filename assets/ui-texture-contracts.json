@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "resources": [
+    {
+      "name": "textures/misc/nse_tv/loading.dds",
+      "source_sha256": "3dd021884334713d88b9e84e5f90d9c76345ebc2f46674557c16bc31559f6b90",
+      "source_bytes": 16512,
+      "width": 256,
+      "height": 64,
+      "mirror_count": 2,
+      "vertical_flip": true,
+      "rgb565": 30238,
+      "reason": "Two storymem resources; BC2 explicit alpha; stored upside down; fixed EXE identity"
+    }
+  ]
+}

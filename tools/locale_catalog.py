@@ -11,8 +11,12 @@ from assess_resources import require
 def catalog_files(directory: Path) -> list[str]:
     data = json.loads((directory / 'poc.json').read_text(encoding='utf-8'))
     names = ['poc.json', 'style.json', 'glossary.json', 'font.json']
+    if 'ui_textures' in data:
+        require(data['ui_textures']=='ui-textures.json', 'invalid UI texture catalog filename')
+        names.append(data['ui_textures'])
+    if data.get('coverage',{}).get('bs')=='complete_table_inventory': names.append('coverage.json')
     for group, files in data.get('catalogs', {}).items():
-        require(group in ('bs', 'pda') and isinstance(files, list), 'invalid catalog group')
+        require(group in ('bs', 'pda', 'exe') and isinstance(files, list), 'invalid catalog group')
         for name in files:
             require(isinstance(name, str) and re.fullmatch(r'[a-z0-9-]+\.json', name), 'invalid catalog filename')
             require(name not in names, 'duplicate catalog file')
@@ -23,8 +27,8 @@ def catalog_files(directory: Path) -> list[str]:
 def load_catalog(directory: Path) -> dict:
     catalog_files(directory)  # Validate before opening any referenced path.
     data = json.loads((directory / 'poc.json').read_text(encoding='utf-8'))
-    for group in ('bs', 'pda'):
-        rows = list(data[group])
+    for group in ('bs', 'pda', 'exe'):
+        rows = list(data.get(group, []))
         for name in data.get('catalogs', {}).get(group, []):
             extra = json.loads((directory / name).read_text(encoding='utf-8'))
             require(isinstance(extra, list), 'catalog must contain a list')

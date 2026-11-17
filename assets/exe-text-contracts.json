@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "executable_sha256": "4092a8d1fb042dffe9fb95e2185f32cb80390299145e8d453a5e909a06d35fda",
+  "records": [
+    {
+      "id": 1,
+      "key": "pda_quick_scroll",
+      "source_va": "0x7daaa8",
+      "patch_va": "0x4b6dd0",
+      "expected": "68a8aa7d00",
+      "source": "Quick scroll",
+      "source_sha256": "1e56f34e65f2ed8791489e9dd642e40db6053caf38b2a6ec611afecf4c072364",
+      "max_bytes": 64,
+      "consumer": "4B6DC4 edi&0x80000 -> 4B6340 object+0x128 -> 4B76F0 footer; four 0xFF slots; button opcode plus space leaves251 raw bytes; use64"
+    },
+    {
+      "id": 2,
+      "key": "button_inoperative",
+      "source_va": "0x7dc280",
+      "patch_va": "0x576a14",
+      "expected": "6880c27d00",
+      "source": "Button inoperative",
+      "source_sha256": "288af5f26d848154cb70fe5e207380e11108566451db2a4e0f860ae3ee1739bc",
+      "max_bytes": 64,
+      "consumer": "576A00 interaction +0x19C -> 639B50 -> wrap at639BDF then strncpy256 at639BE9; 64 input bounds new wrap below128 incl LF"
+    }
+  ],
+  "evidence": "Full push immediate + read-only literal; source-bound; offline only"
+}

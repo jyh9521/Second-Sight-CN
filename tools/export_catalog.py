@@ -7,6 +7,7 @@ from assess_resources import Pak, StringTable, require
 from build_locale import ROOT, EXE_SHA, BS_SHA, PDA_SHA, digest
 from locale_catalog import load_catalog, bind_sources
 from pda_resources import PdaResource
+from exe_texts import bind as bind_exe
 
 
 def export(game: Path, locale: str, out: Path) -> None:
@@ -27,6 +28,7 @@ def export(game: Path, locale: str, out: Path) -> None:
             break
     require(pda is not None, 'PDA not found')
     data=bind_sources(load_catalog(ROOT/'locales'/locale),table.strings,{k:s.text for k,s in pda.segments.items() if s.text})
+    data=bind_exe(data,(game/'secondsight.EXE').read_bytes())
     out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     require(json.loads(out.read_text(encoding='utf-8'))==data, 'review reopen mismatch')

@@ -12,7 +12,9 @@ from pda_resources import PdaResource, Replacement, GlyphMarker
 from translation_checks import check_locale
 from font_dependencies import read_config, dependency, notice
 from locale_catalog import load_catalog, bind_sources, catalog_files
-from text_transport import parts, check_contract, expanded_budget
+from text_transport import parts, check_contract, expanded_budget, bs_limit, bs_expanded_limit, DEFERRED_BS_IDS, COMPOSED_BS_IDS, UNRESOLVED_BS_IDS
+import ui_textures
+import exe_texts
 
 ROOT = Path(__file__).resolve().parents[1]
 EXE_SHA = "4092a8d1fb042dffe9fb95e2185f32cb80390299145e8d453a5e909a06d35fda"
@@ -34,7 +36,7 @@ def encode(text: str, glyphs: dict[str, int]) -> bytes:
         else:
             require(ord(char) >= 32 and char != "\x7f", "unsupported control code in PoC")
             value = glyphs[char]
-            require(0 <= value < 1536, "glyph exceeds six native pages")
+            require(0 <= value < 6144, "glyph exceeds six native pages")
             out.extend(bytes([MARKER]) + f"{value:04d}".encode("ascii"))
     return bytes(out)
 
@@ -45,7 +47,7 @@ def decode(data: bytes, glyphs: dict[str, int]) -> str:
     while i < len(data):
         if data[i] == 11 and i+1<len(data) and chr(data[i+1]) in '123456789ABCDEFGHIJK':
             result.append(data[i:i+2].decode('ascii')); i += 2
-        elif data[i:i+1] == b'%' and i+1<len(data) and 49 <= data[i+1] <= 57:
+        elif data[i:i+1] == b'%' and i+1<len(data) and (49 <= data[i+1] <= 57 or data[i+1] == ord('s')):
             result.append(data[i:i+2].decode('ascii')); i += 2
         elif data[i] in (9, 10, 32):
             result.append(chr(data[i])); i += 1
@@ -59,7 +61,7 @@ def decode(data: bytes, glyphs: dict[str, int]) -> str:
 def dxt3(alpha) -> bytes:
     """BC2/DXT3: constant white RGB endpoints, explicit 4-bit coverage."""
     width, height = alpha.size
-    require(width == height == 256, "native PoC atlas is 256 square")
+    require(width == height == 512, "expanded atlas is 512 square")
     header = [124, 0x81007, height, width, width*height, 0, 1] + [0]*11
     header += [32, 4, struct.unpack("<I", b"DXT3")[0], 0, 0, 0, 0, 0]
     header += [0x1000, 0, 0, 0, 0]
@@ -80,14 +82,14 @@ def make_atlases(glyphs: dict[str, int], font_path: Path, preview: Path) -> list
         require(all(ord(c) in cmap for c in glyphs), "font lacks requested glyph")
     # Supersampling produces deterministic 16px cell coverage with 1px padding.
     font = ImageFont.truetype(str(font_path), 14*4)
-    pages = [Image.new("L", (256, 256)) for _ in range(6)]
+    pages = [Image.new("L", (512, 512)) for _ in range(6)]
     for char, index in glyphs.items():
         tile = Image.new("L", (64, 64))
         draw = ImageDraw.Draw(tile)
         left, top, right, bottom = draw.textbbox((0, 0), char, font=font)
         require(right-left <= 60 and bottom-top <= 60, f"glyph cell overflow: {char}")
         draw.text(((64-(right-left))//2-left, (64-(bottom-top))//2-top), char, font=font, fill=255)
-        pages[index//256].paste(tile.resize((16,16), Image.Resampling.LANCZOS), ((index%16)*16, ((index%256)//16)*16))
+        pages[index//1024].paste(tile.resize((16,16), Image.Resampling.LANCZOS), ((index%32)*16, ((index%1024)//32)*16))
     pages[0].save(preview)
     return [dxt3(page) for page in pages]
 
@@ -106,6 +108,8 @@ def build(game: Path, locale: str, out: Path) -> dict:
     require(not editorial_errors,"editorial checks failed: "+"; ".join(editorial_errors))
     font_config=read_config(ROOT/"locales"/locale/"font.json")
     require(font_config['locale']==locale,"font locale mismatch")
+    ui_rows=ui_textures.load(ROOT/'locales'/locale)
+    ui_sources={r['contract']['name']:[] for r in ui_rows}
     source = Pak((game/"pak/arcade/l_103.pak").read_bytes()).member("data/strsspxe.bs")
     require(digest(source) == BS_SHA, "unsupported BS input")
     table = StringTable(source)
@@ -114,31 +118,49 @@ def build(game: Path, locale: str, out: Path) -> dict:
     pda_sources = []
     for archive in sorted((game/"pak").rglob("*.pak")):
         pak = Pak(archive.read_bytes())
+        for entry in pak.entries:
+            if entry['name'] in ui_sources:
+                ui_sources[entry['name']].append(pak.member(entry['name']))
         if any(e["name"] == "data/pdaps_a.raw" for e in pak.entries):
             member = pak.member("data/pdaps_a.raw")
             require(digest(member) == PDA_SHA, f"unsupported PDA mirror: {archive}")
             pda_sources.append(member)
     require(bool(pda_sources), "PDA source not found")
+    ui_textures.validate_sources(ui_rows,ui_sources)
     pda = PdaResource(pda_sources[0])
     data = bind_sources(data, table.strings, {k:s.text for k,s in pda.segments.items() if s.text})
+    data = exe_texts.bind(data,(game/'secondsight.EXE').read_bytes())
+    coverage_report = None
+    if data.get('coverage',{}).get('bs')=='complete_table_inventory':
+        from audit_coverage import audit
+        inventory=json.loads((ROOT/'locales'/locale/'coverage.json').read_text(encoding='utf-8'))
+        coverage_report=audit(data,inventory,{str(i):s.decode('cp1252') for i,s in enumerate(table.strings)})
     editorial_errors=check_locale(ROOT/"locales"/locale,data)
     require(not editorial_errors,"bound editorial checks failed: "+"; ".join(editorial_errors))
     require(all(s.text is None or bytes([MARKER]) not in s.text for s in pda.segments.values()),"glyph marker collides with original PDA")
-    targets = data["bs"] + data["pda"]
+    targets = data["bs"] + data["pda"] + data['exe']
     if data.get('coverage',{}).get('pda')=='all_nonempty_display_segments':
         require({r['id'] for r in data['pda']}=={k for k,s in pda.segments.items() if s.text}, 'PDA coverage incomplete')
     require(len({r["id"] for r in data["bs"]}) == len(data["bs"]), "duplicate BS ID")
     require(len({r["id"] for r in data["pda"]}) == len(data["pda"]), "duplicate PDA ID")
     characters = sorted({char for row in targets for protected,char in parts(row['target']) if not protected and char!=' '})
-    slots = [i for i in range(1536) if i not in (178,184)]
+    slots = [i for i in range(6144) if i not in (178,184)]
     require(0 < len(characters) <= len(slots), "atlas capacity exceeded")
     glyphs = dict(zip(characters,slots))
-    bs_records, pda_records, pda_replacements = [], [], {}
-    for row in targets:
+    bs_records, pda_records, exe_records, pda_replacements = [], [], [], {}
+    target_groups=[(group,row) for group in ('bs','pda','exe') for row in data[group]]
+    for group,row in target_groups:
         require(bool(row["target"]), "empty PoC target")
         check_contract(row)
         encoded = encode(row["target"], glyphs)
-        require(expanded_budget(encoded) <= (255 if isinstance(row['id'],int) else 1800), f"{row['id']}: expanded consumer budget exceeded")
+        if group=='exe':
+            require(len(encoded)<=64 and not any(protected for protected,_ in parts(row['target'])), 'hardcoded UI byte/control limit')
+            require(decode(encoded,glyphs)==row['target'],'hardcoded UI roundtrip failed')
+            exe_records.append(struct.pack('<I',row['id'])+blob(row['source'].encode('ascii'))+blob(encoded))
+            continue
+        require(expanded_budget(encoded, identifier=row["id"] if isinstance(row["id"],int) else None) <= (bs_expanded_limit(row['id']) if isinstance(row['id'],int) else 1800), f"{row['id']}: expanded consumer budget exceeded")
+        if row['id'] in (601,5224):
+            require(len(encoded)<=10, 'hold/press label exceeds inspected tutorial template budget')
         if isinstance(row['id'],int) and 6371<=row['id']<=6504:
             require(len(encoded)<=27, f"{row['id']}: native dual-key 64-byte formatter budget exceeded")
         if isinstance(row['id'],int) and row['id'] in (6518,6519):
@@ -146,23 +168,29 @@ def build(game: Path, locale: str, out: Path) -> dict:
         require(decode(encoded, glyphs) == row["target"], "encoding roundtrip failed")
         expected = row["source"].encode("cp1252")
         if isinstance(row["id"], int):
-            require(len(encoded)<=255,"BS exceeds native UI byte-copy limit")
+            require(len(encoded)<=bs_limit(row["id"]),f"{row['id']}: BS exceeds verified consumer byte-copy limit")
             require(0 < row["id"] < len(table.strings) and table.strings[row["id"]] == expected, f"BS source mismatch: {row['id']}")
             bs_records.append(struct.pack("<I", row["id"]) + blob(expected) + blob(encoded))
         else:
             require(pda.segments[row["id"]].text == expected, f"PDA source mismatch: {row['id']}")
             pda_replacements[row["id"]] = Replacement(expected, encoded)
             pda_records.append(struct.pack("<I",pda.segments[row["id"]].field_offset)+blob(expected)+blob(encoded))
+    composed=[r for r in data['bs'] if r['id'] in COMPOSED_BS_IDS]
+    if composed:
+        require({r['id'] for r in composed}==COMPOSED_BS_IDS,'terminal composition needs all five source-bound paragraphs')
+        require(sum(len(encode(r['target'],glyphs)) for r in composed)+8<=4095,'terminal combined target exceeds owned budget')
     out.mkdir(parents=True, exist_ok=True)
     font = dependency(ROOT/"build/dependencies",font_config['font'])
     license_file = dependency(ROOT/"build/dependencies",font_config['license'])
     atlas = make_atlases(glyphs, font, out/"atlas-preview.png")
     # The approved transport marker is removed only for protected-token comparison.
-    rebuilt = pda.replace(pda_replacements, glyph_marker=GlyphMarker(bytes([MARKER]),4,1535))
+    rebuilt = pda.replace(pda_replacements, glyph_marker=GlyphMarker(bytes([MARKER]),4,6143))
     (out/"BASELINE.raw").write_bytes(pda.data)
     (out/"MODIFIED_FILE.raw").write_bytes(rebuilt)
     resources = [(f"textures/localization/page{i}.dds", payload) for i,payload in enumerate(atlas)]
-    packed = b"SLP1" + struct.pack("<III",len(bs_records),len(pda_records),len(resources)) + b"".join(bs_records) + b"".join(pda_records)
+    for i,row in enumerate(ui_rows):
+        resources.append((row['contract']['name'],ui_textures.render(row,font,out/f'ui-preview-{i}.png')))
+    packed = b"SLP2" + struct.pack("<IIII",len(bs_records),len(pda_records),len(resources),len(exe_records)) + b"".join(bs_records) + b"".join(pda_records) + b''.join(exe_records)
     packed += b"".join(blob(name.encode("ascii"))+blob(payload) for name,payload in resources)
     (out/"locale.bin").write_bytes(packed)
     (out/"OFL.txt").write_bytes(license_file.read_bytes())
@@ -172,13 +200,27 @@ def build(game: Path, locale: str, out: Path) -> dict:
                     font_commit=font_config['commit'],font_sha256=font_config['font']['sha256'],
                     font_family=font_config['family'],font_style=font_config['style'],font_version=font_config['version'],
                     editorial_inputs={name:digest((ROOT/"locales"/locale/name).read_bytes()) for name in catalog_files(ROOT/"locales"/locale)},glyphs=glyphs,
-                    targets={group:{str(r['id']):r['target'] for r in data[group]} for group in ('bs','pda')},
+                    targets={group:{str(r['id']):r['target'] for r in data[group]} for group in ('bs','pda','exe')},
                     coverage=dict(pda_selected=len(data['pda']),pda_available=sum(bool(s.text) for s in pda.segments.values()),
                                   pda_pages=len({s.page for s in pda.segments.values() if s.text}),
                                   bs_selected=len(data['bs']),bs_available=len(table.strings)),
                     bs_ids=[r["id"] for r in data["bs"]], pda_ids=list(pda_replacements),
                     pack_sha256=digest(packed), pda_mirrors_checked=len(pda_sources),
                     resources=[dict(name=n,size=len(p),sha256=digest(p)) for n,p in resources])
+    if coverage_report is not None:
+        manifest['complete_inventory']=coverage_report
+    manifest['bs_binding']=dict(direct_ids=[r['id'] for r in data['bs'] if r['id'] not in DEFERRED_BS_IDS],
+                                deferred_ids=[r['id'] for r in data['bs'] if r['id'] in DEFERRED_BS_IDS],
+                                unresolved_ids=sorted(UNRESOLVED_BS_IDS & {r['id'] for r in data['bs']}),
+                                composed_ids=sorted(COMPOSED_BS_IDS & {r['id'] for r in data['bs']}),
+                                deferred_status='complete target retained; original BS pointer preserved; only audited long-wrap callers may substitute; unobserved consumers pending')
+    manifest['atlas_layout']=dict(page_count=6,width=512,height=512,cell=16,glyph_slots=6144,reserved_ids=[178,184])
+    manifest['pack_format']='SLP2'
+    manifest['exe_text_ids']=[r['id'] for r in data['exe']]
+    manifest['exe_text_contracts_sha256']=digest((ROOT/'assets/exe-text-contracts.json').read_bytes())
+    manifest['ui_textures']=[dict(name=r['contract']['name'],source_sha256=r['contract']['source_sha256'],
+                                mirrors_checked=len(ui_sources[r['contract']['name']]),
+                                lines=[line['text'] for line in r['layout']['lines']]) for r in ui_rows]
     (out/"manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(f"LOCALE PASS: bs={len(bs_records)}; pda={len(pda_replacements)}; glyphs={len(glyphs)}; pages=6; runtime=PENDING")
     return manifest

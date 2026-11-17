@@ -1,0 +1,1105 @@
+{
+  "schema": 1,
+  "executable_sha256": "4092a8d1fb042dffe9fb95e2185f32cb80390299145e8d453a5e909a06d35fda",
+  "executable_size": 5484544,
+  "evidence": "verified-static-bytes; no game execution",
+  "atlas": {
+    "pages": 6,
+    "dimensions": [
+      512,
+      512
+    ],
+    "cell": [
+      16,
+      16
+    ],
+    "grid": [
+      32,
+      32
+    ],
+    "slots": 6144,
+    "reserved": [
+      178,
+      184
+    ],
+    "usable": 6142,
+    "patches": [
+      {
+        "name": "signed_page_mask",
+        "va": "0x00612595",
+        "file_offset": 2172309,
+        "before": "81e2ff000000",
+        "after": "81e2ff030000"
+      },
+      {
+        "name": "page_shift",
+        "va": "0x006125A7",
+        "file_offset": 2172327,
+        "before": "c1fe08",
+        "after": "c1fe0a"
+      },
+      {
+        "name": "column_mask",
+        "va": "0x006125CF",
+        "file_offset": 2172367,
+        "before": "81e10f000080",
+        "after": "81e11f000080"
+      },
+      {
+        "name": "signed_column_correction",
+        "va": "0x006125D8",
+        "file_offset": 2172376,
+        "before": "83c9f0",
+        "after": "83c9e0"
+      },
+      {
+        "name": "page_multiplier",
+        "va": "0x006125DC",
+        "file_offset": 2172380,
+        "before": "c1e608",
+        "after": "c1e60a"
+      },
+      {
+        "name": "row_adjustment",
+        "va": "0x006125E4",
+        "file_offset": 2172388,
+        "before": "83e20f",
+        "after": "83e21f"
+      },
+      {
+        "name": "row_shift",
+        "va": "0x006125FC",
+        "file_offset": 2172412,
+        "before": "c1f804",
+        "after": "c1f805"
+      }
+    ],
+    "uv_contract": {
+      "unit": "pixel*16",
+      "half_texel_adjust": 8,
+      "u_scale": "1/(texture_width*16)",
+      "v_scale": "1/(texture_height*16)",
+      "normalization_function": "0x0040DB70",
+      "constants": {
+        "0x007CBB50": "00008041",
+        "0x007CB460": "0000803F"
+      }
+    }
+  },
+  "wrap": {
+    "entry": "0x00611C70",
+    "before": "81ec04020000",
+    "abi": "cdecl char* (const char*, float)",
+    "measure": "0x00611940",
+    "measure_abi": "cdecl float (const char*)",
+    "input_budget": 4095,
+    "output_budget": 8190,
+    "writable": true,
+    "line_encoded_budget": 250,
+    "line_budget_reason": "0x5E2BFB copies each line to a 256-byte stack buffer; 0x5E2C0F terminates it"
+  },
+  "long_bs": [
+    {
+      "ids": [
+        4498,
+        4501
+      ],
+      "selection_table": "0x00892C84",
+      "calls": [
+        "0x00541D3C",
+        "0x00541E0F"
+      ],
+      "visible_lines": 15
+    },
+    {
+      "ids": [
+        5497,
+        5184,
+        5500,
+        5503,
+        5506
+      ],
+      "selection_table": "0x008A3604 + index * 24",
+      "calls": [
+        "0x00565740",
+        "0x0056586B"
+      ],
+      "visible_lines": 13
+    },
+    {
+      "ids": [
+        5408
+      ],
+      "direct_load": "0x00565CDF",
+      "calls": [
+        "0x00565CF2"
+      ]
+    },
+    {
+      "ids": [
+        3027,
+        3608,
+        3609,
+        3650,
+        3923,
+        3924,
+        3928,
+        3929,
+        3930,
+        3931,
+        3933,
+        3958,
+        4004,
+        4415,
+        4561,
+        4639,
+        5330,
+        5331,
+        5682,
+        5683,
+        5684,
+        5685,
+        5898,
+        5899,
+        5900,
+        5901
+      ],
+      "consumer": "SETU paper/document records",
+      "resource_header": {
+        "table_offset_field": "0x90",
+        "count_field": "0x94",
+        "stride_field": "0x98",
+        "required_stride": 72
+      },
+      "record": {
+        "text_id_field": "0x34",
+        "page_count_field": "0x0C"
+      },
+      "init_calls": [
+        "0x00549609",
+        "0x00548DA0"
+      ],
+      "calls": [
+        "0x005E2836",
+        "0x005E2B12"
+      ],
+      "input_budget": 4095,
+      "line_budget": 250
+    },
+    {
+      "ids": [
+        5922,
+        5924,
+        5926
+      ],
+      "selection_table": "0x00893A68 + index * 44, ID at +4",
+      "entry_calls": [
+        "0x005429F0",
+        "0x00542A50"
+      ],
+      "composer": "0x005D0580",
+      "calls": [
+        "0x005D064E",
+        "0x005D0714"
+      ],
+      "caller_buffer_bytes": 1024,
+      "input_budget": 1023,
+      "composition_entries": 1,
+      "suffix_length": 0
+    }
+  ],
+  "short_consumers": [
+    {
+      "va": "0x004BEA70",
+      "encoded_bytes": 255,
+      "purpose": "UI text edit copy; source ID provenance dynamic"
+    },
+    {
+      "va": "0x0062FE80",
+      "input_bytes": 510,
+      "output_bytes": 511,
+      "purpose": "HUD messages; output copied to 512-byte slots and display stack"
+    },
+    {
+      "va": "0x00639BE9",
+      "output_bytes": 256,
+      "purpose": "bounded object text copy; exact source IDs unresolved"
+    }
+  ],
+  "template_4478": {
+    "call": "0x00557519",
+    "formatter": "0x0043E310",
+    "destination_bytes": 512,
+    "arguments": {
+      "%1": {
+        "bs_id": 5224,
+        "max_bytes": 10
+      },
+      "%2": {
+        "native_function": "0x0053FDE0",
+        "max_bytes": 59
+      }
+    },
+    "post_template_vt2_max_bytes": 59
+  },
+  "printf_4511": {
+    "source_control_hex": "2573",
+    "conversion": "%s",
+    "consumer": "unresolved; exact source-bound preservation only; retains 255 budget"
+  },
+  "deferred_bs": {
+    "ids": [
+      313,
+      314,
+      2912,
+      3029,
+      3644,
+      3645,
+      3646,
+      3647,
+      3648,
+      3846,
+      3847,
+      3848,
+      3849,
+      3850,
+      3851,
+      3852,
+      4637,
+      4638,
+      5494
+    ],
+    "budget": 4095,
+    "binding": "never replace BS table pointer; only exact source equality at approved wrapper callers",
+    "approved_return_addresses": [
+      "0x00541D41",
+      "0x00541E14",
+      "0x00565745",
+      "0x00565870",
+      "0x00565CF7",
+      "0x005E283B",
+      "0x005E2B17"
+    ],
+    "unobserved_consumer_status": "not claimed as runtime translated",
+    "copyright_note": "PC legal screen selects DDS rather than BS313/314; full targets retained without changing original table pointers",
+    "unknown_consumer_ids": [
+      313,
+      314,
+      2912,
+      3029,
+      3846,
+      3847,
+      3848,
+      3849,
+      3850,
+      3851,
+      3852,
+      4637,
+      4638,
+      5494
+    ],
+    "verified_late_composition_ids": [
+      3644,
+      3645,
+      3646,
+      3647,
+      3648
+    ]
+  },
+  "document_records": [
+    {
+      "file": "data/g2asylum.raw",
+      "resource_sha256": "fff12d1b890a11daa472dc6133ff0da47ac7e9f2d4a026502138640d6a4281cf",
+      "offset": 41488,
+      "base_id": 3958,
+      "pages": 1,
+      "flags": 1397751808,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2asylum.raw",
+      "resource_sha256": "fff12d1b890a11daa472dc6133ff0da47ac7e9f2d4a026502138640d6a4281cf",
+      "offset": 41560,
+      "base_id": 3928,
+      "pages": 1,
+      "flags": 842596352,
+      "object_type": 240
+    },
+    {
+      "file": "data/g2asylum.raw",
+      "resource_sha256": "fff12d1b890a11daa472dc6133ff0da47ac7e9f2d4a026502138640d6a4281cf",
+      "offset": 41632,
+      "base_id": 3929,
+      "pages": 1,
+      "flags": 1128333312,
+      "object_type": 240
+    },
+    {
+      "file": "data/g2asylum.raw",
+      "resource_sha256": "fff12d1b890a11daa472dc6133ff0da47ac7e9f2d4a026502138640d6a4281cf",
+      "offset": 41704,
+      "base_id": 3930,
+      "pages": 1,
+      "flags": 1145110528,
+      "object_type": 240
+    },
+    {
+      "file": "data/g2asylum.raw",
+      "resource_sha256": "fff12d1b890a11daa472dc6133ff0da47ac7e9f2d4a026502138640d6a4281cf",
+      "offset": 41776,
+      "base_id": 3931,
+      "pages": 1,
+      "flags": 1380974592,
+      "object_type": 240
+    },
+    {
+      "file": "data/g2asylum.raw",
+      "resource_sha256": "fff12d1b890a11daa472dc6133ff0da47ac7e9f2d4a026502138640d6a4281cf",
+      "offset": 41920,
+      "base_id": 3933,
+      "pages": 1,
+      "flags": 173146112,
+      "object_type": 240
+    },
+    {
+      "file": "data/g2asylum.raw",
+      "resource_sha256": "fff12d1b890a11daa472dc6133ff0da47ac7e9f2d4a026502138640d6a4281cf",
+      "offset": 42208,
+      "base_id": 3923,
+      "pages": 1,
+      "flags": 1096155136,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2asylum.raw",
+      "resource_sha256": "fff12d1b890a11daa472dc6133ff0da47ac7e9f2d4a026502138640d6a4281cf",
+      "offset": 42280,
+      "base_id": 3924,
+      "pages": 1,
+      "flags": 1113522176,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2asylum.raw",
+      "resource_sha256": "fff12d1b890a11daa472dc6133ff0da47ac7e9f2d4a026502138640d6a4281cf",
+      "offset": 42712,
+      "base_id": 4004,
+      "pages": 1,
+      "flags": 775028736,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2siberia.raw",
+      "resource_sha256": "4afb6fa738fa052abb44561807b87a6124f58967771f4ac611cc73045c0f7a15",
+      "offset": 19768,
+      "base_id": 5685,
+      "pages": 1,
+      "flags": 1230241792,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2siberia.raw",
+      "resource_sha256": "4afb6fa738fa052abb44561807b87a6124f58967771f4ac611cc73045c0f7a15",
+      "offset": 19840,
+      "base_id": 5683,
+      "pages": 2,
+      "flags": 978518016,
+      "object_type": 369
+    },
+    {
+      "file": "data/g2siberia.raw",
+      "resource_sha256": "4afb6fa738fa052abb44561807b87a6124f58967771f4ac611cc73045c0f7a15",
+      "offset": 19912,
+      "base_id": 5682,
+      "pages": 1,
+      "flags": 1414725632,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2nsa1.raw",
+      "resource_sha256": "680b70edf5bf4a0df9ad5bc60fc0104580a510d857a54db3df6d9db04e10c0c3",
+      "offset": 17288,
+      "base_id": 5331,
+      "pages": 1,
+      "flags": 1347747840,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2nsa1.raw",
+      "resource_sha256": "680b70edf5bf4a0df9ad5bc60fc0104580a510d857a54db3df6d9db04e10c0c3",
+      "offset": 17360,
+      "base_id": 5330,
+      "pages": 1,
+      "flags": 808517632,
+      "object_type": 696
+    },
+    {
+      "file": "data/g2pipeline.raw",
+      "resource_sha256": "03eb1654896e2921f22415124f85908ff676a6cf52983b1455f5add5088f3a7b",
+      "offset": 32632,
+      "base_id": 3608,
+      "pages": 1,
+      "flags": 1279590400,
+      "object_type": 399
+    },
+    {
+      "file": "data/g2pipeline.raw",
+      "resource_sha256": "03eb1654896e2921f22415124f85908ff676a6cf52983b1455f5add5088f3a7b",
+      "offset": 32704,
+      "base_id": 3609,
+      "pages": 1,
+      "flags": 1380909056,
+      "object_type": 399
+    },
+    {
+      "file": "data/g2animallab.raw",
+      "resource_sha256": "fa99ca186d81c472b37cb0c75e7a72a8ed5093667a0f44d1bc93e40ce239f9c6",
+      "offset": 37872,
+      "base_id": 3027,
+      "pages": 1,
+      "flags": 808321024,
+      "object_type": 399
+    },
+    {
+      "file": "data/g2tenements.raw",
+      "resource_sha256": "dec1ce795bc58141cc40cfaac3475dd8ae44a9cd943bc109625cb3fc971e6e69",
+      "offset": 27896,
+      "base_id": 4639,
+      "pages": 1,
+      "flags": 825032704,
+      "object_type": 833
+    },
+    {
+      "file": "data/g2carpark.raw",
+      "resource_sha256": "f5eff7dfa2f14068c2511fcc729adf8ded929453bdaf38cf957c45e1305c4b54",
+      "offset": 34184,
+      "base_id": 3650,
+      "pages": 1,
+      "flags": 1,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2sewers.raw",
+      "resource_sha256": "6f4bbb396589e478a6446c2b6a4a3a9647599043a33e84e228c8f16a1aef4436",
+      "offset": 22360,
+      "base_id": 4561,
+      "pages": 1,
+      "flags": 1599078401,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2nsa2.raw",
+      "resource_sha256": "37e8630aa7a55eef0d7d9849d4b8e2cd22d95deb3ff19c34a86fa5810d4395c3",
+      "offset": 32152,
+      "base_id": 5331,
+      "pages": 1,
+      "flags": 691011584,
+      "object_type": 239
+    },
+    {
+      "file": "data/g2nsa2.raw",
+      "resource_sha256": "37e8630aa7a55eef0d7d9849d4b8e2cd22d95deb3ff19c34a86fa5810d4395c3",
+      "offset": 32224,
+      "base_id": 5330,
+      "pages": 1,
+      "flags": 1096024064,
+      "object_type": 696
+    },
+    {
+      "file": "data/g2forestgorge.raw",
+      "resource_sha256": "f96ffa4eefb63b014425a08576c362b3194e2e1122ebf604e4ac96b721387caa",
+      "offset": 25064,
+      "base_id": 4415,
+      "pages": 1,
+      "flags": 774963200,
+      "object_type": 399
+    },
+    {
+      "file": "data/g2zenerupper.raw",
+      "resource_sha256": "4a568284bb9bc3dddffa4e83bb42618deaa661322f17abb752b7dfa73ca841ff",
+      "offset": 24648,
+      "base_id": 5898,
+      "pages": 1,
+      "flags": 858587136,
+      "object_type": 399
+    },
+    {
+      "file": "data/g2zenerupper.raw",
+      "resource_sha256": "4a568284bb9bc3dddffa4e83bb42618deaa661322f17abb752b7dfa73ca841ff",
+      "offset": 24720,
+      "base_id": 5899,
+      "pages": 1,
+      "flags": 1347747840,
+      "object_type": 399
+    },
+    {
+      "file": "data/g2zenerupper.raw",
+      "resource_sha256": "4a568284bb9bc3dddffa4e83bb42618deaa661322f17abb752b7dfa73ca841ff",
+      "offset": 24936,
+      "base_id": 5900,
+      "pages": 1,
+      "flags": 774897664,
+      "object_type": 399
+    },
+    {
+      "file": "data/g2zenerupper.raw",
+      "resource_sha256": "4a568284bb9bc3dddffa4e83bb42618deaa661322f17abb752b7dfa73ca841ff",
+      "offset": 25008,
+      "base_id": 5901,
+      "pages": 1,
+      "flags": 1376387072,
+      "object_type": 399
+    }
+  ],
+  "fusionfix_overlap": {
+    "commit": "7bce79ffaeee61f95db59a68b35a150cd8644223",
+    "source_hashes": {
+      "dllmain.cpp": "320cbfeefe9d29cc4dc507a7b9351162f505e9220c2015de1dc1cf133e623406",
+      "Camera.ixx": "5e3ea6e58b9b437005e7aec80ba19b340662b72d0f96c3b0a88443210fc94405",
+      "ComVars.ixx": "034ea2364ba5836e9cb5203fe31491b76df05002864fbe0d71153d37c1f98021",
+      "Cutscenes.ixx": "3538d30871c0d8b4a1d7e7054575c9b755c42f6ad5b041abd56cb07181bbfe42",
+      "Hud.ixx": "541a1a0eb2ddb42832ac55d53372cb507a6b85e10375ef7ccccb556b8d865c3b",
+      "Misc.ixx": "2a247d1319439e92a007ea258ced1ce4ec35fbb22d266a039ddd8b684ccbe3b0",
+      "Movies.ixx": "6273949e75f3261f8b29e81d37d5121d935d0fd73ceb48004457712d9d2df7bd",
+      "Renderer.ixx": "74499136802d3664c683375021a69668e516ad842fb3a1efaed40c65f7ec27b4",
+      "Resolution.ixx": "42bd6e0a90e679035ed9db5e4153f32ed59e13bc763784d896736e546dffadd2",
+      "ResolutionHooks.cpp": "6c875af6b5353351f0d50390223a25af63aef50d656732ca64183c832afe4ffa",
+      "Window.ixx": "30a8dddc61e125751fb86cb687a654f2fdda25b289b8158882ed484e30e74e9c"
+    },
+    "new_localization_spans": [
+      {
+        "address": "0x611c70",
+        "size": 6
+      },
+      {
+        "address": "0x5d0643",
+        "size": 5
+      },
+      {
+        "address": "0x5d06fb",
+        "size": 5
+      },
+      {
+        "address": "0x612595",
+        "size": 6
+      },
+      {
+        "address": "0x6125a7",
+        "size": 3
+      },
+      {
+        "address": "0x6125cf",
+        "size": 6
+      },
+      {
+        "address": "0x6125d8",
+        "size": 3
+      },
+      {
+        "address": "0x6125dc",
+        "size": 3
+      },
+      {
+        "address": "0x6125e4",
+        "size": 3
+      },
+      {
+        "address": "0x6125fc",
+        "size": 3
+      },
+      {
+        "address": "0x4b6dd0",
+        "size": 5
+      },
+      {
+        "address": "0x576a14",
+        "size": 5
+      }
+    ],
+    "pattern_contract": "assets/fusionfix-startup-contracts.json",
+    "matched_patterns": 27,
+    "pattern_code_envelope": 96,
+    "startup_view": "after four existing compatibility contracts; original disk unchanged",
+    "result": "PASS: 27 pinned game-pattern envelopes are disjoint from 12 new code spans",
+    "scope": "static write-site audit, not runtime module-order or device acceptance",
+    "nearest_text_hooks": [
+      "0x612BC0",
+      "0x613330"
+    ],
+    "game_executed": false
+  },
+  "terminal_composition": {
+    "ids": [
+      3644,
+      3645,
+      3646,
+      3647,
+      3648
+    ],
+    "record_address": "0x0089363C",
+    "record_count": 5,
+    "separator": "0a0a",
+    "final_separator": "",
+    "native_caller_capacity": 1024,
+    "owned_input_capacity": 4095,
+    "current_combined_encoded_bytes": 1198,
+    "new_calls": [
+      {
+        "va": "0x005D0643",
+        "before": "e838ffffff",
+        "original_target": "0x005D0580",
+        "abi": "cdecl, three arguments unchanged; returned pointer becomes ESI"
+      },
+      {
+        "va": "0x005D06FB",
+        "before": "e880feffff",
+        "original_target": "0x005D0580",
+        "abi": "cdecl, three arguments unchanged; returned pointer becomes EDI"
+      }
+    ],
+    "guards": "exact record address/count/IDs/separator pointers; source equality against unchanged BS entries; full five-row pack composition; total <=4095"
+  },
+  "templates": [
+    {
+      "id": 2441,
+      "slots_guarded_bytes": [
+        59,
+        59,
+        10
+      ],
+      "native_function": "0x562850",
+      "template_call": "0x56295D",
+      "native_output_capacity": 512,
+      "encoded_bytes": 112,
+      "expanded_guarded_bytes": 177,
+      "expanded_fits_native": true,
+      "source_hash": "efd9caa8add63081cced46dc822aa89c66b221de9d9c835d0425db66e1703f08",
+      "target_sha256": "83d6cd7237c7e0f5346ae6ef87d3e198a9c76f9ad4dd6cd688593d13b3f8a8aa",
+      "proof": "BS choose 0x989..0x98B; 53FDE0(0x400),53FDE0(0x800),BS601"
+    },
+    {
+      "id": 2442,
+      "slots_guarded_bytes": [
+        59,
+        59,
+        10
+      ],
+      "native_function": "0x562850",
+      "template_call": "0x56295D",
+      "native_output_capacity": 512,
+      "encoded_bytes": 85,
+      "expanded_guarded_bytes": 207,
+      "expanded_fits_native": true,
+      "source_hash": "ebc69ca61f142a55797934691bb2432534f24ce4110fb8839b0657e7bd84f3b4",
+      "target_sha256": "fcdf622aa9ef98797ee9a636f3abe7256f4c936bb8552e72837aaf054b390d0d",
+      "proof": "BS choose 0x989..0x98B; 53FDE0(0x400),53FDE0(0x800),BS601"
+    },
+    {
+      "id": 2443,
+      "slots_guarded_bytes": [
+        59,
+        59,
+        10
+      ],
+      "native_function": "0x562850",
+      "template_call": "0x56295D",
+      "native_output_capacity": 512,
+      "encoded_bytes": 85,
+      "expanded_guarded_bytes": 85,
+      "expanded_fits_native": true,
+      "source_hash": "b66b0069d121ab26a282c804d88cd45b6286a25579cc604d4dea0361742b22c9",
+      "target_sha256": "771ed3606f3216b166bb3651d4a9c0dc72685f4a9c0276654d2129fe49329076",
+      "proof": "BS choose 0x989..0x98B; 53FDE0(0x400),53FDE0(0x800),BS601"
+    },
+    {
+      "id": 2444,
+      "slots_guarded_bytes": [
+        59,
+        59,
+        27,
+        10
+      ],
+      "native_function": "0x562D40",
+      "template_call": "0x562F15",
+      "native_output_capacity": 512,
+      "encoded_bytes": 97,
+      "expanded_guarded_bytes": 162,
+      "expanded_fits_native": true,
+      "source_hash": "5b2998902b70398fc5e11359d14d399d2cc27c59abaecd839ddd8771b4794a9e",
+      "target_sha256": "3bfe9e590e79ee53423cb063376634d85280f396deccf27ddd8c2be1e11e4b04",
+      "proof": "BS choose 0x98C..0x990; 53FDE0(0x400),53FDE0(0x800),53FEA0(3),BS601; axis guarded27 but current10"
+    },
+    {
+      "id": 2445,
+      "slots_guarded_bytes": [
+        59,
+        59,
+        27,
+        10
+      ],
+      "native_function": "0x562D40",
+      "template_call": "0x562F15",
+      "native_output_capacity": 512,
+      "encoded_bytes": 54,
+      "expanded_guarded_bytes": 79,
+      "expanded_fits_native": true,
+      "source_hash": "9ccfaa0bfa55b0bafe0c378e30c5276767f4aaf1bf578778b20e759da5267e35",
+      "target_sha256": "a63656d2d68d2e384c008ac18939eb0d8982f54d40dbffc9ad9f9600ca998a87",
+      "proof": "BS choose 0x98C..0x990; 53FDE0(0x400),53FDE0(0x800),53FEA0(3),BS601; axis guarded27 but current10"
+    },
+    {
+      "id": 2446,
+      "slots_guarded_bytes": [
+        59,
+        59,
+        27,
+        10
+      ],
+      "native_function": "0x562D40",
+      "template_call": "0x562F15",
+      "native_output_capacity": 512,
+      "encoded_bytes": 71,
+      "expanded_guarded_bytes": 136,
+      "expanded_fits_native": true,
+      "source_hash": "165e88825f5611dd873e674d4a7b7be4b1f8531bf0746c91470690f3d450ad14",
+      "target_sha256": "c420596447b049cc1354af2bc3c0436c5733dd0d220c6a8ffdd8ab1e15550bc2",
+      "proof": "BS choose 0x98C..0x990; 53FDE0(0x400),53FDE0(0x800),53FEA0(3),BS601; axis guarded27 but current10"
+    },
+    {
+      "id": 2447,
+      "slots_guarded_bytes": [
+        59,
+        59,
+        27,
+        10
+      ],
+      "native_function": "0x562D40",
+      "template_call": "0x562F15",
+      "native_output_capacity": 512,
+      "encoded_bytes": 94,
+      "expanded_guarded_bytes": 151,
+      "expanded_fits_native": true,
+      "source_hash": "6c80be1ae58f73e0f11e69c18a0e1d6b4734773e3316dfebf55bd7d1d9b5962b",
+      "target_sha256": "a50cc7bf54035d61ff1fa01fb9cefbf3c42e400c2cddd4cad7ac68fed8e6082a",
+      "proof": "BS choose 0x98C..0x990; 53FDE0(0x400),53FDE0(0x800),53FEA0(3),BS601; axis guarded27 but current10"
+    },
+    {
+      "id": 2448,
+      "slots_guarded_bytes": [
+        59,
+        59,
+        27,
+        10
+      ],
+      "native_function": "0x562D40",
+      "template_call": "0x562F15",
+      "native_output_capacity": 512,
+      "encoded_bytes": 89,
+      "expanded_guarded_bytes": 114,
+      "expanded_fits_native": true,
+      "source_hash": "6c0795e951d41e70de1d42654485f076c4f1dd6d49e6b8f729efbd4c86b104d8",
+      "target_sha256": "afbecba25436a32d717f7e27666b6799f0a25605c03c4ba66d53535a27505049",
+      "proof": "BS choose 0x98C..0x990; 53FDE0(0x400),53FDE0(0x800),53FEA0(3),BS601; axis guarded27 but current10"
+    },
+    {
+      "id": 2449,
+      "slots_guarded_bytes": [
+        10,
+        59
+      ],
+      "native_function": "0x564D70",
+      "template_call": "0x564DDC",
+      "native_output_capacity": 512,
+      "encoded_bytes": 26,
+      "expanded_guarded_bytes": 91,
+      "expanded_fits_native": true,
+      "source_hash": "e93db659243681ac691e9703e382358b5460691dd3ec8a07844365c634712214",
+      "target_sha256": "01fbd67228fa752d1e610d40ff824fdc77a03ad5c0a8f96a8cd8e96cd91b777c",
+      "proof": "BS601,53FDE0(0x800)"
+    },
+    {
+      "id": 3336,
+      "slots_guarded_bytes": [
+        10,
+        59,
+        10,
+        59,
+        59
+      ],
+      "native_function": "0x549B00",
+      "template_call": "0x549B6E",
+      "native_output_capacity": 512,
+      "encoded_bytes": 136,
+      "expanded_guarded_bytes": 323,
+      "expanded_fits_native": true,
+      "source_hash": "bc2a3d2e9440388b3b79a4c26319352523176e6421b38bb9c6c7a421c1d0b209",
+      "target_sha256": "05beada5b60125cb9f89aafa0c0271f4914f73f40c3a232a92f53f2c261427d8",
+      "proof": "BS601,53FDE0(0x400),BS601,53FDE0(0x800),53FDE0(0x800)"
+    },
+    {
+      "id": 3337,
+      "slots_guarded_bytes": [
+        10,
+        59
+      ],
+      "native_function": "0x549C00",
+      "template_call": "0x549C47",
+      "native_output_capacity": 512,
+      "encoded_bytes": 62,
+      "expanded_guarded_bytes": 127,
+      "expanded_fits_native": true,
+      "source_hash": "cf014b4f6176ee84007d28ca28f2173f1c6a25e066bb389d8b07ba05f231ba36",
+      "target_sha256": "93956e135c5b2418a8b2c0872ec7b9fba74910c5c2e2597db5e831b9e303b321",
+      "proof": "BS601,53FDE0(0x800)"
+    },
+    {
+      "id": 3820,
+      "slots_guarded_bytes": [
+        10,
+        59
+      ],
+      "native_function": "0x555800",
+      "template_call": "0x555881",
+      "native_output_capacity": 256,
+      "encoded_bytes": 97,
+      "expanded_guarded_bytes": 162,
+      "expanded_fits_native": true,
+      "source_hash": "c4b69b59665fbfc8ab779a489678e3489a82404ed00122b4e4e2287f99b6e987",
+      "target_sha256": "26bf3a01624d240ac37b6eb9209d566504e4f24b21dde4bf3228b6013b349787",
+      "proof": "BS601,53FDE0(player+0xD4)"
+    },
+    {
+      "id": 3821,
+      "slots_guarded_bytes": [
+        10,
+        59
+      ],
+      "native_function": "0x555690",
+      "template_call": "0x55570E",
+      "native_output_capacity": 256,
+      "encoded_bytes": 72,
+      "expanded_guarded_bytes": 137,
+      "expanded_fits_native": true,
+      "source_hash": "f58a39b95f9a781c06c843af13a900b2663c6fdf4844095d99b05890b4ad3eee",
+      "target_sha256": "b90d098f970700089602038faa6803a65789ad79da6bc13b6f8c3ad8e56e377a",
+      "proof": "BS5224,53FDE0(player+0xD4)"
+    },
+    {
+      "id": 4261,
+      "slots_guarded_bytes": [
+        10,
+        59,
+        10,
+        59
+      ],
+      "native_function": "0x552540",
+      "template_call": "0x5525E7",
+      "native_output_capacity": 256,
+      "encoded_bytes": 93,
+      "expanded_guarded_bytes": 223,
+      "expanded_fits_native": true,
+      "source_hash": "53cc677e3cb1dbd351f5ba4e6149b77233ed4d4fcc5c601dae95e05f3c7a8715",
+      "target_sha256": "208c89658551790dba9e02c9119ac71f6d8e362f929e2bce162dad8698020105",
+      "proof": "BS601,53FDE0(player+0xD0),BS601,53FDE0(player+0xD4)"
+    },
+    {
+      "id": 2896,
+      "slots_guarded_bytes": [
+        10,
+        59,
+        27
+      ],
+      "native_function": "0x624930",
+      "template_call": "0x624A74..0x624BD5",
+      "native_output_capacity": 256,
+      "encoded_bytes": 80,
+      "expanded_guarded_bytes": 170,
+      "expanded_fits_native": true,
+      "source_hash": "d4f97e2c375b46206a6bc91b094c2254efdf45fe076ae8b59175c1de352afcbf",
+      "target_sha256": "24da99e9f20e12f586fa901dad2d45da0e7819f4284c41f76df8f2b6ce48e428",
+      "proof": "Script native 0x150; globals=0x438,0x443,0x44b; opcode6 reads table 0x8BC408 via [0x8BD624]. Each selector passes 53F4C0. 2910 alternate first global43A has identical10 bound."
+    },
+    {
+      "id": 2897,
+      "slots_guarded_bytes": [
+        59,
+        27
+      ],
+      "native_function": "0x624930",
+      "template_call": "0x624A74..0x624BD5",
+      "native_output_capacity": 256,
+      "encoded_bytes": 87,
+      "expanded_guarded_bytes": 169,
+      "expanded_fits_native": true,
+      "source_hash": "dd4ae1fdaa751ebf1dd46d806eea49ee692e0ce8a6e6cfabfdf1c362de350e06",
+      "target_sha256": "d0f675eaa139da39e2b0c92fa063a977d8605e9418ae3a8563b5d7539a204c61",
+      "proof": "Script native 0x150; globals=0x443,0x44b; opcode6 reads table 0x8BC408 via [0x8BD624]. Each selector passes 53F4C0. 2910 alternate first global43A has identical10 bound."
+    },
+    {
+      "id": 2907,
+      "slots_guarded_bytes": [
+        10,
+        59,
+        27
+      ],
+      "native_function": "0x624930",
+      "template_call": "0x624A74..0x624BD5",
+      "native_output_capacity": 256,
+      "encoded_bytes": 55,
+      "expanded_guarded_bytes": 145,
+      "expanded_fits_native": true,
+      "source_hash": "2b77be5e76566da2a43f97ce9028fcc910a63d705eecf88ecf5ed345351af420",
+      "target_sha256": "1641c93b540902475537070650cf2e574a88a40715441fad6a14f0856df702fc",
+      "proof": "Script native 0x150; globals=0x43a,0x448,0x44d; opcode6 reads table 0x8BC408 via [0x8BD624]. Each selector passes 53F4C0. 2910 alternate first global43A has identical10 bound."
+    },
+    {
+      "id": 2908,
+      "slots_guarded_bytes": [
+        59,
+        27
+      ],
+      "native_function": "0x624930",
+      "template_call": "0x624A74..0x624BD5",
+      "native_output_capacity": 256,
+      "encoded_bytes": 98,
+      "expanded_guarded_bytes": 180,
+      "expanded_fits_native": true,
+      "source_hash": "ce699b28b45f2fbb2dfa35009562a2e3c5e9d05bcb28ba054ea4339c5a016c17",
+      "target_sha256": "0606f747416e6146734e6636e6ded2bee3f9e7b9ebbbe7a7e724d360727dfb9b",
+      "proof": "Script native 0x150; globals=0x448,0x44d; opcode6 reads table 0x8BC408 via [0x8BD624]. Each selector passes 53F4C0. 2910 alternate first global43A has identical10 bound."
+    },
+    {
+      "id": 2909,
+      "slots_guarded_bytes": [
+        10,
+        59,
+        27,
+        10,
+        59
+      ],
+      "native_function": "0x624930",
+      "template_call": "0x624A74..0x624BD5",
+      "native_output_capacity": 256,
+      "encoded_bytes": 77,
+      "expanded_guarded_bytes": 232,
+      "expanded_fits_native": true,
+      "source_hash": "16b8df4b662037def6a7ee128f6be980b86c045714c4a7c64f75dca51b85262e",
+      "target_sha256": "4f3811245b2919ac91923790ba5bef2555a645193f524f04d8deded872498997",
+      "proof": "Script native 0x150; globals=0x43a,0x448,0x44d,0x439,0x440; opcode6 reads table 0x8BC408 via [0x8BD624]. Each selector passes 53F4C0. 2910 alternate first global43A has identical10 bound."
+    },
+    {
+      "id": 2910,
+      "slots_guarded_bytes": [
+        10,
+        59,
+        27
+      ],
+      "native_function": "0x624930",
+      "template_call": "0x624A74..0x624BD5",
+      "native_output_capacity": 256,
+      "encoded_bytes": 90,
+      "expanded_guarded_bytes": 180,
+      "expanded_fits_native": true,
+      "source_hash": "093a8f0255e2a3f750d36b7a4aa46530e54aa74e33840640ce92cb061ad77c93",
+      "target_sha256": "bc04822f891181db451a046a32899ebfac8338e339a632c31feb016bfbfece23",
+      "proof": "Script native 0x150; globals=0x438,0x43f,0x44b; opcode6 reads table 0x8BC408 via [0x8BD624]. Each selector passes 53F4C0. 2910 alternate first global43A has identical10 bound."
+    },
+    {
+      "id": 2911,
+      "slots_guarded_bytes": [
+        27,
+        10,
+        59
+      ],
+      "native_function": "0x624930",
+      "template_call": "0x624A74..0x624BD5",
+      "native_output_capacity": 256,
+      "encoded_bytes": 121,
+      "expanded_guarded_bytes": 211,
+      "expanded_fits_native": true,
+      "source_hash": "7178fa99299e232fee4c96452ef244b1aaae2fdb943ad0db71adf2a9beda6b28",
+      "target_sha256": "3e20d4c6cb2e4f8c55d2033460f1a97f7a57ca88dee4f359c6d376a9f37dde93",
+      "proof": "Script native 0x150; globals=0x44b,0x43a,0x448; opcode6 reads table 0x8BC408 via [0x8BD624]. Each selector passes 53F4C0. 2910 alternate first global43A has identical10 bound."
+    }
+  ],
+  "template_verbs": {
+    "ids": [
+      601,
+      5224
+    ],
+    "max_encoded_bytes": 10
+  },
+  "hud_wrap_guard": {
+    "return_address": "0x0062FEC7",
+    "expanded_bs3336_limit": 510,
+    "all_bs_source_template_encoded_limit": 255,
+    "wrapped_max": 511,
+    "overflow_action": "retain full expanded input without newly inserted linebreaks; log; no truncation",
+    "tested_boundaries": [
+      510,
+      511,
+      512
+    ]
+  },
+  "deferred_review": {
+    "scope": "Bounded static consumer review; absence of observed references is not a proof of global unreachability.",
+    "groups": [
+      {
+        "ids": [
+          313,
+          314
+        ],
+        "classification": "not_used_by_identified_pc_legal_screen",
+        "finding": "PC startup scene 0x67 state 2 selects legal DDS textures, not these two BS strings; no global unreachability claim.",
+        "capacity": "Unknown for hypothetical alternate text consumer; actual identified path is a bitmap."
+      },
+      {
+        "ids": [
+          2912
+        ],
+        "classification": "unresolved_legacy_tutorial_candidate",
+        "finding": "Identified leaning tutorial script pushes 2910/2911, never 2912. The native push 0xB60 at 0x521BD3 feeds 0x425530/0x60DF00 in a separate resource-number domain, not the BS table. The other native 0xB60 match is a structure stride.",
+        "capacity": "Theoretical formatter fit does not prove a consumer or argument types; keep deferred."
+      },
+      {
+        "ids": [
+          3029
+        ],
+        "classification": "unresolved_document_candidate",
+        "finding": "Absent from the 94 identified SETU paper records and native immediate/ID-scaled operand scan. g2animallab has 22 identified paper records, none selects 3029. No positive consumer established.",
+        "capacity": "No identified copy/wrap contract for this ID; do not inherit neighboring document capacity."
+      },
+      {
+        "ids": [
+          3846,
+          3847,
+          3848,
+          3849,
+          3850,
+          3851,
+          3852
+        ],
+        "classification": "unresolved_blocks_cheat_templates",
+        "finding": "No opcode-0 constant-push match in the 21 examined non-TAB script archives. Native ID*4 matches at 0x4DC1FF..0x4DC242 are object field stores, not BS table access. Eight repeated %1 slots remain untyped.",
+        "capacity": "Using a 59-byte key-name bound yields 516..541 bytes; assuming a 1-byte character without a consumer would be unsound."
+      },
+      {
+        "ids": [
+          4637,
+          4638
+        ],
+        "classification": "unresolved_tenements_document_candidates",
+        "finding": "The identified g2tenements paper records select 4639 and 129 only. The sole resource integer hit for 4637 is opcode-2 jump operand at lv77_starke.raw+0x481C, not text. VM opcode 2 dispatches to 0x61F58A and writes the instruction index.",
+        "capacity": "No ID-specific positive document consumer; keep both deferred."
+      },
+      {
+        "ids": [
+          5494
+        ],
+        "classification": "not_selected_by_identified_five_mail_terminal",
+        "finding": "The five-row terminal selects bodies [5497,5184,5500,5503,5506]. Subject 5492/sender 5493 uses 5184, not 5494. Init/new-mail count is bounded by five; inspected table writes and save registration target flags, not body IDs.",
+        "capacity": "The known mail renderer supports long bodies, but 5494 is not selected there. Do not replace the selected 5184 with 5494 to manufacture a consumer."
+      }
+    ]
+  }
+}

@@ -5062,7 +5062,7 @@
   },
   {
     "id": 1363,
-    "target": "档案似乎已损坏。按\u000b2继续。",
+    "target": "档案似乎已损坏且无法使用。按\u000b2继续。",
     "context": "Shared generic dialog/button variant adjacent to Xbox-specific strings; visibility pending",
     "text_kind": "ui",
     "terms": [
@@ -7334,9 +7334,9 @@
   },
   {
     "id": 5374,
-    "target": "退出",
-    "context": "Generic confirmation/navigation label; computer UI or legacy dialog alias; visibility pending",
-    "text_kind": "ui",
+    "target": "出口，Exit。",
+    "context": "NPC guessing game; between Elevator? and energy field, not a menu Exit command",
+    "text_kind": "narrative",
     "terms": [],
     "status": "translated; offline-review; user-acceptance-pending",
     "source_tokens": [],

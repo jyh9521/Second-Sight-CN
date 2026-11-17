@@ -12,6 +12,8 @@
 #include <vector>
 #include <stdexcept>
 #include "text_transport.h"
+#include <intrin.h>
+#pragma intrinsic(_ReturnAddress)
 
 static HMODULE module;
 static LONG initialized;
@@ -21,7 +23,12 @@ static constexpr char expectedExe[] = "4092a8d1fb042dffe9fb95e2185f32cb803902991
 static constexpr unsigned char marker = 0x1f;
 struct Text { uint32_t index; std::string source, target; };
 struct Resource { std::string name; std::vector<unsigned char> bytes; };
-struct Pack { std::vector<Text> bs, pda; std::vector<Resource> resources; };
+struct Pack { std::vector<Text> bs, pda, exe; std::vector<Resource> resources; };
+struct LiteralContract { uint32_t id; uintptr_t instruction, source; const char* expected; };
+static const LiteralContract literalContracts[]={
+    {1,0x4b6dd0,0x7daaa8,"Quick scroll"},
+    {2,0x576a14,0x7dc280,"Button inoperative"}
+};
 static Pack pack;
 
 static void log(const char* message) {
@@ -64,14 +71,14 @@ static bool encoded(const std::string& value) {
         auto ch = static_cast<unsigned char>(value[i]);
         if (ch==9 || ch==10 || ch==32) { ++i; continue; }
         if (ch==11 && i+1<value.size() && transport::opcode(value[i+1])) { i+=2; continue; }
-        if (ch=='%' && i+1<value.size() && value[i+1]>='1' && value[i+1]<='9') { i+=2; continue; }
+        if (ch=='%' && i+1<value.size() && ((value[i+1]>='1' && value[i+1]<='9') || value[i+1]=='s')) { i+=2; continue; }
         if (ch != marker || i+5>value.size()) return false;
         int n=0;
         for (size_t j=i+1;j<i+5;++j) {
             if (value[j]<'0'||value[j]>'9') return false;
             n=n*10+value[j]-'0';
         }
-        if (n>=1536 || (i+5<value.size() && value[i+5]>='0' && value[i+5]<='9')) return false;
+        if (n>=6144 || (i+5<value.size() && value[i+5]>='0' && value[i+5]<='9')) return false;
         i+=5;
     }
     return true;
@@ -87,9 +94,11 @@ static Pack parse(const std::vector<unsigned char>& bytes) {
         if (n>bytes.size()-at) throw std::runtime_error("invalid pack length");
         std::string s(reinterpret_cast<const char*>(bytes.data()+at),n); at+=n; return s;
     };
-    if (number()!=0x31504c53) throw std::runtime_error("invalid pack magic");
+    const uint32_t format=number();
+    if (format!=0x31504c53 && format!=0x32504c53) throw std::runtime_error("invalid pack magic");
     uint32_t bs=number(), pda=number(), resources=number();
-    if (!bs || bs>6525 || !pda || pda>512 || resources!=6) throw std::runtime_error("invalid pack counts");
+    const uint32_t exeCount=format==0x32504c53?number():0;
+    if (!bs || bs>6525 || !pda || pda>512 || exeCount>2 || (resources!=6 && resources!=7)) throw std::runtime_error("invalid pack counts");
     Pack result;
     auto texts=[&](std::vector<Text>& items,uint32_t count,bool isBs) {
         for (uint32_t i=0;i<count;++i) {
@@ -97,25 +106,47 @@ static Pack parse(const std::vector<unsigned char>& bytes) {
             if ((isBs && (t.index==0||t.index>=6526)) ||
                 (!isBs && (t.index<32||t.index%4||t.index>79618)) ||
                 t.source.empty() || t.source.size()>4096 ||
-                t.source.find('\0')!=std::string::npos || !encoded(t.target) || t.target.size()>(isBs?255u:1800u))
+                t.source.find('\0')!=std::string::npos || !encoded(t.target) || t.target.size()>(isBs?transport::bsLimit(t.index):1800u))
                 throw std::runtime_error("invalid text record");
-            if(transport::budget(t.target)>(isBs?255u:1800u) ||
+            if(transport::budget(t.target,isBs?t.index:0)>(isBs?transport::bsExpandedLimit(t.index):1800u) ||
+                (isBs && (t.index==601 || t.index==5224) && t.target.size()>10) ||
                 (isBs && t.index>=6371 && t.index<=6504 && t.target.size()>27) ||
                 (isBs && (t.index==6518 || t.index==6519) && t.target.size()>27))
                 throw std::runtime_error("native consumer budget exceeded");
+            if(t.target.find("%s")!=std::string::npos && (!isBs || t.index!=4511 || t.source!="Mode: %s" ||
+                t.target.find("%s",t.target.find("%s")+2)!=std::string::npos))
+                throw std::runtime_error("printf source contract mismatch");
+            if(isBs && t.index==4511 && t.source=="Mode: %s" && t.target.find("%s")==std::string::npos)
+                throw std::runtime_error("missing printf placeholder");
             for (const auto& prior: items) if (prior.index==t.index) throw std::runtime_error("duplicate text ID");
             items.push_back(std::move(t));
         }
     };
     texts(result.bs,bs,true); texts(result.pda,pda,false);
+    for(uint32_t i=0;i<exeCount;++i) {
+        Text t{number(),blob(),blob()};
+        const LiteralContract* contract=nullptr;
+        for(const auto& c:literalContracts) if(c.id==t.index) contract=&c;
+        if(!contract || t.source!=contract->expected || !encoded(t.target) || t.target.size()>64 ||
+            t.target.find_first_of("\v%\t\n")!=std::string::npos)
+            throw std::runtime_error("invalid executable text record");
+        for(const auto& prior:result.exe) if(prior.index==t.index) throw std::runtime_error("duplicate executable text");
+        result.exe.push_back(std::move(t));
+    }
+    size_t composedCount=0,composedBytes=8;
+    for(const auto& item:result.bs) if(item.index>=3644 && item.index<=3648) { ++composedCount; composedBytes+=item.target.size(); }
+    if(composedCount && (composedCount!=5 || composedBytes>4095)) throw std::runtime_error("terminal composition contract mismatch");
     for (uint32_t i=0;i<resources;++i) {
         auto name=blob(), data=blob();
-        if (name!="textures/localization/page"+std::to_string(i)+".dds" || data.size()!=65664 ||
+        const bool fontPage=i<6;
+        const uint32_t width=fontPage?512:256, height=fontPage?512:64;
+        const std::string expectedName=fontPage?"textures/localization/page"+std::to_string(i)+".dds":"textures/misc/nse_tv/loading.dds";
+        if (name!=expectedName || data.size()!=128+width*height ||
             memcmp(data.data(),"DDS ",4) || memcmp(data.data()+84,"DXT3",4))
-            throw std::runtime_error("invalid atlas resource");
+            throw std::runtime_error("invalid texture resource");
         auto dword=[&](size_t offset) { uint32_t value; memcpy(&value,data.data()+offset,4); return value; };
-        if(dword(4)!=124 || dword(8)!=0x81007 || dword(12)!=256 || dword(16)!=256 ||
-            dword(20)!=65536 || dword(28)!=1 || dword(76)!=32 || dword(80)!=4 || dword(108)!=0x1000)
+        if(dword(4)!=124 || dword(8)!=0x81007 || dword(12)!=height || dword(16)!=width ||
+            dword(20)!=width*height || dword(28)!=1 || dword(76)!=32 || dword(80)!=4 || dword(108)!=0x1000)
             throw std::runtime_error("unsupported DDS header");
         result.resources.push_back({name,std::vector<unsigned char>(data.begin(),data.end())});
     }
@@ -147,6 +178,64 @@ static CountFn originalCount;
 static SubstrFn originalSubstring;
 using ExpandFn=const char*(__cdecl*)(const char*);
 static ExpandFn originalExpand;
+using WrapFn=char*(__cdecl*)(const char*,float);
+static WrapFn originalWrap;
+static std::array<std::string,8> wrapBuffers;
+static size_t wrapSlot;
+using ComposeFn=void(__cdecl*)(const uint32_t*,char*,int);
+static ComposeFn originalCompose=reinterpret_cast<ComposeFn>(0x5d0580);
+static std::array<std::string,8> composedBuffers;
+static size_t composedSlot;
+// Only this exact terminal record is lifted out of the native 1024-byte caller
+// buffer. Its five original IDs and separators are all validated before use.
+static const char* __cdecl composeHook(const uint32_t* record,char* destination,int capacity) {
+    if(record==reinterpret_cast<const uint32_t*>(0x89363c) && capacity==1024 && record[0]==5) {
+        try {
+            std::string out;
+            auto table=*reinterpret_cast<const char***>(0x90a338);
+            bool complete=table!=nullptr;
+            for(uint32_t i=0;i<5 && complete;++i) {
+                const uint32_t id=3644+i;
+                const uint32_t separator=i<4?0x7db74c:0x7ccdf8;
+                complete=record[1+i*2]==id && record[2+i*2]==separator;
+                const Text* chosen=nullptr;
+                for(const auto& item:pack.bs) if(item.index==id) { chosen=&item; break; }
+                if(!complete || !chosen || !matches(table[id],chosen->source)) { complete=false; break; }
+                out+=chosen->target;
+                if(i<4) out+="\n\n";
+                if(out.size()>4095) throw std::runtime_error("terminal owned composition overflow");
+            }
+            if(complete) { auto& value=composedBuffers[composedSlot++ % composedBuffers.size()]; value=std::move(out); return value.c_str(); }
+        } catch(...) { log("TERMINAL composition rejected; original path retained"); }
+    }
+    originalCompose(record,destination,capacity);
+    return destination;
+}
+// The native call sites immediately use ESI/EDI as their wrap input. These
+// cdecl bridges intentionally update that local register, leaving the caller's
+// saved register on its stack intact; no other argument/stack shape changes.
+static __declspec(naked) void composeToEsi() {
+    __asm {
+        push dword ptr [esp+12]
+        push dword ptr [esp+12]
+        push dword ptr [esp+12]
+        call composeHook
+        add esp,12
+        mov esi,eax
+        ret
+    }
+}
+static __declspec(naked) void composeToEdi() {
+    __asm {
+        push dword ptr [esp+12]
+        push dword ptr [esp+12]
+        push dword ptr [esp+12]
+        call composeHook
+        add esp,12
+        mov edi,eax
+        ret
+    }
+}
 static std::array<std::string,8> expandedBuffers;
 static size_t expandedSlot;
 static std::array<std::string,8> pdaBuffers;
@@ -162,6 +251,32 @@ static const char* __cdecl expandHook(const char* text) {
         value=transport::expand(text,[](const char* token){return originalExpand(token);});
         return value.c_str();
     } catch(...) { log("TEXT expansion rejected; owned buffer limit"); return ""; }
+}
+static char* __cdecl wrapHook(const char* text,float width) {
+    const uintptr_t caller=reinterpret_cast<uintptr_t>(_ReturnAddress());
+    if(text && transport::longWrapCaller(caller)) {
+        for(const auto& item:pack.bs) if(transport::deferred(item.index) && matches(text,item.source)) {
+            text=item.target.c_str(); break;
+        }
+    }
+    if(!text || !strchr(text,marker)) return originalWrap(text,width);
+    try {
+        // Copy before calling measure: measurement expands keys using its own
+        // rotating buffers, and notice/mail callers subsequently mutate output.
+        const char* expanded=expandHook(text);
+        const std::string input=expanded?expanded:"";
+        auto& value=wrapBuffers[wrapSlot++ % wrapBuffers.size()];
+        value=transport::wrap(input,width,[](const char* word) {
+            return reinterpret_cast<float(__cdecl*)(const char*)>(0x611940)(word);
+        });
+        if(caller==0x62fec7 && value.size()>511) {
+            // Never overflow the original HUD's three 512-byte copies. Keep
+            // every input character if an extreme width exhausts LF headroom.
+            value=transport::hudBody(input,value);
+            log("HUD wrap linebreak budget exceeded; full unwrapped input retained");
+        }
+        return value.data();
+    } catch(...) { log("WRAP rejected; owned buffer budget"); static char empty[1]{}; return empty; }
 }
 static const char* __cdecl pdaExpand(const char* text) {
     try {
@@ -208,10 +323,11 @@ static int __cdecl readHook(const char* name,void* buffer,int size) {
 static void __cdecl bsHook() {
     auto table=*reinterpret_cast<char***>(0x90a338);
     size_t count=0;
-    if(table) for(const auto& item:pack.bs) if(matches(table[item.index],item.source)) {
+    if(table) for(const auto& item:pack.bs) if(!transport::deferred(item.index) && matches(table[item.index],item.source)) {
         table[item.index]=const_cast<char*>(item.target.c_str()); ++count;
     }
-    char line[160]; sprintf_s(line,"BS substituted=%zu expected=%zu",count,pack.bs.size()); log(line);
+    size_t deferred=0; for(const auto& item:pack.bs) if(transport::deferred(item.index)) ++deferred;
+    char line[160]; sprintf_s(line,"BS substituted=%zu expected-direct=%zu deferred=%zu",count,pack.bs.size()-deferred,deferred); log(line);
     reinterpret_cast<void(__cdecl*)()>(0x540680)();
 }
 static void* __cdecl pdaHook(void* base) {
@@ -233,7 +349,7 @@ static const char* nextGlyph(const char* p) {
     if(static_cast<unsigned char>(*p)==marker) {
         int n=0;
         for(int i=1;i<=4;++i) { if(p[i]<'0'||p[i]>'9') return p+1; n=n*10+p[i]-'0'; }
-        if(n<1536 && !(p[5]>='0'&&p[5]<='9')) return p+5;
+        if(n<6144 && !(p[5]>='0'&&p[5]<='9')) return p+5;
     }
     return p+1;
 }
@@ -276,17 +392,37 @@ static const char* atlasPaths[]={"textures/localization/page0.raw","textures/loc
     "textures/localization/page3.raw","textures/localization/page4.raw","textures/localization/page5.raw"};
 static void install() {
     std::vector<Patch> patches;
+    for(const auto& item:pack.exe) for(const auto& c:literalContracts) if(item.index==c.id) {
+        if(!matches(reinterpret_cast<const char*>(c.source),item.source)) throw std::runtime_error("executable text source mismatch");
+        std::vector<unsigned char> before(5,0x68),after(5,0x68);
+        const uint32_t original=static_cast<uint32_t>(c.source);
+        const uint32_t replacement=static_cast<uint32_t>(reinterpret_cast<uintptr_t>(item.target.c_str()));
+        memcpy(before.data()+1,&original,4); memcpy(after.data()+1,&replacement,4);
+        patches.push_back({c.instruction,before,after});
+    }
     auto call=[&](uintptr_t a,std::initializer_list<unsigned char> b,const void* fn) { patches.push_back({a,b,branch(a,fn,b.size(),0xe8)}); };
     call(0x43e663,{0xe8,0x18,0x20,0x10,0x00},bsHook);
     call(0x583bb5,{0xe8,0x26,0xc9,0xff,0xff},pdaHook);
     call(0x611885,{0xe8,0x66,0xeb,0xff,0xff},modeHook);
+    call(0x5d0643,{0xe8,0x38,0xff,0xff,0xff},composeToEsi);
+    call(0x5d06fb,{0xe8,0x80,0xfe,0xff,0xff},composeToEdi);
     call(0x58074d,{0xe8,0x0e,0xff,0xff,0xff},pdaWord);
     call(0x580832,{0xe8,0xd9,0xfd,0xff,0xff},pdaSkip);
     call(0x580c2a,{0xe8,0x11,0xfa,0xff,0xff},pdaExpandAdapter);
     call(0x580c4c,{0xe8,0xef,0xf9,0xff,0xff},pdaExpandAdapter);
     for(uintptr_t a:{0x610a96,0x6119f3,0x611a59,0x611d1b,0x611d58,0x612561}) patches.push_back({a,{0x3c,0x2c},{0x3c,marker}});
+    // 32x32 cells/page, still 16px cells. UV is pixel*16 and normalized by
+    // actual DDS dimensions at 0x40DB70; no UV halving or measure patch.
+    patches.push_back({0x612595,{0x81,0xe2,0xff,0,0,0},{0x81,0xe2,0xff,3,0,0}});
+    patches.push_back({0x6125a7,{0xc1,0xfe,8},{0xc1,0xfe,10}});
+    patches.push_back({0x6125cf,{0x81,0xe1,0x0f,0,0,0x80},{0x81,0xe1,0x1f,0,0,0x80}});
+    patches.push_back({0x6125d8,{0x83,0xc9,0xf0},{0x83,0xc9,0xe0}});
+    patches.push_back({0x6125dc,{0xc1,0xe6,8},{0xc1,0xe6,10}});
+    patches.push_back({0x6125e4,{0x83,0xe2,0x0f},{0x83,0xe2,0x1f}});
+    patches.push_back({0x6125fc,{0xc1,0xf8,4},{0xc1,0xf8,5}});
     struct Hook { uintptr_t address; std::vector<unsigned char> before; const void* target; void** original; };
     std::vector<Hook> hooks={
+        {0x611c70,{0x81,0xec,0x04,0x02,0,0},wrapHook,reinterpret_cast<void**>(&originalWrap)},
         {0x610260,{0x53,0x8b,0x5c,0x24,0x08},expandHook,reinterpret_cast<void**>(&originalExpand)},
         {0x49ddf0,{0xa1,0xd0,0x0f,0x91,0x00},sizeHook,reinterpret_cast<void**>(&originalSize)},
         {0x49e4e0,{0xa1,0xd0,0x0f,0x91,0x00},readHook,reinterpret_cast<void**>(&originalRead)},
@@ -337,6 +473,25 @@ extern "C" __declspec(dllexport) int __cdecl LocalizationSelfTest(const wchar_t*
     try {
         auto data=readFile(path); auto parsed=parse(data);
         if(parsed.bs.empty()||parsed.pda.empty()) return 1;
+        if(data[3]=='2') {
+            size_t exeAt=20;
+            for(const auto& t:parsed.bs) exeAt+=12+t.source.size()+t.target.size();
+            for(const auto& t:parsed.pda) exeAt+=12+t.source.size()+t.target.size();
+            size_t exeBytes=0;
+            for(const auto& t:parsed.exe) exeBytes+=12+t.source.size()+t.target.size();
+            auto legacyPack=data;
+            legacyPack.erase(legacyPack.begin()+exeAt,legacyPack.begin()+exeAt+exeBytes);
+            legacyPack.erase(legacyPack.begin()+16,legacyPack.begin()+20);
+            legacyPack[3]='1';
+            if(!parse(legacyPack).exe.empty()) return 37;
+            if(!parsed.exe.empty()) {
+                auto badLiteral=data;
+                badLiteral[exeAt+8]^=1; // Source spelling must match fixed contract.
+                try { parse(badLiteral); return 38; } catch(const std::exception&) {}
+                badLiteral=data; badLiteral[exeAt]=99;
+                try { parse(badLiteral); return 39; } catch(const std::exception&) {}
+            }
+        }
         for(const auto& item:parsed.bs) {
             const char* p=item.target.c_str(); while(*p) p=nextGlyph(p);
             if(p!=item.target.c_str()+item.target.size()) return 2;
@@ -347,9 +502,25 @@ extern "C" __declspec(dllexport) int __cdecl LocalizationSelfTest(const wchar_t*
         const unsigned char magic[]={'D','D','S',' '};
         auto firstDds=std::search(badDds.begin(),badDds.end(),std::begin(magic),std::end(magic));
         if(firstDds==badDds.end()) return 8;
-        *(firstDds+16)=1; // width 257 instead of native 256
+        *(firstDds+16)=1; // width 513 instead of expanded 512
         try { parse(badDds); return 9; } catch(const std::exception&) {}
-        if(encoded(std::string("\x1f")+"00015") || encoded(std::string("\x1f")+"1536")) return 4;
+        if(parsed.resources.size()==7) {
+            auto badUi=data;
+            const std::string uiName="textures/misc/nse_tv/loading.dds";
+            auto name=std::search(badUi.begin(),badUi.end(),uiName.begin(),uiName.end());
+            if(name==badUi.end()) return 33;
+            *name='X';
+            try { parse(badUi); return 34; } catch(const std::exception&) {}
+            auto legacy=data;
+            legacy.resize(legacy.size()-8-uiName.size()-16512);
+            legacy[12]=6;
+            if(parse(legacy).resources.size()!=6) return 35;
+            badUi=data;
+            const size_t lastDds=badUi.size()-16512;
+            badUi[lastDds+16]=1; // exact 256-pixel UI contract, not arbitrary resources
+            try { parse(badUi); return 36; } catch(const std::exception&) {}
+        }
+        if(encoded(std::string("\x1f")+"00015") || encoded(std::string("\x1f")+"6144")) return 4;
         // Pure owned-buffer checks: never call native addresses from this host.
         if(!encoded(std::string("\x1f")+"0001\vI %1\n") || encoded("\vZ")) return 10;
         if(transport::budget("\vA\vB%1")!=365) return 18;
@@ -395,6 +566,57 @@ extern "C" __declspec(dllexport) int __cdecl LocalizationSelfTest(const wchar_t*
                 p=next;
             }
         }
+        if(transport::bsLimit(5503)!=4095 || transport::bsLimit(850)!=255) return 22;
+        const auto measure=[](const char* text) { float size=0; while(*text) { const size_t n=transport::glyph(text); text+=n?n:1; ++size; } return size; };
+        auto wrapped=transport::wrap(longPda,10.f,measure);
+        if(std::count(wrapped.begin(),wrapped.end(),'\n')!=24) return 23;
+        std::string joined=wrapped; joined.erase(std::remove(joined.begin(),joined.end(),'\n'),joined.end());
+        if(joined!=longPda || wrapped.size()!=longPda.size()+24) return 24;
+        auto asciiWrapped=transport::wrap("one two three",7.f,measure);
+        if(asciiWrapped!="one two\nthree" || transport::wrap(longPda,0.f,measure)!=longPda) return 25;
+        auto mutableText=transport::wrap(atom+"\n"+atom,10.f,measure);
+        mutableText.data()[5]=0;
+        if(strcmp(mutableText.c_str(),atom.c_str()) || longPda.substr(0,10)!=atom+atom) return 26;
+        auto byteCapped=transport::wrap(longPda,10000.f,measure);
+        if(std::count(byteCapped.begin(),byteCapped.end(),'\n')!=4) return 27;
+        size_t lineBytes=0;
+        for(char c:byteCapped) { if(c=='\n') lineBytes=0; else if(++lineBytes>250) return 28; }
+        if(!transport::deferred(5494) || transport::deferred(5503) ||
+           !transport::longWrapCaller(0x5e2b17) || transport::longWrapCaller(0x62fec7) ||
+           transport::longWrapCaller(0x5d0653)) return 29;
+        if(transport::hudBody(std::string(510,'x'),std::string(511,'y')).size()!=511 ||
+           transport::hudBody(std::string(510,'x'),std::string(512,'y'))!=std::string(510,'x')) return 30;
+        try { transport::hudBody(std::string(511,'x'),"x"); return 31; } catch(const std::runtime_error&) {}
+        char composeDestination[16]{};
+        const char* composeResult=nullptr;
+        ComposeFn savedCompose=originalCompose;
+        originalCompose=[](const uint32_t*,char* target,int capacity) { if(capacity==16) strcpy_s(target,16,"owned"); };
+        __asm {
+            push esi
+            push 16
+            lea eax,composeDestination
+            push eax
+            push 0
+            call composeToEsi
+            add esp,12
+            mov composeResult,esi
+            pop esi
+        }
+        bool esiOkay=composeResult==composeDestination && strcmp(composeDestination,"owned")==0;
+        composeDestination[0]=0;
+        __asm {
+            push edi
+            push 16
+            lea eax,composeDestination
+            push eax
+            push 0
+            call composeToEdi
+            add esp,12
+            mov composeResult,edi
+            pop edi
+        }
+        originalCompose=savedCompose;
+        if(!esiOkay || composeResult!=composeDestination || strcmp(composeDestination,"owned")) return 32;
         auto memory=static_cast<unsigned char*>(VirtualAlloc(nullptr,4096,MEM_COMMIT|MEM_RESERVE,PAGE_READWRITE));
         if(!memory) return 5;
         const std::vector<unsigned char> baseline={1,2,3,4,5},modified={5,4,3,2,1};

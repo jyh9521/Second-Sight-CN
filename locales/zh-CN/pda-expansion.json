@@ -357,8 +357,8 @@
   },
   {
     "id": "p001.r011.s000",
-    "target": "汉森局长",
-    "context": "PDA page 001; original segment/link order preserved",
+    "target": "汉森主管",
+    "context": "PDA page 001; original segment/link order preserved; Director is rendered as research/action supervisor, not an asserted head of the entire agency",
     "text_kind": "ui",
     "terms": [
       "hanson"
@@ -2013,8 +2013,8 @@
   },
   {
     "id": "p028.r000.s000",
-    "target": "赛拉斯·汉森局长",
-    "context": "PDA page 028; original segment/link order preserved",
+    "target": "赛拉斯·汉森主管",
+    "context": "PDA page 028; original segment/link order preserved; Director is rendered as research/action supervisor, not an asserted head of the entire agency",
     "text_kind": "ui",
     "terms": [
       "hanson",
@@ -3191,8 +3191,8 @@
   },
   {
     "id": "p047.r001.s000",
-    "target": "汉森局长基于格里恩科教授的成果发起的研究计划，目标是利用干细胞生物工程制造超能力特工。所需的遗传物质来自从泽纳儿童身上提取的组织样本。",
-    "context": "PDA page 047; original segment/link order preserved",
+    "target": "汉森主管基于格里恩科教授的成果发起的研究计划，目标是利用干细胞生物工程制造超能力特工。所需的遗传物质来自从泽纳儿童身上提取的组织样本。",
+    "context": "PDA page 047; original segment/link order preserved; Director is rendered as research/action supervisor, not an asserted head of the entire agency",
     "text_kind": "narrative",
     "terms": [
       "grienko",

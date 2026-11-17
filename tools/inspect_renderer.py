@@ -19,6 +19,16 @@ EXPECTED_SIZE = 5_484_544
 MARKER_SITES = (0x610A96, 0x6119F3, 0x611A59, 0x611D1B, 0x611D58, 0x612561)
 PROTECTED_ENTRIES = (0x612BC0, 0x613330)
 PATCH_SITES = {
+    "terminal_compose_esi_call": (0x5D0643, "e838ffffff"),
+    "terminal_compose_edi_call": (0x5D06FB, "e880feffff"),
+    "localized_wrap_entry": (0x611C70, "81ec04020000"),
+    "atlas_signed_page_mask": (0x612595, "81e2ff000000"),
+    "atlas_page_shift": (0x6125A7, "c1fe08"),
+    "atlas_column_mask": (0x6125CF, "81e10f000080"),
+    "atlas_signed_column_correction": (0x6125D8, "83c9f0"),
+    "atlas_page_multiplier": (0x6125DC, "c1e608"),
+    "atlas_row_division_adjustment": (0x6125E4, "83e20f"),
+    "atlas_row_shift": (0x6125FC, "c1f804"),
     "bs_after_relocation_call": (0x43E663, "e818201000"),
     "font_mode_reset_call": (0x611885, "e866ebffff"),
     "resource_size_entry": (0x49DDF0, "a1d00f9100"),
@@ -95,7 +105,7 @@ def validate_encoded(data: bytes, marker: int = 0x1F) -> list[int]:
         glyph, end = native_decimal_token(data, cursor)
         if end != cursor + 5:
             raise ValueError(f"greedy decimal suffix at {cursor}")
-        if glyph >= 6 * 256:
+        if glyph >= 6 * 1024:
             raise ValueError(f"glyph outside six declared pages: {glyph}")
         glyphs.append(glyph)
         cursor = end
@@ -108,14 +118,14 @@ def self_test() -> None:
         (b",00015\0", (15, 6)),
         (b",12345x", (2345, 6)),
         (b",x", (0, 1)),
-        (b"\x1f1535\x1f0001", (1535, 5)),
+        (b"\x1f6143\x1f0001", (6143, 5)),
     )
     for source, expected in cases:
         if native_decimal_token(source) != expected:
             raise AssertionError((source, expected))
-    if validate_encoded(b"\x1f0001 \x1f1535\n\x1f0002") != [1, 1535, 2]:
+    if validate_encoded(b"\x1f0001 \x1f6143\n\x1f0002") != [1, 6143, 2]:
         raise AssertionError("valid token sequence rejected")
-    rejected = (b"\x1f00015", b"\x1f1536", b"\x1f000", b"\x1f000A", b"\x1e", b"A", b"\0")
+    rejected = (b"\x1f00015", b"\x1f6144", b"\x1f000", b"\x1f000A", b"\x1e", b"A", b"\0")
     for source in rejected:
         try:
             validate_encoded(source)

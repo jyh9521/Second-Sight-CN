@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "source_sha256": "1e56f34e65f2ed8791489e9dd642e40db6053caf38b2a6ec611afecf4c072364",
+    "source_tokens": [],
+    "target": "快速滚动",
+    "text_kind": "ui",
+    "terms": [],
+    "context": "pda_quick_scroll"
+  },
+  {
+    "id": 2,
+    "source_sha256": "288af5f26d848154cb70fe5e207380e11108566451db2a4e0f860ae3ee1739bc",
+    "source_tokens": [],
+    "target": "按钮不可用",
+    "text_kind": "ui",
+    "terms": [],
+    "context": "button_inoperative"
+  }
+]

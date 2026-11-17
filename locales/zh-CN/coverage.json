@@ -1,0 +1,4180 @@
+{
+  "schema": 1,
+  "locale": "zh-CN",
+  "bs_count": 6526,
+  "source_encoding": "cp1252",
+  "source_resource": "data/strsspxe.bs",
+  "source_sha256": "e72b56066e8b68fb23ac2833b58376a18a506503e02e83864727eef1fbc03a7d",
+  "status": "all BS IDs classified; translated display text versus explicit retained values; not in-game QA",
+  "retention_reasons": {
+    "Empty source slot": "Empty source slot",
+    "Internal template formatter test / developer art-production marker, not player prose": "Internal template formatter test / developer art production marker, not player prose",
+    "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected": "Machine identifier, literal search/password value, filename or product/codename retained byte for byte; not injected",
+    "Navigation symbol or numeric code retained byte-for-byte; no language translation or injection": "Navigation symbol or numeric code retained byte for byte; no language translation or injection",
+    "brand-application-or-filename-retained-original-spelling": "brand application or filename retained original spelling",
+    "console-memory-card-specific-dialog-not-PC-storage-flow": "console memory card specific dialog not PC storage flow",
+    "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose": "console storage controller or legacy editor network context not PC player prose",
+    "credit-person-or-cast-name-retained-original-spelling": "credit person or cast name retained original spelling",
+    "email-address-or-document-filename-identity-retained": "email address or document filename identity retained",
+    "empty-resource-entry": "empty resource entry",
+    "explicit-developer-placeholder-or-unused-TBD": "explicit developer placeholder or unused TBD",
+    "explicit-internal-UI-object-identifier": "explicit internal UI object identifier",
+    "explicit-internal-debug-unused-or-UI-object-identifier": "explicit internal debug unused or UI object identifier",
+    "login-credential-or-email-address-retained-byte-exact": "login credential or email address retained byte exact",
+    "physical-keycap-resolution-or-symbol-retained": "physical keycap resolution or symbol retained",
+    "real-credits-person-or-company-name-retained-original-spelling": "real credits person or company name retained original spelling",
+    "symbol-or-control-only-no-translatable-prose": "symbol or control only no translatable prose"
+  },
+  "excluded_bs": [
+    {
+      "id": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 7,
+      "source_sha256": "f6f2ed38df09c7876c770e5ae4292949f82f09343fdc7c0f71e4b138ed5a9cfe",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 8,
+      "source_sha256": "569bda5523c2f13c72ccfb8fb734d0ec9d7abb3b42191acf0bd69f2fb01e6aa5",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 9,
+      "source_sha256": "7efbef6b7595da0c9b8ebbee280419812ddd0b57013d2628c7622063ef977651",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 10,
+      "source_sha256": "22abb1bb03f5a99ce3935720e6b9acb39ee6eadd852eb7cdce10155261162505",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 12,
+      "source_sha256": "6bb389222f9ff869bfb8cb5c42ec81774e827c976fcbd9169faaf5859f74bea3",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 13,
+      "source_sha256": "4d2dce3d277132c6a6c3d0ede64ed74bcdddaf6474310f1a8d833ea7f18d9bae",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 14,
+      "source_sha256": "5dcf4606a0f3574f4bd2b8df6635b39cfc970787e7af632aa838ed07891963e2",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 15,
+      "source_sha256": "d3cb598a56875a5ab6e19b37567917cfaac6593fded2286350ec8356f7e10df0",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 16,
+      "source_sha256": "275f51e300ab248fa6757477aefe7b53562b99c33606da5b3834a8d4488ff23f",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 17,
+      "source_sha256": "582967534d0f909d196b97f9e6921342777aea87b46fa52df165389db1fb8ccf",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 18,
+      "source_sha256": "f6f2ed38df09c7876c770e5ae4292949f82f09343fdc7c0f71e4b138ed5a9cfe",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 19,
+      "source_sha256": "46acbb5dc1b1c66e18d96728bb354feedcce13cf30a57ee1d287d7e2de55bed9",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 20,
+      "source_sha256": "d6c2f3d85b1bd4b351e67521b474db2b573cc5c69a43ca60d135349169f97c1a",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 21,
+      "source_sha256": "6b847a0ed0b2c484c73f2749e29b4db576dd6b06cf7110180dd43b8871dc14b3",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 22,
+      "source_sha256": "f6f2ed38df09c7876c770e5ae4292949f82f09343fdc7c0f71e4b138ed5a9cfe",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 23,
+      "source_sha256": "2c81c71665e7a7ec97192c8fa745bb027c5c06d1bd8ef4409779fb88a250c172",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 24,
+      "source_sha256": "d6c2f3d85b1bd4b351e67521b474db2b573cc5c69a43ca60d135349169f97c1a",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 25,
+      "source_sha256": "6b847a0ed0b2c484c73f2749e29b4db576dd6b06cf7110180dd43b8871dc14b3",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 26,
+      "source_sha256": "5dfb425732e31c40877cec42ee2ee0420b9e82d952600d7981a66c9beb32e73e",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 27,
+      "source_sha256": "582967534d0f909d196b97f9e6921342777aea87b46fa52df165389db1fb8ccf",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 28,
+      "source_sha256": "d44d2209c422b4e59e64ba40aca9576ba811872216169d0bb92251773206fe3f",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 30,
+      "source_sha256": "f6f2ed38df09c7876c770e5ae4292949f82f09343fdc7c0f71e4b138ed5a9cfe",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 31,
+      "source_sha256": "2c81c71665e7a7ec97192c8fa745bb027c5c06d1bd8ef4409779fb88a250c172",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 57,
+      "source_sha256": "ab5029e2c469b1b1953cceab99fa16acf3b7ca3e529550245e8b0cc0b159a626",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 58,
+      "source_sha256": "fa97c9a1af3dd1a0ac82ae2b16af71e6b115c8e3ff75be1f2ad5a2184269d3bb",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 63,
+      "source_sha256": "5a70319f7286f1fa1e65f1199a131bc723ad565f337b56394e3c49b82bac5ef3",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 64,
+      "source_sha256": "4f648b6a645722652684c0efff6849b99048a7d856602de03eaeb257e851f9bf",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 70,
+      "source_sha256": "b07afe77efff27f2cc21c835823444d7b0ca9114a95d8531bd291ce3b5198802",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 71,
+      "source_sha256": "0018de3975678d6c41de18dbd7604994942f4413afef96aeb388525b3407d641",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 72,
+      "source_sha256": "48feecfaf2b83fbc14f2609e8be0d6a911dd1ad6e28b8debe3447a1639f38816",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 73,
+      "source_sha256": "6982ad74aac4c2928c3645bd6d3a717f85052e5d4390d252dcbf56f3fe52fc69",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 74,
+      "source_sha256": "7773092e5abc87346e7a0c6dfd105da3e0fafee20d131e980c0c67ad8f82f4df",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 76,
+      "source_sha256": "e82f2701fed260b33e715260f82e605acbc2281a13005fc106138cb765b781c5",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 79,
+      "source_sha256": "1f34b77055e6ea8b05f2334781b279ca5824bb0396c8c9e8fc10b6e07611d095",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 80,
+      "source_sha256": "89f3ddedba379851c2d395ec7bdc0f4a9e1135931207a75d6b584d1484a314f2",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 82,
+      "source_sha256": "1af957aa626cdfd5c92211296baddd47effdb06b19591d49a880974c67b18d21",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 83,
+      "source_sha256": "9ed06b71d805f0c4ac81103e90732c0f408ddabd00b0aadc61e9390ae7dfc038",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 85,
+      "source_sha256": "603ac354ca7687b406b90e1b71da64c711dd94f36a04e6bb802bb9e17f46b086",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 86,
+      "source_sha256": "7785068a74bd45b55a0bde4f0b1c53042af9d11202b47b717235e5422058535e",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 87,
+      "source_sha256": "817f488aa4942e8364db570d89cb6d3989dc6613d085b5aaffea297c12458206",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 88,
+      "source_sha256": "88b2bf3c14abe93bb63c2ed315fea65783875a998ffe4d7e7815e5ee40878104",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 89,
+      "source_sha256": "962b2fa03c074d987f68166b1fe000e2b8b8fa29bb3b9344d892f06feff88902",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 91,
+      "source_sha256": "1f7c3108c15a8b65d32d94b201bff01b944663943cf6e938c732d0d9d540edc0",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 92,
+      "source_sha256": "612a9b0b0cdcff8e28825ca845247c1d6122c6b7656703cc32fc198403d5fdc4",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 97,
+      "source_sha256": "d8156bae0c4243d3742fc4e9774d8aceabe0410249d720c855f98afc88ff846c",
+      "reason": "symbol-or-control-only-no-translatable-prose"
+    },
+    {
+      "id": 102,
+      "source_sha256": "8a8a5bf675f64e27c938c20439a5aeb9f0a195e71ce293e34e3e2a1a2d091bbe",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 103,
+      "source_sha256": "5a70319f7286f1fa1e65f1199a131bc723ad565f337b56394e3c49b82bac5ef3",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 104,
+      "source_sha256": "50f74640ab7891e9d042dff8473864f521adaa0db2338f5d9c796fe096e5f04e",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 105,
+      "source_sha256": "81bca3e264acde44dd7f33d69f055d8676b1998e2d0a3242b6147499dd046379",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 106,
+      "source_sha256": "156273d0dace9e988ee28e7676a5560decd16bea868da2c0d51a891a1964c39f",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 112,
+      "source_sha256": "5136bc78beca6201f153c52bbcb018732147860d8a41cd454d6f646de6e76234",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 113,
+      "source_sha256": "ae6ee558e21bcd9ded49d4688b78397815c72394946ad9789d7b1b48f26b98ac",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 114,
+      "source_sha256": "2880a48dcb99e585f0915c24a21f95afb9d1d50275004657b91873ac5a88b4ac",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 115,
+      "source_sha256": "f6aa31f9e85b2639428ee743f25f691c90ba117b4203fbba57b61beca4aaebc6",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 118,
+      "source_sha256": "003ee9a1dff36b5b20a65c068d111f9926991c3ff1bcb5db5f75b1f3f2457656",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 119,
+      "source_sha256": "0aeaa708c509663d55bc5ab4d9dc0d32fe9a39526d22e3e7dbb5a538b0e6ba5b",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 120,
+      "source_sha256": "913456543c1e6eadbed7f45b606f7318ba287bc48fd844111ab2f00c9132917c",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 129,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 130,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 132,
+      "source_sha256": "2aba5dd8596b2dc0a86cc0fd514986ef09f279ee4cda6416ffa2dc51f2ed047e",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 133,
+      "source_sha256": "46b4a309cf0df5b7b1ee21e8d3c1dc6ab6d993621f5ea6d4ad22bbfa95ba2ccf",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 134,
+      "source_sha256": "6b17fe45f42014a9fa0fc3f65bf79e9016b9f4ee28fc502dcfdbfbafb2dafba5",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 135,
+      "source_sha256": "28603a2307332cae3d8fe99cd207a6f4705079d5428d8b6f4d8453cc5b39dba2",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 136,
+      "source_sha256": "f77c4ef5a54143fdbed31daef7b60e36d9ff1ccf43f01524573a2e9f16f4d4aa",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 137,
+      "source_sha256": "438666c40b4767362ae6695dca74bf9272affe3b965a0cf5e950a535cb9a9059",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 138,
+      "source_sha256": "b1078e95ba84644948d598aef9a8627d4f83369a9715f1226b18ab201369469f",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 139,
+      "source_sha256": "604cfe377fa308f990bf12ffd79d0f62a3200555f732437f1f2cb3a753204f2c",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 141,
+      "source_sha256": "982c0e13abc1b3358f5c138025e741393469b1cd53a6e9cda9870cba7a23848c",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 143,
+      "source_sha256": "89e677ccf0068a045d98adaec478c4b33ac3477bfb802f8f0ea47d3867336891",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 144,
+      "source_sha256": "5f36ba9f4bd5b29498ca100e2cc01395fd45dd19ee89d926a03f4c4c551f8ab5",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 145,
+      "source_sha256": "b6bf15d07335d007b6caf5a75561985d136e6c3125712090105e9a639726f801",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 146,
+      "source_sha256": "ba8d1cb25bc60d20265420f869d63b7bbaeb0c5bd7799c9e29444f2096afbd0c",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 148,
+      "source_sha256": "49455d2e95957f376c3244092e4a5ed65f5cb9490e2056962612aab6085f9925",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 150,
+      "source_sha256": "982c0e13abc1b3358f5c138025e741393469b1cd53a6e9cda9870cba7a23848c",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 152,
+      "source_sha256": "438666c40b4767362ae6695dca74bf9272affe3b965a0cf5e950a535cb9a9059",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 153,
+      "source_sha256": "982c0e13abc1b3358f5c138025e741393469b1cd53a6e9cda9870cba7a23848c",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 154,
+      "source_sha256": "e7c9d7045a3a746dc59f7d1e104c7d606369e02135e157b72056ac365eb969e6",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 156,
+      "source_sha256": "09b0dfabda89afe1c8b616fe96875a59dc9600910ced3716597c945b8f536025",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 158,
+      "source_sha256": "e7c9d7045a3a746dc59f7d1e104c7d606369e02135e157b72056ac365eb969e6",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 160,
+      "source_sha256": "2f1cae55e08b7b637a091dfba923b5fe74d95eb723f77645bcfb5a3e0e53cb54",
+      "reason": "credit-person-or-cast-name-retained-original-spelling"
+    },
+    {
+      "id": 197,
+      "source_sha256": "8952becbd7dec3e91407bce92ad1412aa0e17afe3302bf12217cae9377fbbe83",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 264,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 270,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 273,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 279,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 296,
+      "source_sha256": "21e24f391407427145a52361058a8131aa567365d3957a28fedebbbff73174c2",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 308,
+      "source_sha256": "67c448f5cd96f3d8600ed60c4db6d0c852c317e160725482888cf6d551614a9d",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 309,
+      "source_sha256": "1cf387c012cd2d02f1923e589f86df4a4802427057dbc90f47b87f04d29d54bc",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 310,
+      "source_sha256": "b4a070a2d341940c4562c87640fe7a6147c2edcd1ee9bf562c8523164fe760fb",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 316,
+      "source_sha256": "c1917c2678174a230d01983940c745887754850acc3b8624832ec0d79a731c56",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 317,
+      "source_sha256": "ed726aedec14c632cba925c380f2206a5db981bf4dc811e80127577ba5da9dec",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 446,
+      "source_sha256": "ae23cace3265bfff160dcc2ed144c6c00a7b284b8dc08675d4f9b3f5f24afe1a",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 487,
+      "source_sha256": "c521d511586fe2c5bee853331bda3fb82089a29f70ccf2b4694c4ec4cd5a19e9",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 488,
+      "source_sha256": "ebcf2438844bfedd63b61b5860d86c938c6c86141c7459339de508d46a885cfd",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 490,
+      "source_sha256": "4f32b60bd40b86df832fea66452b180543fc9633e6516970464dbe17a195fdcc",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 491,
+      "source_sha256": "a8879aadd59b696981875caecd9b60208849567d9ec70534ae82cc70bcb16208",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 492,
+      "source_sha256": "cc301c5f5061fef065140e2add40b6dbe576dd1aae647d0e2bbb47034f3d65b2",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 494,
+      "source_sha256": "d26a74d534f605011d48586924d58f89d51372d3f0b94752068cb336457494be",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 495,
+      "source_sha256": "e8cc53bf08483c4d4f8973c526fabb7ac518d8d6d4655fab25e2d8e10ab6c11d",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 497,
+      "source_sha256": "93bac9b981b7284c1ba0d3f7809b7e150b2225d2e83ea92cb9dad0e59311b65b",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 498,
+      "source_sha256": "f5e9592fddc6ad5193b79aff1abbb54c1b601200298da68420f008e8e7c45939",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 499,
+      "source_sha256": "c38b89f765233dea3594a3f915079ad8b3e77d58886873f2fe7436ee0630a6b4",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 500,
+      "source_sha256": "301264681519311972ddcba5542e71dd363b75a2beb06e587ee2a8b2ad8239eb",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 501,
+      "source_sha256": "aa0bcf541e0e5af8d25fd700114157f1c49a910ef8a2e50ae419746615080023",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 502,
+      "source_sha256": "9653b7ee948c7011b0cd8141d1317d84febe82bb8868090d84f40fca56aaa703",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 606,
+      "source_sha256": "c6350281f45bc5dcd9eb9baf62670d104841a1767dd52be0e9d0c2d14691e528",
+      "reason": "symbol-or-control-only-no-translatable-prose"
+    },
+    {
+      "id": 607,
+      "source_sha256": "e25d3932c0d0fce3bfd5d2f31716e4e6814c31fef71299da98a7ccd13ecace56",
+      "reason": "symbol-or-control-only-no-translatable-prose"
+    },
+    {
+      "id": 610,
+      "source_sha256": "0d915a3817397d574d32fdf36d15d0172f9273a2e9f7b59be1fedfc2fd1c77eb",
+      "reason": "symbol-or-control-only-no-translatable-prose"
+    },
+    {
+      "id": 696,
+      "source_sha256": "1e64d2f7bdc1c5cbf563fa03f7f09e5a57a154b1b87f1ca303082ff2b185ed70",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 699,
+      "source_sha256": "e483867206d6d89a6dc2bf6cd36a9c8873c118e177da9d8f94d934740f0e272e",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 700,
+      "source_sha256": "41477d3a0a608273f4b819fa22721f9096164a6844d46f14b7f07990aa5ec20d",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 702,
+      "source_sha256": "4e38062d670a70763d4b83eb0c671bcff1e2bb4c1b7680e96c66d744dd9144c2",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 703,
+      "source_sha256": "7c8d98f4bbc2885c8a78fcf86720ef239328f6f1f0d0a8c4576dac84bff8479c",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 704,
+      "source_sha256": "82897802423330b724c6a91d16c59e792cbeddea93017cde9d13b5efc04e1052",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 706,
+      "source_sha256": "2cce9ddfff99dd6cd2fb8f3fabb7bf6f03d71d0afaa582b3aae3a115b5780945",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 707,
+      "source_sha256": "72b15f50412fbe829f50705621c2215ce3ddcf9339347d70b0bdd4bdb1d5ac5c",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 711,
+      "source_sha256": "41e912a3fb12773611830e291c8076d6f27abc651186f15bcfa375fe9aea3e84",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 712,
+      "source_sha256": "0e45e8e57290e623b5016f820b33c5aa01eedd6d99a931a6cd290c7309b1ff72",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 714,
+      "source_sha256": "1064fca1c86782c33a0a063c138fd9246185c648765ebd10356cf6dd698403e4",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 724,
+      "source_sha256": "a8094dd400d3b86001e652718b821a2734a146d04e9a86bfc75d54e0223ad82b",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 725,
+      "source_sha256": "ad4dd4c8484c762bf99acb9b17c3b3794fa5008975289e7edab6d68ce343b0ad",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 726,
+      "source_sha256": "94980fd168cc4665092ba76fb2b2334c787279009ef125d2a5ba4092bcc3c41f",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 728,
+      "source_sha256": "beb323e88cd71112b13a9ac35e29d6870034b64305a2b2dbaed019cd066846a7",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 729,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 730,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 731,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 732,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 733,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 734,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 735,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 736,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 737,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 738,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 739,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 740,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 741,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 742,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 743,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 744,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 745,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 746,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 747,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 748,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 749,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 750,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 751,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 752,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 753,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 754,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 755,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 756,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 757,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 759,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 761,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 763,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 765,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 767,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 769,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 771,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 773,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 775,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 777,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 779,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 781,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 783,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 785,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 786,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 787,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 789,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 791,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 792,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 793,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 794,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 795,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 796,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 797,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 799,
+      "source_sha256": "b35bce7adceae998517d58bb1bd5461d119011a3f637aa3dcb98de23fae68c50",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 800,
+      "source_sha256": "3716856a4c9a771f2c21458e444b0f3a662a96322985ce107ab7a5ae23a121ac",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 801,
+      "source_sha256": "d405f7dff1b05e56a371d3329f5af04afbc946dd41bf2cea9da0f742459f7c52",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 802,
+      "source_sha256": "61c4fde53f537cfdd6687c5392a71389a9f385f61926ab9a4979f2e59953d64f",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 804,
+      "source_sha256": "af5f45f02c595f750f9cfab760825e0c55277548bd5ee2eb186b464e73c60302",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 805,
+      "source_sha256": "6a232490fbdbe43bba13e172f767ffe95da8f4d2dbdf0aaf8500b63ba26d1e55",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 817,
+      "source_sha256": "001603315ff87803b4066140dbd59b4f42fce4f45872eb5ae633b14e7009f143",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 818,
+      "source_sha256": "047f27740bf54eb640937d5259078b9200a47383500c45029f52f09007a84b60",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 821,
+      "source_sha256": "453f318ab2e9eb5c2e98e448320945a60ee73305b9e7afdff4faabf9011f235b",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 823,
+      "source_sha256": "ddd681a6cf1893227313f7ea3633fa90c81fe886668e1cafd98c38578098674b",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 825,
+      "source_sha256": "cd9ebd1144eb546df361f996f9468385060e3023eee3a703244b430412e869ec",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 829,
+      "source_sha256": "153f400383fc4e20f617d6cd4212a40124c34d6866fe7d552a6b5adbd00af62d",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 831,
+      "source_sha256": "0d288d3d3548aacddce566783aeec5c6b9e239971329d0632fb87aa8fbe9ecaa",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 832,
+      "source_sha256": "0c87576b2e845fa0a85325177baaed2b0884cd8859645cae7526849605691f13",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 838,
+      "source_sha256": "678f58ba39a1b3c49fa88299d6eec17e77a1951a606e0ec78be001396b67db40",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 839,
+      "source_sha256": "625c6a50dbece83bdbdec6bf57fa8f3a39819a80530a342e73c6a61f1e200fad",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 841,
+      "source_sha256": "c3a6cbf88c22d7abac7dcaa962cc3f9399d5e0b05bd22a47b13a5d299a6ec108",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 843,
+      "source_sha256": "c926ceeb1d2d35b040e42cd9a50a2978904c85c3a2de25948ccf946dff18100e",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 844,
+      "source_sha256": "b1279ff5698b6ea07c24046eb275a05c86ab879c5e1f94af8aea34cf3e1febe6",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 845,
+      "source_sha256": "35a7cc4fb4ce962783a15fbe4e2fd1ae84f47025a78c88d393747ac0b4223fac",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 846,
+      "source_sha256": "51049d2e72c3f220cd1f7f076c19afc7f47cf9ab319c3184959a455b721fa6d2",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 847,
+      "source_sha256": "97565b4d53eeee949cfbe5c02540cf31be37bcd0ea683b6de5c15b10c2a5979c",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 848,
+      "source_sha256": "31c68304be2d59700fd79b88a2cb920b29a060c250cfae0458897603472ddc41",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 849,
+      "source_sha256": "edc20c61af52b12af50c4578bf529ae2ef6504ad28276206bd6e54696f678428",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 851,
+      "source_sha256": "b07afe77efff27f2cc21c835823444d7b0ca9114a95d8531bd291ce3b5198802",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 852,
+      "source_sha256": "0802466beb19f9c5728502be710efea31e8cf9fc3abdb47850e0bac33459b733",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 853,
+      "source_sha256": "6b7c9e501524875b8007d240115fbb4d8b4f0babe55ffadaf328da7ebf5bc542",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 854,
+      "source_sha256": "8da0c1bed10d6a9a72dec7c96f1472c7e5e0e011e5ebff49c41b57c640207c85",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 860,
+      "source_sha256": "2c69df394c2e62383c7b26c9bde1682bf74a9fc9bd4456356e63ea486ace6b76",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 861,
+      "source_sha256": "603ac354ca7687b406b90e1b71da64c711dd94f36a04e6bb802bb9e17f46b086",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 862,
+      "source_sha256": "59689fc66b1f0ed6f92c21b38f0d245fe46f944931bc389a1e5b31d235843ce6",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 863,
+      "source_sha256": "93939c2b72dbf9689e430c952dd96120369b136a3c7c68e307332501be48c422",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 866,
+      "source_sha256": "69e65af53be8f0ed0f6ff837b8537ffad9de39c648cbd02d6d3a80e02544260b",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 867,
+      "source_sha256": "0b4ae26bdb7845b55bd6900c02ae940b1faeb8c9a90796027b73f0b974631baa",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 874,
+      "source_sha256": "28b043b6f13edced417859132f9cc8666c3e8c0e219c9774678fd97bf38155ba",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 877,
+      "source_sha256": "00f865c7bd79fbea59c4ebb1b3744c1418665c2539687f1ee59c0aa96d56c215",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 878,
+      "source_sha256": "8056cf4f3ad22e9a70c4f9bc158bc0f452b7276e9ed8d719725b908981006359",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 879,
+      "source_sha256": "067f5e10921a253a4d2bc8bff01671592543505cc90a8845b05c9a84b0049259",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 880,
+      "source_sha256": "54dbfb085ae3f616353731e6b179ff2904a083658e389c1e53d08fd3a5359eab",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 881,
+      "source_sha256": "56629d847f3838a822c271c3a4299797bca68b2c80fa28aee307aec20d4b2634",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 882,
+      "source_sha256": "8ef2b8e14d848a3f093b876d13315648e4a348bda3446709504da0648169829f",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 884,
+      "source_sha256": "6928e8418c65c2ee38e5400c54801480acda22601b88c450a934e344d0e8d0c4",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 885,
+      "source_sha256": "e667a6502fd37701791e9b1c4ab9ad791069314b06f932db1141318024d03fc9",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 886,
+      "source_sha256": "c122a64c062e4a1530c6c6af830836658310cf79a5a45a15140b1dbf67adc27c",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 888,
+      "source_sha256": "bdcdc6881b542135a075936f328cfc4e171fcc2861a7ab127dee202c245803ea",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 889,
+      "source_sha256": "8e40eeb6095c3ddada8a4acd1e00251782423fec66feed5cb103dd9e56891788",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 890,
+      "source_sha256": "a1460f17c28605288b718e6d7f04b758a6c401c484ff1ea9d12a76f0d3a226e2",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 892,
+      "source_sha256": "5b39ef7bc49bb485d5c7993f8af1d24da84a268e97819dc88b9f0e066fecd7f4",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 893,
+      "source_sha256": "c28676cd3b1fea0647d9deebdc141acfdd133ab2b8202626cd8315f339350825",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 894,
+      "source_sha256": "9573575ba68a0491db60b8c48431767ba374e75926c74bf80cbf65d013754324",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 896,
+      "source_sha256": "afa1b7bcfad91e93abf81aacdfebfb13c4051fc418243a19f2613f1cf9c451ef",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 897,
+      "source_sha256": "4dc7c05f7b8851c865fe17bfb526306b97f7a64671cf7940a656219dc6b20b13",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 898,
+      "source_sha256": "2675f07b1edcd376499813eb865368cf197d0e8ada7b7c0da9a9bece3e1efe8a",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 900,
+      "source_sha256": "ad1faaef0c0d3f037ed3c812053ac1ad4cb1723db5e6ff0ba736893a5a000591",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 901,
+      "source_sha256": "8448756c5a4c50ccc2434584a32bf8a88457ad9359ad4f24c0e2a68f0024f4dc",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 1244,
+      "source_sha256": "b35bce7adceae998517d58bb1bd5461d119011a3f637aa3dcb98de23fae68c50",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 1245,
+      "source_sha256": "3716856a4c9a771f2c21458e444b0f3a662a96322985ce107ab7a5ae23a121ac",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 1246,
+      "source_sha256": "d405f7dff1b05e56a371d3329f5af04afbc946dd41bf2cea9da0f742459f7c52",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 1247,
+      "source_sha256": "61c4fde53f537cfdd6687c5392a71389a9f385f61926ab9a4979f2e59953d64f",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 1249,
+      "source_sha256": "af5f45f02c595f750f9cfab760825e0c55277548bd5ee2eb186b464e73c60302",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 1250,
+      "source_sha256": "6a232490fbdbe43bba13e172f767ffe95da8f4d2dbdf0aaf8500b63ba26d1e55",
+      "reason": "explicit-internal-debug-unused-or-UI-object-identifier"
+    },
+    {
+      "id": 1361,
+      "source_sha256": "ac027cd4e59f08c4105524284e73a0c242a4f780c9e8ef3c00e665d9b8726705",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 1362,
+      "source_sha256": "4bdcb2c2a911acf3a992f11f9cb2446baf3d1d0b9f1d1ee00d45ebe89d41fb92",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 1364,
+      "source_sha256": "2099ed21d5c2e2b18fc8816ffd8c4663d0aee45d4e94494f473c799940f14c45",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 1366,
+      "source_sha256": "0a1bd235ac76db64ab4d759ad70758edd8dc81b3524182ed82784ee265dd54d5",
+      "reason": "console-storage-controller-or-legacy-editor-network-context-not-PC-player-prose"
+    },
+    {
+      "id": 1501,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 1636,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 1668,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 1704,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 1749,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 1830,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 1875,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 1919,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 1999,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2042,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2084,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2128,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2172,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2217,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2263,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2311,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2323,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2324,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2341,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2366,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2381,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "empty-resource-entry"
+    },
+    {
+      "id": 2900,
+      "reason": "Internal template formatter test / developer art-production marker, not player prose",
+      "category": "internal",
+      "source_sha256": "efd34b2462a7adf418fb67e5b6cbb658fac9458952235ef6b8f93dffd917e113"
+    },
+    {
+      "id": 2901,
+      "reason": "Internal template formatter test / developer art-production marker, not player prose",
+      "category": "internal",
+      "source_sha256": "8cc72a2455be77d87bb45bbf9c379fba3feb26db66f7cc68dda65e24c551c62d"
+    },
+    {
+      "id": 2902,
+      "reason": "Internal template formatter test / developer art-production marker, not player prose",
+      "category": "internal",
+      "source_sha256": "ac421afb0520359d542d31d74590d066053468235d4551a77c550856f506cde3"
+    },
+    {
+      "id": 2903,
+      "reason": "Internal template formatter test / developer art-production marker, not player prose",
+      "category": "internal",
+      "source_sha256": "84cc5df254904ab1fe035e1b92464bfbe0b7e72c6d4932ec8a96732dfb0ea48b"
+    },
+    {
+      "id": 2904,
+      "reason": "Internal template formatter test / developer art-production marker, not player prose",
+      "category": "internal",
+      "source_sha256": "00eeb56615f8adc09f775cb8baa0ec374f14601c9a077970056dff16b8aee8c9"
+    },
+    {
+      "id": 3020,
+      "reason": "Internal template formatter test / developer art-production marker, not player prose",
+      "category": "internal",
+      "source_sha256": "690051bc4ad83c5419dacc2ed3958cbdf2ca17d563994ecb17b1148509664b3f"
+    },
+    {
+      "id": 3101,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "1b5721e838d1f3b9e5ecaf8070ba21807c7c8fc27a516f6ee4e514cdc001b1ca"
+    },
+    {
+      "id": 3104,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "150e40951760187cad272efb381b18fbb067fa9c39d500f9fa008847e61ca31b"
+    },
+    {
+      "id": 3159,
+      "reason": "Navigation symbol or numeric code retained byte-for-byte; no language translation or injection",
+      "category": "retained_symbol",
+      "source_sha256": "4be261c018f23deac37f17f24abb5f42c4f32044fa3116d7b618446fb03ca09e"
+    },
+    {
+      "id": 3160,
+      "reason": "Navigation symbol or numeric code retained byte-for-byte; no language translation or injection",
+      "category": "retained_symbol",
+      "source_sha256": "0f02c6bad08d9ff1858d26cf1af766e336d71e34c2e74e8c7d417b3550cbfc44"
+    },
+    {
+      "id": 3219,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "43b0be0867c0b359fc4b6b8ce158de95d481651251b37ef777b86cce56d5950a"
+    },
+    {
+      "id": 3250,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "a7e857dc8db05f5c6bdd8a1f3b7750eb09c0ec007efb7b5f74d7374596c7ed08"
+    },
+    {
+      "id": 3251,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "8e457550213bb1c9c8808f15dc6b65dda1b3e8646173b98761cf7e7ba33feef7"
+    },
+    {
+      "id": 3252,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "977d12bfcb0d2de72b7260cc2d234d72b97ebdf2d5d927023666730b19a67262"
+    },
+    {
+      "id": 3612,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "c98525e36f374f9c2c9aa9f41b0ac5e4ca4d136afc68eec1c65dbbfbb87021f4"
+    },
+    {
+      "id": 3633,
+      "reason": "Navigation symbol or numeric code retained byte-for-byte; no language translation or injection",
+      "category": "retained_symbol",
+      "source_sha256": "e1238c150116ce2199b22094bbb6dc25df26528e68bf1538b4b7fdd34cf7bc3a"
+    },
+    {
+      "id": 3638,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "bb2c498757478674ef8a3cb3627ff81c94a097d2633c2f7950f858045973df7f"
+    },
+    {
+      "id": 3642,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "80443aacc0619eb34541efd303f86d7cb86c05f427fac5e40ca83ae68f4e4639"
+    },
+    {
+      "id": 3783,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "0be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60"
+    },
+    {
+      "id": 3784,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "9732c83d12cc76e140c25cfdfcfc4bbd6027ea5ac859c46f43a7e6512b9df9b4"
+    },
+    {
+      "id": 3785,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "4fb8f57e302423d527eb2bdc8c4d99bd62fbed08408e14a1bb617b8b9c46329b"
+    },
+    {
+      "id": 3786,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "67e620c9ea197063101dffc524d21a5faba8fcbdd98ac6db898a2993edab04b4"
+    },
+    {
+      "id": 3787,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "11a700b0c8066c47ecba05ed37bc14dcadb238552d86c659342d1d7e87b8772d"
+    },
+    {
+      "id": 3788,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "3c116527cf8c1dc02f4aa04234f6052b91078da1f94d9ccfee98f5398ffde1f1"
+    },
+    {
+      "id": 3789,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "c013d16c69db4225c61914d1d1e8c92a14555d208c6a53e67df738f51ccf5ad1"
+    },
+    {
+      "id": 3790,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "a4cae81b6d0480d3ab6b52a6dfb5eae63346252bd00c4df5e27fcf96851bb84e"
+    },
+    {
+      "id": 4019,
+      "reason": "Navigation symbol or numeric code retained byte-for-byte; no language translation or injection",
+      "category": "retained_symbol",
+      "source_sha256": "5db3c567e954df5f63b1df7e0430099ac50db77380b2616720a0e0b26a372645"
+    },
+    {
+      "id": 4056,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "5ad7821dc530ab4455449372a75f7068bd3f35de4ce037248db06e096d4c355c"
+    },
+    {
+      "id": 4086,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "7f72195dee42fbace3bb69949b4d2866949788bd98f246ebcb3a6fc11e65d5e4"
+    },
+    {
+      "id": 4087,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "f27b1da1a7d22e8347fef4dc20d9db5fb1c01ee407d506b8e4e21803bcad2311"
+    },
+    {
+      "id": 4088,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f"
+    },
+    {
+      "id": 4089,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "89dbf71048801678ca4abfbaa3ea8f7c651aae193357a3e23d68e21512cd07f5"
+    },
+    {
+      "id": 4090,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "b412254de5848709483aa99bb5d0969adf80b6768c87b546c46041b00ab9b858"
+    },
+    {
+      "id": 4091,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "d5640eea1597fcbf2dca61c6d8bee897c9e4d253be3a26b5f84bfc84dfe4ba6d"
+    },
+    {
+      "id": 4092,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "9ac2197d9258257b1ae8463e4214e4cd0a578bc1517f2415928b91be4283fc48"
+    },
+    {
+      "id": 4093,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "b680ed7b8ec805a9346d7ef1e4d847cc2a0f14ae82bd13619b700556a206c2b6"
+    },
+    {
+      "id": 4094,
+      "reason": "Machine identifier, literal search/password value, filename or product/codename retained byte-for-byte; not injected",
+      "category": "retained_identifier",
+      "source_sha256": "485df5e823f34aa5c2f001b8909eb8a7b65e0610d7bafb0c4045fdd572a9586e"
+    },
+    {
+      "id": 4208,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4209,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4210,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4211,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4212,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4213,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4214,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4222,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4232,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4233,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4234,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4235,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4236,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4237,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4238,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4239,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4249,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4250,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4251,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4257,
+      "reason": "Empty source slot",
+      "category": "empty",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4496,
+      "source_sha256": "d0f6ce668462c20d18b8c31d2d063b47381f62d7c165d09c5c458fe5cfd32560",
+      "reason": "brand-application-or-filename-retained-original-spelling"
+    },
+    {
+      "id": 4499,
+      "source_sha256": "278ebfcee2032dc1e405c66a127d0598c96d23312bc01dd7db3acf4981b3a329",
+      "reason": "brand-application-or-filename-retained-original-spelling"
+    },
+    {
+      "id": 5160,
+      "source_sha256": "a90d67e3b21b9f6191f0093d214d34a954a5c4bad6c67b4835258b7d39798911",
+      "reason": "brand-application-or-filename-retained-original-spelling"
+    },
+    {
+      "id": 5176,
+      "source_sha256": "3ebc6c98825200a32b47faa898a77df38315ae27b4c6ac578ee7cd547e3d5122",
+      "reason": "brand-application-or-filename-retained-original-spelling"
+    },
+    {
+      "id": 5187,
+      "source_sha256": "a746222f09d85605c52d4e636788d6ffdc274698b98b8c5f3244c06958683a69",
+      "reason": "login-credential-or-email-address-retained-byte-exact",
+      "evidence": [
+        "bs:3603",
+        "bs:3604"
+      ]
+    },
+    {
+      "id": 5189,
+      "source_sha256": "bdcdc6881b542135a075936f328cfc4e171fcc2861a7ab127dee202c245803ea",
+      "reason": "explicit-internal-UI-object-identifier"
+    },
+    {
+      "id": 5190,
+      "source_sha256": "8e40eeb6095c3ddada8a4acd1e00251782423fec66feed5cb103dd9e56891788",
+      "reason": "explicit-internal-UI-object-identifier"
+    },
+    {
+      "id": 5191,
+      "source_sha256": "a1460f17c28605288b718e6d7f04b758a6c401c484ff1ea9d12a76f0d3a226e2",
+      "reason": "explicit-internal-UI-object-identifier"
+    },
+    {
+      "id": 5193,
+      "source_sha256": "5b39ef7bc49bb485d5c7993f8af1d24da84a268e97819dc88b9f0e066fecd7f4",
+      "reason": "explicit-internal-UI-object-identifier"
+    },
+    {
+      "id": 5194,
+      "source_sha256": "c28676cd3b1fea0647d9deebdc141acfdd133ab2b8202626cd8315f339350825",
+      "reason": "explicit-internal-UI-object-identifier"
+    },
+    {
+      "id": 5195,
+      "source_sha256": "9573575ba68a0491db60b8c48431767ba374e75926c74bf80cbf65d013754324",
+      "reason": "explicit-internal-UI-object-identifier"
+    },
+    {
+      "id": 5409,
+      "source_sha256": "d72502854486c0ffe8af3fbe95655a57faa669ca41c9c4025311692a9916a7a0",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5410,
+      "source_sha256": "95ff1ef3b5196b139f958394105b52d02dfbf621fbb6a8f88b357ef8b80f8f67",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5411,
+      "source_sha256": "68d0766ae14980daddb49ef3d11191e6bc9bf22c5193df8fd5349177b37ed62f",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5412,
+      "source_sha256": "048ab5e1a1639eb6c9cd09bcb3aa0ad4fd03d106d4e6a0d691ce892df046964e",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5413,
+      "source_sha256": "16ceb2796ccd9d52d4f2a92134ef9ecfeb8f016150a82d36b299d09d5b9963f0",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5414,
+      "source_sha256": "835d6dc88b708bc646d6db82c853ef4182fabbd4a8de59c213f2b5ab3ae7d9be",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5415,
+      "source_sha256": "9732c83d12cc76e140c25cfdfcfc4bbd6027ea5ac859c46f43a7e6512b9df9b4",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5416,
+      "source_sha256": "49b42d8ff02a373707d532df7e896651d786f4b948b18cc9488aecb30db84584",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5417,
+      "source_sha256": "946d0dd49aa293380ab71515e02b046335e4f07c8a6a1a03b2907b3073c1c094",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5456,
+      "source_sha256": "1d127e1d10ce92f4f187367a9411a04f7c77188bd0bb95c8b88430a98f0096c9",
+      "reason": "brand-application-or-filename-retained-original-spelling"
+    },
+    {
+      "id": 5470,
+      "source_sha256": "acf24e82467b38efc2484a9f4a9e8dda10c7af321ee9a0247336a8f11a30211a",
+      "reason": "brand-application-or-filename-retained-original-spelling"
+    },
+    {
+      "id": 5493,
+      "source_sha256": "2e0fa6164342d1ff239b3c4ca3c56cb8bac5e6cbc1ae1ba74bc2b02fe4003c8d",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5496,
+      "source_sha256": "e5abfa0e8ef0f27ce0552a4f0b29f42538188f954d84262764d6ee5a0bbf0b3e",
+      "reason": "login-credential-or-email-address-retained-byte-exact"
+    },
+    {
+      "id": 5505,
+      "source_sha256": "0cdf82f4fff21ae1beb8ebefd7dff30f7bbb0d9d8a74770fc3175184f6812534",
+      "reason": "email-address-or-document-filename-identity-retained"
+    },
+    {
+      "id": 5788,
+      "source_sha256": "fd481e4c236218da209662e9c08fa622e3c00cab670bb9d528c553a55406026c",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 5793,
+      "source_sha256": "fd481e4c236218da209662e9c08fa622e3c00cab670bb9d528c553a55406026c",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 5827,
+      "source_sha256": "b16a08925d1f1e60f5bd010cc6825c67e8d3258db2d5d21562872301f0727d38",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 5828,
+      "source_sha256": "ba91c2fd8e192eafd877fe3453f31937855edbc08f5293614e756dec9c5cea1d",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 5829,
+      "source_sha256": "83dbb8597c1eb51bbe731295516a0f8eda682f8051e355abaaa8ab959fef46a5",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 5832,
+      "source_sha256": "ee115a44dde9a1ab6d668931f0abcccb8426d2fef0d62138e0771e3444502e0f",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 5833,
+      "source_sha256": "0cf828097d5c65cd9ab3856b8a384487eea5e62b942f626a349fff52009102e1",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 5834,
+      "source_sha256": "2c47dccebfa2f26657cb0e8c35574ba37951fac4edd956581e3b48b8b2d94cd7",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 5919,
+      "source_sha256": "47cd10a17f6de6d450a7596da517ef10eef2e35b2325e6f481501bf4426001ec",
+      "reason": "email-address-or-document-filename-identity-retained"
+    },
+    {
+      "id": 5921,
+      "source_sha256": "d1a5056b89295ce890fc4a924fe9a6077c26a2217a1ebb899e0c968c574731af",
+      "reason": "email-address-or-document-filename-identity-retained"
+    },
+    {
+      "id": 5923,
+      "source_sha256": "c91b9b68cbeb38b52c17f8c57eaf0e5300f781faf6ea7e9d92de2544d4f37339",
+      "reason": "email-address-or-document-filename-identity-retained"
+    },
+    {
+      "id": 5925,
+      "source_sha256": "0c29da05f34796e50ec90e72a6163f19edb8848263d77483d020c90e3614fed7",
+      "reason": "email-address-or-document-filename-identity-retained"
+    },
+    {
+      "id": 6045,
+      "source_sha256": "35538e0eb0f9701a0b722feac504b262e5b943ca7cc3f4f05b70a46fa918e4d7",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 6089,
+      "source_sha256": "364f8bc85f1912b574464392c0256ce70709b5b6ceca005c0678de6434a4230b",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6090,
+      "source_sha256": "0025b1badb89a1b9c477f5836b22306f96e926b59a3b2bce255410a36f9383a6",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6091,
+      "source_sha256": "c0e4b6450de7697de5eef2bc69269b363f78fb28c4a81bce47477f9da9590bdb",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6092,
+      "source_sha256": "2c559f54977c4f3070b22058fd8f6e2a4571c9dc21c632d8c239f7804a71066e",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6093,
+      "source_sha256": "77687fb17b333ae9bae35c72582c4b572c0d80a72bbff018a0930e5d04dd776a",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6094,
+      "source_sha256": "3a998e84fc1531637c970dd5350fbe75f60fdd0016207f5a41586775919939cd",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6096,
+      "source_sha256": "a444156b661f3bfcf95e86ec243fa76e9c16ece094b22d8275508ec2516b60d2",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6098,
+      "source_sha256": "a67ebb4c9e3e83afb9e40e8c78e61faa97cb4fcfbf326aefb19c8d7396c8e69b",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6099,
+      "source_sha256": "762ba68ff9f9d53d5eb539891ceca970d266d847c8c3270c053cf4a6e76ebfc3",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6100,
+      "source_sha256": "5f75368f04ad546dc170c99a02ff620bd57c7b312ee9ae22b1dadb0958558530",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6101,
+      "source_sha256": "c189da916f1bc57877b6cd9b0361e0539bfb01ea98534d998eb31bffaea9506c",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6102,
+      "source_sha256": "771aae0a5a10ffd2fc5a2ba0c879f05c459e9d170e3c62f04db8396b3e8b9e9f",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6103,
+      "source_sha256": "189b3af207f4808451f8df649894f96c67aaa79ffbec1f055c2d859ba108170b",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6109,
+      "source_sha256": "81542bba6bdfe468ec61e4532af597d52d4a153d3b81ef4ebe564393e51c065f",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6111,
+      "source_sha256": "cab89acb149e91d157857ab3a9009021ce98b35e416b934b0745c3c8bb1049ed",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6112,
+      "source_sha256": "4a1c96081b5c0f707ad63df15c3266ad607a45fda6e6ea2c47a49a9919c024bf",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6115,
+      "source_sha256": "773c6bd2b2ea5d40e3e1f45a2038ffd7ce668e4e87fbb7710a8558ec87cbb46f",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6116,
+      "source_sha256": "c2943aa1c974347c497a0b34c6b2885080834643e2171ccc4529879990251d95",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6118,
+      "source_sha256": "0aa24ad201084c65bfc0b7630200be451751a31762bae2fb5d85166475ed10f2",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6120,
+      "source_sha256": "03b81288d151e3964797119a751be150c60c6a7ffc32341a50fc477387cc98d6",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6128,
+      "source_sha256": "0b5d698971a05cc29ed0917ebf9783f0ad850bb3567bd54306a2c578438c07cb",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6129,
+      "source_sha256": "36f100b41ff7d48e43e7e55e13d6934aec1b322e44653b1a6617bdd93d97c09d",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6131,
+      "source_sha256": "ea7399bd6d24df63177b3abf55d38ee28e19c68d305a210e5c1d7221a497e687",
+      "reason": "console-memory-card-specific-dialog-not-PC-storage-flow"
+    },
+    {
+      "id": 6132,
+      "source_sha256": "3593fd70fd2760a3a87f818b110a979cdb252ac9d00ad5214f62de8950d1f0f4",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6135,
+      "source_sha256": "050ccdf1033d6817a6befe016bbe3ae20d12eb4e28afe0575c05fe2c3765192e",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6137,
+      "source_sha256": "fe83bdf63ae5e29b6c40709f80c98dbe03eeea0adb411bfd34350415ef8ce3b7",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6139,
+      "source_sha256": "714fd1e9ffa9e139e17f14a5908c90066338f74503210daa1ac48899fcc7046e",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6141,
+      "source_sha256": "58e7b4ebd5dd273d576f7e74a0ef941dfb1201f97c4d813385fbc36ff6d77c47",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6144,
+      "source_sha256": "ea27f8d8df3bb1ba5e1536689d4ae92bb1b0faa8423eb78c22514262ffac177a",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6146,
+      "source_sha256": "09686bd1aeaa87684e9a448c5853a7def0ccab42418ad7be77ccfb690120d16b",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6147,
+      "source_sha256": "8f3a40ad18edc39d9727b8ad3d737571d1fc77fd441a92742a927e7613f585de",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6148,
+      "source_sha256": "7ad969d3dc2c27d4d3db52f5905a0a8268090ffccfcfdb3650158652087b7399",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6150,
+      "source_sha256": "75efcb281463ba4a9064e26e788807fcb4d97d4e7d2a8604b3fcf705d60908a5",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6152,
+      "source_sha256": "7be03578b58cb8aaa3a38addc5e2144ae209bcf4e4ce7ec1de6cf113bb8678bb",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6153,
+      "source_sha256": "9236d708b9f274c25be31797e65c63ed7e1b8728593297786d4bd8c2c634a1eb",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6154,
+      "source_sha256": "ae837d828b9361d66874c05d63a6c6be6719bd02e5735ffc9581dbe7e8806ebb",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6155,
+      "source_sha256": "4c6149b36aa786e1d057550b4f193abe4bc1510bc1844adb7de84f338a957309",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6156,
+      "source_sha256": "283ba482c14df45e8509b1141400af56c53e3039dccfb0401b0de52f0c2b9239",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6157,
+      "source_sha256": "5e6bdbc39534b8ce3339a1dd6272be5b9124d3ce8c5cfb22698869ff842072e0",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6158,
+      "source_sha256": "50821d90a71ef8ad3b67b09b92ca14167258159b41049866e9a67ec26a090cf7",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6159,
+      "source_sha256": "a6ee4717d7299157432fb4891e469ee3dfab03b40acdc8ed177f0fc2c29283d1",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6160,
+      "source_sha256": "814e8c0bb6b2e5b8a5fd00681b0f1f8133f5e6c0247c2ebd188c958a7f682bf7",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6161,
+      "source_sha256": "81cbb7511a012743b4e42d6648cf501907188eaaf6b383701c11c2f47e9ba0fb",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6162,
+      "source_sha256": "026bc745dfca4a5cc836aef900ec269a31a6a8f6b41d6a673a7084146b78ebe3",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6163,
+      "source_sha256": "99710fa105a53d946226ed12db8900def0d1e8fd2dd6ab6993cd892dc2cbafbd",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6164,
+      "source_sha256": "376a28c89de4e13149c2208b56090827e1e300df5e69f19d42a45dd875161b1a",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6165,
+      "source_sha256": "d81b1b961fc50fa74025bcf2441e13a9d0cd636748ecb62756560443da1c605a",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6168,
+      "source_sha256": "9bedee3dc9edba5b6b9b938b1325909f698df6d541f98bff7f01ec0b4ca593c7",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6170,
+      "source_sha256": "4e7fea59cb920ea3acadcd3395b0affeebf7881b93a2a3f55acceec4f1ad487f",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6172,
+      "source_sha256": "139b247747474a9c709724d2bc393963bc63db4acd7966092f5652748ae64161",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6175,
+      "source_sha256": "04ca204bfa441a4845ea3e2b3200822910cd3fff8dea52777595b0c8f399e38c",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6177,
+      "source_sha256": "a885a9ef3254ebd2bc75d7075703826d65b46ea75abd36c29675f5dc327de440",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6179,
+      "source_sha256": "729a5e77840bcad58ed1eb5e5d80c334dad951c1a844d50fac40d83c383acebc",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6180,
+      "source_sha256": "ca0e8a3c0c56ad45291cf5d8ec453704d86eed512b6e9f5bef8b146cf2082e00",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6183,
+      "source_sha256": "78547eabf204d064287791929666ce39361f72e6d0a4a4fd20ddb43a1bec31cf",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6185,
+      "source_sha256": "536b5d7f3ea66be1ba5dd558220446719c650f06afce7202bf4b79052d1978a2",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6187,
+      "source_sha256": "567d9b59d910599a5f99e965708d2d44c9bf7193d41947561b4b0c6133b1bd97",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6190,
+      "source_sha256": "88c80b15457bd57994f0eaf8aff53a6e79b854936e5fc1260561e17702c7f989",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6192,
+      "source_sha256": "9ed71eee2b847a8595eae61e3c86cf3573e787469514cfca9585d86640695bda",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6194,
+      "source_sha256": "f2089fe92b425454f3a785f2e14080ff9bcb1827b120d1f44a19b518b01ae9ea",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6196,
+      "source_sha256": "c29aef17d8f7864f03bf29d38db1cc4546dcbc71f9bea7c4eed55d38b636b679",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6197,
+      "source_sha256": "eaf791bf93dcc1fa5bcaa36f5eb5be3188884fd1003be43b412e477d4f160874",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6200,
+      "source_sha256": "e67118966dff21110b5026ed435a3aaa97d7c375ddc0cebf59b1aa23a0a54f92",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6201,
+      "source_sha256": "1ef30ca2aee8c68f4d0c23e624deef991a03e6e9a781710c46ba505baf1a869f",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6203,
+      "source_sha256": "27a04841024130f542c4ca8a5e2145414163eed0ce9c357da4b0fd39f0cc03fa",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6204,
+      "source_sha256": "325c7e9011eeb086c65e1296dfe3c6dce57242e98fec364e2f9bc0ddbc3453c9",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6205,
+      "source_sha256": "d8ec2d8ef63ff0611787eb99cc5d475d460a80dbb4716c0621cd7e982dd524f0",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6206,
+      "source_sha256": "44073cccaf99e5df870c00232f98bb725f9e912ba7c42f7d45915e9746f41a42",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6207,
+      "source_sha256": "3c894896d167a0808cabb2620e6f1eedeaa9fe2b63a85633ff06a5e537ad5686",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6208,
+      "source_sha256": "73bb35c3c442d862d80ba171320430133a671916c37e45b9d20d9601addff437",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6209,
+      "source_sha256": "545321f789100a73252698a2b188ad9dd166902a5096c71d20a5c98894053536",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6210,
+      "source_sha256": "72008f9de85938d201b2a2b4da53f4248631814ae9baf4fe0b9758f9376351ad",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6211,
+      "source_sha256": "0f817ced0ae4afcb2b2539d049c964a5c58c1c3e2768dc0103bae5241751b7d2",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6212,
+      "source_sha256": "9dcf9647b02ad6d8254fdc2a35da133ead0924a304bd907800c1481d66d012fa",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6213,
+      "source_sha256": "0331ab4c37abc2fc978879040ae206bcc8be2ceef4f67b5e37b0599deafe76ad",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6214,
+      "source_sha256": "a0685300405e4c2d92a20824fd02b3d5e2e26a19065c638a587423984fe2098a",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6215,
+      "source_sha256": "371bfe099484d4b05a0b73ada8879270fbc2794aaf17ce91810479fa11b5df56",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6216,
+      "source_sha256": "43a8ae3f9c3f0b4e695e31856f9e664d882a97ec5daf11f8c21fdab7fcd753f7",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6217,
+      "source_sha256": "44ae987f20fad70617fb8bb9d3d292f1b82f5d5c9fef7d0f15cd6266c6ae1c69",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6218,
+      "source_sha256": "d0688d9d9cf389aaa7a598e725941fc2955e88f7b468a286cd3bbc5aa11af750",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6219,
+      "source_sha256": "36b03ce8cf24d452aec6a5fb6fc3ab6a348c7b65d664b5acb8eb3b4fbbcfc255",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6220,
+      "source_sha256": "87b05681592633f8a302f3cdb28fcf7ed051948edb5f6a786cac11477d8ab41f",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6221,
+      "source_sha256": "203f00ae368ace5c7c66f9fabba7dfc7c6004d9e2ddd652f709355e723801fdd",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6222,
+      "source_sha256": "e64cacc7f2fbb91d1a0df51db4ddbeabeb2f07e63df33a51fa51ba28984ed8be",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6223,
+      "source_sha256": "a01b00c8b7586c2d694978a464459b373ca0bf2955ec240c2585b4642adddfa9",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6224,
+      "source_sha256": "d805d05eef5d6e9402c4a3ec4330dad48c7b3ae719f8cbd144040d891228a7ca",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6225,
+      "source_sha256": "489884a8eae44845e7d8923a097f0f9acd73beb539e64e6b54866d0e104af50d",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6226,
+      "source_sha256": "b079539a08339bc903e9e857e38e545cdda995361cd733a178bf1adc64b1cafc",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6227,
+      "source_sha256": "0b3b02dd5954cfb05132817f43936887712cddfc911aa04ba4a38121e5480219",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6228,
+      "source_sha256": "10d4cd6753111e5d2833332a1a867e7713009bfeb29d0facf1b83cfef5b3757c",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6229,
+      "source_sha256": "de5b209436732ba87896b434625dc1657be8b3fe3c55ca6199c3959a8e5bbf2b",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6230,
+      "source_sha256": "d66d5ffc8ac6d745001c9f6a6db3f69eb9440044a70316c28bd455b07fba0251",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6231,
+      "source_sha256": "f22c7c96414b5b1c6173fd10a504926d37527d69804756e1ff08440ced25a372",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6232,
+      "source_sha256": "f35a13749c2cbb4b80f70d0cfc5279baa09b010d972a067ccb3e23e5e7de88e3",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6233,
+      "source_sha256": "24c03a5715c4187dbdc2786fb44e47555a64849160bf8deeee09f8fdb82aa37f",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6234,
+      "source_sha256": "199c2af11f5ddbf15f868b14ba78c2005d918e16795e24d134a57d3d7f56a932",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6235,
+      "source_sha256": "ffc96802595ae94c34fbd77b0b3afbe81b767442ca8d357e4929e2437a4e7a69",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6236,
+      "source_sha256": "9227eeb88ec716c462459875d4b2449d409db24e4941496d86ef8644e53ba56d",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6237,
+      "source_sha256": "a046710c370740949cdaf4d8216f1ad2cb63a50b0abf30a85a107607df56e045",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6238,
+      "source_sha256": "85455283dfbeae00c64ac6b9e28b5e6288596ce0ac4068cb43133234b100cd6a",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6239,
+      "source_sha256": "d26681216c2de10a870aced6f41b4cd24ed9703d349d3b82ab37367c24b262b4",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6240,
+      "source_sha256": "7db5fafc8e3c62acda108179d89b1c4d0ae90fa19e3ae769e7ba49e3fa390e48",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6241,
+      "source_sha256": "26f411eac4e143e925a889c27a6d3cbdb774a7f9158dec90b3f928c3792d96b5",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6242,
+      "source_sha256": "78c9ea7eb1e89b5f463e0ede49cade2ef7c20f9324f01315726fb2aae3c22a81",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6243,
+      "source_sha256": "8646ae29068d3094899ed99e7e6d3c7a10de6f1fb06fea529e2aef791a778bf2",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6244,
+      "source_sha256": "0d7870159c16ed62aaa3e2c466edc57b1769c87b41b7710c7902596001ccfc0a",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6245,
+      "source_sha256": "1cee97311d8ea6797d9fc87670cb556b9070bf111c3e0d787be31c88e8bef058",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6246,
+      "source_sha256": "e492d89d27122cb48d9c02411c46a1b552bd4abb6b684839f6018b1689e6319c",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6247,
+      "source_sha256": "4380573dc1151810cb30d8b8464b58a6168d72eb9198ba39f3362cd2c08ade9b",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6248,
+      "source_sha256": "194d9cb7663c135bcdb6476d8e7845143a27b7834c3165283b2d5fe6f25e9dfd",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6249,
+      "source_sha256": "ee5f72db866d35d82f032c77f3a42dbeac243bf6a7093740456d7cfd8cc2a0cd",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6250,
+      "source_sha256": "f4ad345fdab995844bb0856fc1c5ec87609a1db48e013ab458f20bad12916f4b",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6251,
+      "source_sha256": "faedfac89377e3b1895a214cafc41f4494328e7bad74a97e1c105f4077f05aa9",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6252,
+      "source_sha256": "10689ea64c34b586208529ad6e8dd8f5c18d30edff441da70e0c21abe2210fe2",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6253,
+      "source_sha256": "6ff237fd303d77cc079944eb6e785c7855b0762a3768bd9fea2e9868def26a48",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6254,
+      "source_sha256": "d0e9efdbc6063d3146e2760a218785b98cd89b50a26e55f66408c088c1a9aa97",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6255,
+      "source_sha256": "20d1aab7ff83dff53522e00d2628ef88220ec9cd2966a93f9da038fa9d6f2409",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6256,
+      "source_sha256": "3b92fc57c94941838ff78ebbd714f701802376e0d3328a95961cb07003837071",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6257,
+      "source_sha256": "df534606f3c883f563c20a52276a6c86bcb3c912c2ca288851c7adf628c6068b",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6258,
+      "source_sha256": "395df2382ae55d5263f68209172e1b5ae2a91ef9507e7e05ad0c7e997cab0949",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6259,
+      "source_sha256": "7927700c60ea4f103c20b1c39589c70987c3f5d9d92df1a4690b7272e68e6d8c",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6260,
+      "source_sha256": "09f7e9b410af0a260260edc12f20ae1dde1affff7b0148764ff70d2f094d92d5",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6261,
+      "source_sha256": "4ca4965d748ec99cf0e99fb00056cd140c8587d40433b81dbeda3e7936e40c9a",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6262,
+      "source_sha256": "0d2487a1dcf56f6b895e666c072d03fbe84bdc66af558199984db9f5aef30e1a",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6263,
+      "source_sha256": "c95c40a623a8aba3c7071c650e1ccef8359b52d30860f713a7f4eb59e1be044a",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6264,
+      "source_sha256": "52e17709ae4c8536e484529fd6ab5946bc0a92e5ddbaef0cfe1f3cb5fee988af",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6265,
+      "source_sha256": "33f0afecdcbd2b9a10a1a76691f7261214793e9f5ddf61dcfb20e8f3cbd5f144",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6266,
+      "source_sha256": "fb6bbf53f9951320669aeb4a0eebf9e05fddd2271b5366921490cc557ce5ccc7",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6267,
+      "source_sha256": "c7e625d53e864e1dd40986082cd7514ccb1751e345cc81057caf857dd03d91d3",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6268,
+      "source_sha256": "3f89106f29a1aa144654c952442b3f9327b693b1c405da8631581e17f1c8e960",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6298,
+      "source_sha256": "3aa80803731151b433bc1a96f5b2956884ccc2f3802f0fdc80a60d9c237ac8fb",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6299,
+      "source_sha256": "7d8a71520b49a4650252129340c79b505cf265fc6736230ca1a47a785f08a3cd",
+      "reason": "real-credits-person-or-company-name-retained-original-spelling"
+    },
+    {
+      "id": 6334,
+      "source_sha256": "03626549a59abf648ee59163b3b8acbf66c36513cb1e76d6e277bc044c926e30",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 6336,
+      "source_sha256": "03626549a59abf648ee59163b3b8acbf66c36513cb1e76d6e277bc044c926e30",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 6342,
+      "source_sha256": "03626549a59abf648ee59163b3b8acbf66c36513cb1e76d6e277bc044c926e30",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 6343,
+      "source_sha256": "03626549a59abf648ee59163b3b8acbf66c36513cb1e76d6e277bc044c926e30",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 6344,
+      "source_sha256": "03626549a59abf648ee59163b3b8acbf66c36513cb1e76d6e277bc044c926e30",
+      "reason": "explicit-developer-placeholder-or-unused-TBD"
+    },
+    {
+      "id": 6366,
+      "source_sha256": "bab31c91acff9e1f77fa274a6d5c1aa8a336c440f6cee3c7d03bd37b889aab91",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6367,
+      "source_sha256": "cbee29b3f27f6001bbeb5e5daafc8d67f59800121896c041045f939cefadfe25",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6368,
+      "source_sha256": "e8b869b890d6f3a7d415005cf2fb3c73c7ae4417db9a8e7ca79a24f6ce0c40ac",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6369,
+      "source_sha256": "aca276292c8ef7d9b8e0bba21a05e9da944723bd88bf21f86d3baf03a761fd4f",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6370,
+      "source_sha256": "90e1ce3f9dc390fdee50d25749234dda9bb7a1c554ffbab1121ea00040ad5313",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6372,
+      "source_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6373,
+      "source_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6374,
+      "source_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6375,
+      "source_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6376,
+      "source_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6377,
+      "source_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6378,
+      "source_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6379,
+      "source_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6380,
+      "source_sha256": "19581e27de7ced00ff1ce50b2047e7a567c76b1cbaebabe5ef03f7c3017bb5b7",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6381,
+      "source_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6382,
+      "source_sha256": "3973e022e93220f9212c18d0d0c543ae7c309e46640da93a4a0314de999f5112",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6383,
+      "source_sha256": "380918b946a526640a40df5dced6516794f3d97bbd9e6bb553d037c4439f31c3",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6385,
+      "source_sha256": "125fd55e6b39a03456794c7eaf2ebd0f915afdb9aa3d4e15528bb19998b78059",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6386,
+      "source_sha256": "4ae81572f06e1b88fd5ced7a1a000945432e83e1551e6f721ee9c00b8cc33260",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6387,
+      "source_sha256": "fcb5f40df9be6bae66c1d77a6c15968866a9e6cbd7314ca432b019d17392f6f4",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6388,
+      "source_sha256": "a9f51566bd6705f7ea6ad54bb9deb449f795582d6529a0e22207b8981233ec58",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6389,
+      "source_sha256": "8c2574892063f995fdf756bce07f46c1a5193e54cd52837ed91e32008ccf41ac",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6390,
+      "source_sha256": "e632b7095b0bf32c260fa4c539e9fd7b852d0de454e9be26f24d0d6f91d069d3",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6391,
+      "source_sha256": "18f5384d58bcb1bba0bcd9e6a6781d1a6ac2cc280c330ecbab6cb7931b721552",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6392,
+      "source_sha256": "a25513c7e0f6eaa80a3337ee18081b9e2ed09e00af8531c8f7bb2542764027e7",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6393,
+      "source_sha256": "a83dd0ccbffe39d071cc317ddf6e97f5c6b1c87af91919271f9fa140b0508c6c",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6394,
+      "source_sha256": "c4694f2e93d5c4e7d51f9c5deb75e6cc8be5e1114178c6a45b6fc2c566a0aa8c",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6395,
+      "source_sha256": "5c62e091b8c0565f1bafad0dad5934276143ae2ccef7a5381e8ada5b1a8d26d2",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6396,
+      "source_sha256": "245843abef9e72e7efac30138a994bf6301e7e1d7d7042a33d42e863d2638811",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6397,
+      "source_sha256": "cfae0d4248f7142f7b17f826cd7a519280e312577690e957830d23dcf35a3fff",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6400,
+      "source_sha256": "559aead08264d5795d3909718cdd05abd49572e84fe55590eef31a88a08fdffd",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6401,
+      "source_sha256": "8de0b3c47f112c59745f717a626932264c422a7563954872e237b223af4ad643",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6402,
+      "source_sha256": "3f39d5c348e5b79d06e842c114e6cc571583bbf44e4b0ebfda1a01ec05745d43",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6403,
+      "source_sha256": "f67ab10ad4e4c53121b6a5fe4da9c10ddee905b978d3788d2723d7bfacbe28a9",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6404,
+      "source_sha256": "333e0a1e27815d0ceee55c473fe3dc93d56c63e3bee2b3b4aee8eed6d70191a3",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6405,
+      "source_sha256": "44bd7ae60f478fae1061e11a7739f4b94d1daf917982d33b6fc8a01a63f89c21",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6406,
+      "source_sha256": "6da43b944e494e885e69af021f93c6d9331c78aa228084711429160a5bbd15b5",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6407,
+      "source_sha256": "86be9a55762d316a3026c2836d044f5fc76e34da10e1b45feee5f18be7edb177",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6408,
+      "source_sha256": "72dfcfb0c470ac255cde83fb8fe38de8a128188e03ea5ba5b2a93adbea1062fa",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6409,
+      "source_sha256": "41b805ea7ac014e23556e98bb374702a08344268f92489a02f0880849394a1e4",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6410,
+      "source_sha256": "265fda17a34611b1533d8a281ff680dc5791b0ce0a11c25b35e11c8e75685509",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6411,
+      "source_sha256": "8d33f520a3c4cef80d2453aef81b612bfe1cb44c8b2025630ad38662763f13d3",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6414,
+      "source_sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6415,
+      "source_sha256": "4b68ab3847feda7d6c62c1fbcbeebfa35eab7351ed5e78f4ddadea5df64b8015",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6416,
+      "source_sha256": "6b23c0d5f35d1b11f9b683f0b0a617355deb11277d91ae091d399c655b87940d",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6417,
+      "source_sha256": "de5a6f78116eca62d7fc5ce159d23ae6b889b365a1739ad2cf36f925a140d0cc",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6418,
+      "source_sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6419,
+      "source_sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6420,
+      "source_sha256": "08f271887ce94707da822d5263bae19d5519cb3614e0daedc4c7ce5dab7473f1",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6421,
+      "source_sha256": "d03502c43d74a30b936740a9517dc4ea2b2ad7168caa0a774cefe793ce0b33e7",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6422,
+      "source_sha256": "cdb4ee2aea69cc6a83331bbe96dc2caa9a299d21329efb0336fc02a82e1839a8",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6425,
+      "source_sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6427,
+      "source_sha256": "deae2d4d75857c1081f113bcfc950dca567dd5a2e14e6ac8fb8e5785ff4dd5ec",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6428,
+      "source_sha256": "8e2de3335023201ffa4d803767bdf12790c58f4f241554c544bde8bf7b8455a4",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6429,
+      "source_sha256": "7c96eb02cc9750d69a916f29575b273c86ce9518d958d287c9731997c4a6aaea",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6430,
+      "source_sha256": "015b7913470194d2a46ead719afc7768a3c4e8af770766cfe7898d7d834c0362",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6431,
+      "source_sha256": "6cd28ed32abf73d0d64218a8ce983fd5e460ac662b660a556b8939d9d6ae37a3",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6432,
+      "source_sha256": "1c003eb26aa006fbb940e7ce2b87dd72b24af2ed825b8859cc35f6807c06cc46",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6433,
+      "source_sha256": "d96b6ec75f4e3593b03024bae3146186e9a2fe18c5447874c39d533b2ebcd744",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6434,
+      "source_sha256": "a39b6e5111fac52a197813638d2dc58070694e6d83a624e2915c3e2589acab8e",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6435,
+      "source_sha256": "6d39eec870a24effe4bccfca294fe13412450f8dc626c7f079ce0e7fdf9751f3",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6436,
+      "source_sha256": "fd6991f3e34a6f39c0b50675c4d02483d55dbfb3d2152e1e654f3c458f0644dd",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6450,
+      "source_sha256": "e26fb6fa7b9fa285b15bfd3a2272d0c5c56b33bb5ae91b23cb412014ec697fa7",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6451,
+      "source_sha256": "e3df0d3c1eac97d9103bd7ca27c1d02df29d3687a4850044ff975bc2424fbf50",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6452,
+      "source_sha256": "1e360cf771ae4b49f861f2c19b2975b0a4f9c9c2654d74e2594fc122a048c0be",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6453,
+      "source_sha256": "51ef4566c3e086bca7910914a64e566989d0b87d751ebc4e385d88f9de2b01ec",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6454,
+      "source_sha256": "d336ee1af19f39dcd7cb68e473ecb98a1f9c5dd5f57c911be749a3251950d023",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6456,
+      "source_sha256": "eb543b89fdc39e0256bded85aa0e8947ae511b761de60adf9f79e40a39196a1f",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6457,
+      "source_sha256": "e87fdcb38bc3e21acc16a2e050496be0f25c0efea5c40b7a71a3ff39de76f96b",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6460,
+      "source_sha256": "c3641f8544d7c02f3580b07c0f9887f0c6a27ff5ab1d4a3e29caf197cfc299ae",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6461,
+      "source_sha256": "e7ac0786668e0ff0f02b62bd04f45ff636fd82db63b1104601c975dc005f3a67",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6462,
+      "source_sha256": "d2e2adf7177b7a8afddbc12d1634cf23ea1a71020f6a1308070a16400fb68fde",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6464,
+      "source_sha256": "bbe96fa9f44ea0fcf38b0ec729822f37f5cc11e625753b2a250a90a3b59dd098",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    },
+    {
+      "id": 6525,
+      "source_sha256": "334359b90efed75da5f0ada1d5e6b256f4a6bd0aee7eb39c0f90182a021ffc8b",
+      "reason": "physical-keycap-resolution-or-symbol-retained"
+    }
+  ],
+  "literal_contracts": [
+    {
+      "group": "bs",
+      "ids": [
+        3101
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "HyperChat v1.977"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3104
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "menu/custom_startup_msg.txt"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3219
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "HyperChat"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3250
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "untitled1.art"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3251
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "untitled2.art"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3252
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "patient_jv034.art"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3612
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "WinterICE"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3638
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "Grienko"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3642
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "grienko_report_draft.text"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3783
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "PASSWORD"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3784
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "WHOKNOWS"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3785
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "MEDICINE"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3786
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "GORILLA"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3787
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "LAPTOP"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3788
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "FACILITY"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3789
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "SCALPEL"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3790
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "EVIL"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4056
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "WILDE, J"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4086
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "mad2Bhere"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4087
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "NO IDEA"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4088
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "12345678"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4089
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "DEFAULT"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4090
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "COMPUTER"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4091
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "WHATEVER"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4092
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "ABCDEFGH"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4093
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "LUCKYGUESS"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4094
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "RADICAL"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4496
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "MEMO13MAY96.txt"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4499
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "EMPLOYEELIST97.txt"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5187
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "snow"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5409
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "s.hanson"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5410
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "SILASHANSON"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5411
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "SH"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5412
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "HANSON"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5413
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "GUEST"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5414
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "ADMIN"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5415
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "WHOKNOWS"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5416
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "POTATO"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5417
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "BADGER"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5456
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "MoviePlayer"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5470
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "MovieConfig"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5493
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "p.militts@nse.usa-gov.com"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5496
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "a.leonard@nse.usa-gov.com"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5505
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "unknown@unknown"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5919
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "ORDERS_19April.text"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5921
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "ORDERS_21April.text"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5923
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "ORDERS_22April.text"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5925
+      ],
+      "mode": "not_injected",
+      "literals": [
+        "wice.text"
+      ],
+      "reason": "Literal password/search value, account, filename or unchanged application/codename; keep original source bytes rather than inject a glyph-token translation"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3109
+      ],
+      "mode": "contains",
+      "literals": [
+        "FRONTDESK_01"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3110
+      ],
+      "mode": "contains",
+      "literals": [
+        "PRIMATE_03"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3253
+      ],
+      "mode": "contains",
+      "literals": [
+        "untitled1.art"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3254
+      ],
+      "mode": "contains",
+      "literals": [
+        "untitled2.art"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3255
+      ],
+      "mode": "contains",
+      "literals": [
+        "patient_jv034.art"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3800
+      ],
+      "mode": "contains",
+      "literals": [
+        "DRTERRY_01"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4051
+      ],
+      "mode": "contains",
+      "literals": [
+        "map.pic"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4072
+      ],
+      "mode": "contains",
+      "literals": [
+        "PatientDB.prg"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4078
+      ],
+      "mode": "contains",
+      "literals": [
+        "security.prg"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4079
+      ],
+      "mode": "contains",
+      "literals": [
+        "new_codes.wrd"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4080
+      ],
+      "mode": "contains",
+      "literals": [
+        "map.pic"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4081
+      ],
+      "mode": "contains",
+      "literals": [
+        "westwing.cctv"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4082
+      ],
+      "mode": "contains",
+      "literals": [
+        "xspace92.prg"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4083
+      ],
+      "mode": "contains",
+      "literals": [
+        "highsec.cctv"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4489
+      ],
+      "mode": "contains",
+      "literals": [
+        "BING_ALERT"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4497
+      ],
+      "mode": "contains",
+      "literals": [
+        "MEMO13MAY96.txt"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4500
+      ],
+      "mode": "contains",
+      "literals": [
+        "EMPLOYEELIST97.txt"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5184
+      ],
+      "mode": "contains",
+      "literals": [
+        "p.militts@nse.usa-gov.com"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5330
+      ],
+      "mode": "contains",
+      "literals": [
+        "s.hanson@nse.usa-gov.com"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5331
+      ],
+      "mode": "contains",
+      "literals": [
+        "s.hanson@nse.usa-gov.com"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5332
+      ],
+      "mode": "contains",
+      "literals": [
+        "s.hanson@nse.usa-gov.com"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5427
+      ],
+      "mode": "contains",
+      "literals": [
+        "Dubrensk.vid"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5484
+      ],
+      "mode": "contains",
+      "literals": [
+        "Dubrensk.vid"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5494
+      ],
+      "mode": "contains",
+      "literals": [
+        "p.militts@nse.usa-gov.com"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5500
+      ],
+      "mode": "contains",
+      "literals": [
+        "www.frd.co.uk"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5507
+      ],
+      "mode": "contains",
+      "literals": [
+        "NSE_HQ.cct",
+        "NSE_HQ"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5634
+      ],
+      "mode": "contains",
+      "literals": [
+        "MIS_STATUS"
+      ],
+      "reason": "Machine-readable literal preserved independently of translated display prose"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        2603
+      ],
+      "mode": "contains",
+      "literals": [
+        "JV-034"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        2607
+      ],
+      "mode": "contains",
+      "literals": [
+        "JV-034"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        2614
+      ],
+      "mode": "contains",
+      "literals": [
+        "8461"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3129
+      ],
+      "mode": "contains",
+      "literals": [
+        "JV-034"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3130
+      ],
+      "mode": "contains",
+      "literals": [
+        "38257"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3131
+      ],
+      "mode": "contains",
+      "literals": [
+        "67337"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3603
+      ],
+      "mode": "contains",
+      "literals": [
+        "snow"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3604
+      ],
+      "mode": "contains",
+      "literals": [
+        "snow"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3779
+      ],
+      "mode": "contains",
+      "literals": [
+        "MEDFAC:pr_data/>"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3781
+      ],
+      "mode": "contains",
+      "literals": [
+        "DrTerry"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3792,
+        3793
+      ],
+      "mode": "joint_contains",
+      "literals": [
+        "DrTerry"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3901
+      ],
+      "mode": "contains",
+      "literals": [
+        "mad2Bhere"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3908
+      ],
+      "mode": "contains",
+      "literals": [
+        "7791"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3958
+      ],
+      "mode": "contains",
+      "literals": [
+        "mad2Bhere"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        3983
+      ],
+      "mode": "contains",
+      "literals": [
+        "mad2bhere"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4002
+      ],
+      "mode": "contains",
+      "literals": [
+        "mad2bhere"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4042,
+        4043
+      ],
+      "mode": "joint_contains",
+      "literals": [
+        "D1:"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4047,
+        4048,
+        4049,
+        4050
+      ],
+      "mode": "joint_contains",
+      "literals": [
+        "7791"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4073
+      ],
+      "mode": "contains",
+      "literals": [
+        "D1:"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4075
+      ],
+      "mode": "contains",
+      "literals": [
+        "LI-01"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4076
+      ],
+      "mode": "contains",
+      "literals": [
+        "WW-03"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4084
+      ],
+      "mode": "contains",
+      "literals": [
+        "CC-08"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        4085
+      ],
+      "mode": "contains",
+      "literals": [
+        "MA-02"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5395
+      ],
+      "mode": "contains",
+      "literals": [
+        "s.hanson"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5438
+      ],
+      "mode": "contains",
+      "literals": [
+        "HURFORD35"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5445,
+        5446,
+        5447
+      ],
+      "mode": "joint_contains",
+      "literals": [
+        "MoviePlayer"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5474
+      ],
+      "mode": "contains",
+      "literals": [
+        "NONE"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5475
+      ],
+      "mode": "contains",
+      "literals": [
+        "MMSU"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5476
+      ],
+      "mode": "contains",
+      "literals": [
+        "LT01"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5477
+      ],
+      "mode": "contains",
+      "literals": [
+        "OUTP",
+        "SCART"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5478
+      ],
+      "mode": "contains",
+      "literals": [
+        "SHPC"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5479
+      ],
+      "mode": "contains",
+      "literals": [
+        "NONE"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5480
+      ],
+      "mode": "contains",
+      "literals": [
+        "MMSU"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5481
+      ],
+      "mode": "contains",
+      "literals": [
+        "LT01"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5482
+      ],
+      "mode": "contains",
+      "literals": [
+        "OUTP"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5483
+      ],
+      "mode": "contains",
+      "literals": [
+        "SHPC"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    },
+    {
+      "group": "bs",
+      "ids": [
+        5634
+      ],
+      "mode": "contains",
+      "literals": [
+        "MIS_STATUS",
+        "PageTM"
+      ],
+      "reason": "Explicit code/endpoint/account/password; joint contracts allow natural reordering across linked display lines"
+    }
+  ]
+}
