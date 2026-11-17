@@ -91,3 +91,7 @@ PoC 选中 `p055.r000.s000` 至 `p055.r003.s000`，即一个 Isolation 任务页
 `csinfo.txt` 是场景/动作清单，不是可直接翻译的字幕文件。VM 脚本、纹理文字和主文本引用关系尚待进一步核对；不把所有含可读字符串的文件自动列为可替换文本。
 
 实现入口见 `tools/assess_resources.py`；初始证据、静态地址和覆盖范围见[可行性评估](ASSESSMENT_2026-11-17.md)。
+
+## 编辑数据补充
+
+PoC 每条文本新增 `text_kind`（ui/objective/narrative）和 `terms`（术语 ID 列表），不改变运行时 SLP1 格式。各 locale 的 `style.json`、`glossary.json`、`font.json` 分别提供标点策略、术语状态/定位及字体身份；manifest 记录这些源文件的 hash。当前英文简介页为 p002，短任务页为 p055；用户可见反馈见[编辑基线](FONT_AND_EDITORIAL.md)。

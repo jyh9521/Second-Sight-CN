@@ -6,16 +6,14 @@ import json
 import re
 from pathlib import Path
 import struct
-import urllib.request
 
 from assess_resources import Pak, StringTable, require
 from pda_resources import PdaResource, Replacement, GlyphMarker
+from translation_checks import check_locale
+from font_dependencies import read_config, dependency, notice
 
 ROOT = Path(__file__).resolve().parents[1]
 EXE_SHA = "4092a8d1fb042dffe9fb95e2185f32cb80390299145e8d453a5e909a06d35fda"
-FONT_COMMIT = "f8d157532fbfaeda587e826d4cd5b21a49186f7c"
-FONT_SHA = "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b"
-OFL_SHA = "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
 BS_SHA = "e72b56066e8b68fb23ac2833b58376a18a506503e02e83864727eef1fbc03a7d"
 PDA_SHA = "f684ffe987026172b5a69f82e11ee6426190bf629939596cad3f6571b098f6d7"
 MARKER = 0x1f
@@ -23,19 +21,6 @@ MARKER = 0x1f
 
 def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
-
-
-def dependency(name: str, remote: str, expected: str) -> Path:
-    path = ROOT / "build/dependencies" / name
-    if not path.exists():
-        data = urllib.request.urlopen(
-            f"https://raw.githubusercontent.com/notofonts/noto-cjk/{FONT_COMMIT}/Sans/{remote}",
-            timeout=120).read()
-        require(digest(data) == expected, f"download hash mismatch: {name}")
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(data)
-    require(digest(path.read_bytes()) == expected, f"dependency hash mismatch: {name}")
-    return path
 
 
 def encode(text: str, glyphs: dict[str, int]) -> bytes:
@@ -111,6 +96,10 @@ def build(game: Path, locale: str, out: Path) -> dict:
     require(digest((game/"secondsight.exe").read_bytes()) == EXE_SHA, "unsupported executable")
     data = json.loads((ROOT/"locales"/locale/"poc.json").read_text(encoding="utf-8"))
     require(data["locale"] == locale and data["schema"] == 1, "locale schema mismatch")
+    editorial_errors=check_locale(ROOT/"locales"/locale,data)
+    require(not editorial_errors,"editorial checks failed: "+"; ".join(editorial_errors))
+    font_config=read_config(ROOT/"locales"/locale/"font.json")
+    require(font_config['locale']==locale,"font locale mismatch")
     source = Pak((game/"pak/arcade/l_103.pak").read_bytes()).member("data/strsspxe.bs")
     require(digest(source) == BS_SHA, "unsupported BS input")
     table = StringTable(source)
@@ -152,8 +141,8 @@ def build(game: Path, locale: str, out: Path) -> dict:
             pda_replacements[row["id"]] = Replacement(expected, encoded)
             pda_records.append(struct.pack("<I",pda.segments[row["id"]].field_offset)+blob(expected)+blob(encoded))
     out.mkdir(parents=True, exist_ok=True)
-    font = dependency("NotoSansCJKsc-Regular.otf", "OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf", FONT_SHA)
-    license_file = dependency("OFL.txt", "LICENSE", OFL_SHA)
+    font = dependency(ROOT/"build/dependencies",font_config['font'])
+    license_file = dependency(ROOT/"build/dependencies",font_config['license'])
     atlas = make_atlases(glyphs, font, out/"atlas-preview.png")
     # The approved transport marker is removed only for protected-token comparison.
     rebuilt = pda.replace(pda_replacements, glyph_marker=GlyphMarker(bytes([MARKER]),4,1535))
@@ -164,9 +153,12 @@ def build(game: Path, locale: str, out: Path) -> dict:
     packed += b"".join(blob(name.encode("ascii"))+blob(payload) for name,payload in resources)
     (out/"locale.bin").write_bytes(packed)
     (out/"OFL.txt").write_bytes(license_file.read_bytes())
+    (out/"FONT-NOTICE.txt").write_text(notice(font_config),encoding="utf-8",newline="\n")
     manifest = dict(schema=1, locale=locale, status="offline-built; user-runtime-acceptance-pending",
                     executable_sha256=EXE_SHA, bs_source_sha256=BS_SHA, pda_source_sha256=PDA_SHA,
-                    font_commit=FONT_COMMIT,font_sha256=FONT_SHA, glyphs=glyphs,
+                    font_commit=font_config['commit'],font_sha256=font_config['font']['sha256'],
+                    font_family=font_config['family'],font_style=font_config['style'],font_version=font_config['version'],
+                    editorial_inputs={name:digest((ROOT/"locales"/locale/name).read_bytes()) for name in ('poc.json','style.json','glossary.json','font.json')},glyphs=glyphs,
                     bs_ids=[r["id"] for r in data["bs"]], pda_ids=list(pda_replacements),
                     pack_sha256=digest(packed), pda_mirrors_checked=len(pda_sources),
                     resources=[dict(name=n,size=len(p),sha256=digest(p)) for n,p in resources])

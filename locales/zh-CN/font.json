@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "locale": "zh-CN",
+  "family": "Source Han Sans SC",
+  "style": "Regular",
+  "version": "2.005",
+  "commit": "6c709ca72d3d7c46ab42ebecc1a26e7d69595a37",
+  "copyright": "Copyright 2014-2025 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'. Source is a trademark of Adobe in the United States and/or other countries.",
+  "font": {
+    "name": "SourceHanSansSC-Regular.otf",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/6c709ca72d3d7c46ab42ebecc1a26e7d69595a37/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf",
+    "sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256"
+  },
+  "license": {
+    "name": "SourceHanSans-OFL.txt",
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/6c709ca72d3d7c46ab42ebecc1a26e7d69595a37/LICENSE.txt",
+    "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+  }
+}

@@ -175,10 +175,9 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path 
     (target/("dsound.ini" if remastered else "dinput8.ini")).write_text(COMPAT_LOADER_INI,encoding="ascii",newline="\n")
     translated=target/"scripts/localization"
     translated.mkdir()
-    for name in ("locale.bin","manifest.json","OFL.txt"):
+    for name in ("locale.bin","manifest.json","OFL.txt","FONT-NOTICE.txt"):
         shutil.copy2(locale_dir/name,translated/name)
     shutil.copy2(ROOT/"LICENSE",translated/"LICENSE-code.txt")
-    shutil.copy2(ROOT/"assets/FONT-NOTICE.txt",translated/"FONT-NOTICE.txt")
     shutil.copy2(ROOT/("docs/INTEGRATED_TESTING.md" if remastered else "docs/POC_TESTING.md"),out/"TESTING.md")
     disable='''# Does not start or stop the game. Run only after manually closing the test game.
 $ErrorActionPreference = 'Stop'

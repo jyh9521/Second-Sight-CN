@@ -30,7 +30,7 @@
 
 ## 字体与其他模组
 
-当前 PoC 使用 **Noto Sans CJK SC Regular 2.004**，字体元数据版权为 `© 2014-2021 Adobe (http://www.adobe.com/).`，商标通知为 `Noto is a trademark of Google Inc.`。来源为 [notofonts/noto-cjk 固定提交](https://github.com/notofonts/noto-cjk/tree/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans)，采用 [SIL Open Font License 1.1](https://github.com/notofonts/noto-cjk/blob/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/LICENSE)。
+004 及此前 PoC 使用 **Noto Sans CJK SC Regular 2.004**，字体元数据版权为 `© 2014-2021 Adobe (http://www.adobe.com/).`，商标通知为 `Noto is a trademark of Google Inc.`。来源为 [notofonts/noto-cjk 固定提交](https://github.com/notofonts/noto-cjk/tree/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans)，采用 [SIL Open Font License 1.1](https://github.com/notofonts/noto-cjk/blob/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/LICENSE)。
 
 | 输入 | 固定值 |
 |---|---|
@@ -56,3 +56,7 @@ ReMade 模组由用户自行提供。PoC 002 按用户要求，将本机已有�
 ## 启动兼容模块
 
 `src/startup_compat.*` 是本项目独立编写、语言无关的适配代码；不修改或复制 FusionFix 实现。`assets/fusionfix-startup-contracts.json` 保存来自固定上游源码的机械字节签名和位置，来源提交及用途在文件内记录，不视作本项目原创逆向发现。相关源码、作者 ThirteenAG/上游贡献者及许可边界见前述 FusionFix 小节。完整原游戏、FusionFix、ReMade 和崩溃转储仍只保留本地；公开提交仅含原创适配器、机械契约、合成测试与说明。
+
+## 新构建的思源黑体
+
+用户选择思源黑体后，中文源码配置改用 [Source Han Sans SC Regular 2.005](https://github.com/adobe-fonts/source-han-sans/tree/6c709ca72d3d7c46ab42ebecc1a26e7d69595a37)，许可为该提交的 [SIL OFL 1.1](https://github.com/adobe-fonts/source-han-sans/blob/6c709ca72d3d7c46ab42ebecc1a26e7d69595a37/LICENSE.txt)。版权通知为 Copyright 2014-2025 Adobe，保留字体名 Source。字体/许可固定 hash 见 `locales/zh-CN/font.json`；构建输出原许可和从该配置生成的通知，不沿用旧 Noto 商标说明。未修改上游字体二进制，只生成所需字形的纹理子集；完整原英文字库不提交。004 保留旧字体用于对照，新构建状态见[编辑基线](docs/FONT_AND_EDITORIAL.md)。

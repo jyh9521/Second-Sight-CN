@@ -1,0 +1,259 @@
+{
+  "schema": 1,
+  "locale": "zh-CN",
+  "status": "seed; active entries used by current PoC; proposed entries await contextual review",
+  "entries": [
+    {
+      "id": "profile",
+      "source": "Profile",
+      "preferred": "档案",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:840",
+        "bs:855",
+        "bs:856",
+        "bs:859"
+      ],
+      "note": "游戏玩家档案，不指剧情人物资料"
+    },
+    {
+      "id": "subtitles",
+      "source": "Subtitles",
+      "preferred": "字幕",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:872"
+      ],
+      "note": ""
+    },
+    {
+      "id": "main_menu",
+      "source": "Main Menu",
+      "preferred": "主菜单",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:875"
+      ],
+      "note": ""
+    },
+    {
+      "id": "new_game",
+      "source": "New Game",
+      "preferred": "新游戏",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:850"
+      ],
+      "note": ""
+    },
+    {
+      "id": "statistics",
+      "source": "Statistics",
+      "preferred": "统计",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:883"
+      ],
+      "note": ""
+    },
+    {
+      "id": "options",
+      "source": "Options",
+      "preferred": "选项",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:899"
+      ],
+      "note": ""
+    },
+    {
+      "id": "autosave",
+      "source": "Autosave",
+      "preferred": "自动保存",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "bs:835"
+      ],
+      "note": ""
+    },
+    {
+      "id": "objectives",
+      "source": "Objectives",
+      "preferred": "任务目标",
+      "category": "interface",
+      "status": "active",
+      "evidence": [
+        "pda:p055.r000.s000"
+      ],
+      "note": "与关卡简介页分开"
+    },
+    {
+      "id": "isolation",
+      "source": "Isolation",
+      "preferred": "隔离",
+      "category": "chapter",
+      "status": "active",
+      "evidence": [
+        "pda:p055.r001.s000",
+        "pda:p002.r000.s000"
+      ],
+      "note": "当前章节名"
+    },
+    {
+      "id": "isolation_cell",
+      "source": "isolation cell",
+      "preferred": "隔离室",
+      "category": "location",
+      "status": "active",
+      "evidence": [
+        "pda:p055.r003.s000"
+      ],
+      "note": "与隔离病房区分"
+    },
+    {
+      "id": "isolation_ward",
+      "source": "isolation ward",
+      "preferred": "隔离病房",
+      "category": "location",
+      "status": "proposed",
+      "evidence": [
+        "pda:p002.r001.s000"
+      ],
+      "note": "简介正文尚未翻译"
+    },
+    {
+      "id": "john_vattic",
+      "source": "John Vattic",
+      "preferred": "约翰·瓦蒂克",
+      "category": "character",
+      "status": "proposed",
+      "evidence": [
+        "pda:p001.r001.s000"
+      ],
+      "note": "人名暂定，后续结合语音与人物资料确认；不声称官方译名"
+    },
+    {
+      "id": "jayne_wilde",
+      "source": "Jayne Wilde",
+      "preferred": "简·怀尔德",
+      "category": "character",
+      "status": "proposed",
+      "evidence": [
+        "bs:680",
+        "bs:908"
+      ],
+      "note": "拼写为 Jayne；人名暂定"
+    },
+    {
+      "id": "starke",
+      "source": "Starke",
+      "preferred": "斯塔克",
+      "category": "character",
+      "status": "proposed",
+      "evidence": [
+        "bs:514"
+      ],
+      "note": "姓氏暂定，完整名待资源定位"
+    },
+    {
+      "id": "winterice",
+      "source": "WinterICE",
+      "preferred": "WinterICE",
+      "category": "proper-name",
+      "status": "proposed",
+      "evidence": [
+        "bs:902"
+      ],
+      "note": "暂留原名，组织/行动称谓及中文译名待剧情核对"
+    },
+    {
+      "id": "zener",
+      "source": "Zener",
+      "preferred": "泽纳",
+      "category": "proper-name",
+      "status": "proposed",
+      "evidence": [
+        "bs:788"
+      ],
+      "note": "设施/计划相关专名，具体语境待核对"
+    },
+    {
+      "id": "telekinesis",
+      "source": "Telekinesis",
+      "preferred": "念力",
+      "category": "ability",
+      "status": "proposed",
+      "evidence": [
+        "bs:694",
+        "pda:p049.r001.s000"
+      ],
+      "note": "能力名暂定"
+    },
+    {
+      "id": "healing",
+      "source": "Healing",
+      "preferred": "治疗",
+      "category": "ability",
+      "status": "proposed",
+      "evidence": [
+        "bs:697",
+        "pda:p049.r002.s000"
+      ],
+      "note": ""
+    },
+    {
+      "id": "psi_attack",
+      "source": "Psi Attack",
+      "preferred": "灵能攻击",
+      "category": "ability",
+      "status": "proposed",
+      "evidence": [
+        "bs:708",
+        "pda:p049.r003.s000"
+      ],
+      "note": ""
+    },
+    {
+      "id": "charm",
+      "source": "Charm",
+      "preferred": "魅惑",
+      "category": "ability",
+      "status": "proposed",
+      "evidence": [
+        "bs:695",
+        "pda:p049.r004.s000"
+      ],
+      "note": "须结合能力实际效果确认，不按一般词义直接定稿"
+    },
+    {
+      "id": "projection",
+      "source": "Projection",
+      "preferred": "精神投射",
+      "category": "ability",
+      "status": "proposed",
+      "evidence": [
+        "bs:698",
+        "pda:p049.r005.s000"
+      ],
+      "note": ""
+    },
+    {
+      "id": "psi_blast",
+      "source": "Psi Blast",
+      "preferred": "灵能爆破",
+      "category": "ability",
+      "status": "proposed",
+      "evidence": [
+        "bs:713"
+      ],
+      "note": "与 Psi Attack 保持区分"
+    }
+  ]
+}

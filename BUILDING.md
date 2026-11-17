@@ -9,7 +9,7 @@
 - Visual Studio / Build Tools 的 MSVC x86/x64 C++ 工具及 Windows SDK。构建脚本通过 `vswhere` 定位工具链，生成 x86 产物。
 - 原版 GOG PC 游戏文件，版本与 SHA-256 见[技术说明](TECHNICAL.md)。
 - 用户提供的固定版本 `FusionFix/`，供后续隔离副本联合测试；该目录不纳入 Git。
-- 首次语言包构建需要下载固定提交的 Noto 字体与 OFL；后续使用经过 hash 校验的本地缓存。
+- 首次语言包构建需要按 `locales/<locale>/font.json` 下载固定提交的字体与 OFL（中文现用思源黑体）；后续使用经过 hash 校验的本地缓存。
 
 从仓库根目录运行。建议使用独立 Python 环境；以下命令中的 `$Game` 始终指向原版输入，不是安装目标。
 
@@ -27,7 +27,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1
 
 输入为 [locales/zh-CN/poc.json](locales/zh-CN/poc.json)：21 条菜单、11 条剧情字幕候选，以及 Isolation 任务页的 4 条 PDA 文本。字幕候选尚未完成场景映射，4 条 PDA 文本也不是 4 个页面。
 
-构建器校验 EXE、主文本和找到的全部 `pdaps_a.raw` 副本的 hash，逐条核对原文；不接受未知版本或原文不符的数据。字体使用固定提交与 SHA-256，字形由样本文本确定；当前六页分配跳过原引擎特殊编号 178、184，共 1,534 个候选字位，不代表完整汉化容量已解决。编码后 BS 上限为 255 字节、PDA 上限为 450 字节；这些保守护栏不是游戏布局验收。
+构建器校验 EXE、主文本和找到的全部 `pdaps_a.raw` 副本的 hash，逐条核对原文；不接受未知版本或原文不符的数据。字体由各语言的 `font.json` 固定提交与 SHA-256；中文现用思源黑体 Regular，字形由样本文本确定；当前六页分配跳过原引擎特殊编号 178、184，共 1,534 个候选字位，不代表完整汉化容量已解决。编码后 BS 上限为 255 字节、PDA 上限为 450 字节；这些保守护栏不是游戏布局验收。
 
 | 输出 | 用途 |
 |---|---|
@@ -164,3 +164,16 @@ python -X utf8 tools/verify_window_mode.py evidence --out build/window-004
 ```
 
 证据目录需尚不存在；已生成时选新目录。BASELINE 退出 2（仍为独占全屏），MODIFIED/ROLLBACK 退出 0；回滚只恢复独立配置副本，交付包保持无边框。实际失焦与退出原因仍待用户实验，详见[004 记录](docs/STARTUP_004.md)。
+
+## 字体、名词表与标点检查
+
+`locales/<locale>/font.json` 管理字体和许可依赖，`style.json` 管理编辑规则，`glossary.json` 管理术语；译文逐条声明 `text_kind` 和 `terms`。构建器先检查标点/术语，再生成图集，manifest 记录四份编辑输入的 hash；`FONT-NOTICE.txt` 从当前语言字体配置生成，不再共用固定中文通知文件。
+
+```powershell
+python -X utf8 tools/translation_checks.py --locale-dir locales/zh-CN
+python -X utf8 tools/build_locale.py --game-root $Game --locale zh-CN --out build/locale-editorial-005
+python -X utf8 tools/verify_poc.py prepare --game-root $Game --locale-build build/locale-editorial-005 --out build/editorial-validation-005
+python -X utf8 tools/verify_poc.py evidence --out build/editorial-validation-005
+```
+
+证据目录需尚不存在。本轮 104 项测试通过；旧译文夹具触发两条句号错误，修订后检查通过。只生成语言包与回滚证据，不更新用户正在验收的 004，也未另建完整游戏副本。
