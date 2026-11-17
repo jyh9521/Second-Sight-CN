@@ -12,6 +12,7 @@
 #include <vector>
 #include <stdexcept>
 #include "text_transport.h"
+#include "glyph_batch.h"
 #include <intrin.h>
 #pragma intrinsic(_ReturnAddress)
 
@@ -21,7 +22,7 @@ static int status; // 0 not called; 1 installed; 2 identity rejected; 3 validati
 static std::wstring directory;
 static constexpr char expectedExe[] = "4092a8d1fb042dffe9fb95e2185f32cb80390299145e8d453a5e909a06d35fda";
 static constexpr unsigned char marker = 0x1f;
-struct Text { uint32_t index; std::string source, target; };
+struct Text { uint32_t index; std::string source, target; std::vector<std::string> aliases; };
 struct Resource { std::string name; std::vector<unsigned char> bytes; };
 struct Pack { std::vector<Text> bs, pda, exe; std::vector<Resource> resources; };
 struct LiteralContract { uint32_t id; uintptr_t instruction, source; const char* expected; };
@@ -95,14 +96,16 @@ static Pack parse(const std::vector<unsigned char>& bytes) {
         std::string s(reinterpret_cast<const char*>(bytes.data()+at),n); at+=n; return s;
     };
     const uint32_t format=number();
-    if (format!=0x31504c53 && format!=0x32504c53) throw std::runtime_error("invalid pack magic");
+    if (format!=0x31504c53 && format!=0x32504c53 && format!=0x33504c53) throw std::runtime_error("invalid pack magic");
     uint32_t bs=number(), pda=number(), resources=number();
-    const uint32_t exeCount=format==0x32504c53?number():0;
+    const uint32_t exeCount=format!=0x31504c53?number():0;
+    const uint32_t aliasCount=format==0x33504c53?number():0;
+    if(aliasCount>bs*7u) throw std::runtime_error("invalid alias count");
     if (!bs || bs>6525 || !pda || pda>512 || exeCount>2 || (resources!=6 && resources!=7)) throw std::runtime_error("invalid pack counts");
     Pack result;
     auto texts=[&](std::vector<Text>& items,uint32_t count,bool isBs) {
         for (uint32_t i=0;i<count;++i) {
-            Text t{number(),blob(),blob()};
+            Text t{number(),blob(),blob(),{}};
             if ((isBs && (t.index==0||t.index>=6526)) ||
                 (!isBs && (t.index<32||t.index%4||t.index>79618)) ||
                 t.source.empty() || t.source.size()>4096 ||
@@ -124,7 +127,7 @@ static Pack parse(const std::vector<unsigned char>& bytes) {
     };
     texts(result.bs,bs,true); texts(result.pda,pda,false);
     for(uint32_t i=0;i<exeCount;++i) {
-        Text t{number(),blob(),blob()};
+        Text t{number(),blob(),blob(),{}};
         const LiteralContract* contract=nullptr;
         for(const auto& c:literalContracts) if(c.id==t.index) contract=&c;
         if(!contract || t.source!=contract->expected || !encoded(t.target) || t.target.size()>64 ||
@@ -132,6 +135,15 @@ static Pack parse(const std::vector<unsigned char>& bytes) {
             throw std::runtime_error("invalid executable text record");
         for(const auto& prior:result.exe) if(prior.index==t.index) throw std::runtime_error("duplicate executable text");
         result.exe.push_back(std::move(t));
+    }
+    for(uint32_t i=0;i<aliasCount;++i) {
+        const uint32_t id=number(); auto source=blob();
+        auto item=std::find_if(result.bs.begin(),result.bs.end(),[&](const Text& t){return t.index==id;});
+        if(item==result.bs.end() || source.empty() || source.size()>4096 ||
+           source.find('\0')!=std::string::npos || item->aliases.size()>=7 || source==item->source ||
+           std::find(item->aliases.begin(),item->aliases.end(),source)!=item->aliases.end())
+            throw std::runtime_error("invalid BS source alias");
+        item->aliases.push_back(std::move(source));
     }
     size_t composedCount=0,composedBytes=8;
     for(const auto& item:result.bs) if(item.index>=3644 && item.index<=3648) { ++composedCount; composedBytes+=item.target.size(); }
@@ -160,6 +172,11 @@ static bool matches(const char* text,const std::string& expected) {
     uintptr_t end=reinterpret_cast<uintptr_t>(info.BaseAddress)+info.RegionSize;
     return reinterpret_cast<uintptr_t>(text)+expected.size()+1 <= end &&
         memcmp(text,expected.c_str(),expected.size()+1)==0;
+}
+static bool matchesText(const char* text,const Text& item) {
+    if(matches(text,item.source)) return true;
+    for(const auto& alias:item.aliases) if(matches(text,alias)) return true;
+    return false;
 }
 static const Resource* resource(const char* path) {
     if (!path) return nullptr;
@@ -200,7 +217,7 @@ static const char* __cdecl composeHook(const uint32_t* record,char* destination,
                 complete=record[1+i*2]==id && record[2+i*2]==separator;
                 const Text* chosen=nullptr;
                 for(const auto& item:pack.bs) if(item.index==id) { chosen=&item; break; }
-                if(!complete || !chosen || !matches(table[id],chosen->source)) { complete=false; break; }
+                if(!complete || !chosen || !matchesText(table[id],*chosen)) { complete=false; break; }
                 out+=chosen->target;
                 if(i<4) out+="\n\n";
                 if(out.size()>4095) throw std::runtime_error("terminal owned composition overflow");
@@ -255,7 +272,7 @@ static const char* __cdecl expandHook(const char* text) {
 static char* __cdecl wrapHook(const char* text,float width) {
     const uintptr_t caller=reinterpret_cast<uintptr_t>(_ReturnAddress());
     if(text && transport::longWrapCaller(caller)) {
-        for(const auto& item:pack.bs) if(transport::deferred(item.index) && matches(text,item.source)) {
+        for(const auto& item:pack.bs) if(transport::deferred(item.index) && matchesText(text,item)) {
             text=item.target.c_str(); break;
         }
     }
@@ -323,7 +340,7 @@ static int __cdecl readHook(const char* name,void* buffer,int size) {
 static void __cdecl bsHook() {
     auto table=*reinterpret_cast<char***>(0x90a338);
     size_t count=0;
-    if(table) for(const auto& item:pack.bs) if(!transport::deferred(item.index) && matches(table[item.index],item.source)) {
+    if(table) for(const auto& item:pack.bs) if(!transport::deferred(item.index) && matchesText(table[item.index],item)) {
         table[item.index]=const_cast<char*>(item.target.c_str()); ++count;
     }
     size_t deferred=0; for(const auto& item:pack.bs) if(transport::deferred(item.index)) ++deferred;
@@ -363,6 +380,23 @@ static const char* __cdecl substringHook(const char* text,int count) {
     auto p=reinterpret_cast<const char*(__cdecl*)(const char*)>(0x610260)(text);
     if(p) while(count>0 && *p) { p=nextGlyph(p); --count; } return p;
 }
+// These three cdecl symbols stay visible in the link MAP for instruction-level
+// offline replay. Only the four guarded text sites below can enter them in-game.
+static glyph_batch::State textBatch;
+extern "C" __declspec(noinline) int __cdecl BeginTextBatchHook(int format,int mode,int count,int texture) {
+    const int result=reinterpret_cast<int(__cdecl*)(int,int,int,int)>(0x40ded0)(format,mode,count,texture);
+    textBatch.begun(result!=0 && *reinterpret_cast<uint32_t*>(0x8daf6c)==0 &&
+                    *reinterpret_cast<uint32_t*>(0x8daf00)!=0);
+    return result;
+}
+extern "C" __declspec(noinline) void __cdecl EndTextBatchHook() {
+    textBatch.finish(reinterpret_cast<void(__cdecl*)()>(0x40e100));
+}
+extern "C" __declspec(noinline) void __cdecl BindTextTextureHook(int texture) {
+    textBatch.bind(texture,*reinterpret_cast<uint8_t*>(0x9e88bc),
+                   reinterpret_cast<void(__cdecl*)()>(0x40e100),
+                   reinterpret_cast<void(__cdecl*)(int)>(0x40fc20));
+}
 struct Patch { uintptr_t address; std::vector<unsigned char> before,after; };
 static bool write(uintptr_t address,const std::vector<unsigned char>& bytes) {
     DWORD old=0,ignored=0;
@@ -401,6 +435,10 @@ static void install() {
         patches.push_back({c.instruction,before,after});
     }
     auto call=[&](uintptr_t a,std::initializer_list<unsigned char> b,const void* fn) { patches.push_back({a,b,branch(a,fn,b.size(),0xe8)}); };
+    call(0x610efd,{0xe8,0xce,0xcf,0xdf,0xff},BeginTextBatchHook);
+    patches.push_back({0x610fa8,{0xe9,0x53,0xd1,0xdf,0xff},branch(0x610fa8,EndTextBatchHook,5,0xe9)});
+    call(0x6125c1,{0xe8,0x5a,0xd6,0xdf,0xff},BindTextTextureHook);
+    call(0x612677,{0xe8,0xa4,0xd5,0xdf,0xff},BindTextTextureHook);
     call(0x43e663,{0xe8,0x18,0x20,0x10,0x00},bsHook);
     call(0x583bb5,{0xe8,0x26,0xc9,0xff,0xff},pdaHook);
     call(0x611885,{0xe8,0x66,0xeb,0xff,0xff},modeHook);
@@ -451,6 +489,7 @@ static void install() {
         }
         ++done;
     }
+    log("TEXT batch texture-transition flush installed; normal pass only");
     log("HOOKS installed; FusionFix TextAtPointer/TextAtValue sites untouched; runtime acceptance pending");
 }
 
@@ -471,17 +510,67 @@ extern "C" __declspec(dllexport) int __cdecl LocalizationStatus() { return statu
 // Offline harness exercises only owned data/memory, never game addresses.
 extern "C" __declspec(dllexport) int __cdecl LocalizationSelfTest(const wchar_t* path) {
     try {
+        glyph_batch::State batch;
+        uint8_t pending=0; std::string calls;
+        auto end=[&]() { calls+="E"; };
+        auto bind=[&](int texture) { calls+=std::to_string(texture); };
+        batch.bind(1,pending,end,bind);
+        if(calls!="1" || pending || batch.active) return 43;
+        batch.begun(true); batch.bind(2,pending,end,bind);
+        if(calls!="1E2" || pending!=1 || batch.active) return 44;
+        pending=0; batch.begun(false); batch.bind(3,pending,end,bind);
+        if(calls!="1E23" || pending) return 45;
+        batch.begun(true); batch.finish(end);
+        if(calls!="1E23E" || batch.active) return 46;
         auto data=readFile(path); auto parsed=parse(data);
         if(parsed.bs.empty()||parsed.pda.empty()) return 1;
-        if(data[3]=='2') {
-            size_t exeAt=20;
+        if(data[3]=='2' || data[3]=='3') {
+            size_t exeAt=data[3]=='3'?24:20;
             for(const auto& t:parsed.bs) exeAt+=12+t.source.size()+t.target.size();
             for(const auto& t:parsed.pda) exeAt+=12+t.source.size()+t.target.size();
             size_t exeBytes=0;
             for(const auto& t:parsed.exe) exeBytes+=12+t.source.size()+t.target.size();
+            const size_t aliasAt=exeAt+exeBytes;
+            size_t aliasBytes=0;
+            for(const auto& t:parsed.bs) for(const auto& a:t.aliases) aliasBytes+=8+a.size();
             auto legacyPack=data;
+            if(data[3]=='3') {
+                legacyPack.erase(legacyPack.begin()+aliasAt,legacyPack.begin()+aliasAt+aliasBytes);
+                auto slp2=legacyPack;
+                slp2.erase(slp2.begin()+20,slp2.begin()+24); slp2[3]='2';
+                if(parse(slp2).bs.size()!=parsed.bs.size()) return 40;
+                // Exercise malformed sparse alias records through the real parser.
+                auto aliasFixture=[&](const std::vector<std::pair<uint32_t,std::string>>& aliases) {
+                    std::vector<unsigned char> value(data.begin(),data.begin()+aliasAt);
+                    const uint32_t count=static_cast<uint32_t>(aliases.size());
+                    memcpy(value.data()+20,&count,4);
+                    auto append=[&](uint32_t n) { const auto b=reinterpret_cast<const unsigned char*>(&n); value.insert(value.end(),b,b+4); };
+                    for(const auto& a:aliases) {
+                        append(a.first); append(static_cast<uint32_t>(a.second.size()));
+                        value.insert(value.end(),a.second.begin(),a.second.end());
+                    }
+                    value.insert(value.end(),data.begin()+aliasAt+aliasBytes,data.end());
+                    return value;
+                };
+                auto rejected=[&](const std::vector<std::pair<uint32_t,std::string>>& aliases) {
+                    try { parse(aliasFixture(aliases)); return false; } catch(const std::exception&) { return true; }
+                };
+                const auto& first=parsed.bs.front();
+                if(!rejected({{0,"not-a-source"}}) || !rejected({{first.index,first.source}}) ||
+                   !rejected({{first.index,""}}) || !rejected({{first.index,std::string("a\0b",3)}}) ||
+                   !rejected({{first.index,std::string(4097,'x')}}) ||
+                   !rejected({{first.index,"alias"},{first.index,"alias"}})) return 47;
+                std::vector<std::pair<uint32_t,std::string>> excess;
+                for(uint32_t i=0;i<8;++i) excess.push_back({first.index,"alias"+std::to_string(i)});
+                if(!rejected(excess)) return 48;
+                auto badCount=aliasFixture({}); uint32_t count=static_cast<uint32_t>(parsed.bs.size()*7+1);
+                memcpy(badCount.data()+20,&count,4);
+                try { parse(badCount); return 49; } catch(const std::exception&) {}
+                auto shortAlias=aliasFixture({{first.index,"alias"}}); shortAlias.resize(aliasAt+9);
+                try { parse(shortAlias); return 50; } catch(const std::exception&) {}
+            }
             legacyPack.erase(legacyPack.begin()+exeAt,legacyPack.begin()+exeAt+exeBytes);
-            legacyPack.erase(legacyPack.begin()+16,legacyPack.begin()+20);
+            legacyPack.erase(legacyPack.begin()+16,legacyPack.begin()+(data[3]=='3'?24:20));
             legacyPack[3]='1';
             if(!parse(legacyPack).exe.empty()) return 37;
             if(!parsed.exe.empty()) {
@@ -492,7 +581,15 @@ extern "C" __declspec(dllexport) int __cdecl LocalizationSelfTest(const wchar_t*
                 try { parse(badLiteral); return 39; } catch(const std::exception&) {}
             }
         }
+        const Text matchFixture{1,"Primary","",{"Alias","Alias!"}};
+        if(!matchesText("Primary",matchFixture) || !matchesText("Alias!",matchFixture) ||
+           matchesText("Alias!!",matchFixture) || matchesText("Alia",matchFixture) ||
+           matchesText(nullptr,matchFixture)) return 51;
         for(const auto& item:parsed.bs) {
+            if(!matchesText(item.source.c_str(),item)) return 41;
+            for(const auto& alias:item.aliases) {
+                if(!matchesText(alias.c_str(),item)) return 42;
+            }
             const char* p=item.target.c_str(); while(*p) p=nextGlyph(p);
             if(p!=item.target.c_str()+item.target.size()) return 2;
         }

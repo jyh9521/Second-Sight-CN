@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "primary": "en-GB",
+  "table_slots": 6526,
+  "sources": [
+    {
+      "id": "en-GB",
+      "archive": "pak/arcade/l_103.pak",
+      "member": "data/strsspxe.bs",
+      "size": 237400,
+      "sha256": "e72b56066e8b68fb23ac2833b58376a18a506503e02e83864727eef1fbc03a7d"
+    },
+    {
+      "id": "en-US",
+      "archive": "pak/arcade/l_103.pak",
+      "member": "data/strssnxa.bs",
+      "size": 237385,
+      "sha256": "78e8e6959c3bdfa193985301602fbe37f6eb6f09b4d4846a16439f208f441230"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "locale": "zh-CN",
+  "source": "User screenshots of package 006",
+  "cases": [
+    {"name": "screenshot-1", "expected": "选择档案", "observed_baseline": "选预档案"},
+    {"name": "screenshot-2", "expected": "新游戏", "observed_baseline": "新人戏"},
+    {"name": "screenshot-3", "expected": "退出", "observed_baseline": "往出"},
+    {"name": "screenshot-4", "expected": "选择关卡", "observed_baseline": "徒择关卡"},
+    {"name": "screenshot-5", "expected": "观看过场动画", "observed_baseline": "观看过自礼画"},
+    {"name": "screenshot-6", "expected": "选择难度", "observed_baseline": "徒择抑度"}
+  ]
+}

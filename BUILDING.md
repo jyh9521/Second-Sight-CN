@@ -200,3 +200,25 @@ python -X utf8 tools/verify_poc.py evidence --out build/pda-evidence-005
 ```
 
 证据输出须尚不存在。005 的五处局部契约见[历史文本研究](docs/research/TEXT_CONTRACTS_005.md)。当前字体容量、自有 wrap、组合终端、调用者白名单与模板预算见[全量容量研究](docs/research/FULL_TEXT_CAPACITY.md)，当前交付范围见[全量文本记录](docs/FULL_LOCALIZATION.md)。
+
+## 007 原生指令错字回归
+
+依赖增加固定 `unicorn==2.1.4`。`build_runtime.ps1` 同时输出自有模块的 `.map`，回放从MAP定位已编译的三个批次钩子，不复写一套Python修复逻辑。仅把用户原版EXE映射进离线CPU模拟器；不在Windows启动、附加或操作游戏。
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1 -Out build/runtime-007
+python -X utf8 tools/replay_glyph_batches.py --exe "$Game/secondsight.EXE" --manifest build/locale-zh-CN/manifest.json --mode baseline --out build/glyph-007/native-baseline.json
+python -X utf8 tools/replay_glyph_batches.py --exe "$Game/secondsight.EXE" --manifest build/locale-zh-CN/manifest.json --mode modified --asi build/runtime-007/SecondSight.Localization.asi --map build/runtime-007/SecondSight.Localization.map --out build/glyph-007/native-modified.json
+```
+
+基线故意退出2并重现截图错字；修改后退出0。回放覆盖六个截图文本、六页交替、Latin/空格、裁剪、阴影和空遍历。普通批次补丁不延伸至记录模式；详见[研究记录](docs/research/TEXT_BATCH_007.md)。
+
+
+为修复建立四件证据与独立回滚副本（`$Evidence`须为新的build子目录，先保存修改前自有`localization.cpp`为其中的`BASELINE.cpp`）：
+
+```powershell
+python -X utf8 tools/verify_glyph_fix.py prepare --out $Evidence --game-root $Game --baseline-package dist/poc-zh-CN-006 --runtime build/runtime-007 --locale-build build/locale-zh-CN
+python -X utf8 tools/verify_glyph_fix.py evidence --out $Evidence
+```
+
+证据脚本依次运行基线（预期退出2）、修改（0）、隔离回滚（0），并回读全部产物。再次验证修改产物可单独使用 `modified` 子命令；不要对已回滚副本重复执行首次回滚操作。

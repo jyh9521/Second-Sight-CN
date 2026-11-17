@@ -19,6 +19,10 @@ EXPECTED_SIZE = 5_484_544
 MARKER_SITES = (0x610A96, 0x6119F3, 0x611A59, 0x611D1B, 0x611D58, 0x612561)
 PROTECTED_ENTRIES = (0x612BC0, 0x613330)
 PATCH_SITES = {
+    "text_batch_begin": (0x610EFD, "e8cecfdfff"),
+    "text_batch_end_tail": (0x610FA8, "e953d1dfff"),
+    "text_page_bind": (0x6125C1, "e85ad6dfff"),
+    "text_latin_bind": (0x612677, "e8a4d5dfff"),
     "terminal_compose_esi_call": (0x5D0643, "e838ffffff"),
     "terminal_compose_edi_call": (0x5D06FB, "e880feffff"),
     "localized_wrap_entry": (0x611C70, "81ec04020000"),

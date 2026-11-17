@@ -4,10 +4,23 @@ import json
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"tools"))
-from build_locale import encode,decode,dxt3
+from build_locale import encode,decode,dxt3,blob,pack_runtime
 
 
 class EncodingTests(unittest.TestCase):
+    def test_slp3_source_alias_section_precedes_resources(self):
+        primary=struct.pack('<I',7)+blob(b'Primary')+blob(b'Target')
+        pda=struct.pack('<I',9)+blob(b'PDA')+blob(b'Target')
+        exe=struct.pack('<I',2)+blob(b'Exit')+blob(b'Target')
+        raw=pack_runtime([primary],[pda],[exe],[('file.dds',b'payload')],{7:[b'Alternate']})
+        self.assertEqual(raw[:24],b'SLP3'+struct.pack('<IIIII',1,1,1,1,1))
+        alias_at=24+len(primary)+len(pda)+len(exe)
+        self.assertEqual(raw[24:alias_at],primary+pda+exe)
+        self.assertEqual(raw[alias_at:],struct.pack('<I',7)+blob(b'Alternate')+blob(b'file.dds')+blob(b'payload'))
+
+    def test_slp3_without_aliases_keeps_empty_section(self):
+        self.assertEqual(pack_runtime([],[],[],[],{}),b'SLP3'+struct.pack('<IIIII',0,0,0,0,0))
+
     def test_all_visible_characters_are_tokens(self):
         glyphs={"中":0,",":1,"5":2,"A":3}
         raw=encode("中,5 A\n中",glyphs)

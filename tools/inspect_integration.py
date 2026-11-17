@@ -17,7 +17,8 @@ def inspect(exe: Path, checkout: Path) -> dict:
     for name in ['dllmain.cpp','Camera.ixx','ComVars.ixx','Cutscenes.ixx','Hud.ixx','Misc.ixx','Movies.ixx','Renderer.ixx','Resolution.ixx','ResolutionHooks.cpp','Window.ixx']:
         sources[name]=subprocess.check_output(['git','-C',str(checkout),'show',f'{PIN}:source/SecondSight.FusionFix/{name}'])
     rows=contracts(transform(mapped_game(exe)))
-    spans=[(0x611c70,6),(0x5d0643,5),(0x5d06fb,5)]
+    spans=[(0x611c70,6),(0x5d0643,5),(0x5d06fb,5),
+           (0x610efd,5),(0x610fa8,5),(0x6125c1,5),(0x612677,5)]
     spans += [(int(r['va'],16),len(bytes.fromhex(r['before']))) for r in profile['atlas']['patches']]
     literal=json.loads((ROOT/'assets/exe-text-contracts.json').read_text(encoding='utf-8'))
     spans += [(int(r['patch_va'],16),len(bytes.fromhex(r['expected']))) for r in literal['records']]

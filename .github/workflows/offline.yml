@@ -16,11 +16,14 @@ jobs:
       - run: python -X utf8 tools/audit_coverage.py --locale-dir locales/zh-CN
       - run: python -X utf8 tools/inspect_renderer.py --self-test
       - run: powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1
-      - run: python -X utf8 tools/make_host_fixture.py build/synthetic/locale.bin
+      - run: python -X utf8 tools/make_host_fixture.py build/synthetic/locale-slp2.bin --format SLP2
+      - run: python -X utf8 tools/make_host_fixture.py build/synthetic/locale-slp3.bin --format SLP3
       - shell: pwsh
         run: |
-          & .\build\runtime\localization_host.exe "$PWD\build\runtime\SecondSight.Localization.asi" "$PWD\build\synthetic\locale.bin"
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          foreach ($format in @('slp2', 'slp3')) {
+            & .\build\runtime\localization_host.exe "$PWD\build\runtime\SecondSight.Localization.asi" "$PWD\build\synthetic\locale-$format.bin"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
       - shell: pwsh
         run: |
           & .\build\runtime\compatibility_host.exe "$PWD\build\runtime\SecondSight.Compatibility.asi"

@@ -7,11 +7,12 @@ import re
 from pathlib import Path
 import struct
 
-from assess_resources import Pak, StringTable, require
+from assess_resources import Pak, require
 from pda_resources import PdaResource, Replacement, GlyphMarker
 from translation_checks import check_locale
 from font_dependencies import read_config, dependency, notice
 from locale_catalog import load_catalog, bind_sources, catalog_files
+from source_variants import load_tables, aliases_for, pack_aliases
 from text_transport import parts, check_contract, expanded_budget, bs_limit, bs_expanded_limit, DEFERRED_BS_IDS, COMPOSED_BS_IDS, UNRESOLVED_BS_IDS
 import ui_textures
 import exe_texts
@@ -98,6 +99,15 @@ def blob(value: bytes) -> bytes:
     return struct.pack("<I", len(value)) + value
 
 
+def pack_runtime(bs_records: list[bytes], pda_records: list[bytes], exe_records: list[bytes],
+                 resources: list[tuple[str, bytes]], aliases: dict[int, list[bytes]]) -> bytes:
+    alias_count, alias_records = pack_aliases(aliases)
+    # SLP3 retains SLP2 text records and adds source-only aliases before resources.
+    packed = b'SLP3' + struct.pack('<IIIII', len(bs_records), len(pda_records), len(resources), len(exe_records), alias_count)
+    packed += b''.join(bs_records) + b''.join(pda_records) + b''.join(exe_records) + alias_records
+    return packed + b''.join(blob(name.encode('ascii')) + blob(payload) for name, payload in resources)
+
+
 def build(game: Path, locale: str, out: Path) -> dict:
     require(re.fullmatch(r"[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*",locale) is not None,"invalid locale identifier")
     require(not out.resolve().is_relative_to(game.resolve()),"output must be outside original game")
@@ -110,10 +120,14 @@ def build(game: Path, locale: str, out: Path) -> dict:
     require(font_config['locale']==locale,"font locale mismatch")
     ui_rows=ui_textures.load(ROOT/'locales'/locale)
     ui_sources={r['contract']['name']:[] for r in ui_rows}
-    source = Pak((game/"pak/arcade/l_103.pak").read_bytes()).member("data/strsspxe.bs")
-    require(digest(source) == BS_SHA, "unsupported BS input")
-    table = StringTable(source)
-    require(all(bytes([MARKER]) not in text for text in table.strings),"glyph marker collides with original BS")
+    variant_path = ROOT/'assets/source-variants.json'
+    variant_profile = json.loads(variant_path.read_text(encoding='utf-8'))
+    variant_tables = load_tables(game, variant_profile)
+    table = variant_tables[variant_profile['primary']]
+    primary_identity = next(source for source in variant_profile['sources'] if source['id'] == variant_profile['primary'])
+    require(primary_identity['sha256'] == BS_SHA, 'primary BS catalog identity mismatch')
+    require(all(bytes([MARKER]) not in text for variant in variant_tables.values() for text in variant.strings),
+            "glyph marker collides with original BS")
     # Find one PDA mirror deterministically and verify all matching copies before using it.
     pda_sources = []
     for archive in sorted((game/"pak").rglob("*.pak")):
@@ -129,6 +143,7 @@ def build(game: Path, locale: str, out: Path) -> dict:
     ui_textures.validate_sources(ui_rows,ui_sources)
     pda = PdaResource(pda_sources[0])
     data = bind_sources(data, table.strings, {k:s.text for k,s in pda.segments.items() if s.text})
+    source_aliases = aliases_for(data['bs'], variant_profile, variant_tables)
     data = exe_texts.bind(data,(game/'secondsight.EXE').read_bytes())
     coverage_report = None
     if data.get('coverage',{}).get('bs')=='complete_table_inventory':
@@ -190,8 +205,7 @@ def build(game: Path, locale: str, out: Path) -> dict:
     resources = [(f"textures/localization/page{i}.dds", payload) for i,payload in enumerate(atlas)]
     for i,row in enumerate(ui_rows):
         resources.append((row['contract']['name'],ui_textures.render(row,font,out/f'ui-preview-{i}.png')))
-    packed = b"SLP2" + struct.pack("<IIII",len(bs_records),len(pda_records),len(resources),len(exe_records)) + b"".join(bs_records) + b"".join(pda_records) + b''.join(exe_records)
-    packed += b"".join(blob(name.encode("ascii"))+blob(payload) for name,payload in resources)
+    packed = pack_runtime(bs_records, pda_records, exe_records, resources, source_aliases)
     (out/"locale.bin").write_bytes(packed)
     (out/"OFL.txt").write_bytes(license_file.read_bytes())
     (out/"FONT-NOTICE.txt").write_text(notice(font_config),encoding="utf-8",newline="\n")
@@ -215,7 +229,13 @@ def build(game: Path, locale: str, out: Path) -> dict:
                                 composed_ids=sorted(COMPOSED_BS_IDS & {r['id'] for r in data['bs']}),
                                 deferred_status='complete target retained; original BS pointer preserved; only audited long-wrap callers may substitute; unobserved consumers pending')
     manifest['atlas_layout']=dict(page_count=6,width=512,height=512,cell=16,glyph_slots=6144,reserved_ids=[178,184])
-    manifest['pack_format']='SLP2'
+    manifest['pack_format']='SLP3'
+    manifest['source_variants']=dict(profile_sha256=digest(variant_path.read_bytes()),
+                                    primary=variant_profile['primary'],table_slots=variant_profile['table_slots'],
+                                    sources=variant_profile['sources'],alias_count=sum(map(len,source_aliases.values())),
+                                    bs_aliases={str(identifier):[digest(value) for value in values]
+                                                for identifier,values in sorted(source_aliases.items())},
+                                    matching='exact source bytes at identical BS ID; shared target; no fuzzy matching')
     manifest['exe_text_ids']=[r['id'] for r in data['exe']]
     manifest['exe_text_contracts_sha256']=digest((ROOT/'assets/exe-text-contracts.json').read_bytes())
     manifest['ui_textures']=[dict(name=r['contract']['name'],source_sha256=r['contract']['source_sha256'],

@@ -11,7 +11,7 @@ $build = @"
 @echo off
 call "$vcvars" >nul
 if errorlevel 1 exit /b 1
-cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /LD /utf-8 /Brepro "$root\src\localization.cpp" /link /DEF:"$root\src\localization.def" /OUT:"$output\SecondSight.Localization.asi" /INCREMENTAL:NO /Brepro advapi32.lib
+cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /LD /utf-8 /Brepro "$root\src\localization.cpp" /link /DEF:"$root\src\localization.def" /OUT:"$output\SecondSight.Localization.asi" /MAP:"$output\SecondSight.Localization.map" /INCREMENTAL:NO /Brepro advapi32.lib
 if errorlevel 1 exit /b 1
 cl /nologo /std:c++17 /W4 /WX /O2 /MT /EHsc /utf-8 /Brepro "$root\tests\localization_host.cpp" /link /OUT:"$output\localization_host.exe" /INCREMENTAL:NO /Brepro
 if errorlevel 1 exit /b 1

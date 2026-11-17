@@ -1,6 +1,6 @@
-# 006 加载挂起：用户反馈与证据
+# 006 加载等待：历史报告与更正
 
-2026-11-17 用户报告006打开后一直停在加载状态、无响应。该报告是运行时失败，不能用先前离线测试通过替代。
+2026-11-17 用户最初报告006停在加载状态、无响应，随后明确更正：游戏没有卡住，等待加载后可以进入。当前报告转为汉字错乱，见[007修复记录](GLYPH_FIX_007.md)。以下事件、转储和旧排查路线保留为历史证据，不再要求采集新的前台转储，也不据历史Application Hang事件认定持续死锁。
 
 ## 已观察
 
@@ -30,9 +30,9 @@
 
 美式资源SHA-256为`78e8e6959c3bdfa193985301602fbe37f6eb6f09b4d4846a16439f208f441230`，转储原始字符串池完整211281字节与它一致。5957条记录为5867条译文完全相等、71条美式原文未绑定、19条预期延迟项。71条内存保护与边界检查均通过，失败条件只有源文内容不等。
 
-英／美资源共73条差异，另外两条为延迟项314、3647；3647还会使五段组合终端的严格源文比较失败。下一轮模块修改应为已校验的英／美源文建立显式变体契约，共用译文，覆盖直接、延迟和组合消费者；不模糊匹配或强改游戏语言配置。**这是漏绑定缺陷，尚无证据将其归因为加载挂起，本轮未改006运行文件。**
+英／美资源共73条差异，另外两条为延迟项314、3647；3647还会使五段组合终端的严格源文比较失败。007已为已校验的英／美源文建立显式变体契约，共用译文，覆盖直接、延迟和组合消费者；不模糊匹配或强改游戏语言配置。**这是漏绑定缺陷，尚无证据将其归因为加载挂起，006运行文件保持原样。**
 
-## 转储工具与下一步
+## 转储工具与历史采集方案（本次不再需要）
 
 读取器新增可选异常流、ThreadList、x86/AMD64上下文。`--wow64`显式选择AMD64 TEB TLS[1]+4恢复方式，参照[Microsoft布局说明](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-wow64_context)及[LLDB对应方法](https://lldb.llvm.org/cpp_reference/MinidumpParser_8cpp_source.html)。布局保留版本敏感性；缺失内存或未知上下文标记保持unknown。
 
@@ -42,13 +42,13 @@ python -X utf8 tools/minidump_reader.py --dump "$env:LOCALAPPDATA/Temp/secondsig
 
 旧读取器在这份转储上`KeyError: 6`、退出1；新读取器输出`RECORDED DUMP: exception=absent; threads=17; x86_contexts=17; memory_ranges=647; no target execution`、退出0。独立副本回滚恢复原错误和退出1，修改产物保留。**这是读取器回归，不是游戏挂起修复。**
 
-下一份证据需在游戏保持前台时取得。`tools/collect_hang_dump.ps1`供用户手动执行：精确选择已运行的一个EXE路径，等待连续前台8秒，采两份快照、相隔至少5秒，记录采集前后是否仍在前台。不启动、退出、调试附加或激活窗口；输出目录及文件必须不存在。调用[MiniDumpWriteDump](https://learn.microsoft.com/windows/win32/api/minidumpapiset/nf-minidumpapiset-minidumpwritedump)时使用查询/读取权限。采集本身可能短暂停顿，勿将其当作原故障。
+以下是用户更正前准备的方案；本次不执行，也不要求用户执行。`tools/collect_hang_dump.ps1`供用户手动执行：精确选择已运行的一个EXE路径，等待连续前台8秒，采两份快照、相隔至少5秒，记录采集前后是否仍在前台。不启动、退出、调试附加或激活窗口；输出目录及文件必须不存在。调用[MiniDumpWriteDump](https://learn.microsoft.com/windows/win32/api/minidumpapiset/nf-minidumpapiset-minidumpwritedump)时使用查询/读取权限。采集本身可能短暂停顿，勿将其当作原故障。
 
 ```powershell
 # 仅由用户执行；OutputDirectory须不存在
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/collect_hang_dump.ps1 -ExpectedExecutable "$PWD/dist/poc-zh-CN-006/game/secondsight.EXE" -OutputDirectory "$PWD/build/hang-006-foreground"
 ```
 
-自动化仅运行`-SelfTest`编译声明与检查路径，未执行采集分支。根因仍未建立，没有针对前台故障的红/绿复现入口，不制作猜测性007。005/006测试包及原安装均未改动。
+自动化仅运行`-SelfTest`编译声明与检查路径，未执行采集分支。该轮没有针对前台故障的红/绿证据，所以当时没有制作猜测性修复。后续007针对的是截图错字，已有独立原生指令红/绿回放；不是“挂起修复”。
 
 本地证据在`build/hang-006-20261117/`：原事件和日志保留；`dump-analysis/`保存线程、原始字段与读取器BASELINE/MODIFIED/ROLLBACK证据；`dump-analysis-bs/`保存可复现比对脚本和逐条hash。原DMP保留用户给定位置，仅计算hash与读取，不复制或上传。

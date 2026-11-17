@@ -580,6 +580,22 @@
         "size": 5
       },
       {
+        "address": "0x610efd",
+        "size": 5
+      },
+      {
+        "address": "0x610fa8",
+        "size": 5
+      },
+      {
+        "address": "0x6125c1",
+        "size": 5
+      },
+      {
+        "address": "0x612677",
+        "size": 5
+      },
+      {
         "address": "0x612595",
         "size": 6
       },
@@ -620,7 +636,7 @@
     "matched_patterns": 27,
     "pattern_code_envelope": 96,
     "startup_view": "after four existing compatibility contracts; original disk unchanged",
-    "result": "PASS: 27 pinned game-pattern envelopes are disjoint from 12 new code spans",
+    "result": "PASS: 27 pinned game-pattern envelopes are disjoint from 16 new code spans",
     "scope": "static write-site audit, not runtime module-order or device acceptance",
     "nearest_text_hooks": [
       "0x612BC0",
@@ -1101,5 +1117,34 @@
         "capacity": "The known mail renderer supports long bodies, but 5494 is not selected there. Do not replace the selected 5184 with 5494 to manufacture a consumer."
       }
     ]
+  },
+  "text_batch": {
+    "mode": "normal text pass only; exclude recording mode",
+    "begin_call": "0x00610EFD",
+    "end_tail": "0x00610FA8",
+    "page_bind_call": "0x006125C1",
+    "latin_bind_call": "0x00612677",
+    "before": [
+      "e8cecfdfff",
+      "e953d1dfff",
+      "e85ad6dfff",
+      "e8a4d5dfff"
+    ],
+    "remaining_count": "0x009E88B8",
+    "pending_begin": "0x009E88BC",
+    "recording_mode": "0x008DAF6C",
+    "vertex_cursor": "0x008DAF00",
+    "actual_vertex_count": "0x008DAF14",
+    "native_begin": "0x0040DED0",
+    "native_end": "0x0040E100",
+    "native_bind": "0x0040FC20",
+    "flush_order": [
+      "clear owned active flag",
+      "submit old-page vertices",
+      "set native pending_begin=1",
+      "bind new texture"
+    ],
+    "count_owner": "native glyph callback; never adjusted by hook",
+    "proof": "original x86 callbacks plus compiled ASI hook replay; no game execution"
   }
 }
