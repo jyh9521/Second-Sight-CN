@@ -11,10 +11,44 @@
 - 006无新崩溃转储，当前发现的5个CrashDumps文件均早于此次006运行；没有把003的旧访问异常当成新挂起根因
 - 检查时游戏进程已结束。自动化未启动、关闭、重启或附加游戏，也未改动006
 
-## 当前结论与下一步
+## 14:59 转储：已收到并离线读取
 
-已确认加载阶段挂起，根因尚未建立。缺少挂起时的线程堆栈，因此当前没有能针对该挂起红/绿切换的离线复现入口，也没有宣布修复。保留现有包，不通过更换模组、删减全量译文或改窗口模式试猜。
+用户提供`secondsight.DMP`，304,925,013字节，SHA-256为`d8d542b1331ce2469530a45040a38daa7186417661bc2691d6ddb4571ef04e3c`。模块路径明确指向006，三个模组均存在。读取到17个线程、647个内存区间；没有ExceptionStream，这是手动状态快照，不是异常崩溃记录。
 
-请用户在其手动运行再次卡住时，仅对 `secondsight.EXE` 创建用户态内存转储，并提供本地路径。任务管理器的“详细信息”页右键目标进程，选择“创建内存转储文件”；参照[Microsoft操作说明](https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/support-tools-task-manager)。无需系统内核转储，也无需上传文件至GitHub。
+### 已观察：采样时主循环暂停等待
 
-本地证据在 `build/hang-006-20261117/`：3份日志快照、ApplicationHang事件XML、`diagnosis.json`（输入hash、事实与未决项）。这些文件只留在忽略目录。收到转储后先读取所有线程与模块身份，再建立针对已定位路径的复现和回归；不将日志计数或一般宿主测试冒称挂起已修复。
+- 主线程ID4252，WOW64上下文位于`0xAF544`，EIP在`ntdll!ZwDelayExecution+0xC`
+- 有效栈段为`SleepEx → Sleep → secondsight.EXE+0x246592`。帧循环`0x646550`中的调用点`0x64658E`记录字节为`6A 64 FF D5`，参数100毫秒；未停在汉化函数内
+- 状态对象`0x9FE900`的`+0x1EA=0`、`+0x1EC=1`、`+0x1F0=1`、`+0x1F4=1`、`+0x1F8=0`。`0x643FF0`读取`+0x1F0`并判断是否大于0，该分支解释这次休眠
+- FusionFix仍配置`WindowMode=2`、`PauseOnFocusLoss=1`；**用户明确确认采集时已切到任务管理器，游戏在后台**
+
+推断：这次采样符合切后台后的暂停，不能据此解释前台加载故障，也不能排除任何模组。优化代码把EBP用作普通寄存器，简单EBP链在Sleep返回后失效；不将栈内任意模块地址当成完整调用栈。
+
+### 已验证的独立缺陷：英／美源文变体导致71条未绑定
+
+转储语言索引`*(int*)0x875E80=1`，后缀表`0x875EB0`选择`nxa.bs`，实际加载`data/strssnxa.bs`。006构建却只核对英式`data/strsspxe.bs`。
+
+美式资源SHA-256为`78e8e6959c3bdfa193985301602fbe37f6eb6f09b4d4846a16439f208f441230`，转储原始字符串池完整211281字节与它一致。5957条记录为5867条译文完全相等、71条美式原文未绑定、19条预期延迟项。71条内存保护与边界检查均通过，失败条件只有源文内容不等。
+
+英／美资源共73条差异，另外两条为延迟项314、3647；3647还会使五段组合终端的严格源文比较失败。下一轮模块修改应为已校验的英／美源文建立显式变体契约，共用译文，覆盖直接、延迟和组合消费者；不模糊匹配或强改游戏语言配置。**这是漏绑定缺陷，尚无证据将其归因为加载挂起，本轮未改006运行文件。**
+
+## 转储工具与下一步
+
+读取器新增可选异常流、ThreadList、x86/AMD64上下文。`--wow64`显式选择AMD64 TEB TLS[1]+4恢复方式，参照[Microsoft布局说明](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-wow64_context)及[LLDB对应方法](https://lldb.llvm.org/cpp_reference/MinidumpParser_8cpp_source.html)。布局保留版本敏感性；缺失内存或未知上下文标记保持unknown。
+
+```powershell
+python -X utf8 tools/minidump_reader.py --dump "$env:LOCALAPPDATA/Temp/secondsight.DMP" --wow64 --out build/hang-006-20261117/dump-analysis/threads.json
+```
+
+旧读取器在这份转储上`KeyError: 6`、退出1；新读取器输出`RECORDED DUMP: exception=absent; threads=17; x86_contexts=17; memory_ranges=647; no target execution`、退出0。独立副本回滚恢复原错误和退出1，修改产物保留。**这是读取器回归，不是游戏挂起修复。**
+
+下一份证据需在游戏保持前台时取得。`tools/collect_hang_dump.ps1`供用户手动执行：精确选择已运行的一个EXE路径，等待连续前台8秒，采两份快照、相隔至少5秒，记录采集前后是否仍在前台。不启动、退出、调试附加或激活窗口；输出目录及文件必须不存在。调用[MiniDumpWriteDump](https://learn.microsoft.com/windows/win32/api/minidumpapiset/nf-minidumpapiset-minidumpwritedump)时使用查询/读取权限。采集本身可能短暂停顿，勿将其当作原故障。
+
+```powershell
+# 仅由用户执行；OutputDirectory须不存在
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/collect_hang_dump.ps1 -ExpectedExecutable "$PWD/dist/poc-zh-CN-006/game/secondsight.EXE" -OutputDirectory "$PWD/build/hang-006-foreground"
+```
+
+自动化仅运行`-SelfTest`编译声明与检查路径，未执行采集分支。根因仍未建立，没有针对前台故障的红/绿复现入口，不制作猜测性007。005/006测试包及原安装均未改动。
+
+本地证据在`build/hang-006-20261117/`：原事件和日志保留；`dump-analysis/`保存线程、原始字段与读取器BASELINE/MODIFIED/ROLLBACK证据；`dump-analysis-bs/`保存可复现比对脚本和逐条hash。原DMP保留用户给定位置，仅计算hash与读取，不复制或上传。

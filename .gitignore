@@ -29,6 +29,9 @@ settings.local.*
 *.log
 logs/
 
+# Recorded user process memory stays local, including manual captures.
+*.[dD][mM][pP]
+
 # Python
 __pycache__/
 *.py[cod]
