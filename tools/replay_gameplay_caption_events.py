@@ -58,6 +58,7 @@ class Replay:
         self.rollback_bytes_verified = False
         self.heap_next = 0x21000000
         self.payloads = {2473: b'\x1f0001' * glyphs, 2508: b'\x1f0002' * glyphs}
+        self.text_addresses = {2473: TEXT, 2508: TEXT + 0x2000}
         self.w(0x8BB378, 1)
         self.f(0x8BB380, 1)
         self.w(0x91C88C, 1)
@@ -207,7 +208,7 @@ class Replay:
         esp = u.reg_read(UC_X86_REG_ESP)
         if self.symbols and address == self.symbols['GameplayCaptionLookup']:
             bs = self.rd(esp + 4)
-            self.ret({2473: TEXT, 2508: TEXT + 0x2000}.get(bs, 0))
+            self.ret(self.text_addresses.get(bs, 0))
             return
         if self.symbols and address in (self.symbols['malloc'], self.symbols['free'], self.symbols['atexit']):
             result = 0

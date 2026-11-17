@@ -2,6 +2,7 @@
 // Locale-neutral speech-event state. No game pointers are dereferenced here.
 #include <array>
 #include <cstdint>
+#include <limits>
 namespace gameplay_captions {
 struct Voice {
     std::uintptr_t owner{};
@@ -10,6 +11,11 @@ struct Voice {
     const char* text{};
     std::uint64_t sequence{};
 };
+// -1 is the native duration-driven cue sentinel, not a pending audio handle.
+inline bool timedCue(int handle, std::uint32_t flags, float remaining) {
+    return handle == -1 && (flags & 8) != 0 && remaining > 0.0f &&
+        remaining <= (std::numeric_limits<float>::max)();
+}
 struct State {
     std::array<Voice, 16> voices{};
     std::uint64_t serial{};
@@ -24,7 +30,7 @@ struct State {
         return nullptr;
     }
     void active(std::uintptr_t owner, std::uint32_t bs, int handle, int priority, const char* text) {
-        if (!owner || !bs || handle < 0 || !text || !*text) return;
+        if (!owner || !bs || handle < -1 || handle == 0 || !text || !*text) return;
         Voice* slot = nullptr;
         for (auto& v : voices) if (v.owner == owner) { slot = &v; break; }
         if (slot && slot->bs == bs && slot->handle == handle) return;
@@ -63,7 +69,8 @@ inline bool selfTest() {
     s.clear(); if (s.choose()) return false;
     for (std::uintptr_t i = 1; i <= 20; ++i) s.active(i, 100, 7, 1, "bounded");
     if (!s.choose()) return false;
-    s.clear(); s.active(1, 0, 7, 1, "invalid"); s.active(2, 100, -1, 1, "invalid");
-    return s.choose() == nullptr;
+    s.clear(); s.active(1, 0, 7, 1, "invalid"); s.active(2, 100, -2, 1, "invalid");
+    return s.choose() == nullptr && timedCue(-1,14,3.6f) &&
+        !timedCue(-1,4,3.6f) && !timedCue(-1,14,0.0f) && !timedCue(0,14,3.6f);
 }
 }

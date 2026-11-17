@@ -2,7 +2,7 @@
 
 > 共享构建要求见[构建规范](docs/BUILD_STANDARD.md)、[安装与恢复](docs/INSTALLATION_STANDARD.md)和[验收标准](docs/ACCEPTANCE.md)。本页保留本作实际输入、命令与历史结果；规范迁移未重建游戏产物。
 
-> 当前检查点：严格目录 51 项发现已由[编辑修复](docs/EDITORIAL_REPAIR.md)处理；新增对白字幕与过场缩放已进入 [008 完整候选](docs/CAPTION_PACKAGE_008.md)。本地保留 007/008，006 的配置/日志先保存后清理。早期采用记录与下方历史命令不倒写成最新验收。
+> 当前检查点：严格目录 51 项发现已由[编辑修复](docs/EDITORIAL_REPAIR.md)处理；当前 [009 完整候选](docs/RENDER_POLISH_009.md) 含时长型对白、无底板字幕及新版字库。本地保留 008/009，被清理的旧包资料先另存。早期采用记录与下方历史命令不倒写成最新验收。
 
 ## 新规范只读审计入口
 
@@ -45,11 +45,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1
 
 入口为 [locales/zh-CN/poc.json](locales/zh-CN/poc.json)，历史文件名不表示只构建样本。它合并菜单、story-a/b/c/d 和 PDA 目录，共 5,957 条 BS 与 PDA 68 页的 447 段；`coverage.json` 对全部 6,526 个 BS 槽逐 ID 分类，569 个原样保留项有各自理由。`ui-textures.json` 另行声明载入画面的中文位图，`exe-texts.json` 单列两条 EXE 提示，均不计入 BS/PDA 条数。
 
-构建器校验 EXE、主文本和找到的全部 `pdaps_a.raw` 副本的 hash，逐条核对原文；不接受未知版本或原文不符的数据。字体由各语言的 `font.json` 固定提交与 SHA-256；中文现用思源黑体 Regular，完整目录当前需要 1,958 字形。六张 512×512 图集每页 32×32 个 16 像素字格，跳过特殊编号 178、184 后共 6,142 个可用字位。BS 按实际消费者分为默认 255、已证终端 1,023、已证长文/延迟记录 4,095 编码字节；不是对所有 BS 一律放宽。PDA 最坏展开上限仍为 1,800，键名为 27。具体 ID、组合终端、逐行拷贝及延迟绑定见[全量容量契约](docs/research/FULL_TEXT_CAPACITY.md)。这些离线边界不是游戏布局验收。
+构建器校验 EXE、主文本和找到的全部 `pdaps_a.raw` 副本的 hash，逐条核对原文；不接受未知版本或原文不符的数据。字体由各语言的 `font.json` 固定提交与 SHA-256；中文现用思源黑体 Regular，完整目录当前需要 1,958 字形。009 六张 1024×1024 图集每页 32×32 个 32 像素字格，跳过特殊编号 178、184 后共 6,142 个可用字位。BS 按实际消费者分为默认 255、已证终端 1,023、已证长文/延迟记录 4,095 编码字节；不是对所有 BS 一律放宽。PDA 最坏展开上限仍为 1,800，键名为 27。具体 ID、组合终端、逐行拷贝及延迟绑定见[全量容量契约](docs/research/FULL_TEXT_CAPACITY.md)。这些离线边界不是游戏布局验收。
 
 | 输出 | 用途 |
 |---|---|
-| `build/locale-zh-CN/locale.bin` | SLP3 语言包（007 起采用，兼容读取 SLP2）：BS/PDA/两条 EXE 提示的原文校验记录和标记编码译文、6 张 512×512 字体 DDS + 1 张 256×64 载入提示 DDS |
+| `build/locale-zh-CN/locale.bin` | SLP3 语言包（007 起采用，兼容读取 SLP2）：BS/PDA/两条 EXE 提示的原文校验记录和标记编码译文、6 张 1024×1024 字体 DDS（009） + 1 张 256×64 载入提示 DDS |
 | `build/locale-zh-CN/manifest.json` | 输入 hash、字形映射、字体来源与资源 hash |
 | `build/locale-zh-CN/atlas-preview.png`、`ui-preview-0.png` | 第一页字形及独立生成载入提示预览，不是游戏截图 |
 | `build/locale-zh-CN/OFL.txt` | 字体原许可证，随使用图集的测试包保留 |
@@ -84,7 +84,7 @@ python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix -
 python -X utf8 tools/stage_poc.py --verify --out $Package
 ```
 
-008 已完成，后续重建必须选择更高编号；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
+009 已完成，后续重建必须选择更高编号；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
 
 HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。Compatibility、FusionFix、本地化三份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK、FusionFix 二进制及输入配置不变；输出配置仅将 `[MAIN] WindowMode` 从 `0` 改为 `2`，固定输出 hash 与 override 记录写入清单。004 起默认无边框，其余设置不变。
 
@@ -283,3 +283,17 @@ python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix -
 上述各命令退出 0；evidence 内 BASELINE=1（预期红）、MODIFIED=0、ROLLBACK=0。新增语音事件/绘制 33 项、过场几何 12 项通过；恢复副本回到 007 的 ASI/语言包 hash，原生行为恢复无新增字幕和固定像素字号。实际包内 ASI/locale 与上述冻结候选逐字节相同。
 
 原生 ABI、事件语义和回放边界以[新增字幕研究](docs/research/GAMEPLAY_CAPTIONS.md)为准；包身份、完整命令结果与保留清单见[008 记录](docs/CAPTION_PACKAGE_008.md)。这些是数据/离线资源/本地包文件验证，游戏内和正式发行验收仍未执行。
+
+
+## 009 字幕与笔画验证
+
+从仓库根目录用固定 GOG 输入执行。为独立候选目录另选递增编号，不覆盖已交付包：
+
+```powershell
+python -X utf8 tools/build_locale.py --game-root $Game --locale zh-CN --out build/feedback-009/locale
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/build_runtime.ps1 -Out build/feedback-009/runtime
+python -X utf8 tools/replay_caption_polish.py --exe "$Game/secondsight.EXE" --library build/feedback-009/runtime/SecondSight.Localization.asi --map build/feedback-009/runtime/SecondSight.Localization.map --manifest build/feedback-009/locale/manifest.json --out build/feedback-009/caption-modified.json
+python -X utf8 tools/verify_font_polish.py --exe "$Game/secondsight.EXE" --locale build/feedback-009/locale/locale.bin --manifest build/feedback-009/locale/manifest.json --out build/feedback-009/font-modified.json
+```
+
+对白回放 `CAPTION POLISH PASS: 7/7; dump-route overlays=1; ready-voice panels=0`；最终 DDS 与原生 UV 检查 `FONT POLISH PASS: cell=32; lowered=True; gutters=True; UV=3/3`。首个正式离线对照为 008（两项退出 1，预期失败），随后实际执行隔离副本回滚，与 008 行为一致。详见[009记录](docs/RENDER_POLISH_009.md)，不是游戏内实测。

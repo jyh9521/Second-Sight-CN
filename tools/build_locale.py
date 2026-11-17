@@ -62,7 +62,7 @@ def decode(data: bytes, glyphs: dict[str, int]) -> str:
 def dxt3(alpha) -> bytes:
     """BC2/DXT3: constant white RGB endpoints, explicit 4-bit coverage."""
     width, height = alpha.size
-    require(width == height == 512, "expanded atlas is 512 square")
+    require(width == height and width in (512,1024), "unsupported font atlas dimensions")
     header = [124, 0x81007, height, width, width*height, 0, 1] + [0]*11
     header += [32, 4, struct.unpack("<I", b"DXT3")[0], 0, 0, 0, 0, 0]
     header += [0x1000, 0, 0, 0, 0]
@@ -75,22 +75,45 @@ def dxt3(alpha) -> bytes:
     return bytes(out)
 
 
+ATLAS_CELL = 32
+ATLAS_BASELINE = 24.5
+ATLAS_EM = 27
+
+
+def raster_glyph(char, font):
+    from PIL import Image, ImageDraw
+    side=ATLAS_CELL*4
+    tile=Image.new("L",(side,side))
+    left,top,right,bottom=font.getbbox(char,anchor="ls")
+    baseline=int(ATLAS_BASELINE*4)
+    require(right-left<=side-4 and baseline+top>=2 and baseline+bottom<=side-2,
+            f"glyph cell overflow: {char}")
+    # Horizontal cell alignment is preserved. Vertically lay out all glyphs
+    # on the same font baseline, not at the centre of their ink bounds.
+    ImageDraw.Draw(tile).text(((side-(right-left))//2-left,baseline),char,
+                             font=font,fill=255,anchor="ls")
+    tile=tile.resize((ATLAS_CELL,ATLAS_CELL),Image.Resampling.LANCZOS)
+    # Reserve a fully transparent gutter, including filtering undershoot.
+    tile.paste(0,(0,0,ATLAS_CELL,1))
+    tile.paste(0,(0,ATLAS_CELL-1,ATLAS_CELL,ATLAS_CELL))
+    tile.paste(0,(0,0,1,ATLAS_CELL))
+    tile.paste(0,(ATLAS_CELL-1,0,ATLAS_CELL,ATLAS_CELL))
+    require(tile.getbbox() is not None, f"empty glyph raster: {char}")
+    return tile
+
+
 def make_atlases(glyphs: dict[str, int], font_path: Path, preview: Path) -> list[bytes]:
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageFont
     from fontTools.ttLib import TTFont
     with TTFont(font_path) as font:
         cmap = font.getBestCmap()
         require(all(ord(c) in cmap for c in glyphs), "font lacks requested glyph")
-    # Supersampling produces deterministic 16px cell coverage with 1px padding.
-    font = ImageFont.truetype(str(font_path), 14*4)
-    pages = [Image.new("L", (512, 512)) for _ in range(6)]
+    font = ImageFont.truetype(str(font_path), ATLAS_EM*4)
+    side=32*ATLAS_CELL
+    pages = [Image.new("L", (side, side)) for _ in range(6)]
     for char, index in glyphs.items():
-        tile = Image.new("L", (64, 64))
-        draw = ImageDraw.Draw(tile)
-        left, top, right, bottom = draw.textbbox((0, 0), char, font=font)
-        require(right-left <= 60 and bottom-top <= 60, f"glyph cell overflow: {char}")
-        draw.text(((64-(right-left))//2-left, (64-(bottom-top))//2-top), char, font=font, fill=255)
-        pages[index//1024].paste(tile.resize((16,16), Image.Resampling.LANCZOS), ((index%32)*16, ((index%1024)//32)*16))
+        pages[index//1024].paste(raster_glyph(char,font),
+                                ((index%32)*ATLAS_CELL, ((index%1024)//32)*ATLAS_CELL))
     pages[0].save(preview)
     return [dxt3(page) for page in pages]
 
@@ -228,7 +251,9 @@ def build(game: Path, locale: str, out: Path) -> dict:
                                 unresolved_ids=sorted(UNRESOLVED_BS_IDS & {r['id'] for r in data['bs']}),
                                 composed_ids=sorted(COMPOSED_BS_IDS & {r['id'] for r in data['bs']}),
                                 deferred_status='complete target retained; original BS pointer preserved; only audited long-wrap callers may substitute; unobserved consumers pending')
-    manifest['atlas_layout']=dict(page_count=6,width=512,height=512,cell=16,glyph_slots=6144,reserved_ids=[178,184])
+    manifest['atlas_layout']=dict(page_count=6,width=32*ATLAS_CELL,height=32*ATLAS_CELL,
+                                  cell=ATLAS_CELL,em=ATLAS_EM,baseline=ATLAS_BASELINE,
+                                  glyph_slots=6144,reserved_ids=[178,184])
     manifest['pack_format']='SLP3'
     manifest['source_variants']=dict(profile_sha256=digest(variant_path.read_bytes()),
                                     primary=variant_profile['primary'],table_slots=variant_profile['table_slots'],

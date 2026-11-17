@@ -26,7 +26,7 @@ static constexpr char expectedExe[] = "4092a8d1fb042dffe9fb95e2185f32cb803902991
 static constexpr unsigned char marker = 0x1f;
 struct Text { uint32_t index; std::string source, target; std::vector<std::string> aliases; };
 struct Resource { std::string name; std::vector<unsigned char> bytes; };
-struct Pack { std::vector<Text> bs, pda, exe; std::vector<Resource> resources; };
+struct Pack { std::vector<Text> bs, pda, exe; std::vector<Resource> resources; bool hdAtlas{}; };
 struct LiteralContract { uint32_t id; uintptr_t instruction, source; const char* expected; };
 static const LiteralContract literalContracts[]={
     {1,0x4b6dd0,0x7daaa8,"Quick scroll"},
@@ -154,7 +154,8 @@ static Pack parse(const std::vector<unsigned char>& bytes) {
     for (uint32_t i=0;i<resources;++i) {
         auto name=blob(), data=blob();
         const bool fontPage=i<6;
-        const uint32_t width=fontPage?512:256, height=fontPage?512:64;
+        if (i==0) result.hdAtlas=data.size()==128+1024*1024;
+        const uint32_t width=fontPage?(result.hdAtlas?1024:512):256, height=fontPage?width:64;
         const std::string expectedName=fontPage?"textures/localization/page"+std::to_string(i)+".dds":"textures/misc/nse_tv/loading.dds";
         if (name!=expectedName || data.size()!=128+width*height ||
             memcmp(data.data(),"DDS ",4) || memcmp(data.data()+84,"DXT3",4))
@@ -405,12 +406,18 @@ extern "C" __declspec(noinline) void __cdecl GameplayCaptionObserve(uintptr_t ow
     const auto fields=reinterpret_cast<const uint32_t*>(owner);
     const int handle=static_cast<int>(fields[1]);
     const uint32_t bs=fields[2];
+    float remaining;
+    memcpy(&remaining,fields+6,sizeof(remaining));
+    // Match the original dispatcher semantics: real audio waits for readiness;
+    // an armed, duration-driven cue need not have an audio handle of its own.
+    if(!bs || (handle<=0 && !gameplay_captions::timedCue(handle,fields[18],remaining))) {
+        GameplayCaptionState.finish(owner); return;
+    }
     const auto old=GameplayCaptionState.find(owner);
     if(old && old->bs==bs && old->handle==handle) return;
     GameplayCaptionState.finish(owner);
-    if(handle<0 || !bs) return;
     const char* text=GameplayCaptionLookup(bs);
-    if(!text || !reinterpret_cast<int(__cdecl*)(int)>(0x60d8f0)(handle)) return;
+    if(!text || (handle>0 && !reinterpret_cast<int(__cdecl*)(int)>(0x60d8f0)(handle))) return;
     GameplayCaptionState.active(owner,bs,handle,static_cast<int>(fields[4]),text);
 }
 extern "C" __declspec(naked) void GameplayCaptionEventHook() {
@@ -457,11 +464,10 @@ extern "C" __declspec(noinline) void __cdecl GameplayCaptionDrawHook() {
         reinterpret_cast<void(__cdecl*)(int*,int*,const char*)>(0x611a90)(&textWidth,&textHeight,text);
     }
     int x=(width-textWidth)/2,y=height-static_cast<int>(30.0f*scale)-textHeight;
-    const int padding=(std::max)(2,static_cast<int>(4.0f*scale));
     const auto blend=reinterpret_cast<int(__cdecl*)(int)>(0x40d110);
     const int previous=blend(1);
-    reinterpret_cast<void(__cdecl*)(int,int,int,int,uint32_t,int)>(0x638b40)
-        (x-padding,y-padding,x+textWidth+padding,y+textHeight+padding,0x40000000,8);
+    // Do not submit the game's textured panel: its side slices show through
+    // around an otherwise transparent subtitle. Keep native text submission.
     reinterpret_cast<void(__cdecl*)(int*,int*,const char*,uint32_t)>(0x6132e0)(&x,&y,text,0xffffff80);
     blend(previous);
     subtitle_layout::end(scope);
@@ -551,6 +557,14 @@ static void install() {
     patches.push_back({0x6125dc,{0xc1,0xe6,8},{0xc1,0xe6,10}});
     patches.push_back({0x6125e4,{0x83,0xe2,0x0f},{0x83,0xe2,0x1f}});
     patches.push_back({0x6125fc,{0xc1,0xf8,4},{0xc1,0xf8,5}});
+    if(pack.hdAtlas) {
+        // UV only: row/column to pixels, then pixels to 1/16 units. Both
+        // right/bottom stop at pixel 31 plus the native half-texel bias.
+        patches.push_back({0x612603,{0xc1,0xe0,4},{0xc1,0xe0,5}});
+        patches.push_back({0x612606,{0x8d,0x50,0x10},{0x8d,0x50,0x1f}});
+        patches.push_back({0x612615,{0xc1,0xe1,4},{0xc1,0xe1,5}});
+        patches.push_back({0x612621,{0x81,0xc2,0xf8,0,0,0},{0x81,0xc2,0xf0,1,0,0}});
+    }
     struct Hook { uintptr_t address; std::vector<unsigned char> before; const void* target; void** original; };
     std::vector<Hook> hooks={
         {0x456610,{0x85,0xc0,0x57,0x8b,0xfa},GameplayCaptionEventHook,&GameplayCaptionOriginal},
@@ -584,6 +598,7 @@ static void install() {
         ++done;
     }
     log("TEXT batch texture-transition flush installed; normal pass only");
+    log(pack.hdAtlas?"FONT 1024 atlas UV enabled":"FONT legacy 512 atlas UV retained");
     log("SUBTITLE cutscene layout scales with render height; private style restored after captions");
     log("CAPTIONS speech lifecycle observer and independent gameplay renderer installed; source-bound locale text; runtime acceptance pending");
     log("HOOKS installed; FusionFix TextAtPointer/TextAtValue sites untouched; runtime acceptance pending");

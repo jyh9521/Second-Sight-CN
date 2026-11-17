@@ -47,6 +47,8 @@ def inspect(exe: Path, checkout: Path) -> dict:
     spans=[(0x456610,5),(0x63d78a,5),(0x63d494,5),
            (0x543031,5),(0x5431e8,6),(0x611c70,6),(0x5d0643,5),(0x5d06fb,5),
            (0x610efd,5),(0x610fa8,5),(0x6125c1,5),(0x612677,5)]
+    from inspect_renderer import PATCH_SITES
+    spans += [(a,len(bytes.fromhex(b))) for name,(a,b) in PATCH_SITES.items() if name.startswith('hd_atlas_')]
     spans += [(int(r['va'],16),len(bytes.fromhex(r['before']))) for r in profile['atlas']['patches']]
     literal=json.loads((ROOT/'assets/exe-text-contracts.json').read_text(encoding='utf-8'))
     spans += [(int(r['patch_va'],16),len(bytes.fromhex(r['expected']))) for r in literal['records']]
