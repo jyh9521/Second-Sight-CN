@@ -14,7 +14,7 @@ PC 版《Second Sight》的简体中文汉化项目。保留原版 FusionFix，�
 | 中文菜单、剧情字幕、PDA 最小样本 | 21 条菜单、11 条剧情字幕候选、同一 PDA 任务页 4 条文本；游戏内未验收 |
 | 原版 FusionFix + 独立 `SecondSight.Localization.asi` | 模块已实现；运行时共存未验收 |
 | 全量翻译、通关校对、正式发布 | 尚未开始 |
-| Nexus 模组兼容 | 用户补充文件后单独评估，不阻塞基础汉化 |
+| ReMade 高清材质包 | 已完成离线评估；建议可选层，加载器及运行时共存待测 |
 
 当前基线为 GOG PC 版 EXE `0,10,0,0` 和用户提供的 FusionFix `13.11.2026.1802-7bce79f`；文件身份见[技术说明](TECHNICAL.md)。其他版本尚未验证。
 
@@ -40,6 +40,7 @@ python -X utf8 -m unittest discover -s tests -v
 - [翻译约定](TRANSLATING.md) · [技术路线](TECHNICAL.md)
 - [文件格式](docs/FILE_FORMATS.md) · [踩坑记录](docs/PITFALLS.md)
 - [2026-11-17 初始可行性评估](docs/ASSESSMENT_2026-11-17.md)：保留当时证据，当前进度以本页和已知问题为准。
+- [ReMade 高清材质兼容评估](docs/REMASTERED_COMPATIBILITY_2026-11-17.md)：5,110 张 DDS 检查完成，PoC 001 尚未加入该模组。
 
 ## 来源与许可
 

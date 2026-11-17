@@ -127,3 +127,6 @@ decompiled/
 
 # Optional user-supplied Nexus dependencies
 /NexusMods/
+
+# User-supplied external HD texture mod; never publish its assets.
+/ReMade With Second Sight Remastered Textures/
