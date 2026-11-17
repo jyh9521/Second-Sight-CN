@@ -5,7 +5,7 @@ An adapter may use another representation if it preserves these semantics and va
 
 ## Reference JSON
 
-The upstream baseline includes a synthetic catalog and reference validator. They are not adopted as this game's format or feature set. See [the project adapter](PROJECT_CONTRACT.md) and [existing catalog loader](../tools/locale_catalog.py); the tables below describe the reference contract, not a declaration of full project compliance.
+The fields below document the baseline reference schema, not full project compliance. Its example catalog/full validator are not installed. The existing project format remains in [TRANSLATING](../TRANSLATING.md), with explicit [project mapping](PROJECT_CONTRACT.md) and [catalog loader](../tools/locale_catalog.py). A later engineering increment adopted the sentence policy and native-token adapter, not the reference catalog schema. Preserve existing IDs and raw-byte fingerprints.
 UTF-8 JSON is used; duplicate object keys are errors. IDs are opaque strings, including leading zeros.
 
 | Root field | Meaning |
@@ -29,7 +29,7 @@ UTF-8 JSON is used; duplicate object keys are errors. IDs are opaque strings, in
 | `review_source_sha256` | Source fingerprint reviewed; nullable before review |
 | `reason` | Explanation for empty/keep-source/uncertain decisions; string |
 
-Unknown keys are rejected by the reference validator to expose misspellings. A project extension must version/document its adapter rather than silently dropping fields.
+The baseline reference validator rejects unknown keys to expose misspellings; this does not describe an automatically installed project check. A project extension must version/document its adapter rather than silently dropping fields.
 `context` may be empty in an initial extraction but should be completed before ambiguous text is approved.
 
 ## Disposition and review invariants
@@ -42,7 +42,7 @@ Unknown keys are rejected by the reference validator to expose misspellings. A p
 - `in_game_verified` additionally requires an external G3 evidence record; the catalog label alone is not proof.
 - Release data requires a nonempty catalog, a reviewed disposition and a known text role for every included entry. An empty draft is allowed; report an unused module as not_applicable instead of passing empty release data.
 
-The reference `--release` flag checks data eligibility, not G2-G4 completion or external evidence authenticity.
+The baseline reference `--release` flag checks data eligibility, not G2-G4 completion or external evidence authenticity; it is not a new CLI entry point in this project.
 Do not treat a copied source string, a missing record, null and an intentionally empty target as equivalent.
 
 ## Stable IDs and re-extraction

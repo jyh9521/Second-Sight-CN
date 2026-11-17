@@ -129,3 +129,7 @@ decompiled/
 
 # User-supplied external HD texture mod; never publish its assets.
 /ReMade With Second Sight Remastered Textures/
+
+# Shared localization requirements are versioned with project documentation.
+!/AGENTS.md
+!/docs/LOCALIZATION_STANDARD.md

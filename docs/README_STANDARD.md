@@ -60,7 +60,7 @@ Choose an explicit versioned download when behavior depends on it; distinguish s
 - [ ] Detailed content is linked, not inconsistently duplicated.
 - [ ] Licenses/credits and issue-report guidance reflect actual contents.
 
-The included `python tools/check_docs.py` covers inline/reference links, image targets and simple ATX-heading fragments in this baseline. It skips fenced/inline code examples and local build/input directories. It does not fetch external URLs or implement a full Markdown/HTML renderer; review unsupported constructs and the rendered README separately.
+The adopted `python tools/check_docs.py` covers inline/reference links, image targets and simple ATX-heading fragments in this project. It skips fenced/inline code examples and local build/input directories. It does not fetch external URLs or implement a full Markdown/HTML renderer; review unsupported constructs and the rendered README separately.
 
 ## 6. Reusable AI prompt
 

@@ -1,6 +1,7 @@
 # Localization Engineering Standard
 
-Revision 2.1. This document owns cross-project principles. Specialized documents own their detailed rules.
+Revision 2.1, adopted for this existing project on 2026-11-17. This document owns cross-project principles. Specialized documents own their detailed rules.
+Read [migration and applicability](MIGRATION.md) before treating an existing implementation or historical release as conforming to these requirements.
 
 ## 1. Requirement levels and applicability
 
@@ -19,14 +20,15 @@ Template examples describe invented data, not verified facts about a game.
 | Cross-project principles and input identity | This document |
 | Completion, evidence and release gates | [ACCEPTANCE](ACCEPTANCE.md) |
 | Translation representation and merge semantics | [DATA_CONTRACT](DATA_CONTRACT.md) |
-| Translator operations | [TRANSLATING](../TRANSLATING.md) |
+| Translator operations | [TRANSLATION_STANDARD](TRANSLATION_STANDARD.md); project facts in [TRANSLATING](../TRANSLATING.md) |
 | Language style | `locales/<locale>/STYLE.md` |
-| Build procedure and reproducibility | [BUILDING](../BUILDING.md) |
+| Build requirements and reproducibility | [BUILD_STANDARD](BUILD_STANDARD.md); actual commands in [BUILDING](../BUILDING.md) |
 | Installation and recovery | [INSTALLATION_STANDARD](INSTALLATION_STANDARD.md) |
 | Rendering, artwork and media | [ASSET_LOCALIZATION](ASSET_LOCALIZATION.md) |
-| Engine and format facts | [TECHNICAL](../TECHNICAL.md), [FILE_FORMATS](FILE_FORMATS.md) |
+| Research and format requirements | [RESEARCH_STANDARD](RESEARCH_STANDARD.md); facts in [TECHNICAL](../TECHNICAL.md), [FILE_FORMATS](FILE_FORMATS.md) |
+| Issue lifecycle and diagnostics | [ISSUE_STANDARD](ISSUE_STANDARD.md); actual inventory in [KNOWN_ISSUES](KNOWN_ISSUES.md) |
 | README claims and structure | [README_STANDARD](README_STANDARD.md) |
-| Licensing boundaries | [LICENSING](../LICENSING.md) |
+| Component inventory requirements | [LICENSING_STANDARD](LICENSING_STANDARD.md); governing terms and notices in [LICENSING](../LICENSING.md) |
 
 Other documents link to these rules and record project-specific values instead of repeating the rules.
 

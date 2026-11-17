@@ -1,5 +1,7 @@
 # 翻译约定
 
+> 共享流程见[翻译工作流](docs/TRANSLATION_STANDARD.md)与[数据合同](docs/DATA_CONTRACT.md)；后续中文编辑以[现行风格](locales/zh-CN/STYLE.md)为准。既有数据格式、术语、历史批次和实现差异见[迁移记录](docs/MIGRATION.md)。
+
 > 当前采用[新基准](docs/BASELINE_ADOPTION.md)。新逐句门禁发现 27 条记录、45 处明确句号问题及 6 处待审项；本轮不自动改译文，目录验收为 fail，见[快照](docs/ADOPTION_VALIDATION.md)。
 
 > **交付约定（2026-11-17 更新）：先完成全量汉化、文字校对与离线检查，再一次性交由用户测试。中间版本只作开发检查点，不再要求用户逐版验收；自动化不启动游戏。**

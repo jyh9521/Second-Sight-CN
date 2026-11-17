@@ -1,5 +1,7 @@
 # 构建与离线验证
 
+> 共享构建要求见[构建规范](docs/BUILD_STANDARD.md)、[安装与恢复](docs/INSTALLATION_STANDARD.md)和[验收标准](docs/ACCEPTANCE.md)。本页保留本作实际输入、命令与历史结果；规范迁移未重建游戏产物。
+
 > 新基准现状：当前逐句目录门禁有 51 项未解决发现（27 条记录），`build_locale.py` 会在资源写出前拒绝构建。这是数据失败，不是缺少游戏文件。先读[采用记录](docs/BASELINE_ADOPTION.md)和[验收快照](docs/ADOPTION_VALIDATION.md)。本轮未重跑以下历史完整包构建命令；006/007 保持冻结，当前没有 008。
 
 ## 新规范只读审计入口

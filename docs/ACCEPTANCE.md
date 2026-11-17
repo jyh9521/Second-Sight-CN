@@ -1,6 +1,6 @@
 # Acceptance and Completion Claims
 
-This is the authority for what a test result and a completion statement mean.
+This is the authority for new test results and completion statements. Existing dated results retain their original scope under [migration rules](MIGRATION.md); document adoption alone neither reruns nor upgrades them.
 
 ## 1. States and evidence
 
@@ -41,7 +41,7 @@ Rerun affected cases after a change; unchanged evidence can be carried forward o
 
 Gates are cumulative for a supported release, but records stay separate. A count of thousands of unit assertions is not runtime coverage.
 If byte identity is not achievable, define a canonical structural comparison, enumerate allowed differences and test runtime behavior. “Functionally equivalent” needs a reproducible test, not visual inspection of archive contents alone.
-G1 must include game-specific token/encoding checks in addition to the included reference validator. Compare expected IDs against the source inventory to detect missing entries and unknown target-only IDs; a self-consistent partial catalog is not full coverage.
+G1 must include game-specific token/encoding checks in addition to any adopted reference validator. Compare expected IDs against the source inventory to detect missing entries and unknown target-only IDs; a self-consistent partial catalog is not full coverage.
 
 ## 3. Minimum matrix
 

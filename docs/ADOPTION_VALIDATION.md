@@ -4,7 +4,7 @@
 
 ## 证据身份
 
-- 工具/测试/STYLE 输入集 SHA-256：`faf9d34ca21cc9b09de49fa6c4e3a5820c1fa8ea78bc9c297b943ce8ac3b4dea`（逐文件列表本地 `code-inputs.json`）。
+- 工具/测试/STYLE 输入集 SHA-256：`4411a52ea44f0e955cefd947a08e38e08d1fbd2903a06345be9e71ecf8c65a73`（逐文件列表本地 `code-inputs.json`）。
 - 原安装 307 文件清单 SHA-256：`84682e8ee59683112b5454f1caf8f27f06a5772cf54ac8d24cc4ae86eb2d0713`；Windows x86 固定 EXE，地区/商店修订未知，详见[输入身份](PROJECT_CONTRACT.md#输入身份)。
 - 新策略目录发现及目标指纹：[policy-review.json](../locales/zh-CN/policy-review.json)，SHA-256 `d8ce9ef43289ed9a721d7e89c0a76a0926c6b157c420691be1863c24a824abcd`。
 - 007 包清单 SHA-256：`3e3702b9f73c3efd7b1917f3d73c965a7bf836aed807d16d22bc57fc5b96b3e5`。与本轮源码检查候选分开，不拿旧二进制代表新规范通过。
@@ -51,3 +51,5 @@
 - **G4：not_run**。无新公开补丁/安装器发行；本地文件 hash 复核不代替安装升级卸载验收。
 
 四个本地交付证据为 `MODIFIED_FILE.py`、`DIFF_FILE.patch`、`VERIFICATION.txt`、可执行 `ROLLBACK.sh`。回滚只作用于另一份检查器副本，工作树继续保留新实现；原游戏、基准输入及 006/007 不作修改。
+
+本快照保留基础游戏候选身份；文档在正常合并远端 `d0c81c1` 后重新运行链接、回归及门禁检查，工程代码没有被远端替换。合并经过见[迁移合并记录](BASELINE_ADOPTION.md#并行远端迁移的合并)。

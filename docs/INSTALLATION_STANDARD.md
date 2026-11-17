@@ -1,7 +1,7 @@
 # Installation, Upgrade and Recovery
 
 This specification applies to installers, patch scripts and documented manual installation procedures.
-The baseline does not implement a game installer. Acceptance is [G4](ACCEPTANCE.md).
+This document defines requirements; adopting it does not add installer capabilities or verify the existing installer. Acceptance is [G4](ACCEPTANCE.md).
 
 ## 1. Installation manifest
 

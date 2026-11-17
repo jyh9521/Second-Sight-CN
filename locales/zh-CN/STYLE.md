@@ -59,3 +59,5 @@ Terminology is maintained in [glossary.json](glossary.json). Project role mappin
 Preserve the rule above unless the owner explicitly changes it; record any approved exception by string ID and reason. The project checker and build gate use this rule; unresolved findings remain failures, not release allowlists.
 
 The generated [policy review queue](policy-review.json) records unresolved findings and target fingerprints; it grants no exceptions.
+
+README and project-document explanatory prose do not follow the game-text sentence-ending rule. Quoted translations still do; label deliberately incorrect/before examples clearly. The earlier documentation-only migration is retained in [MIGRATION](../../docs/MIGRATION.md); current checker evidence is in [adoption validation](../../docs/ADOPTION_VALIDATION.md).
