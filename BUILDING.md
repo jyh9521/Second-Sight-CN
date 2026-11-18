@@ -2,7 +2,7 @@
 
 > 共享构建要求见[构建规范](docs/BUILD_STANDARD.md)、[安装与恢复](docs/INSTALLATION_STANDARD.md)和[验收标准](docs/ACCEPTANCE.md)。本页保留本作实际输入、命令与历史结果；规范迁移未重建游戏产物。
 
-> 当前检查点：[012 完整候选](docs/DISPLAY_012.md)提升字体、地图／PDA 渲染分辨率，调整过场角标与下沿 HUD；本地保留 011/012。旧阶段的字库和人数统计仅作历史记录。
+> 当前检查点：[013 完整候选](docs/DISPLAY_013.md)定向隔离错贴、提升主菜单中间画布分辨率、修正 3D 地图视口；本地保留 012/013。旧阶段的字库和人数统计仅作历史记录。
 
 ## 新规范只读审计入口
 
@@ -84,7 +84,7 @@ python -X utf8 tools/stage_poc.py --game-root $Game --fusionfix-root FusionFix -
 python -X utf8 tools/stage_poc.py --verify --out $Package
 ```
 
-012 已完成，后续重建必须选择更高编号；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式固定核对已评估的 5,111 文件完整 inventory digest，未知版本需先重新评估并更新固定值，不静默接受。
+013 已完成，后续重建必须选择更高编号；不覆盖既有包。输出必须是仓库 `dist/` 的直接子目录，命名为 `poc-<locale>-NNN`。省略 `--remastered-root` 可构建仅 FusionFix + 汉化的对照包；HD 模式仍固定核对已评估的 5,111 文件完整 inventory digest。013 起构建器把四个固定 SHA-256 的错贴候选副本放入非加载目录，不削弱输入校验。可加 `--inherit-local $PreviousPackage` 逐字节继承一个同语言的较旧同级包的本地存档和 `WindowMode=2` 配置；不会改动注册表、原安装或上一包。
 
 HD 模式保持 ReMade 的 `dinput8.dll`，将 FusionFix 自带 UAL 原字节复制为 `dsound.dll`。Compatibility、FusionFix、本地化三份 ASI 保留在 `game/scripts/`；`dsound.ini` 开启诊断日志，未强制 DLL 初始化内加载插件。完整材质真实复制，不使用硬链接或目录联接。原版 EXE/PAK、FusionFix 二进制及输入配置不变；输出配置仅将 `[MAIN] WindowMode` 从 `0` 改为 `2`，固定输出 hash 与 override 记录写入清单。004 起默认无边框，其余设置不变。
 

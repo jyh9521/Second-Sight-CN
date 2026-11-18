@@ -24,6 +24,16 @@ FUSION_CONFIG_PATH = "scripts/SecondSight.FusionFix.cfg"
 BORDERLESS_CONFIG_SHA = "61bf3e1c037a57661d7df2273a58cd6ac62529bbdfd9bf5fff642e890ce5f48b"
 REMASTER_DLL_SHA = "8aa884f7a6f4a4fa5294f457c0480149dc684479c9adbd8617c14c539d47f947"
 REMASTER_INVENTORY_SHA = "2ee7e2b39b9e56f3c55ab396157775f18bb5adbd411aab983a654d235281da5a"
+# The four near-identical red/blue eye-and-teeth replacements matching
+# the training courtyard screenshot. The upstream inventory stays pinned.
+REMASTER_QUARANTINE = {
+    "tex_5D6828F8.dds":"e45a1869d453a4fa209ef613751e8e6d8215cbf8fc70f57b66761cb68c5f7cd6",
+    "tex_63940A62.dds":"6146e8b6f49d711d2bb8275901d097a6a2b19b511e3380bce2b974e52f51a8d1",
+    "tex_9B687DF1.dds":"60cfb2fef706ea204784346acb39eda0b6b04f44ee2657cf8c947ef807d85a2c",
+    "tex_E65CDA77.dds":"7c36b67b37a82b4e7317b966dd9f26c8e6aac61aad9ed17445ab59f1d2ed0247",
+}
+REMASTER_QUARANTINE_DIR = "optional/remastered-quarantine"
+REMASTER_POLICY = "training-trim-v1"
 LOADER_INI = "[GlobalSets]\nLoadPlugins=1\nDontLoadFromDllMain=1\nDebugLog=1\n"
 COMPAT_LOADER_INI = LOADER_INI+"LoadExtraPlugins=scripts\\SecondSight.Compatibility.asi\n"
 TWEAKS_FILES = ("SecondSight.GameplayTweaks.ini","SecondSight.GameplayTweaks.asi")
@@ -83,12 +93,13 @@ def verify_tweaks(out: Path, files: dict) -> bool:
     return bool(present)
 
 
-def remastered_inventory(root: Path, hashes: dict | None = None) -> list[dict]:
+def remastered_inventory(root: Path, hashes: dict | None = None, relocated: dict | None = None) -> list[dict]:
     """Pin the complete assessed input, not just its proxy DLL or DDS count."""
     if hashes is None:
         assert_plain_tree(root)
         hashes=inventory(root)
-    rows=[dict(path=name,size=(root/name).stat().st_size,sha256=value)
+    relocated=relocated or {}
+    rows=[dict(path=name,size=relocated.get(name,root/name).stat().st_size,sha256=value)
           for name,value in sorted(hashes.items(),key=lambda pair:Path(pair[0]))]
     require(len(rows)==5111,"expected exactly one ReMade DLL and 5110 textures")
     require(hashes.get("dinput8.dll")==REMASTER_DLL_SHA,"unsupported ReMade DLL")
@@ -97,6 +108,32 @@ def remastered_inventory(root: Path, hashes: dict | None = None) -> list[dict]:
     digest=hashlib.sha256(json.dumps(rows,sort_keys=True,separators=(",",":")).encode()).hexdigest()
     require(digest==REMASTER_INVENTORY_SHA,"ReMade inventory differs from assessed input")
     return rows
+
+
+def verify_hd(out: Path, record: dict) -> None:
+    files=record["files"]
+    subset={name.removeprefix("game/"):value for name,value in files.items()
+            if name=="game/dinput8.dll" or name.startswith("game/Remaster_Textures/")}
+    policy=record["remastered"].get("fallback_policy")
+    require(policy in (None,REMASTER_POLICY),"unknown ReMade exclusion policy")
+    require(record["version"]<13 or policy==REMASTER_POLICY,"ReMade exclusion policy must be retained")
+    active=out/"game/Remaster_Textures"
+    # ReMade tries both DDS and PNG: verify the actual loader search tree,
+    # not just the receipt, so extra replacements cannot defeat fallback.
+    expected_active={name.removeprefix("Remaster_Textures/") for name in subset if name!="dinput8.dll"}
+    require({p.relative_to(active).as_posix() for p in active.rglob("*") if p.is_file()}==expected_active,
+            "unexpected active ReMade texture")
+    relocated={}
+    if policy==REMASTER_POLICY:
+        for name,digest in REMASTER_QUARANTINE.items():
+            original=f"Remaster_Textures/{name}"
+            stored=f"{REMASTER_QUARANTINE_DIR}/{name}"
+            require(original not in subset and files.get(stored)==digest,"invalid ReMade quarantine entry")
+            subset[original]=digest
+            relocated[original]=out/stored
+    remastered_inventory(out/"game",subset,relocated)
+    if policy:
+        print(f"REMADE PASS: {len(expected_active)} active; {len(relocated)} original-texture fallbacks",flush=True)
 
 
 def validate_layout(record: dict) -> None:
@@ -165,9 +202,7 @@ def verify(out: Path, *, require_staged_default: bool = False) -> None:
         require(borderless_config(data)==data,"copied FusionFix config must retain WindowMode=2")
         print("FUSIONFIX CONFIG PASS: imported settings; WindowMode=2",flush=True)
     if record.get("remastered"):
-        subset={name.removeprefix("game/"):value for name,value in record["files"].items()
-                if name=="game/dinput8.dll" or name.startswith("game/Remaster_Textures/")}
-        remastered_inventory(out/"game",subset)
+        verify_hd(out,record)
     window="borderless" if record.get("fusionfix_config") else "upstream-default"
     print(f"PACKAGE PASS: files={len(record['files'])}; original EXE; pinned FusionFix binary; independent ASI; HD={bool(record.get('remastered'))}; window={window}; runtime=PENDING",flush=True)
 
@@ -184,7 +219,8 @@ def validate_output(out: Path, locale: str) -> int:
     return version
 
 
-def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path | None = None) -> None:
+def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path | None = None,
+          inherit_local: Path | None = None) -> None:
     version=validate_output(out,locale)
     game,fusionfix,out=game.resolve(),fusionfix.resolve(),out.resolve()
     remastered=remastered.resolve() if remastered else None
@@ -200,6 +236,19 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path 
     before=inventory(game)
     fusion_before=inventory(fusionfix)
     hd_before=remastered_inventory(remastered) if remastered else None
+    imported=None
+    if inherit_local:
+        inherit_local=inherit_local.resolve()
+        source_version=sequence(inherit_local.name)
+        require(inherit_local.parent==out.parent and source_version is not None and source_version<version and
+                inherit_local.name==f"poc-{locale}-{source_version:03d}","invalid previous local package")
+        assert_plain_tree(inherit_local/"game")
+        actual=inherit_local/"game"/FUSION_CONFIG_PATH
+        user_config=actual.read_bytes()
+        require(borderless_config(user_config)==user_config,"inherited FusionFix settings must retain WindowMode=2")
+        imported=dict(from_package=inherit_local.name,sha256=hashlib.sha256(user_config).hexdigest())
+        prior_profiles=inherit_local/"game/profiles"
+        profile_hashes=inventory(prior_profiles)
     locale_dir=ROOT/"build"/f"locale-{locale}"
     build(game,locale,locale_dir)
     subprocess.run(["powershell","-NoProfile","-ExecutionPolicy","Bypass","-File",str(ROOT/"tools/build_runtime.ps1")],check=True,cwd=ROOT)
@@ -213,6 +262,9 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path 
     for folder in ("pak","win32","trailers"):
         shutil.copytree(game/folder,target/folder)
     (target/"profiles").mkdir() # fresh local profile; original save files are not copied or changed
+    if inherit_local:
+        shutil.copytree(prior_profiles,target/"profiles",dirs_exist_ok=True)
+        require(inventory(target/"profiles")==profile_hashes==inventory(prior_profiles),"profile copy mismatch")
     for name in ("secondsight.EXE","secondsight.cfg"):
         shutil.copy2(game/name,target/name)
     config_record=None
@@ -223,10 +275,25 @@ def stage(game: Path, fusionfix: Path, out: Path, locale: str, remastered: Path 
             config_record=write_fusionfix_config(fusionfix/name,destination)
         else:
             shutil.copy2(fusionfix/name,destination)
+    if imported:
+        (target/FUSION_CONFIG_PATH).write_bytes(user_config)
+        require(sha(target/FUSION_CONFIG_PATH)==sha(actual)==imported["sha256"],"FusionFix settings copy mismatch")
     if remastered:
-        print("STAGE: copying ReMade DLL and all 5110 DDS textures",flush=True)
+        print("STAGE: copying ReMade DLL and pinned texture inventory",flush=True)
         shutil.copy2(remastered/"dinput8.dll",target/"dinput8.dll")
-        shutil.copytree(remastered/"Remaster_Textures",target/"Remaster_Textures")
+        inactive=out/REMASTER_QUARANTINE_DIR
+        active=target/"Remaster_Textures"
+        inactive.mkdir(parents=True)
+        active.mkdir()
+        for row in hd_before:
+            if row["path"]=="dinput8.dll": continue
+            name=Path(row["path"]).name
+            if name in REMASTER_QUARANTINE:
+                require(row["sha256"]==REMASTER_QUARANTINE[name],"unexpected ReMade variant at quarantine key")
+                dest=inactive/name
+            else:
+                dest=active/name
+            shutil.copy2(remastered/row["path"],dest)
         shutil.copy2(ROOT/"tools/Set-HD.ps1",out/"Set-HD.ps1")
         (out/"remastered-input-inventory.json").write_text(json.dumps(hd_before,indent=2)+"\n",encoding="utf-8")
     shutil.copy2(runtime/"SecondSight.Localization.asi",target/"scripts/SecondSight.Localization.asi")
@@ -265,8 +332,10 @@ Write-Output 'DISABLE PASS: Localization ASI disabled; FusionFix retained; no ga
                 gameplay_tweaks=TWEAKS_DEFAULT,
                 fusionfix_config=config_record,
                 locale=locale,status="awaiting-user-runtime-test",loader="dsound.dll" if remastered else "dinput8.dll",
-                remastered=dict(inventory_sha256=REMASTER_INVENTORY_SHA,dds_count=5110) if remastered else None,
+                remastered=dict(inventory_sha256=REMASTER_INVENTORY_SHA,dds_count=5110,
+                                 fallback_policy=REMASTER_POLICY) if remastered else None,
                 source=str(game),source_unchanged=True,dependencies_unchanged=True,files=package_files(out))
+    if imported: record["local_fusionfix_config"]=imported
     (out/"package.json").write_text(json.dumps(record,indent=2)+"\n",encoding="utf-8")
     verify(out,require_staged_default=True)
     apply_retention(ROOT,out,ROOT/"build/package-retention"/out.name)
@@ -278,6 +347,7 @@ if __name__=="__main__":
     p.add_argument("--game-root",type=Path)
     p.add_argument("--fusionfix-root",type=Path)
     p.add_argument("--remastered-root",type=Path,help="optional, exact assessed ReMade input")
+    p.add_argument("--inherit-local",type=Path,help="copy a prior sibling package's local profiles and FusionFix settings")
     p.add_argument("--out",type=Path,required=True)
     p.add_argument("--locale",default="zh-CN")
     p.add_argument("--verify",action="store_true")
@@ -285,4 +355,4 @@ if __name__=="__main__":
     if args.verify: verify(args.out)
     else:
         require(args.game_root is not None and args.fusionfix_root is not None,"game and FusionFix inputs required")
-        stage(args.game_root,args.fusionfix_root,args.out,args.locale,args.remastered_root)
+        stage(args.game_root,args.fusionfix_root,args.out,args.locale,args.remastered_root,args.inherit_local)

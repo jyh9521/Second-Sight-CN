@@ -50,7 +50,7 @@ def inspect(exe: Path, checkout: Path) -> dict:
            (0x610efd,5),(0x610fa8,5),(0x6125c1,5),(0x612677,5)]
     from inspect_renderer import PATCH_SITES
     spans += [(a,len(bytes.fromhex(b))) for name,(a,b) in PATCH_SITES.items()
-              if name.startswith(('hd_atlas_','hud_','chapter_card_','terminal_rt_','selection_draw'))]
+              if name.startswith(('hd_atlas_','hud_','chapter_card_','terminal_rt_','menu_rt_','selection_draw'))]
     spans += [(a,len(sig)) for a,sig in MENU.items()]
     spans += [(int(r['va'],16),len(bytes.fromhex(r['before']))) for r in profile['atlas']['patches']]
     literal=json.loads((ROOT/'assets/exe-text-contracts.json').read_text(encoding='utf-8'))

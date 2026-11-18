@@ -609,6 +609,8 @@ static const char* atlasPaths[]={"textures/localization/page0.raw","textures/loc
 // and bounds. This does not upscale arbitrary 3D textures or the backbuffer.
 static constexpr uintptr_t terminalPool=0x970a3c;
 static constexpr int terminalLogical=256,terminalRaster=512;
+static constexpr uintptr_t menuSlot=0x921b20;
+static constexpr int menuLogical=512,menuRaster=1024;
 static uintptr_t mapBatchStart;
 static int mapBatchIndex=-1;
 static int mapTarget() {
@@ -619,6 +621,47 @@ static int mapTarget() {
     const auto* pool=reinterpret_cast<const int*>(terminalPool);
     for(int i=0;i<count;++i) if(pool[i]==id) return id;
     return -1;
+}
+static bool isHDMenu(int id) {
+    if(id<0 || id!=*reinterpret_cast<const int*>(menuSlot)) return false;
+    const auto* table=*reinterpret_cast<const uint8_t* const* const*>(0x872278);
+    if(!table || !*table) return false;
+    const auto* desc=reinterpret_cast<const uint16_t*>(*table+static_cast<size_t>(id)*32+0x18);
+    return desc[0]==menuRaster && desc[1]==menuRaster &&
+           desc[2]==menuRaster && desc[3]==menuRaster;
+}
+static int layerTarget() {
+    const int id=*reinterpret_cast<const int*>(0x8da560);
+    return (*reinterpret_cast<const int*>(0x8da558)==menuRaster &&
+            *reinterpret_cast<const int*>(0x8da55c)==menuRaster && isHDMenu(id)) ? id : mapTarget();
+}
+static int layerLogical() {
+    const int id=layerTarget();
+    return id<0 ? 0 : *reinterpret_cast<const int*>(0x8da558)/2;
+}
+extern "C" __declspec(noinline) void __cdecl MenuAllocate(int w,int h,int format,int* slot) {
+    // Only the 512x512 private frontend surface. Keep its 512x448 layout,
+    // cursor coordinates and animation unchanged; double raster density.
+    if(reinterpret_cast<uintptr_t>(slot)==menuSlot && w==menuLogical && h==menuLogical && format==0 &&
+       *reinterpret_cast<const int*>(0x872500)>=menuRaster &&
+       *reinterpret_cast<const int*>(0x872504)>=720) w=h=menuRaster;
+    reinterpret_cast<void(__cdecl*)(int,int,int,int*)>(0x6164b0)(w,h,format,slot);
+}
+extern "C" __declspec(noinline) unsigned __cdecl MenuLogicalWidth(int id) {
+    if(isHDMenu(id)) return menuLogical;
+    return reinterpret_cast<unsigned(__cdecl*)(int)>(0x40efb0)(id);
+}
+extern "C" __declspec(noinline) unsigned __cdecl MenuLogicalHeight(int id) {
+    if(isHDMenu(id)) return menuLogical;
+    return reinterpret_cast<unsigned(__cdecl*)(int)>(0x40efd0)(id);
+}
+extern "C" __declspec(noinline) float __cdecl MenuNormalizeU(int id,float x) {
+    if(isHDMenu(id)) x*=2.0f;
+    return reinterpret_cast<float(__cdecl*)(int,float)>(0x457350)(id,x);
+}
+extern "C" __declspec(noinline) float __cdecl MenuNormalizeV(int id,float y) {
+    if(isHDMenu(id)) y*=2.0f;
+    return reinterpret_cast<float(__cdecl*)(int,float)>(0x457390)(id,y);
 }
 extern "C" __declspec(noinline) void __cdecl MapAllocate(int width,int height,int* slot) {
     const uintptr_t a=reinterpret_cast<uintptr_t>(slot);
@@ -635,21 +678,36 @@ static ScissorFn originalScissor;
 extern "C" __declspec(noinline) void __cdecl MapScissor(int left,int top,int right,int bottom) {
     // Native API uses inclusive right/bottom. SetRenderTarget itself gives
     // physical extents (512), which must not receive the logical transform.
-    if(mapTarget()>=0 && left>=0 && top>=0 && right>=left && bottom>=top &&
-       right<=terminalLogical && bottom<=terminalLogical) {
+    const int logical=layerLogical();
+    const auto caller=reinterpret_cast<uintptr_t>(_ReturnAddress());
+    // The native viewport setter replays the already-physical scissor.
+    if(logical && caller!=0x40fb08 && left>=0 && top>=0 && right>=left && bottom>=top &&
+       right<=logical && bottom<=logical) {
         left*=2;top*=2;right=right*2+1;bottom=bottom*2+1;
     }
     originalScissor(left,top,right,bottom);
 }
+extern "C" __declspec(noinline) void __cdecl LayerCameraViewport(int x,int y,int w,int h,float nearZ,float farZ) {
+    // 3D cameras reapply their own logical viewport after the physical
+    // render target was set. Restore matching coverage without touching XYZ.
+    const int logical=layerLogical();
+    if(logical && x>=0 && y>=0 && x<logical && y<logical && w>0 && h>0 &&
+       w<=logical+1-x && h<=logical+1-y) {
+        w=2*(w==logical+1-x?w-1:w);
+        h=2*(h==logical+1-y?h-1:h);
+        x*=2; y*=2;
+    }
+    reinterpret_cast<void(__cdecl*)(int,int,int,int,float,float)>(0x40f9a0)(x,y,w,h,nearZ,farZ);
+}
 extern "C" __declspec(noinline) void __cdecl MapRememberBatch(uintptr_t start) {
-    mapBatchIndex=mapTarget();
+    mapBatchIndex=layerTarget();
     mapBatchStart=start;
 }
 extern "C" __declspec(noinline) void __cdecl MapScaleBatch() {
     const auto start=mapBatchStart;
     const int remembered=mapBatchIndex;
     mapBatchStart=0; mapBatchIndex=-1;
-    if(!start || remembered<0 || remembered!=mapTarget()) return;
+    if(!start || remembered<0 || remembered!=layerTarget()) return;
     const unsigned format=*reinterpret_cast<const unsigned*>(0x8dafa0);
     const unsigned index=*reinterpret_cast<const unsigned*>(0x8dafb4);
     const unsigned n=*reinterpret_cast<const unsigned*>(0x8daf14);
@@ -724,6 +782,14 @@ static void install() {
     call(0x5443be,{0xe8,0xcd,0xc1,0x0c,0x00},ChapterCardStart);
     call(0x5444de,{0xe8,0xad,0xc0,0x0c,0x00},ChapterCardEnd);
     call(0x5ce45b,{0xe8,0x80,0x50,0xe4,0xff},MapAllocate);
+    call(0x62ef6e,{0xe8,0x2d,0x0a,0xde,0xff},LayerCameraViewport);
+    call(0x4b9529,{0xe8,0x82,0xcf,0x15,0x00},MenuAllocate);
+    call(0x4b5a8d,{0xe8,0x1e,0x95,0xf5,0xff},MenuLogicalWidth);
+    call(0x4b5aab,{0xe8,0x20,0x95,0xf5,0xff},MenuLogicalHeight);
+    call(0x4b5b26,{0xe8,0x25,0x18,0xfa,0xff},MenuNormalizeU);
+    call(0x4b5b40,{0xe8,0x4b,0x18,0xfa,0xff},MenuNormalizeV);
+    call(0x4b5b5b,{0xe8,0xf0,0x17,0xfa,0xff},MenuNormalizeU);
+    call(0x4b5b76,{0xe8,0x15,0x18,0xfa,0xff},MenuNormalizeV);
     patches.push_back({0x40de6e,{0xa3,0x00,0xaf,0x8d,0x00},branch(0x40de6e,MapRememberHook,5,0xe9)});
     patches.push_back({0x40e21b,{0x8b,0x00,0x8b,0x08,0x50},branch(0x40e21b,MapScaleHook,5,0xe9)});
     patches.push_back({0x5431e8,{0xd9,0x05,0xb4,0x74,0x96,0x00},

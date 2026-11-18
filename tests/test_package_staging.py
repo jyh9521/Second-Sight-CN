@@ -311,6 +311,44 @@ class LayoutTests(unittest.TestCase):
             self.assertIn("../../..",(out/"ROLLBACK.sh").read_text())
 
 
+class RemasteredQuarantineTests(unittest.TestCase):
+    def test_pinned_inventory_reconstructed_only_from_inactive_verified_dds(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out=Path(directory)
+            game=out/"game"
+            active=game/"Remaster_Textures"
+            active.mkdir(parents=True)
+            keep="tex_12345678.dds"
+            removed="tex_5D6828F8.dds"
+            depot=out/stage.REMASTER_QUARANTINE_DIR
+            depot.mkdir(parents=True)
+            (game/"dinput8.dll").write_bytes(b"synthetic proxy")
+            (active/keep).write_bytes(b"active")
+            (depot/removed).write_bytes(b"inactive with source bytes")
+            hashes=stage.inventory(out)
+            record={"version":13,"files":hashes,"remastered":{"fallback_policy":stage.REMASTER_POLICY}}
+            expected={
+                "dinput8.dll":hashes["game/dinput8.dll"],
+                f"Remaster_Textures/{keep}":hashes[f"game/Remaster_Textures/{keep}"],
+                f"Remaster_Textures/{removed}":hashes[f"{stage.REMASTER_QUARANTINE_DIR}/{removed}"],
+            }
+            with patch.object(stage,"REMASTER_QUARANTINE",{removed:expected[f"Remaster_Textures/{removed}"]}), \
+                 patch.object(stage,"remastered_inventory") as reconcile,contextlib.redirect_stdout(io.StringIO()):
+                stage.verify_hd(out,record)
+                reconcile.assert_called_once_with(game,expected,{f"Remaster_Textures/{removed}":depot/removed})
+                # DLL falls back to PNG after missing DDS, so verify both forms.
+                for identity in (removed,Path(removed).with_suffix(".png").name):
+                    leftover=active/identity
+                    leftover.write_bytes(b"unlisted replacement")
+                    with self.assertRaisesRegex(ValueError,"unexpected active"):
+                        stage.verify_hd(out,record)
+                    leftover.unlink()
+                changed=copy.deepcopy(record)
+                changed["files"][f"{stage.REMASTER_QUARANTINE_DIR}/{removed}"]="0"*64
+                with self.assertRaisesRegex(ValueError,"quarantine entry"):
+                    stage.verify_hd(out,changed)
+
+
 class BorderlessConfigTests(unittest.TestCase):
     def test_only_main_window_mode_byte_changes(self):
         for newline in (b'\n',b'\r\n'):

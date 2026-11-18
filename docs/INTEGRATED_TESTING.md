@@ -1,19 +1,20 @@
 # 完整三合一测试包与验收约定
 
-012 保留全量首轮译文、思源黑体、FusionFix、5110 张高清材质、HUD 与字幕修复。中文菜单字库扩为 64 像素字格，提升地图／PDA 私有渲染目标分辨率，放大过场时间地点，并给左下角标签保留完整空间。首次加载请等待材质载入。
+013 保留全量首轮译文、思源黑体、FusionFix、HUD 与字幕修复。主菜单的原生中间画布提高到 1024×1024，保持 512×448 逻辑布局；地图/PDA 继续使用 512×512 的私有画布，3D 地图的相机视口随画布换算。训练场错贴的四张同族替换材质不加载，其他 5106 张高清材质继续生效。首次加载请等待材质载入。
 
 本页随完成校验的全量首轮测试包交付，版本以同目录 `package.json` 为准；不是005菜单/PDA中间样本。当前已识别目录的目标字段齐全；本轮只完成 27 条记录的标点语境复核，不等于全部译文审校或游戏内通过，自动化不启动、操作或附加游戏进程。
 
 最终包继续保留 **FusionFix、ReMade 高清材质、思源黑体和汉化**，沿用 GOG 启动兼容模块及 `WindowMode=2` 无边框。原安装、EXE 的 LAA 标志、FusionFix 二进制和高清输入不改。文件检查或自有宿主通过不等于游戏通过。
 
-当前内容为 5,957 条 BS、PDA 68 页共 447 段，另有两条 EXE 提示和一张独立生成的载入提示位图。六张 1024×1024 字库当前共 1,958 字形、6,142 个可用字位；六张字库加一张 UI 位图共七项资源。14条旧文本暂无已证活跃消费链，采用受审计调用者约束的延迟绑定；原稿、完整译文均保留。两条EXE提示为防御性覆盖，不声称已在PC实际触发。范围见[全量文本记录](https://github.com/jyh9521/Second-Sight-CN/blob/main/docs/FULL_LOCALIZATION.md)。
+当前内容为 5,957 条 BS、PDA 68 页共 447 段，另有两条 EXE 提示和一张独立生成的载入提示位图。六张 2048×2048 字库使用 64 像素字格；六张字库加一张 UI 位图共七项资源。14条旧文本暂无已证活跃消费链，采用受审计调用者约束的延迟绑定；原稿、完整译文均保留。两条EXE提示为防御性覆盖，不声称已在PC实际触发。范围见[全量文本记录](https://github.com/jyh9521/Second-Sight-CN/blob/main/docs/FULL_LOCALIZATION.md)。
 
 ## 文件与用途
 
 | 路径 | 内容 |
 |---|---|
 | `game/dinput8.dll` | 用户提供的 ReMade 纹理替换模块，保持原名和原字节 |
-| `game/Remaster_Textures/` | 全部 5,110 张 DDS，保持原尺寸和内容 |
+| `game/Remaster_Textures/` | 5,106 张活跃 DDS，保持原尺寸和内容 |
+| `optional/remastered-quarantine/` | 4 张错贴候选的原始 DDS，移出运行时搜索目录 |
 | `game/dsound.dll` | FusionFix 自带的 Ultimate ASI Loader 10.0.2，仅改文件名 |
 | `game/dsound.ini` | 开启诊断日志，显式先加载 Compatibility，保留默认延迟初始化 |
 | `game/scripts/SecondSight.Compatibility.asi` | 仅在进程内适配四处 GOG/FusionFix 指令契约，磁盘 EXE 不变 |
@@ -40,7 +41,7 @@
 “快速滚动”“按钮不可用”有已核对消费者及局部容量，但实际 PC 触发可达性尚未完全闭合，现作防御性覆盖。载入提示由 `ui-textures.json` 独立生成，不改原图像素或高清 DDS；版权原图和标志原样保留。旧暂停/Controls 已核对非当前 PC 使用路径，不另加补丁。
 
 BS 日志中的 `expected-direct` 应对照实际交付 manifest 的 `bs_binding.direct_ids`，`deferred` 包括未直接改表的旧文本及五段组合终端。不要把 5,957 总条数直接当成直接替换数量，也不要继续套用 005 的 `expected=832`。PDA 本轮目标为 447 段。日志计数不代替可见文本和布局验收。
-新构建不会自动复制存档。GOG 版从注册表安装位置定位 `profiles/`；若该位置指向原安装，各测试包可能读写同一存档。012 本地迁移已保存副本到包内 `game/profiles/`，不改注册表或共享存档。
+新构建默认不复制存档。`--inherit-local` 从指定的上一版同级测试包保留本地 `profiles/` 副本和无边框 FusionFix 配置。GOG 版从注册表安装位置定位 `profiles/`；若该位置指向原安装，各测试包可能读写同一存档。该选项不改注册表或共享存档。
 
 004 的新故障证据、无边框策略与待验收边界见[004 记录](https://github.com/jyh9521/Second-Sight-CN/blob/main/docs/STARTUP_004.md)；003 的启动适配依据见[兼容记录](https://github.com/jyh9521/Second-Sight-CN/blob/main/docs/STARTUP_COMPATIBILITY.md)。不要单独关闭 Compatibility 模块再搭配当前固定 FusionFix；该组合会重新遇到原始签名不匹配。
 
@@ -81,3 +82,5 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\Set-HD.ps1 -Mode enable
 010 重点：在 4K 重看左上按键教程和左下“徒手”，记录是否够大、是否遮住图标。
 
 012 重点：用相同分辨率比较主菜单、地图和 PDA；检查地图边框、箭头和交互区域；看过场左下时间地点、字幕以及选择「治疗」后文字能否显示完整。作弊菜单默认加载。由你手动启动包内游戏，按 F1 打开「《第二视界》作弊菜单」，勾选无限生命、无限超能力或隐身。关面板保留勾选，退出游戏后开关清空。关闭游戏后可用同一脚本的 `-Mode Disable` 移除加载副本，保留汉化、FusionFix、无边框和高清材质；用 `-Mode Enable` 可重新启用。实际 F1 焦点、鼠标与 Ctrl+F10 共存、玩家伤害、能量和 NPC 感知由用户在游戏内验收。详细边界见仓库的 `docs/MENU_TWEAKS_011.md`。
+
+013 重点：在训练场原位置检查带灯的墙面是否还出现眼睛和牙齿；在 4K 对照主菜单汉字边沿，并检查鼠标热点；在同一地图停留和反复打开，确认 3D 图不再缩到左上角，地图文字和 PDA 阅读保持清晰。技术与离线验证见 `docs/DISPLAY_013.md`。
